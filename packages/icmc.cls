@@ -976,7 +976,8 @@ h}%
 	   \end{center}
     
    	Approved in \imprimirlocal,  January 24, 2018:
-     \vspace*{0.5cm}
+    
+    \vspace*{0.5cm}
     \begin{center}{\ABNTEXchapterfont\large Examining Committee}\end{center}
     
     \vspace*{0.5cm}
