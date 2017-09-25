@@ -960,20 +960,18 @@ h}%
     
 	\begin{folhadeaprovacao}
 
-	  \begin{center}
-	    \begin{flushleft}   {\ABNTEXchapterfont\large\imprimirautor} \end{flushleft}
+	    \begin{flushleft}   {\ABNTEXchapterfont\large\imprimirautor} 
 
 	    \vspace*{1cm}%\vspace*{\fill}
 	    {\ABNTEXchapterfont\bfseries\Large\imprimirtitulo}
 	    \vspace*{1cm}
-        
+        \end{flushleft}
 	    \hspace{.45\textwidth}
 	    \begin{minipage}{.5\textwidth}
 	        \imprimirpreambulo
 	    \end{minipage}%
 		%\vspace*{1cm}
     	%\vspace*{\fill}
-	   \end{center}
     
    	Approved in \imprimirlocal,  January 24, 2018:
     
