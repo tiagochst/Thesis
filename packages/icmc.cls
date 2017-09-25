@@ -963,7 +963,7 @@ h}%
 	    \begin{flushleft}   {\ABNTEXchapterfont\large\imprimirautor} 
 
 	    \vspace*{1cm}%\vspace*{\fill}
-	    {\ABNTEXchapterfont\bfseries\Large\imprimirtitulo}
+	    {\ABNTEXchapterfont\Large\imprimirtitulo}
 	    \vspace*{1cm}
        
 	    \hspace{.45\textwidth}
@@ -972,7 +972,7 @@ h}%
 	    \end{minipage}%
 		%\vspace*{1cm}
     	%\vspace*{\fill}
-    
+    \vspace*{0.5cm}
    	Approved in \imprimirlocal,  January 24, 2018:
     
     \vspace*{0.5cm}
