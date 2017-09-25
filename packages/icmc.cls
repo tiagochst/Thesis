@@ -200,10 +200,9 @@ Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Comput
     }
     
 
-%================================================================================
+%==========================================================================
 % Configuração da fonte utilizada na capa exigida pelo ICMC
-%================================================================================
-
+%==========================================================================
 \newcommand{\@icmcFont}[2][]{\fontsize{#2}{#2}\ifthenelse{\isempty{#1}}{}{\fontspec[Mapping = tex-text, Path = packages/fonts/]{#1}}}
 
 \ifxetex % Configuração da fonte para a compilação por XETEX
@@ -274,9 +273,9 @@ Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Comput
 \fi
 
 
-%================================================================================
+%========================================================================
 % Comando auxiliares
-%================================================================================
+%========================================================================
 
 % Comando para marcar texto para revisão
 \newcommand{\rev}[1]{\textcolor{red}{[#1]}}
@@ -309,9 +308,9 @@ Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Comput
 \newenvironment{switch}[1]{\renewcommand{\case}{\ifequals{#1}}}{}
 
 
-%================================================================================
+%===========================================================================
 % Configurações diversas
-%================================================================================
+%===========================================================================
 
 % Codificação dos caracteres especiais no Bookmark
 \hypersetup{unicode=true}
@@ -358,12 +357,12 @@ Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Comput
 \graphicspath{{images/}}
 
 % Nome do local do instituto
-\local{São Carlos -- SP}
+\local{Ribeirão Preto -- SP}
 
 
-%================================================================================
+%=============================================================================
 % Pacote para criação da lista de siglas e abreviaturas
-%================================================================================
+%=============================================================================
 
 % Configuração do pacote nomencl
 % Tamanho da Label da sigla
@@ -383,9 +382,9 @@ Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Comput
 % Faz o registro na tabela de siglas e insere os dados no corpo do documento
 \def\@@sigla#1#2{#2 (#1)\nomenclature{#1}{#2}}  % \sigla{}{}
 
-%================================================================================
+%===========================================================================
 % Pacote para criação do GLOSSÁRIO
-%================================================================================
+%===========================================================================
 % Gera o indíce do Glossário
 \makeglossaries
 % Traduz o nome do glossário
@@ -406,9 +405,9 @@ Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Comput
     }%
 }
 
-%================================================================================
+%===========================================================================
 % Pacotes de citações
-%================================================================================
+%===========================================================================
 
 % Configurações do pacote backref
 % Texto padrão antes do número das páginas
@@ -440,9 +439,9 @@ Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Comput
 }
 % ---
 
-%================================================================================
+%==========================================================================
 % Definição/Alteração de comandos uitlizados
-%================================================================================
+%==========================================================================
 
 % Permite comandos com @ no nome
 \makeatletter
@@ -511,18 +510,18 @@ Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Comput
 \newcommand{\curso}[1]{
 
 \universidade{USP}
-\instituicao{Instituto de Ciências Matemáticas e de Computação -- ICMC-USP}
+\instituicao{Faculdade de medicina de Ribeirão Preto -- FMRP-USP}
 \addto\captionsenglish{% ingles
-    \instituicao{\textit{Instituto de Ciências Matemáticas e de Computação} -- ICMC-USP}
+    \instituicao{\textit{Ribeirão Preto Medical School} -- FMRP-USP}
 }
 
 % CCMC ==========================================================================
     \ifthenelse{\equal{#1}{CCMC}}{
-        \programa{Programa de Pós-Graduação em Ciências de Computação e Matemática Computacional}
-        \especialidade{em Ciências -- Ciências de Computação e Matemática Computacional}
+        \programa{Programa de Pós-Graduação em Oncologia Clínica, Células Tronco e Terapia Celular}
+        \especialidade{Área de Diferenciação Celular Normal e Neoplásica}
         \addto\captionsenglish{% ingles
             %\programa{Programa de Pós-Graduação em Ciências de Computação e Matemática Computacional}
-            \especialidade{Program in Computer Science and Computational Mathematics}
+            \especialidade{Postgraduate Program in Clinical Oncology, Stem Cells and Cell Therapy}
         }
     }{
 % MAT ===========================================================================
@@ -827,9 +826,9 @@ Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Comput
 \DeclareCaptionFormat{listing}{\hrule height.8pt depth0pt ~~~#1#2#3}
 \captionsetup[lstlisting]{format=listing,singlelinecheck=false, margin=0pt,labelsep=colon,labelfont=bf, font=normalsize}
 
-%================================================================================
+%===========================================================================
 % Dedicatória
-%================================================================================
+%===========================================================================
 
 % Comando para definição da dedicatória
 \def\textodedicatoria{\@ifstar\@textodedicatoria\@@textodedicatoria}
@@ -852,9 +851,9 @@ Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Comput
   }
 }
 
-%================================================================================
+%===========================================================================
 % Agradecimentos
-%================================================================================
+%===========================================================================
 
 % Comando para definição dos agradecimentos
 \def\textoagradecimentos{\@ifstar\@textoagradecimentos\@@textoagradecimentos}
@@ -873,9 +872,9 @@ Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Comput
   }
 }
 
-%================================================================================
+%===========================================================================
 % Epígrafe
-%================================================================================
+%===========================================================================
 
 % Comando para definição da epígafe
 \def\textoepigrafe{\@ifstar\@textoepigrafe\@@textoepigrafe}
@@ -898,9 +897,9 @@ Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Comput
   }
 }
 
-%================================================================================
+%===========================================================================
 % Lista de Símbolos
-%================================================================================
+%===========================================================================
 
 % Comando para inserir simbolos na lista de símbolos
 \newcommand{\simbolo}[2]{
@@ -923,9 +922,9 @@ Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Comput
   }
 }
 
-%================================================================================
+%===========================================================================
 % Ficha Catalografica
-%================================================================================
+%============================================================================
 
 % Contador das palavras-chave
 \newcounter{count}
@@ -962,8 +961,7 @@ Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Comput
 	&  {\ttfamily~~~\imprimirtitulo{} / \imprimirautor; \MakeLowercase{\imprimirorientadorRotulo}~\imprimirorientador \abntex@ifnotempty{\imprimircoorientador}{; \MakeLowercase{\imprimircoorientadorRotulo}~\imprimircoorientador}. -- \imprimirlocal, \@year.} \\ 
 	& & {\ttfamily~~~\pageref{LastPage} p.}\\
 	& &\\
-	& & {\ttfamily~~~\imprimirtipotrabalho~(\tipodocurso~-- \imprimirprograma) -- Instituto de Ciências Matemáticas
-e de Computação, Universidade de São Paulo, \@year.}\\
+	& & {\ttfamily~~~\imprimirtipotrabalho~(\tipodocurso~-- \imprimirprograma) -- Faculdade de medicina de Ribeirão Preto, Universidade de São Paulo, \@year.}\\
 	& & \\
 	& & \texttt{~~~\expandafter\PROCESS\expandafter{\palavraschave}I. \ABNTorientadordatabib, orient.\ II.\ \abntex@ifnotempty{\imprimircoorientador}{%
 	\ABNTcoorientadordatabib, coorient.\ III.\ }Título.} \\
@@ -1011,7 +1009,7 @@ e de Computação, Universidade de São Paulo, \@year.}\\
         \begin{resumo}[\csuse{res-title-\csuse{res-language-\thecount}}]
             \begin{otherlanguage*}{\csuse{res-language-\thecount}}
                 \begin{SingleSpace}
-                    {\MakeUppercase{\ABNTautorreferencia}}. {\textbf{\imprimirtitulo}.} \@year. \pageref{LastPage} f. \imprimirtipotrabalho~(\tipodocurso~em \imprimirespecialidade) -- Instituto de Ciências Matemáticas e de Computação (ICMC/USP), \imprimirlocal.
+                    {\MakeUppercase{\ABNTautorreferencia}}. {\textbf{\imprimirtitulo}.} \@year. \pageref{LastPage} f. \imprimirtipotrabalho~(\tipodocurso~em \imprimirespecialidade) -- Faculdade de medicina de Ribeirão Preto (FMRP/USP), \imprimirlocal.
                 \end{SingleSpace}
                 %\end{flushleft}
                 \vskip 20pt
@@ -1029,9 +1027,9 @@ e de Computação, Universidade de São Paulo, \@year.}\\
     }
 }
 
-%================================================================================
+%============================================================================
 % Definição de comandos a serem inseridos diretamente no início do documento
-%================================================================================
+%============================================================================
 
 \newcommand{\inserelistadefiguras}
 {
@@ -1089,35 +1087,36 @@ e de Computação, Universidade de São Paulo, \@year.}\\
   }
 }
 
-%================================================================================
+%============================================================================
 % INDICE REMISSIVO
-%================================================================================
+%============================================================================
 
 \makeindex
 
-%================================================================================
+%===========================================================================
 % Configuração do modelo de capa exigido pelo programa do ICMC
-%=============================================================================
+%===========================================================================
+										
 
 % alterando a capa
 \renewcommand{\imprimircapa}{%
   \begin{capa}%
-    \center
-    ~\\
-    \vspace{6.5cm}
-    \rule{\textwidth}{1pt} \\
-    %\vspace{5mm}
-    \vspace{18pt}
-    \begin{Spacing}{1.5}
-        {\@icmcTitulo\imprimirtitulo} \\
-    \end{Spacing}
-    \vspace{\fill}\vspace{\fill}
-    {\@icmcAutorCapa\imprimirautor} \\
-    %\vspace{4mm}
-    \vspace{12pt}
-    \rule{\textwidth}{1pt} \\
-    \vspace*{12.15cm}
-    ~\\
+	\centering
+    \vspace*{0.5 cm}
+    \includegraphics[scale = 0.15]{brasao_fmrp.png}\\[0.5 cm]	% University Logo
+    \textsc{\large University of São Paulo\\Ribeirão Preto Medical School (FMRP)}\\[3.0 cm]	% University Name
+	{\large \itshape DOCTORAL THESIS}
+    
+    \rule{16.0cm}{1.6pt}\vspace*{-\baselineskip}\vspace*{2pt} \rule{16.0cm}{0.4pt} \\[0.5 cm]
+    {\large Development and enhancement of bioinformatic tools to integrate and understand aberrant epigenomic and genomic changes associated with cancer}\\[0.5 cm]
+    {\large \itshape Methods, development and analysis}  
+     \rule{16.0cm}{0.4pt} \\[-0.5 cm] \rule{16.0cm}{1.6pt}
+     \vspace{6.5mm}\\
+	{\large By}\\
+	\vspace{6.5mm}
+	{\large\textsc{Tiago Chedraoui Silva}}
+	 \vfill
+    {\Monthname[\@month]~\@year\\}
   \end{capa}
 }
 
@@ -1126,7 +1125,7 @@ e de Computação, Universidade de São Paulo, \@year.}\\
 
 \vspace*{-13.2mm}
 \makebox[16.2cm][r]{\fbox{\parbox{7.5cm}{
-\makebox[\linewidth][c]{\@icmcSVPG{SERVIÇO DE PÓS-GRADUAÇÃO DO ICMC-USP}}
+\makebox[\linewidth][c]{\@icmcSVPG{SERVIÇO DE PÓS-GRADUAÇÃO FMRP-USP}}
   
   {
       \@icmcCarimbo
@@ -1186,11 +1185,83 @@ e de Computação, Universidade de São Paulo, \@year.}\\
 \vspace{\fill}
 
 {\@icmcLocalData
-\imprimiruniversidade~-- São Carlos\\
+\imprimiruniversidade~-- Ribeirão Preto\\
 \iflanguage{english}
     {\Monthname[\@month]~\@year\\}
     {\Monthname[\@month] de \@year\\}
 }
+\vspace*{1.2cm}
+\end{center}
+} %folha de rosto
+
+
+
+%=======================================================================
+% Folha de aprovação
+%=========================================================================
+\renewcommand{\folhadeaprovacaocontent}{
+
+\vspace*{-13.2mm}
+\makebox[16.2cm][r]{\fbox{\parbox{7.5cm}{
+\makebox[\linewidth][c]{\@icmcSVPG{SERVIÇO DE PÓS-GRADUAÇÃO FMRP-USP}}
+  
+  {
+      \@icmcCarimbo
+      \vspace{12pt}
+      \hspace{3pt} Data de Depósito:
+      
+      \vspace{10pt}
+      \hspace{3pt} Assinatura: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+      \vspace{3pt}
+  }
+}}}
+\begin{center}
+
+\vspace{2.6cm}
+
+\begin{Spacing}{1.5}
+{\@icmcTitulo\imprimirtitulo}
+\end{Spacing}
+
+%\vspace{3cm}
+\vspace{\fill}
+\vspace{\fill}
+
+{\@icmcAutorFolhaRosto\imprimirautor}
+
+%\vspace{2cm}
+\vspace{\fill}
+\vspace{\fill}
+
+{\@icmcOrientadorLabel\imprimirorientadorRotulo:}
+{\@icmcOrientadorName\titulacaoorientador~\imprimirorientador}
+
+\abntex@ifnotempty{\imprimircoorientador}{%
+    \addvspace{1pt}
+    {\@icmcOrientadorLabel\imprimircoorientadorRotulo:}
+    {\@icmcOrientadorName\titulacaocoorientador~\imprimircoorientador}
+}%
+
+\vspace{\fill}
+\vspace{\fill}
+\vspace{\fill}
+
+\abntex@ifnotempty{\imprimirpreambulo}{%
+  \hspace{.45\textwidth}
+  %\begin{minipage}{.54\textwidth}
+  \begin{minipage}{8.6cm}
+    \begin{SingleSpace}
+    {\@icmcPreambulo
+    \imprimirpreambulo}
+    \end{SingleSpace}
+  \end{minipage}%
+}%
+
+
+\vspace{\fill}
+\vspace{\fill}
+\vspace{\fill}
+
 \vspace*{1.2cm}
 \end{center}
 } %folha de rosto
@@ -1260,7 +1331,7 @@ e de Computação, Universidade de São Paulo, \@year.}\\
     }{%
     % else
         {\hrulefill
-        {\renewcommand{\arraystretch}{1.5} %  1 is the default, change whatever you need
+        {\renewcommand{\arraystretch}{1} %  1 is the default, change whatever you need
         \begin{tabular}{|c|}
             \rowcolor{black}\color{white}\normalsize\ABNTEXchapterfont
               \ifthenelse{\boolean{abntex@apendiceousecao}}{\MakeTextUppercase{\appendixname}}{\MakeTextUppercase{\chaptername}}  \\ 
