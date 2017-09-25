@@ -970,7 +970,7 @@ h}%
 	    \begin{minipage}{.5\textwidth}
 	        \imprimirpreambulo
 	    \end{minipage}%
-		%\vspace*{1cm}
+		\vspace*{1cm}
     	%\vspace*{\fill}
 	   \end{center}
       \begin{flushleft}
