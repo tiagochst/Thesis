@@ -1045,11 +1045,11 @@ h}%
                 \begin{SingleSpace}
                     {\MakeUppercase{\ABNTautorreferencia}}. {\textbf{\imprimirtitulo}.} \@year. \pageref{LastPage} f. \imprimirtipotrabalho~(\tipodocurso~ -- \imprimirespecialidade) -- \imprimirinstituicao, \imprimirlocal.
                 \end{SingleSpace}
+                \vskip 20pt
                 }{
-                \thecount
+				\vskip 10pt                
                 }
                 %\end{flushleft}
-                \vskip 20pt
                 \csuse{res-text-\thecount}
                 
                 \vspace{\onelineskip}
