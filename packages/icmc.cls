@@ -514,7 +514,7 @@ Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Comput
     \instituicao{\textit{Ribeirão Preto Medical School} -- FMRP-USP}
 }
 
-% ONCO ==========================================================================
+	% ONCO ==========================================================================
     \ifthenelse{\equal{#1}{ONCO}}{
         \programa{Programa de Pós-Graduação em Oncologia Clínica, Células Tronco e Terapia Celular}
         \especialidade{Área de Diferenciação Celular Normal e Neoplásica}
@@ -523,13 +523,10 @@ Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Comput
             \especialidade{Postgraduate Program in Clinical Oncology, Stem Cells and Cell Therapy}
         }
     }{
-% Outros ========================================================================
-                        \programa{XXX}
-                        \especialidade{XXX}
-                    }
-                }
-            }
-        }
+		% Outros ========================================================================
+	     \programa{XXX}
+		 \especialidade{XXX}
+	}
 }
 
 % Redefinição do comando \date do Latex
