@@ -972,7 +972,7 @@ h}%
 	    \end{minipage}%
 		%\vspace*{1cm}
     	%\vspace*{\fill}
-      \vspace*{0.5cm}
+    \vspace*{0.5cm}
    	Approved in \imprimirlocal,  January 24, 2018:
     
     \vspace*{0.5cm}
