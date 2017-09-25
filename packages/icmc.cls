@@ -960,20 +960,21 @@ h}%
     
 	\begin{folhadeaprovacao}
 
-	    {\ABNTEXchapterfont\large\imprimirautor} 
+	  \begin{center}
+	     {\ABNTEXchapterfont\large\imprimirautor} 
 
 	    \vspace*{1cm}%\vspace*{\fill}
 	    {\ABNTEXchapterfont\bfseries\Large\imprimirtitulo}
 	    \vspace*{1cm}
-       
+        \end{flushleft}
 	    \hspace{.45\textwidth}
 	    \begin{minipage}{.5\textwidth}
 	        \imprimirpreambulo
 	    \end{minipage}%
 		%\vspace*{1cm}
     	%\vspace*{\fill}
-    \vspace*{0.5cm}
-      \begin{flushleft} 
+	   \end{center}
+      \begin{flushleft}
    	Approved in \imprimirlocal,  January 24, 2018:
     
     \vspace*{0.5cm}
@@ -999,7 +1000,7 @@ h}%
 		Institution:   & \hrulefill \\\\
 		Verdict: & \hrulefill\\
 	\end{tabular}
-   \end{flushleft}
+     \end{flushleft}
 	\end{folhadeaprovacao}
 
     }{
