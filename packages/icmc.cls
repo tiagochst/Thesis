@@ -960,10 +960,10 @@ h}%
     
 	\begin{folhadeaprovacao}
 
-	    \begin{flushleft}   {\ABNTEXchapterfont\large\imprimirautor} 
+	    \begin{flushleft}   {\ABNTEXchapterfont\large Name: \imprimirautor} 
 
 	    \vspace*{1cm}%\vspace*{\fill}
-	    {\ABNTEXchapterfont\Large\imprimirtitulo}
+	    {\ABNTEXchapterfont\Large Title: \imprimirtitulo}
 	    \vspace*{1cm}
        
 	    \hspace{.45\textwidth}
