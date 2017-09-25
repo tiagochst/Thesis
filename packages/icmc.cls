@@ -965,6 +965,7 @@ h}%
 
 	    \vspace*{1cm}%\vspace*{\fill}
 	    {\ABNTEXchapterfont\bfseries\Large\imprimirtitulo}
+        
 	    \vspace*{1cm}
 	    \hspace{.45\textwidth}
 	    \begin{minipage}{.5\textwidth}
