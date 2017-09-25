@@ -1024,21 +1024,21 @@ h}%
     \begin{center}{\ABNTEXchapterfont\large Examining Committee}\end{center}
     
     \vspace*{1cm}
-   	\begin{tabular}{@{}p{.7in}p{6in}@{}}
+   	\begin{tabular}{@{}p{.7in}p{5in}@{}}
 		Prof.Dr.: & \hrulefill \\\\
 		Institution:   & \hrulefill \\\\
 		Verdict: & \hrulefill\\
 	\end{tabular}
 
 	\vspace*{1cm}
-   	\begin{tabular}{@{}p{.7in}p{6in}@{}}
+   	\begin{tabular}{@{}p{.7in}p{5in}@{}}
 		Prof.Dr.: & \hrulefill \\\\
 		Institution:   & \hrulefill \\\\
 		Verdict: & \hrulefill\\
 	\end{tabular}
     
 	\vspace*{1cm}
-	\begin{tabular}{@{}p{.7in}p{6in}@{}}
+	\begin{tabular}{@{}p{.7in}p{5in}@{}}
 		Prof.Dr.: & \hrulefill \\\\
 		Institution:   & \hrulefill \\\\
 		Verdict: & \hrulefill\\
