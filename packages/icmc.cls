@@ -509,9 +509,9 @@ Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Comput
 \newcommand{\curso}[1]{
 
 \universidade{USP}
-\instituicao{Faculdade de medicina de Ribeirão Preto -- FMRP-USP}
+\instituicao{Faculdade de medicina de Ribeirão Preto (FMRP/USP)}
 \addto\captionsenglish{% ingles
-    \instituicao{\textit{Ribeirão Preto Medical School} -- FMRP-USP}
+    \instituicao{\textit{Ribeirão Preto Medical School} (FMRP/USP)}
 }
 
 	% ONCO ==========================================================================
@@ -519,8 +519,8 @@ Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Comput
         \programa{Programa de Pós-Graduação em Oncologia Clínica, Células Tronco e Terapia Celular}
         \especialidade{Área de Diferenciação Celular Normal e Neoplásica}
         \addto\captionsenglish{% ingles
-            %\programa{Programa de Pós-Graduação em Ciências de Computação e Matemática Computacional}
-            \especialidade{Postgraduate Program in Clinical Oncology, Stem Cells and Cell Therapy}
+            \programa{Postgraduate Program in Clinical Oncology, Stem Cells and Cell Therapy}
+            \especialidade{Specialization in Normal and Neoplastic Cell Differentiation}
         }
     }{
 		% Outros ========================================================================
@@ -922,19 +922,19 @@ h}%
 	% Conteúdo
 	\begin{tabular}{c|p{1.6cm}p{10.5cm}|}
 	
-	\multicolumn{3}{c}{\sffamily\small Ficha catalográfica elaborada pela Biblioteca Prof. Achille Bassi} \\
-	\multicolumn{3}{c}{\sffamily\small e Seção Técnica de Informática, ICMC/USP,} \\
-	\multicolumn{3}{c}{\sffamily\small com os dados fornecidos pelo(a) autor(a)} \\ \cline{2-3}
+	\multicolumn{3}{c}{\sffamily\small Ficha catalográfica} \\
+	\multicolumn{3}{c}{\sffamily\small } \\
+	\multicolumn{3}{c}{\sffamily\small } \\ \cline{2-3}
 	& & \\
 	& & \texttt{\ABNTautordatabib}\\
 	& {\ttfamily \MakeUppercase{\firstletterauthor}\@codigocutter}\MakeLowercase{\firstlettertitle}
-	&  {\ttfamily~~~\imprimirtitulo{} / \imprimirautor; \MakeLowercase{\imprimirorientadorRotulo}~\imprimirorientador \abntex@ifnotempty{\imprimircoorientador}{; \MakeLowercase{\imprimircoorientadorRotulo}~\imprimircoorientador}. -- \imprimirlocal, \@year.} \\ 
+	&  {\ttfamily~~~\imprimirtitulo{} / \imprimirautor; \MakeLowercase{\orientadorname}~\imprimirorientador \abntex@ifnotempty{\imprimircoorientador}{; \MakeLowercase{\coorientadorname}~\imprimircoorientador}.-- \imprimirlocal, \@year.} \\ 
 	& & {\ttfamily~~~\pageref{LastPage} p.}\\
 	& &\\
-	& & {\ttfamily~~~\imprimirtipotrabalho~(\tipodocurso~-- \imprimirprograma) -- Faculdade de medicina de Ribeirão Preto, Universidade de São Paulo, \@year.}\\
+	& & {\ttfamily~~~\imprimirtipotrabalho~(\tipodocurso~-- \imprimirprograma) -- \imprimirinstituicao, \imprimiruniversidade, \@year.}\\
 	& & \\
-	& & \texttt{~~~\expandafter\PROCESS\expandafter{\palavraschave}I. \ABNTorientadordatabib, orient.\ II.\ \abntex@ifnotempty{\imprimircoorientador}{%
-	\ABNTcoorientadordatabib, coorient.\ III.\ }Título.} \\
+	& & \texttt{~~~\expandafter\PROCESS\expandafter{\palavraschave}I. \ABNTorientadordatabib, \orientadorname.\ \ \abntex@ifnotempty{\imprimircoorientador}{%
+	II. \ABNTcoorientadordatabib, \coorientadorname.}} \\
 	& & \\
 	& & \\ \cline{2-3}
 	%& & ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~CDU: 681.3.01:621.39 \\ \cline{2-3}
@@ -967,12 +967,14 @@ h}%
 	    {\ABNTEXchapterfont\bfseries\Large\imprimirtitulo}
         
 	    \vspace*{1cm}
+        
 	    \hspace{.45\textwidth}
 	    \begin{minipage}{.5\textwidth}
 	        \imprimirpreambulo
 	    \end{minipage}%
-		\vspace*{1cm}
-    	%\vspace*{\fill}
+        
+        \vspace*{1cm}
+        %\vspace*{\fill}
 	   \end{center}
       \begin{flushleft}
    	Approved in \imprimirlocal,  January 24, 2018:
@@ -1037,9 +1039,10 @@ h}%
         \if@openright\cleardoublepage\else\clearpage\fi
         \phantomsection
         \begin{resumo}[\csuse{res-title-\csuse{res-language-\thecount}}]
+            \iflanguage{\thecount}{
             \begin{otherlanguage*}{\csuse{res-language-\thecount}}
                 \begin{SingleSpace}
-                    {\MakeUppercase{\ABNTautorreferencia}}. {\textbf{\imprimirtitulo}.} \@year. \pageref{LastPage} f. \imprimirtipotrabalho~(\tipodocurso~em \imprimirespecialidade) -- Faculdade de medicina de Ribeirão Preto (FMRP/USP), \imprimirlocal.
+                    {\MakeUppercase{\ABNTautorreferencia}}. {\textbf{\imprimirtitulo}.} \@year. \pageref{LastPage} f. \imprimirtipotrabalho~(\tipodocurso~ -- \imprimirespecialidade) -- \imprimirinstituicao, \imprimirlocal.
                 \end{SingleSpace}
                 %\end{flushleft}
                 \vskip 20pt
@@ -1053,6 +1056,7 @@ h}%
                     \@for\next:=\csuse{res-keywords-\thecount}\do
                     {\if@tempswa,~\else\@tempswatrue\fi\next}.
             \end{otherlanguage*}
+         }
         \end{resumo}
     }
 }
