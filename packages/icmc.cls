@@ -998,7 +998,7 @@ h}%
 		Institution:   & \hrulefill \\\\
 		Verdict: & \hrulefill\\
 	\end{tabular}
-  
+   \end{flushleft}
 	\end{folhadeaprovacao}
 
     }{
