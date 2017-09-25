@@ -1015,7 +1015,7 @@ h}%
 	    \begin{minipage}{.5\textwidth}
 	        \imprimirpreambulo
 	    \end{minipage}%
-	    \vspace*{\fill}
+	    %\vspace*{\fill}
 	   \end{center}
     
    	Approved in \imprimirlocal,  January 24, 2018:
