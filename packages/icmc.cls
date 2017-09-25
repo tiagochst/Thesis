@@ -1039,7 +1039,7 @@ h}%
         \if@openright\cleardoublepage\else\clearpage\fi
         \phantomsection
         \begin{resumo}[\csuse{res-title-\csuse{res-language-\thecount}}]
-             \ifthenelse{\equal{\thecount}{\string english}}{
+             
             \begin{otherlanguage*}{\csuse{res-language-\thecount}}
                 \begin{SingleSpace}
                     {\MakeUppercase{\ABNTautorreferencia}}. {\textbf{\imprimirtitulo}.} \@year. \pageref{LastPage} f. \imprimirtipotrabalho~(\tipodocurso~ -- \imprimirespecialidade) -- \imprimirinstituicao, \imprimirlocal.
