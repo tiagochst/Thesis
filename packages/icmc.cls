@@ -961,7 +961,7 @@ h}%
 	\begin{folhadeaprovacao}
 
 	  \begin{center}
-	    {\ABNTEXchapterfont\large\imprimirautor}
+	    \begin{flushleft}   {\ABNTEXchapterfont\large\imprimirautor} \end{flushleft}
 
 	    \vspace*{1cm}%\vspace*{\fill}
 	    {\ABNTEXchapterfont\bfseries\Large\imprimirtitulo}
