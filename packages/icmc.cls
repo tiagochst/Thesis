@@ -1047,7 +1047,7 @@ h}%
                 \end{SingleSpace}
                 \vskip 20pt
                 }{
-				\vspace{-1cm}                
+				\vspace{-0.3cm}                
                 }
                 %\end{flushleft}
                 \csuse{res-text-\thecount}
