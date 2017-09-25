@@ -1027,24 +1027,18 @@ h}%
 		Institution:   & \hrulefill \\\\
 		Verdict: & \hrulefill\\
 	\end{tabular}
-
+	\\
    	\begin{tabular}{@{}p{.7in}p{4in}@{}}
 		Prof.Dr.: & \hrulefill \\\\
 		Institution:   & \hrulefill \\\\
 		Verdict: & \hrulefill\\
 	\end{tabular}
-
+	\\
    	\begin{tabular}{@{}p{.7in}p{4in}@{}}
 		Prof.Dr.: & \hrulefill \\\\
 		Institution:   & \hrulefill \\\\
 		Verdict: & \hrulefill\\
 	\end{tabular}
-
-   	\assinatura{\textbf{\imprimirorientador} \\ Orientador} 
-    \assinatura{\textbf{Professor} \\ Convidado 1}
-   	\assinatura{\textbf{Professor} \\ Convidado 2}
-   	%\assinatura{\textbf{Professor} \\ Convidado 3}
-   	%\assinatura{\textbf{Professor} \\ Convidado 4}
   
 	\end{folhadeaprovacao}
 
