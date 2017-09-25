@@ -1027,13 +1027,17 @@ h}%
 		Institution:   & \hrulefill \\\\
 		Verdict: & \hrulefill\\
 	\end{tabular}
+    
 	\vspace{2cm}
+    
    	\begin{tabular}{@{}p{.7in}p{4in}@{}}
 		Prof.Dr.: & \hrulefill \\\\
 		Institution:   & \hrulefill \\\\
 		Verdict: & \hrulefill\\
 	\end{tabular}
+    
 	\vspace{2cm}
+    
    	\begin{tabular}{@{}p{.7in}p{4in}@{}}
 		Prof.Dr.: & \hrulefill \\\\
 		Institution:   & \hrulefill \\\\
