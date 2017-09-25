@@ -514,8 +514,8 @@ Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Comput
     \instituicao{\textit{Ribeirão Preto Medical School} -- FMRP-USP}
 }
 
-% CCMC ==========================================================================
-    \ifthenelse{\equal{#1}{CCMC}}{
+% ONCO ==========================================================================
+    \ifthenelse{\equal{#1}{ONCO}}{
         \programa{Programa de Pós-Graduação em Oncologia Clínica, Células Tronco e Terapia Celular}
         \especialidade{Área de Diferenciação Celular Normal e Neoplásica}
         \addto\captionsenglish{% ingles
@@ -523,45 +523,7 @@ Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Comput
             \especialidade{Postgraduate Program in Clinical Oncology, Stem Cells and Cell Therapy}
         }
     }{
-% MAT ===========================================================================
-        \ifthenelse{\equal{#1}{MAT}}{
-            \programa{Programa de Pós-Graduação em Matemática}
-            \especialidade{em Ciências -- Matemática}
-            \addto\captionsenglish{% ingles
-                %\programa{Programa de Pós-Graduação em Matemática}
-                \especialidade{Program in Mathematics}
-            }
-        }{
-% PIPGES ========================================================================     
-            \ifthenelse{\equal{#1}{PIPGES}}{
-                \universidade{USP/UFSCar}
-                \instituicao{Instituto de Ciências Matemáticas e de Computação -- ICMC-USP e ao Departamento de Estatística -- DEs-UFSCar}
-                \programa{Programa Interinstitucional de Pós-Graduação em Estatística}
-                \especialidade{em Estatística -- Programa Interinstitucional de Pós-Graduação em Estatística}
-                \addto\captionsenglish{% ingles
-                    \instituicao{\textit{Instituto de Ciências Matemáticas e de Computação} -- ICMC-USP and to the \textit{Departamento de Estatística} -- DEs-UFSCar}
-                    %\programa{Programa Interinstitucional de Pós-Graduação em Estatística}
-                    \especialidade{joint Graduate Program in Statistics DEs-UFSCar/ICMC-USP}
-                }
-            }{
-% PROFMAT =======================================================================
-                \ifthenelse{\equal{#1}{PROFMAT}}{
-                    \programa{Programa de Pós-graduação em Mestrado Profissional em Matemática em Rede Nacional}
-                    \especialidade{-- Programa de Mestrado Profissional em Matemática}
-                    \addto\captionsenglish{% ingles
-                        %\programa{Programa de Pós-graduação em Mestrado Profissional em Matemática em Rede Nacional}
-                        \especialidade{-- Programa de Mestrado Profissional em Matemática}
-                    }
-                }{
-% MECAI =========================================================================
-                    \ifthenelse{\equal{#1}{MECAI}}{
-                        \programa{Programa de Pós-graduação em Mestrado Profissional em Matemática, Estatística e Computação Aplicadas à Indústria}
-                        \especialidade{-- Programa de Mestrado Profissional em Matemática, Estatística e Computação Aplicadas à Indústria}
-                        \addto\captionsenglish{% ingles
-                            %\programa{Programa de Pós-graduação em Mestrado Profissional em Matemática, Estatística e Computação Aplicadas à Indústria}
-                            \especialidade{-- Programa de Mestrado Profissional em Matemática, Estatística e Computação Aplicadas à Indústria}
-                        }
-                    }{
+	{
 % Outros ========================================================================
                         \programa{XXX}
                         \especialidade{XXX}
@@ -1023,7 +985,7 @@ h}%
     
     \begin{center}{\ABNTEXchapterfont\large Examining Committee}\end{center}
     
-    \vspace*{1cm}
+    \vspace*{0.5cm}
    	\begin{tabular}{@{}p{.7in}p{5in}@{}}
 		Prof.Dr.: & \hrulefill \\\\
 		Institution:   & \hrulefill \\\\
