@@ -1007,7 +1007,7 @@ h}%
 	  \begin{center}
 	    {\ABNTEXchapterfont\large\imprimirautor}
 
-	    \vspace*{\fill}%\vspace*{\fill}
+	    %\vspace*{\fill}%\vspace*{\fill}
 	    {\ABNTEXchapterfont\bfseries\Large\imprimirtitulo}
 	    %\vspace*{\fill}
     
