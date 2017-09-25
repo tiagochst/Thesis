@@ -1,4 +1,3 @@
-%%
 %% Customizações do abnTeX2 (http://abnTeX2.googlecode.com) para o 
 %% Instituto de Ciências Matemáticas e de Computação, Universidade 
 %% de São Paulo
@@ -604,7 +603,11 @@ Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Comput
         \case{10}{Outubro}%
         \case{11}{Novembro}%
         \case{12}{Dezembro}%
-    \end{switch}%
+    \end{switc% Opção para exibir a lista de figuras
+\newcommand{\incluilistadefiguras}{
+  \gdef\@incluilistadefiguras{true}
+}
+h}%
 }
 \addto\captionsenglish{% ingles
     \renewcommand\Monthname[1][EMPTY]{%
@@ -679,7 +682,10 @@ Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Comput
 % Gera a ficha catalográfica automaticamente de acordo com o número da Tabela de Cutter http://www.davignon.qc.ca/cutter1.html
 \def\@@incluifichacatalografica#1{\gdef\@incluifichacatalografica{true}\gdef\@codigocutter{#1}}  % \incluifichacatalografica{}{}
 
-
+% Comando para inclusão da ficha de aprovacao
+\def\incluifolhadeaprovacao{\@ifstar\@incluifolhadeaprovacao\@@incluifolhadeaprovacao}
+\def\@incluifolhadeaprovacao#1{\gdef\@incluifolhadeaprovacao{true}\gdef\@incluifolhadeaprovacao{#1}}       
+\def\@@incluifolhadeaprovacao#1{\gdef\@incluifolhadeaprovacao{true}\gdef\@codigocutter{#1}}  % 
 %================================================================================
 % Definição dos ambientes matemáticos
 %================================================================================
@@ -825,6 +831,14 @@ Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Comput
 
 \DeclareCaptionFormat{listing}{\hrule height.8pt depth0pt ~~~#1#2#3}
 \captionsetup[lstlisting]{format=listing,singlelinecheck=false, margin=0pt,labelsep=colon,labelfont=bf, font=normalsize}
+
+
+%===========================================================================
+% Folha de aprovação
+%===========================================================================
+\def\incluifolhadeaprovacao{\@ifstar\@incluifolhadeaprovacao\@@incluifolhadeaprovacao}
+\def\@incluifolhadeaprovacao#1{\gdef\@incluifolhadeaprovacao{true}\gdef\@incluifolhadeaprovacao{#1}}       
+\def\@@incluifolhadeaprovacao#1{\gdef\@incluifolhadeaprovacao{true}\gdef\@codigocutter{#1}}  % 
 
 %===========================================================================
 % Dedicatória
@@ -978,7 +992,62 @@ Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Comput
     }
 }
 
+\newcommand{\inserefolhadeaprovacao}
+{
+    \@ifundefined{@arquivofolhadeaprovacao}
+    {
+    
+    % Captura a primeira letra do sobrenome do autor
+    \expandafter\StrLeft\expandafter{\ABNTautordatabib}{1}[\firstletterauthor]
+    % Captura a primeira letra do título
+    \expandafter\StrLeft\expandafter{\thetitle}{1}[\firstlettertitle]
+    
+	\begin{folhadeaprovacao}
 
+	  \begin{center}
+	    {\ABNTEXchapterfont\large\imprimirautor}
+
+	    \vspace*{\fill}\vspace*{\fill}
+	    {\ABNTEXchapterfont\bfseries\Large\imprimirtitulo}
+	    \vspace*{\fill}
+    
+	    \hspace{.45\textwidth}
+	    \begin{minipage}{.5\textwidth}
+	        \imprimirpreambulo
+	    \end{minipage}%
+	    \vspace*{\fill}
+	   \end{center}
+    
+   	Approved in \imprimirlocal,  January 24, 2018:
+    
+    \begin{center}{\ABNTEXchapterfont\large Examining Committee}\end{center}
+
+   	Prof.Dr. \hrule{5cm}
+    Institution:  \hrule{5cm}
+    Verdict:  \hrule{5cm}
+    
+    Prof.Dr. \hrule{5cm}
+    Institution:  \hrule{5cm}
+    Verdict:  \hrule{5cm}
+    
+    Prof.Dr. \hrule{5cm}
+    Institution:  \hrule{5cm}
+    Verdict:  \hrule{5cm}
+    
+   	\assinatura{\textbf{\imprimirorientador} \\ Orientador} 
+    \assinatura{\textbf{Professor} \\ Convidado 1}
+   	\assinatura{\textbf{Professor} \\ Convidado 2}
+   	%\assinatura{\textbf{Professor} \\ Convidado 3}
+   	%\assinatura{\textbf{Professor} \\ Convidado 4}
+  
+	\end{folhadeaprovacao}
+
+    }{
+        \begin{folhadeaprovacao}
+            \includepdf{\@arquivofolhadeaprovacao}
+        \end{folhadeaprovacao}
+    }
+}
 %================================================================================
 % Resumo
 %================================================================================
@@ -1317,6 +1386,7 @@ Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Comput
         % (o * indica que haverá a ficha bibliográfica)
         \imprimirfolhaderosto*{} 
 		\inserefichacatalografica
+       	\inserefolhadeaprovacao
 		\newpage
     }
 
