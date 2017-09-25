@@ -1022,6 +1022,24 @@ h}%
     
     \begin{center}{\ABNTEXchapterfont\large Examining Committee}\end{center}
    
+   	\begin{tabular}{@{}p{.5in}p{4in}@{}}
+		Prof.Dr.: & \hrulefill \\
+		Institution:   & \hrulefill \\
+		Verdict: & \hrulefill\\
+	\end{tabular}
+
+   	\begin{tabular}{@{}p{.5in}p{4in}@{}}
+		Prof.Dr.: & \hrulefill \\
+		Institution:   & \hrulefill \\
+		Verdict: & \hrulefill\\
+	\end{tabular}
+
+   	\begin{tabular}{@{}p{.5in}p{4in}@{}}
+		Prof.Dr.: & \hrulefill \\
+		Institution:   & \hrulefill \\
+		Verdict: & \hrulefill\\
+	\end{tabular}
+
    	\assinatura{\textbf{\imprimirorientador} \\ Orientador} 
     \assinatura{\textbf{Professor} \\ Convidado 1}
    	\assinatura{\textbf{Professor} \\ Convidado 2}
