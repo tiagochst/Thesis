@@ -1022,9 +1022,9 @@ h}%
     
     \begin{center}{\ABNTEXchapterfont\large Examining Committee}\end{center}
 
-   	Prof.Dr. \hrule{5cm}
-    Institution:  \hrule{5cm}
-    Verdict:  \hrule{5cm}
+   	Prof.Dr. \rule{3cm}
+    Institution:  \rule{3cm}
+    Verdict:  \rule{3cm}
     
     Prof.Dr. \hrule{5cm}
     Institution:  \hrule{5cm}
