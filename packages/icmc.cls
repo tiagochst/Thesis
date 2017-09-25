@@ -1022,21 +1022,21 @@ h}%
     
     \begin{center}{\ABNTEXchapterfont\large Examining Committee}\end{center}
    
-   	\begin{tabular}{@{}p{.5in}p{4in}@{}}
-		Prof.Dr.: & \hrulefill \\
-		Institution:   & \hrulefill \\
+   	\begin{tabular}{@{}p{.7in}p{4in}@{}}
+		Prof.Dr.: & \hrulefill \\\\
+		Institution:   & \hrulefill \\\\
 		Verdict: & \hrulefill\\
 	\end{tabular}
 
-   	\begin{tabular}{@{}p{.5in}p{4in}@{}}
-		Prof.Dr.: & \hrulefill \\
-		Institution:   & \hrulefill \\
+   	\begin{tabular}{@{}p{.7in}p{4in}@{}}
+		Prof.Dr.: & \hrulefill \\\\
+		Institution:   & \hrulefill \\\\
 		Verdict: & \hrulefill\\
 	\end{tabular}
 
-   	\begin{tabular}{@{}p{.5in}p{4in}@{}}
-		Prof.Dr.: & \hrulefill \\
-		Institution:   & \hrulefill \\
+   	\begin{tabular}{@{}p{.7in}p{4in}@{}}
+		Prof.Dr.: & \hrulefill \\\\
+		Institution:   & \hrulefill \\\\
 		Verdict: & \hrulefill\\
 	\end{tabular}
 
