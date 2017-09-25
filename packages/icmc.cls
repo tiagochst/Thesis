@@ -1,4 +1,4 @@
-%% Customizações do abnTeX2 (http://abnTeX2.googlecode.com) para o 
+\textit{%% Customizações do abnTeX2 (http://abnTeX2.googlecode.com) para o 
 %% Instituto de Ciências Matemáticas e de Computação, Universidade 
 %% de São Paulo
 %%
@@ -1022,17 +1022,24 @@ h}%
     
     \begin{center}{\ABNTEXchapterfont\large Examining Committee}\end{center}
 
-   	Prof.Dr. \rule{3cm}
-    Institution:  \rule{3cm}
-    Verdict:  \rule{3cm}
-    
-    Prof.Dr. \hrule{5cm}
-    Institution:  \hrule{5cm}
-    Verdict:  \hrule{5cm}
-    
-    Prof.Dr. \hrule{5cm}
-    Institution:  \hrule{5cm}
-    Verdict:  \hrule{5cm}
+	\begin{tabular}{@{}p{.5in}p{4in}@{}}
+		Prof.Dr.: & \hrulefill \\
+		Institution:   & \hrulefill \\
+		Verdict: & \hrulefill\\
+	\end{tabular}
+
+	\begin{tabular}{@{}p{.5in}p{4in}@{}}
+		Prof.Dr.: & \hrulefill \\
+		Institution:   & \hrulefill \\
+		Verdict: & \hrulefill\\
+	\end{tabular}
+
+	\begin{tabular}{@{}p{.5in}p{4in}@{}}
+		Prof.Dr.: & \hrulefill \\
+		Institution:   & \hrulefill \\
+		Verdict: & \hrulefill\\
+	\end{tabular}
+
     
    	\assinatura{\textbf{\imprimirorientador} \\ Orientador} 
     \assinatura{\textbf{Professor} \\ Convidado 1}
@@ -1471,4 +1478,4 @@ h}%
 }
 
 % Finaliza comandos com @ no nome
-\makeatother
+\makeatother}
