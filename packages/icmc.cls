@@ -1022,24 +1022,20 @@ h}%
    	Approved in \imprimirlocal,  January 24, 2018:
     
     \begin{center}{\ABNTEXchapterfont\large Examining Committee}\end{center}
-   
+    \vspace*{1cm}
    	\begin{tabular}{@{}p{.7in}p{4in}@{}}
 		Prof.Dr.: & \hrulefill \\\\
 		Institution:   & \hrulefill \\\\
 		Verdict: & \hrulefill\\
 	\end{tabular}
-    
-	\vspace{1cm}
-    
+	\vspace*{1cm}
    	\begin{tabular}{@{}p{.7in}p{4in}@{}}
 		Prof.Dr.: & \hrulefill \\\\
 		Institution:   & \hrulefill \\\\
 		Verdict: & \hrulefill\\
 	\end{tabular}
-    
-	\vspace{1cm}
-    
-   	\begin{tabular}{@{}p{.7in}p{4in}@{}}
+	\vspace*{1cm}
+	\begin{tabular}{@{}p{.7in}p{4in}@{}}
 		Prof.Dr.: & \hrulefill \\\\
 		Institution:   & \hrulefill \\\\
 		Verdict: & \hrulefill\\
