@@ -1047,7 +1047,7 @@ h}%
                 \end{SingleSpace}
                 \vskip 20pt
                 }{
-				\vskip 10pt                
+				\vskip 8pt                
                 }
                 %\end{flushleft}
                 \csuse{res-text-\thecount}
