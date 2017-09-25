@@ -1007,15 +1007,16 @@ h}%
 	  \begin{center}
 	    {\ABNTEXchapterfont\large\imprimirautor}
 
-	    %\vspace*{\fill}%\vspace*{\fill}
+	    \vspace*{1cm}%\vspace*{\fill}
 	    {\ABNTEXchapterfont\bfseries\Large\imprimirtitulo}
-	    %\vspace*{\fill}
-    
+	    \vspace*{1cm}
+        
 	    \hspace{.45\textwidth}
 	    \begin{minipage}{.5\textwidth}
 	        \imprimirpreambulo
 	    \end{minipage}%
-	    %\vspace*{\fill}
+		%\vspace*{1cm}
+    	%\vspace*{\fill}
 	   \end{center}
     
    	Approved in \imprimirlocal,  January 24, 2018:
