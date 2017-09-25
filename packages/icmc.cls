@@ -1009,7 +1009,7 @@ h}%
 
 	    \vspace*{\fill}%\vspace*{\fill}
 	    {\ABNTEXchapterfont\bfseries\Large\imprimirtitulo}
-	    \vspace*{\fill}
+	    %\vspace*{\fill}
     
 	    \hspace{.45\textwidth}
 	    \begin{minipage}{.5\textwidth}
