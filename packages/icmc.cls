@@ -960,9 +960,10 @@ h}%
     
 	\begin{folhadeaprovacao}
 
-	    \begin{flushleft}   {\ABNTEXchapterfont\large Name: \imprimirautor} 
+	    \begin{flushleft}   {\ABNTEXchapterfont\large\imprimirautor} 
 
-	    {\ABNTEXchapterfont\large Title: \imprimirtitulo}
+	    \vspace*{1cm}%\vspace*{\fill}
+	    {\ABNTEXchapterfont\bfseries\Large\imprimirtitulo}
 	    \vspace*{1cm}
        
 	    \hspace{.45\textwidth}
@@ -971,7 +972,7 @@ h}%
 	    \end{minipage}%
 		%\vspace*{1cm}
     	%\vspace*{\fill}
-    \vspace*{0.5cm}
+      \vspace*{0.5cm}
    	Approved in \imprimirlocal,  January 24, 2018:
     
     \vspace*{0.5cm}
