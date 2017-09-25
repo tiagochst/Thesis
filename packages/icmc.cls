@@ -962,7 +962,6 @@ h}%
 
 	    \begin{flushleft}   {\ABNTEXchapterfont\large Name: \imprimirautor} 
 
-	    \vspace*{1cm}%\vspace*{\fill}
 	    {\ABNTEXchapterfont\large Title: \imprimirtitulo}
 	    \vspace*{1cm}
        
