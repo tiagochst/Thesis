@@ -960,7 +960,7 @@ h}%
     
 	\begin{folhadeaprovacao}
 
-	    \begin{flushleft}   {\ABNTEXchapterfont\large\imprimirautor} 
+	    {\ABNTEXchapterfont\large\imprimirautor} 
 
 	    \vspace*{1cm}%\vspace*{\fill}
 	    {\ABNTEXchapterfont\bfseries\Large\imprimirtitulo}
@@ -973,6 +973,7 @@ h}%
 		%\vspace*{1cm}
     	%\vspace*{\fill}
     \vspace*{0.5cm}
+      \begin{flushleft} 
    	Approved in \imprimirlocal,  January 24, 2018:
     
     \vspace*{0.5cm}
