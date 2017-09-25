@@ -1,4 +1,4 @@
-\textit{%% Customizações do abnTeX2 (http://abnTeX2.googlecode.com) para o 
+%% Customizações do abnTeX2 (http://abnTeX2.googlecode.com) para o 
 %% Instituto de Ciências Matemáticas e de Computação, Universidade 
 %% de São Paulo
 %%
@@ -1021,8 +1021,7 @@ h}%
    	Approved in \imprimirlocal,  January 24, 2018:
     
     \begin{center}{\ABNTEXchapterfont\large Examining Committee}\end{center}
-
-    
+   
    	\assinatura{\textbf{\imprimirorientador} \\ Orientador} 
     \assinatura{\textbf{Professor} \\ Convidado 1}
    	\assinatura{\textbf{Professor} \\ Convidado 2}
@@ -1460,4 +1459,4 @@ h}%
 }
 
 % Finaliza comandos com @ no nome
-\makeatother}
+\makeatother
