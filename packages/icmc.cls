@@ -523,7 +523,6 @@ Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Comput
             \especialidade{Postgraduate Program in Clinical Oncology, Stem Cells and Cell Therapy}
         }
     }{
-	{
 % Outros ========================================================================
                         \programa{XXX}
                         \especialidade{XXX}
@@ -532,7 +531,6 @@ Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Comput
             }
         }
     }
-
 }
 
 % Redefinição do comando \date do Latex
