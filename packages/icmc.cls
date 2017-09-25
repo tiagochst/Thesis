@@ -1044,6 +1044,7 @@ h}%
                 \begin{SingleSpace}
                     {\MakeUppercase{\ABNTautorreferencia}}. {\textbf{\imprimirtitulo}.} \@year. \pageref{LastPage} f. \imprimirtipotrabalho~(\tipodocurso~ -- \imprimirespecialidade) -- \imprimirinstituicao, \imprimirlocal.
                 \end{SingleSpace}
+                }
                 %\end{flushleft}
                 \vskip 20pt
                 \csuse{res-text-\thecount}
@@ -1056,7 +1057,6 @@ h}%
                     \@for\next:=\csuse{res-keywords-\thecount}\do
                     {\if@tempswa,~\else\@tempswatrue\fi\next}.
             \end{otherlanguage*}
-         }
         \end{resumo}
     }
 }
