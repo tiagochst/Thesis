@@ -530,7 +530,6 @@ Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Comput
                 }
             }
         }
-    }
 }
 
 % Redefinição do comando \date do Latex
