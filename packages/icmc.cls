@@ -1041,6 +1041,7 @@ h}%
         \begin{resumo}[\csuse{res-title-\csuse{res-language-\thecount}}]
              
             \begin{otherlanguage*}{\csuse{res-language-\thecount}}
+            \ifthenelse{\equal{\thecount}{\string english}}{
                 \begin{SingleSpace}
                     {\MakeUppercase{\ABNTautorreferencia}}. {\textbf{\imprimirtitulo}.} \@year. \pageref{LastPage} f. \imprimirtipotrabalho~(\tipodocurso~ -- \imprimirespecialidade) -- \imprimirinstituicao, \imprimirlocal.
                 \end{SingleSpace}
