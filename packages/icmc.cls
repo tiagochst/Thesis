@@ -786,15 +786,16 @@ h}%
 \captionsetup{position  = above, 
               format    = plain,
               labelfont = ABNTEXfontereduzida, 
-              font      = ABNTEXfontereduzida}
-
-\DeclareCaptionFormat{listing}{\hrule height.8pt depth0pt ~~~#1#2#3}
-\captionsetup[lstlisting]{format    = listing,
-                          singlelinecheck = false, 
-                          margin    = 0pt,
-                          labelsep  = colon,
-                          labelfont = bf, 
-                          font      = normalsize}
+              % labelfont={color=red,bf},textfont={color=black,bf}
+              font      = ABNTEXfontereduzida}{caption}
+%\captionsetup{}
+%\DeclareCaptionFormat{listing}{\hrule height.8pt depth0pt ~~~#1#2#3}
+%\captionsetup[lstlisting]{format    = listing,
+%                          singlelinecheck = false, 
+%                          margin    = 0pt,
+%                          labelsep  = colon,
+%                          labelfont = bf, 
+%                          font      = normalsize}
 
 
 %===========================================================================
