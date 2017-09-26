@@ -782,11 +782,11 @@ h}%
 %================================================================================
 % Comando para configurar os captions no documento
 %================================================================================
-%\DeclareCaptionFont{ABNTEXfontereduzida}{\ABNTEXfontereduzida}
-%\captionsetup{position=above, labelfont=ABNTEXfontereduzida, font=ABNTEXfontereduzida}
+\DeclareCaptionFont{ABNTEXfontereduzida}{\ABNTEXfontereduzida}
+\captionsetup{position=above, labelfont=ABNTEXfontereduzida, font=ABNTEXfontereduzida}
 
-%\DeclareCaptionFormat{listing}{\hrule height.8pt depth0pt ~~~#1#2#3}
-%\captionsetup[lstlisting]{format=listing,singlelinecheck=false, margin=0pt,labelsep=colon,labelfont=bf, font=normalsize}
+\DeclareCaptionFormat{listing}{\hrule height.8pt depth0pt ~~~#1#2#3}
+\captionsetup[lstlisting]{format=listing,singlelinecheck=false, margin=0pt,labelsep=colon,labelfont=bf, font=normalsize}
 
 
 %===========================================================================
