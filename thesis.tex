@@ -15,14 +15,18 @@
 \usetikzlibrary{shapes.geometric, arrows}
 \usetikzlibrary{mindmap,shadows}
 \usepackage{booktabs}
+\usepackage{bibentry}
 \usetikzlibrary{fit, arrows, calc, positioning}
 \newcommand{\VerbL}{0.52\textwidth}
 \newcommand{\LatL}{0.42\textwidth}
 \captionsetup{style=base,
-              %labelfont={color=red,bf},
+              %labelfont={color=darkgreen,bf},
               hangindent=-50pt,
               %textfont={color=black,bf}, 
-              format = plain}
+              format = plain,
+              singlelinecheck=no,
+			  labelfont=ABNTEXfontereduzida, 
+              font=ABNTEXfontereduzida}
 
 % ---
 % Informações de dados para CAPA e FOLHA DE ROSTO
@@ -162,6 +166,9 @@ Our expectation is that biOMICs can effectively automate search, retrieve, and a
 
 \input{tex/tools.tex}
 \input{tex/gcimp_analysis}
+
+\chapter{Conclusion}
+\input{tex/conclusion}
 
 \chapter{Citações e referências}
 \label{chapter:citacoes}
