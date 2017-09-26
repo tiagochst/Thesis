@@ -1,0 +1,357 @@
+%\begin{landscape}
+\tikzstyle{container} = [
+    rectangle,
+    draw,
+    inner sep=0.2 cm,
+    dashed
+]
+\tikzstyle{start} = [circle,
+					 minimum size=2mm,
+                     rounded corners=3mm,
+					 very thick,
+                     draw=green!50!black,
+                     top color=green!50!black,
+                     bottom color=green!50!black, 
+                     text=white,
+                     font=\tiny]
+
+\tikzstyle{end} = [circle,
+				  minimum size=2mm,
+                  rounded corners=3mm,
+                  very thick,draw=red!50!black, 
+                  top color=red!50!black,
+                  bottom color=red!50!black, 
+                  text=white,
+                  font=\tiny]
+
+\tikzstyle{function} = [rectangle,
+						minimum size=6mm,
+                        rounded corners=3mm,
+                        very thick,
+                        draw=black!50, 
+                        top color=white,
+                        bottom color=white,
+                        font=\itshape\footnotesize]
+
+\tikzstyle{datain} = [
+	rectangle, 
+	rounded corners, 
+    minimum width=3cm, 
+    minimum height=0.5cm,
+    text centered,
+    font=\footnotesize, 
+    draw=green!50!black, 
+    fill=white, 
+    text=black
+]
+                      
+\tikzstyle{dataaux} = [
+	rectangle, 
+    rounded corners, 
+    minimum width=3cm, 
+    minimum height=0.5cm,
+    text centered,
+    font=\footnotesize,
+    draw=orange, 
+    fill=white, 
+    text=black
+]
+                       
+\tikzstyle{dataout} = [
+	rectangle, 
+	rounded corners, 
+    minimum width=3cm, 
+    minimum height=0.5cm,
+    text centered,
+    font=\footnotesize, 
+    draw=blue, 
+    fill=white, 
+    text=black
+]
+
+% Pacakge labels
+\tikzstyle{arrow} = [
+	thick,
+    ->,
+    >=stealth,
+    -latex',
+    draw,
+    rounded corners
+]
+
+\tikzstyle{labelelmer}=[
+	rectangle,
+    draw,
+    fill=black!50!red,
+    draw = black,
+    minimum width=450pt,
+    minimum height=1.5em,
+    text=white,
+    rotate = 90, 
+    label={[rotate=90]center:\textcolor{white}{\textbf{ELMER package}}}
+]
+
+\tikzstyle{labeltcgabiolinks}=[
+	rectangle,
+	draw,
+    fill=black!50!blue,
+    draw = black,
+    minimum width=420pt,
+    minimum height=1.5em,
+    text = green,
+    rotate = 90, 
+    label={[rotate=270]center:\textcolor{white}{\textbf{TCGAbiolinks/TCGAbiolinksGUI packages}}}
+]
+
+
+\tikzstyle{labelfuncivar}=[
+	rectangle,
+	draw,
+    fill=black!20!orange,
+    draw = black,
+    xshift = -0.0cm,
+    minimum width=480pt,
+    minimum height=1.5em,
+    text=white,
+    rotate = 0, 
+    label={[rotate=0]center:\textcolor{white}{\textbf{StateHub/StatePaintR/funcivar package}}}
+]
+\tikzstyle{labelgdc}=[
+	rectangle,
+	draw,
+    fill=black!50!gray,
+    draw = black,
+    minimum width=167pt,
+    minimum height=1.5em,
+    text=white,
+    yshift = 0.10cm,
+    xshift = 0.1cm,
+    rotate = 0, 
+    label={[rotate=0]center:\textcolor{white}{\textbf{GDC database}}}
+]
+\tikzstyle{every annotation}=[fill=white, font=\sf \small, scale=0.5, text width=4cm, inner sep=2mm, text=black,draw = orange]
+
+
+\begin{figure}[!ht]
+\centering
+  \resizebox{0.95\textwidth}{!}{%
+\begin{tikzpicture}[node distance = 1.5cm, auto, shorten >=1pt,thick,font=\itshape\footnotesize]
+\linespread{0.8}{
+%\node (start) [start] {START};
+\node (func1) [function, yshift = -0.5cm] {\textit{createMAE}};
+\node [datain, right of=func1, yshift = 0.5cm, xshift = 2cm] (dna) {DNA methylation object};
+\node [datain, right of=func1, yshift = -0.5cm, xshift = 2cm] (exp) {Gene expression object};
+\node (out1) [dataout, below of=func1, yshift = -0.3cm,text width=3cm] {Multi Assay Experiment object};
+\node (func2) [function, below of = out1] {get.diff.meth};
+%\node (out2) [dataout, below of=func2, yshift = 0.3cm] {List of differently methylated probes};
+\node (func3) [function, below of=func2] {GetNearGenes};
+%\node (out3) [dataout, below of=func2, yshift = 0.3cm] {List of near genes for differently methylated probes};
+\node (func4) [function, below of=func3] {get.pair};
+%\node (out4) [dataout, below of=func4, yshift = 0.3cm] {List of pairs: differently expressed gene and differently methylated probes};
+\node (func5) [function, below of=func4, yshift = -0.5cm] {get.enriched.motif};
+%\node (out5) [dataout, below of=func5, yshift = 0.3cm] {List of enriched motifs};
+\node (func6) [function, below of=func5] {get.TFs};
+\node (func7) [function, below of=func6,yshift = -0.5cm] {TF.survival};
+%\node (out5) [dataout, below of=func5, yshift = 0.3cm] {List of regulator};
+\node [dataaux, left of=func5, xshift =-3cm] (elmerdata1) {Probes.motif};
+%\node [dataaux, above of=elmerdata1] (enhancer) {enhancer};
+\node [dataaux, left of=func6, yshift = 0.0cm, xshift =-3cm] (elmerdata2) {motif.relevant.TFs};
+\node [dataaux, left of=func6, yshift = -1.0cm, xshift =-3cm] (elmerdata3) {human.TFs};
+%\node (end) [end, below of=func7] {END};
+\node (func8) [function, left of=func1,yshift = -3cm,xshift = -3cm] {get.feature.probe};
+\node (probes) [datain, left of=func1,xshift = -3cm] {distal probes};
+\node [dataaux, below of=func8] (tss) {ENSEMBL TSS};
+\node [dataaux, below of=tss] (probesmetadata) {Probes metadata};
+
+
+% funcvat
+\node (funciVar) [function, below of=func7, xshift = 3cm, yshift = -1.4cm] {enrich.segments};
+\node [dataaux, left of=funciVar,xshift = -2cm] (statehub) {Statehub tracks};
+%\node [dataaux, left of=statehub,xshift = -2cm, yshift = 0.2cm] (encode) {ENCODE};
+%\node [dataaux, left of=statehub,xshift = -2cm, yshift = -0.4cm] (roadmap) {ROADMAP};
+%\node [dataaux, left of=statehub,xshift = -2cm, yshift = 0.8cm] (blueprint) {BLUEPRINT};
+%\draw [arrow,dashed,draw=orange] (encode.east) -- (statehub.west);
+%\draw [arrow,dashed,draw=orange] (roadmap.east) -- (statehub.west);
+%\draw [arrow,dashed,draw=orange] (blueprint.east) -- (statehub.west);
+
+\draw [arrow,dashed,draw=orange] (statehub.east) -- (funciVar.west);
+
+\draw [arrow] (func4) -- ++(4.9,0) -- ++(0,-1) |- node {} (funciVar);
+
+% Draw edges
+%\path [arrow] (start) -- (func1);
+\path [arrow,dashed,draw=green!50!black] (dna) |- (func1);
+\path [arrow,dashed,draw=green!50!black] (exp) |- (func1);
+\draw [arrow,dashed,draw=blue] (out1.west) -- ++(-.5,0) -- ++(0,-1) |- (func4.west);
+\draw [arrow,dashed,draw=blue] (out1.west) -- ++(-.5,0) -- ++(0,-1) |- (func6.west);
+\draw [arrow] (func1) -- (out1);
+\draw [arrow] (out1) -- (func2);
+\draw [arrow] (func2) -- node {} (func3);
+\draw [arrow] (func3) -- (func4);
+\draw [arrow] (func4) -- node {} (func5);
+\draw [arrow] (func5) -- node {}(func6);
+\draw [arrow] (func6) -- (func7);
+%\draw [arrow] (func7) -- (end);
+\draw [arrow,dashed,draw=orange] (elmerdata1) -- node {} (func5);
+\draw [arrow,dashed,draw=orange] (elmerdata2.east) -- (func6.west);
+\draw [arrow,dashed,draw=orange] (elmerdata3.east) -- ++(.5,0) -- ++(0,0.2) |- (func6.west);
+%\draw [arrow,dashed,draw=orange] (enhancer.north) -- (func8.south);
+\draw [arrow,dashed,draw=orange] (tss.north) -- (func8.south);
+\draw [arrow,dashed,draw=orange] (probesmetadata.east) -- ++(.1,0) -- ++(0,0.2) |- (func8.east);
+\path [arrow,dashed,draw=green!50!black] (probes) -- (func1);
+\draw [arrow] (func8.north)  --  (probes);
+
+% Containers
+\node [container, 
+       fit=(exp)(dna)(func1)(probes), 
+       label={[font=\scriptsize,anchor=east] west:Data input}]
+       (container1){};
+\node [container, 
+	   fit=(func2), 
+       label={[font=\scriptsize,anchor=west,name=lfunc1] east:{\parbox[c]{4.0cm}{Identifying differentially\\ methylated probes}}}]
+       (container2){};
+\node [container, 
+       fit=(func3)(func4), 
+	   label={[font=\scriptsize,anchor=west,name=lfunc2] east:{\parbox[c]{4.0cm}{Identifying putative \\probe-gene pairs}}}]
+       (container3){};
+\node [container, 
+ 	   fit=(func5), 
+       label={[font=\scriptsize,anchor=west] east:{\parbox[c]{4.0cm}{Motif enrichment\\ analysis}}}]
+       (container4){};
+\node [container, 
+       fit=(func6), 
+       label={[font=\scriptsize,anchor=west] south east:Identifying regulatory TFs}]
+       (container5){};
+\node [container, 
+       fit=(elmerdata1)(elmerdata1), 
+       label={[name=l1,font=\scriptsize,anchor=east] west:ELMER.data}]
+       (container6){};
+%\node[draw,text width=3cm, above of = elmerdata1]{ELMER.data};
+\node [container, 
+	   fit=(func8)(probesmetadata), 
+	   label={[name=l3,font=\scriptsize,anchor=east] west:{\parbox[r]{2.0cm}{Select probes \\$\pm 2Kb$  distant \\ from TSS}}}]
+       (container8){};
+
+\node [container, 
+       fit=(elmerdata2), 
+       label={[name=l2,font=\scriptsize,anchor=east] west:TFClass database}]
+       (container7){};
+\node [container, 
+	   fit=(elmerdata3), 
+	   label={[name=l3,font=\scriptsize,anchor=east] west:Uniprot database}]
+       (container8){};
+\node [draw,  
+       minimum height=450pt,
+	   minimum width=450pt,
+       fit=(l1)(exp)(dna)(elmerdata3)(l2)(lfunc1)(lfunc2)]
+       (container9){};
+\node at (container9.west) [labelelmer] {};
+  
+%------------------------------ TCGAbiolinks
+\node (GDCprepare) [function, right of = func1, yshift =-1.3cm,xshift =8.8cm] {\textit{GDCprepare}};
+\node (GDCdownload) [function, above of = GDCprepare,yshift =-0.4cm] {\textit{GDCdownload}};
+\node (GDCquery) [function, above of = GDCdownload,yshift =-0.4cm] {\textit{GDCquery}};
+\node (TCGAanalysesurvival) [function, right of = func7,xshift =7.8cm] {\textit{TCGAanalyse\_survival}};
+\node (TCGAanalyzeEAcomplete) [function, right of = func4,yshift =0.4cm,xshift =7.8cm] {\textit{TCGAanalyze\_EAcomplete}};
+\node (TCGAanalyzePathview) [function, right of = func4,yshift =-0.7cm,xshift =7.8cm] {\textit{TCGAanalyze\_Pathview}};
+\node (TCGAvisualizeoncoprint) [function, right of = func4,yshift =-1.8cm,xshift =7.8cm] {\textit{TCGAvisualize\_oncoprint}};
+
+\draw [arrow] (GDCquery) -- node {}(GDCdownload);
+\draw [arrow] (GDCdownload) -- (GDCprepare);
+\draw [arrow] (GDCprepare.west) -- ++(-0.3,0) -- ++(0,0.2) |- (dna.east);
+\draw [arrow] (GDCprepare.west) -- ++(-0.3,0) -- ++(0,0.2) |- (exp.east);
+
+\node (subtypeinfo) [dataaux, below of = GDCprepare,yshift =0.6cm] {Subtype information};
+\node (molecularinfo) [dataaux, below of = subtypeinfo,yshift =0.6cm] {Molecular data};
+\node (clinicalinfo) [dataaux,  below of = molecularinfo,yshift =0.6cm] {Clinical data};
+\node (mafinfo) [dataaux, below of = clinicalinfo,yshift =0.6cm] {Mutation data};
+
+\draw [arrow,dashed,draw=orange] (mafinfo.east) -- ++(0.5,0) -- ++(0,-0.2) |-    (TCGAvisualizeoncoprint.east);
+\draw [arrow,dashed,draw=orange] (clinicalinfo.east)  -- ++(0.3,0) -- ++(0,0.2) |-   (GDCprepare.east);
+\draw [arrow,dashed,draw=orange] (subtypeinfo.east)   -- ++(0.2,0) -- ++(0,0.2) |-   (GDCprepare.east);
+\draw [arrow,dashed,draw=orange] (molecularinfo.east) -- ++(0.3,0) -- ++(0,0.2) |-  (GDCprepare.east);
+\node [draw,  
+       minimum height=420pt,
+       minimum width=170pt, 
+       xshift = 0.25cm,
+       yshift = -0.25cm,
+       fit=(TCGAanalyzeEAcomplete)(GDCquery)(TCGAanalysesurvival)(clinicalinfo)(subtypeinfo)](container10){};
+\node at (container10.east) [labeltcgabiolinks] {};
+\draw [latex'-latex',double] (TCGAanalysesurvival) --  (func7);
+\draw [arrow] (func4.east)  -- ++(4.4,0) -- ++(0,0.2) |-  (TCGAanalyzeEAcomplete);
+\draw [arrow] (func4.east)  -- ++(4.4,0) -- ++(0,-0.2) |-  (TCGAanalyzePathview);
+\draw [arrow] (func4.east)  -- ++(4.4,0) -- ++(0,-0.2) |-  (TCGAvisualizeoncoprint);
+\draw [arrow] (func6.east)  -|   (TCGAvisualizeoncoprint.south);
+%------------------------------ 
+\node [labelgdc, above of = GDCquery,xshift=-0.30cm,yshift=-0.05cm] (gdc) {};
+\draw [latex'-latex',double] (GDCquery) --  (gdc.300);
+
+\draw [draw,dashed] (gdc.188) |- (GDCdownload.west);
+\draw [arrow,dashed] (gdc.188) |- (mafinfo.west);
+\draw [arrow,dashed] (gdc.188) |- (clinicalinfo.west) ;
+\draw [arrow,dashed] (gdc.188) |- (molecularinfo.west) ;
+}
+
+\tikzstyle{labelencode}=[
+	rectangle,
+	draw,
+    fill=black!50!gray,
+    draw = black,
+    minimum width=150pt,
+    minimum height=1.5em,
+    text=white,
+    yshift = 0.10cm,
+    xshift = 0.1cm,
+    rotate = 0, 
+    label={[rotate=0]center:\textcolor{white}{\textbf{ENCODE database}}}
+]
+\tikzstyle{labelroadmap}=[
+	rectangle,
+	draw,
+    fill=black!50!gray,
+    draw = black,
+    minimum width=150pt,
+    minimum height=1.5em,
+    text=white,
+    yshift = 0.10cm,
+    xshift = 0.1cm,
+    rotate = 0, 
+    label={[rotate=0]center:\textcolor{white}{\textbf{ROADMAP database}}}
+]
+\tikzstyle{labelblueprint}=[
+	rectangle,
+	draw,
+    fill=black!50!gray,
+    draw = black,
+    minimum width=150pt,
+    minimum height=1.5em,
+    text=white,
+    yshift = 0.10cm,
+    xshift = 0.1cm,
+    rotate = 0, 
+    label={[rotate=0]center:\textcolor{white}{\textbf{BLUEPRINT database}}}
+]
+
+\node [draw,  
+       minimum height=6.52em,
+       minimum width=480pt, 
+       xshift = 1.60cm,
+       yshift = 0.05cm,
+       fit=(funciVar)(funciVar)](containerFunciVar){};
+\node at (containerFunciVar.south) [labelfuncivar] {};
+
+
+\node [labelencode, right of = statehub,xshift=-8.20cm,yshift=-0.15cm] (encode) {};
+\node [labelroadmap, below of = encode,xshift=-0.1cm,yshift=0.7cm] (roadmap) {};
+\node [labelblueprint, above of = encode,yshift=-0.8cm,xshift=-0.1cm] (blueprint) {};
+%\draw [latex'-latex',double] (encode.180) --  (containerFunciVar.0);
+\draw [double,->] (encode.0) --  (statehub.180);
+\draw [double,->] (roadmap.0) -- ++(1.4,0) |-   (statehub.180);
+\draw [double,->] (blueprint.0) -- ++(1.4,0) |-  (statehub.180);
+\end{tikzpicture}
+  }%
+  
+  \caption{ELMER workflow: ELMER receives as input a DNA methylation object, a gene expression object (a matrix or a SummarizedExperiment object) and a Genomic Ranges (GRanges) object with distal probes to be used as filter which can be retrieved using the \textit{get.feature.probe} function. The function \textit{createMAE}  will create a Multi Assay Experiment object keeping only samples that have both DNA methylation and gene expression data. Genes will be mapped to genomic position and annotated using ENSEMBL database \cite{doi:10.1093/database/baw093}, while for probes it will add annotation from \citeauthor{doi:10.1093/nar/gkw967} (\href{http://zwdzwd.github.io/InfiniumAnnotation}{http://zwdzwd.github.io/InfiniumAnnotation}) . This MAE object will be used as input to the next analysis functions. First, it identifies differentially methylated probes followed by the identification of their nearest genes (10 upstream and 10 downstream) through the  \textit{get.diff.meth} and  \textit{GetNearGenes} functions respectively. For each probe, it will verify if any of the nearby genes were affected by its change in the DNA methylation level and a list of  gene and probes pairs will be outputted from \textit{get.pair} function. For the probes in those pairs, it will search for enriched regulatory Transcription Factors motifs with the  \textit{get.enriched.motif} function. Finally, the  enriched motifs will be correlated with the level of the transcription factor through the \textit{get.TFs} function. In the figure green Boxes represents user input data, blue boxes represents output object, orange boxes represent auxiliary pre-computed data and gray boxes are functions.}
+  \label{fig:elmerworkflow}
+\end{figure}
+%\end{landscape}

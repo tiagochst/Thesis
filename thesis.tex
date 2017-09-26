@@ -1,12 +1,3 @@
-% ------------------------------------------------------------------------
-% ------------------------------------------------------------------------
-% ICMC: Modelo de Trabalho Acadêmico (tese de doutorado, dissertação de
-% mestrado e trabalhos monográficos em geral) em conformidade com 
-% ABNT NBR 14724:2011: Informação e documentação - Trabalhos acadêmicos -
-% Apresentação
-% ------------------------------------------------------------------------
-% ------------------------------------------------------------------------
-
 % Opções: 
 %   Qualificação         = qualificacao 
 %   Curso                = doutorado/mestrado
@@ -17,17 +8,18 @@
 	%english,			% idioma adicional para hifenização
 	%brazil				% o último idioma é o principal do documento
 \documentclass[doutorado, spanish, brazil, english]{packages/icmc}
-% ---
-% Pacotes Opcionais
-% ---
-\usepackage{rotating}           % Usado para rotacionar o texto
-\usepackage[all,knot,arc,import,poly]{xy}   % Pacote para desenhos gráficos
-% Este pacote pode conflitar com outros pacotes gráficos como o ``pictex''
-% Então é necessário usar apenas um dos pacotes conflitantes
-
+\usepackage{rotating} 
+\usepackage[all,knot,arc,import,poly]{xy}   
+\usepackage{csvsimple}
+\usepackage{tikz}
+\usetikzlibrary{automata}
+\usetikzlibrary{shapes.geometric, arrows}
+\usetikzlibrary{mindmap,shadows}
+\usepackage{booktabs}
+\usetikzlibrary{fit, arrows, calc, positioning}
 \newcommand{\VerbL}{0.52\textwidth}
 \newcommand{\LatL}{0.42\textwidth}
-
+\captionsetup{labelfont={color=red,bf},textfont={color=black,bf}}
 
 % ---
 % Informações de dados para CAPA e FOLHA DE ROSTO
@@ -80,13 +72,13 @@ Our expectation is that biOMICs can effectively automate search, retrieve, and a
 		pdftitle={\@title}, 
 		pdfauthor={\@author},
     	pdfsubject={\imprimirpreambulo},
-	    pdfcreator={LaTeX with abnTeX2/ICMC-USP},
+	    pdfcreator={LaTeX with abnTeX2/FMRP-USP},
 		pdfkeywords={\palavraschave}, 
 		colorlinks=true,       		% false: boxed links; true: colored links
-    	linkcolor=blue,          	% color of internal links
-    	citecolor=blue,        		% color of links to bibliography
-    	filecolor=magenta,      	% color of file links
-		urlcolor=blue,
+    	linkcolor=black,          	% color of internal links
+    	citecolor=black,        		% color of links to bibliography
+    	filecolor=black,      	% color of file links
+		urlcolor=black,
 		bookmarksdepth=4
 }
 \makeatother
@@ -137,33 +129,36 @@ Our expectation is that biOMICs can effectively automate search, retrieve, and a
 % ----------------------------------------------------------
 \textual
 
-\chapter{Introdução}
+\chapter{Introduction}
 \label{chapter:introducao}
 \input{tex/introducao}
 
-\chapter{Instalando o abnTeX2}
-\label{chapter:instalando-abntex}
-\input{tex/instalando-abntex}
+%\chapter{Instalando o abnTeX2}
+%\label{chapter:instalando-abntex}
+%\input{tex/instalando-abntex}
 
-\chapter{Orientações gerais}
-\label{chapter:orientacoes-gerais}
-\input{tex/orientacoes-gerais}
+%\chapter{Orientações gerais}
+%\label{chapter:orientacoes-gerais}
+%\input{tex/orientacoes-gerais}
 
-\chapter{Configuração dos elementos pré-textuais}
-\label{chapter:config-pre-textual}
-\input{tex/config-pre-textual}
+%\chapter{Configuração dos elementos pré-textuais}
+%\label{chapter:config-pre-textual}
+%\input{tex/config-pre-textual}
 
-\chapter{Corpos flutuantes}
-\label{chapter:corpos-flutuantes}
-\input{tex/corpos-flutuantes}
+%\chapter{Corpos flutuantes}
+%\label{chapter:corpos-flutuantes}
+%\input{tex/corpos-flutuantes}
 
-\chapter{Listas}
-\label{chapter:listas}
-\input{tex/listas}
+%\chapter{Listas}
+%\label{chapter:listas}
+%\input{tex/listas}
 
-\chapter{Ferramentas úteis}
-\label{chapter:ferramentas-uteis}
-\input{tex/ferramentas-uteis}
+\chapter{Results}
+\label{chapter:results}
+%\input{tex/brca_analysis}
+
+\input{tex/tools.tex}
+\input{tex/gcimp_analysis}
 
 \chapter{Citações e referências}
 \label{chapter:citacoes}
