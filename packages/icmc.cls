@@ -1363,12 +1363,12 @@ h}%
 
     % Folha de rosto e Ficha catalográfica (se houver)
     \@ifundefined{@incluifichacatalografica}{
-        \imprimirfolhaderosto{}
+        %\imprimirfolhaderosto{}
     }{
         % (o * indica que haverá a ficha bibliográfica)
-        \imprimirfolhaderosto*{} 
-		\inserefichacatalografica
-       	\inserefolhadeaprovacao
+        %\imprimirfolhaderosto*{} 
+		%\inserefichacatalografica
+       	%\inserefolhadeaprovacao
 		\newpage
     }
 
