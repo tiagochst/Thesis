@@ -1359,7 +1359,7 @@ h}%
 \pretextual
     
     % Capa
-    \imprimircapa
+    %\imprimircapa
 
     % Folha de rosto e Ficha catalográfica (se houver)
     \@ifundefined{@incluifichacatalografica}{
