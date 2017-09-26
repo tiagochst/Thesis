@@ -131,11 +131,6 @@ Our expectation is that biOMICs can effectively automate search, retrieve, and a
 
 \usepackage{hyperref}
 \usepackage{etoolbox}
-\makeatletter
-\let\ORIG@BR@c@bibitem\BR@c@bibitem
-\apptocmd\ORIG@BR@c@bibitem{\endgroup}{}{}
-\def\BR@c@bibitem{\begingroup\catcode`\%=12 \ORIG@BR@c@bibitem}
-\makeatother
 \nobibliography*
 
 \begin{document}
