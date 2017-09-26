@@ -19,7 +19,7 @@
 \usetikzlibrary{fit, arrows, calc, positioning}
 \newcommand{\VerbL}{0.52\textwidth}
 \newcommand{\LatL}{0.42\textwidth}
-
+\captionsetup{labelfont={color=red,bf},textfont={color=black,bf}}
 
 % ---
 % Informações de dados para CAPA e FOLHA DE ROSTO
@@ -81,7 +81,7 @@ Our expectation is that biOMICs can effectively automate search, retrieve, and a
 		urlcolor=black,
 		bookmarksdepth=4
 }
-%\makeatother
+\makeatother
 % --- 
 
 % ----------------------------------------------------------
@@ -91,8 +91,34 @@ Our expectation is that biOMICs can effectively automate search, retrieve, and a
 % Inserir a ficha catalográfica
 %\incluifichacatalografica*{tex/fichaCatalografica.pdf}
 \incluifichacatalografica{586} % Código Cutter: número atribuído ao sobrenome do autor. Para obtê-lo, consulte a tabela Cutter Sanborn (em http://203.241.185.12/asd/board/Author/upfile/abcd.htm), procure pelo sobrenome ou forma mais próxima ao sobrenome completo e coloque o número indicado como parâmetro.
-%\incluifolhadeaprovacao*{}
+\incluifolhadeaprovacao*{}
 
+%\textofolha*{tex/pre-textual/folha-aprovacao}
+% DEDICATÓRIA / AGRADECIMENTO / EPÍGRAFE
+\textodedicatoria*{tex/pre-textual/dedicatoria}
+\textoagradecimentos*{tex/pre-textual/agradecimentos}
+\textoepigrafe*{tex/pre-textual/epigrafe}
+
+% Inclui a lista de figuras
+\incluilistadefiguras
+
+% Inclui a lista de tabelas
+\incluilistadetabelas
+
+% Inclui a lista de quadros
+\incluilistadequadros
+
+% Inclui a lista de algoritmos
+\incluilistadealgoritmos
+
+% Inclui a lista de códigos
+\incluilistadecodigos
+
+% Inclui a lista de siglas e abreviaturas
+\incluilistadesiglas
+
+% Inclui a lista de símbolos
+\incluilistadesimbolos
 
 % ----
 % Início do documento
@@ -103,9 +129,9 @@ Our expectation is that biOMICs can effectively automate search, retrieve, and a
 % ----------------------------------------------------------
 \textual
 
-%\chapter{Introduction}
-%\label{chapter:introducao}
-%\input{tex/introducao}
+\chapter{Introduction}
+\label{chapter:introducao}
+\input{tex/introducao}
 
 %\chapter{Instalando o abnTeX2}
 %\label{chapter:instalando-abntex}
@@ -134,6 +160,9 @@ Our expectation is that biOMICs can effectively automate search, retrieve, and a
 \input{tex/tools.tex}
 \input{tex/gcimp_analysis}
 
+\chapter{Citações e referências}
+\label{chapter:citacoes}
+\input{tex/citacoes}
 
 
 % ---
@@ -170,34 +199,34 @@ Our expectation is that biOMICs can effectively automate search, retrieve, and a
 % ---
 % Inicia os apêndices
 % ---
-% \begin{apendicesenv}
+\begin{apendicesenv}
 
-%     \chapter{Documento básico usando a classe \textit{icmc}}
-%     \label{chapter:documento-basico}
-%     \input{tex/appendix/documento-basico}
+    \chapter{Documento básico usando a classe \textit{icmc}}
+    \label{chapter:documento-basico}
+    \input{tex/appendix/documento-basico}
     
-%     \chapter{Configuração do programa JabRef}
-%     \label{chapter:configuracao-jabref}
-%     \input{tex/appendix/configuracao-jabref}
+    \chapter{Configuração do programa JabRef}
+    \label{chapter:configuracao-jabref}
+    \input{tex/appendix/configuracao-jabref}
 
-% \end{apendicesenv}
-% % ---
+\end{apendicesenv}
+% ---
 
 
-% % ----------------------------------------------------------
-% % Anexos
-% % ----------------------------------------------------------
+% ----------------------------------------------------------
+% Anexos
+% ----------------------------------------------------------
 
-% % ---
-% % Inicia os anexos
-% % ---
-% \begin{anexosenv}
+% ---
+% Inicia os anexos
+% ---
+\begin{anexosenv}
 
-%     \chapter{Páginas interessantes na Internet} 
-%     \label{chapter:paginas-interessantes}
-%     \input{tex/annex/paginas-interessantes}
+    \chapter{Páginas interessantes na Internet} 
+    \label{chapter:paginas-interessantes}
+    \input{tex/annex/paginas-interessantes}
 
-% \end{anexosenv}
-% % ---
+\end{anexosenv}
+% ---
 
 \end{document}

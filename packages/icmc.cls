@@ -104,9 +104,7 @@ Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Comput
 \RequirePackage{colortbl}           % Controle das cores das células da tabela
                                     % (utilizado no título)
 \RequirePackage{graphicx}			% Inclusão de gráficos
-\RequirePackage[font=small,labelfont=bf,
-   justification=justified,
-   format=plain]{caption}            % Pacote para definição dos captions
+\RequirePackage{caption}            % Pacote para definição dos captions
 \RequirePackage{microtype} 		    % para melhorias de justificação
 \RequirePackage{pdfpages}           % inclusão de arquivos PDF
 %\RequirePackage{xifthen}            % fornece o uso \isempty (pacote utilizado
@@ -785,19 +783,10 @@ h}%
 % Comando para configurar os captions no documento
 %================================================================================
 \DeclareCaptionFont{ABNTEXfontereduzida}{\ABNTEXfontereduzida}
-%\captionsetup{position  = above, 
-%              format    = hang,
-%              labelfont = ABNTEXfontereduzida, 
-%              % labelfont={color=red,bf},textfont={color=black,bf}
-%              font      = ABNTEXfontereduzida}
-%\captionsetup{}
-%\DeclareCaptionFormat{listing}{\hrule height.8pt depth0pt ~~~#1#2#3}
-%\captionsetup[lstlisting]{format    = listing,
-%                          singlelinecheck = false, 
-%                          margin    = 0pt,
-%                          labelsep  = colon,
-%                          labelfont = bf, 
-%                          font      = normalsize}
+\captionsetup{position=above, labelfont=ABNTEXfontereduzida, font=ABNTEXfontereduzida}
+
+\DeclareCaptionFormat{listing}{\hrule height.8pt depth0pt ~~~#1#2#3}
+\captionsetup[lstlisting]{format=listing,singlelinecheck=false, margin=0pt,labelsep=colon,labelfont=bf, font=normalsize}
 
 
 %===========================================================================
@@ -1356,16 +1345,16 @@ h}%
 \pretextual
     
     % Capa
-    %\imprimircapa
+    \imprimircapa
 
     % Folha de rosto e Ficha catalográfica (se houver)
     \@ifundefined{@incluifichacatalografica}{
-        %\imprimirfolhaderosto{}
+        \imprimirfolhaderosto{}
     }{
         % (o * indica que haverá a ficha bibliográfica)
-        %\imprimirfolhaderosto*{} 
-		%\inserefichacatalografica
-       	%\inserefolhadeaprovacao
+        \imprimirfolhaderosto*{} 
+		\inserefichacatalografica
+       	\inserefolhadeaprovacao
 		\newpage
     }
 
