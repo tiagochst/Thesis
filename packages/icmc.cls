@@ -104,7 +104,9 @@ Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Comput
 \RequirePackage{colortbl}           % Controle das cores das células da tabela
                                     % (utilizado no título)
 \RequirePackage{graphicx}			% Inclusão de gráficos
-\RequirePackage{caption}            % Pacote para definição dos captions
+\RequirePackage[font=small,labelfont=bf,
+   justification=justified,
+   format=plain]{caption}            % Pacote para definição dos captions
 \RequirePackage{microtype} 		    % para melhorias de justificação
 \RequirePackage{pdfpages}           % inclusão de arquivos PDF
 %\RequirePackage{xifthen}            % fornece o uso \isempty (pacote utilizado
