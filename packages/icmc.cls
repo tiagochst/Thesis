@@ -104,7 +104,12 @@ Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Comput
 \RequirePackage{colortbl}           % Controle das cores das células da tabela
                                     % (utilizado no título)
 \RequirePackage{graphicx}			% Inclusão de gráficos
-\RequirePackage{caption}            % Pacote para definição dos captions
+\RequirePackage[position  = above, 
+              format    = plain,
+              %labelfont = ABNTEXfontereduzida, 
+               labelfont={color=red,bf},textfont={color=black,bf}
+              %font      = ABNTEXfontereduzida
+              ]{caption}            % Pacote para definição dos captions
 \RequirePackage{microtype} 		    % para melhorias de justificação
 \RequirePackage{pdfpages}           % inclusão de arquivos PDF
 %\RequirePackage{xifthen}            % fornece o uso \isempty (pacote utilizado
@@ -783,11 +788,11 @@ h}%
 % Comando para configurar os captions no documento
 %================================================================================
 \DeclareCaptionFont{ABNTEXfontereduzida}{\ABNTEXfontereduzida}
-\captionsetup{position  = above, 
-              format    = plain,
-              labelfont = ABNTEXfontereduzida, 
-              % labelfont={color=red,bf},textfont={color=black,bf}
-              font      = ABNTEXfontereduzida}{caption}
+%\captionsetup{position  = above, 
+%              format    = hang,
+%              labelfont = ABNTEXfontereduzida, 
+%              % labelfont={color=red,bf},textfont={color=black,bf}
+%              font      = ABNTEXfontereduzida}
 %\captionsetup{}
 %\DeclareCaptionFormat{listing}{\hrule height.8pt depth0pt ~~~#1#2#3}
 %\captionsetup[lstlisting]{format    = listing,
