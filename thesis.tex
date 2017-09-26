@@ -90,9 +90,6 @@ Our expectation is that biOMICs can effectively automate search, retrieve, and a
 }
 \makeatother
 % --- 
-\let\ORIG@BR@c@bibitem\BR@c@bibitem
-\apptocmd\ORIG@BR@c@bibitem{\endgroup}{}{}
-\def\BR@c@bibitem{\begingroup\catcode`\%=12 \ORIG@BR@c@bibitem}
 % ----------------------------------------------------------
 % ELEMENTOS PRÉ-TEXTUAIS
 % ----------------------------------------------------------
@@ -131,6 +128,12 @@ Our expectation is that biOMICs can effectively automate search, retrieve, and a
 % ----
 % Início do documento
 % ----
+
+\let\ORIG@BR@c@bibitem\BR@c@bibitem
+\apptocmd\ORIG@BR@c@bibitem{\endgroup}{}{}
+\def\BR@c@bibitem{\begingroup\catcode`\%=12 \ORIG@BR@c@bibitem}
+\makeatother
+\nobibliography*
 \begin{document}
 % ----------------------------------------------------------
 % ELEMENTOS TEXTUAIS
