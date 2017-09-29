@@ -15,6 +15,7 @@
 \usetikzlibrary{shapes.geometric, arrows}
 \usetikzlibrary{mindmap,shadows}
 \usepackage{booktabs}
+\usepackage[hyphenbreaks]{breakurl}
 \usetikzlibrary{fit, arrows, calc, positioning}
 \newcommand{\VerbL}{0.52\textwidth}
 \newcommand{\LatL}{0.42\textwidth}
@@ -73,6 +74,8 @@ Our expectation is that biOMICs can effectively automate search, retrieve, and a
 
 % informações do PDF
 \makeatletter
+\renewcommand{\UrlLeft}{}
+\renewcommand{\UrlRight}{}
 \hypersetup{
      	pagebackref=true,
 		pdftitle={\@title}, 
@@ -82,8 +85,8 @@ Our expectation is that biOMICs can effectively automate search, retrieve, and a
 		pdfkeywords={\palavraschave}, 
 		colorlinks=true,       		% false: boxed links; true: colored links
     	linkcolor=black,          	% color of internal links
-    	citecolor=black,        		% color of links to bibliography
-    	filecolor=black,      	% color of file links
+    	citecolor=black,        	% color of links to bibliography
+    	filecolor=black,      	    % color of file links
 		urlcolor=black,
 		bookmarksdepth=4
 }
@@ -139,7 +142,8 @@ Our expectation is that biOMICs can effectively automate search, retrieve, and a
 \label{chapter:introducao}
 \input{tex/introducao}
 
-%\chapter{Instalando o abnTeX2}
+\chapter{Review of essential concepts}
+\input{tex/concepts}
 %\label{chapter:instalando-abntex}
 %\input{tex/instalando-abntex}
 
