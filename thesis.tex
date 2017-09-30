@@ -121,7 +121,40 @@ Our expectation is that biOMICs can effectively automate search, retrieve, and a
 		bookmarksdepth=4
 }
 \makeatother
+ 
+%%% ----- Source: https://github.com/abntex/abntex2/wiki/HowToPretextuaisRomanos
+%%% Formato de cabeçalho/rodapé romano nos elementos pré-textuais
+%%% -----
 
+%% Novo estilo
+\makepagestyle{estilo_pretextual} %%% escolha um nome
+\makeevenfoot{estilo_pretextual}
+     {} %%pagina par
+     {\thepage}
+     {} 
+  \makeoddfoot{estilo_pretextual} %%pagina ímpar ou com oneside
+     {}
+     {\thepage}
+     {}
+%% Customiza comando \pretextual
+\renewcommand{\pretextual}{
+  \pagenumbering{roman} %%% ou \pagenumbering{Roman}
+  \aliaspagestyle{chapter}{estilo_pretextual}% customizing chapter pagestyle
+  \pagestyle{estilo_pretextual}
+  \aliaspagestyle{cleared}{empty}
+  \aliaspagestyle{part}{estilo_pretextual}
+}
+
+% ---
+% Ajusta a marca \textual para que a numeração volte a ser arábica
+% nos elementos textuais
+%\let\oldtextual\textual        % copia o comando \textual anterior para \oldtextual
+%\renewcommand{\textual}{%
+%  \oldtextual%
+%  \pagenumbering{arabic} % volta à numeração arábica
+%}
+% ---
+ 
 \pagenumbering{roman}
 % ----------------------------------------------------------
 % ELEMENTOS PRÉ-TEXTUAIS

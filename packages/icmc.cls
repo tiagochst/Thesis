@@ -78,9 +78,9 @@ Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Comput
 \ProcessOptions\relax
 
 
-%================================================================================
+%====================================================================
 % Herança da classe `abntex2' e inclusão de pacotes e arquivos necessários
-%================================================================================
+%================================================================
 \LoadClass[% -- opções da classe memoir --
 	12pt,				% tamanho da fonte
 	openright,			% capítulos começam em pág ímpar 
@@ -1081,6 +1081,7 @@ h}%
 \newcommand{\inserelistadefiguras}
 {
   \@ifundefined{@incluilistadefiguras}{}{
+	\pagestyle{plain}
     \pdfbookmark[0]{\listfigurename}{lof}
     %\listoffigures*
     \listoffigures
@@ -1091,6 +1092,8 @@ h}%
 \newcommand{\inserelistadetabelas}
 {
   \@ifundefined{@incluilistadetabelas}{}{
+  	\thispagestyle{plain}
+    \pagestyle{plain}
     \pdfbookmark[0]{\listtablename}{lot}
     %\listoftables*
     \listoftables
@@ -1110,8 +1113,8 @@ h}%
 \newcommand{\inserelistadequadros}
 {
   \@ifundefined{@incluilistadequadros}{}{
-    \pdfbookmark[0]{\listquadroname}{loq}
-    \listofquadros*
+   \pdfbookmark[0]{\listquadroname}{loq}
+    \listofquadros
     \cleardoublepage
   }
 }
@@ -1354,7 +1357,7 @@ h}%
     \fi
 \fi
 
-%\pretextual % remove numeros das paginas
+\pretextual % remove numeros das paginas
     
     % Capa
     \imprimircapa
@@ -1458,8 +1461,6 @@ h}%
     \counterwithout{quadro}{chapter}
     \counterwithout{lstlisting}{chapter}
     
-    \mainmatter
-
     % Retira espaço extra obsoleto entre as frases.
     \frenchspacing 
 }
