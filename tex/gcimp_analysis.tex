@@ -9,7 +9,7 @@ For this analysis, TCGA data from the NCI's Genomic Data Commons (\sigla{GDC}{Ge
 % \usepackage{booktabs}
 \begin{table}[h!]
 \centering
-\caption{G-CIMP-high vs G-CIMP-low analysis: number of samples with both DNA methylation (HM450) and gene expression (RNA-seq) data.}
+\caption[G-CIMP analysis: Sample summary]{G-CIMP-high vs G-CIMP-low analysis: number of samples with both DNA methylation (HM450) and gene expression (RNA-seq) data.}
 \label{gcimp.samples}
 \begin{tabular}{@{}ll@{}}
 \toprule
@@ -22,7 +22,7 @@ G-CIMP-low  & 11
 % \usepackage{booktabs}
 \begin{table}[h!]
 \centering
-\caption{G-CIMP-high vs G-CIMP-low analysis: ELMER arguments values}
+\caption[G-CIMP analysis: ELMER arguments values]{G-CIMP-high vs G-CIMP-low analysis: ELMER arguments values}
 \label{gcip.elmer.arg}
 \begin{tabular}{@{}lll@{}}
 \toprule
@@ -46,7 +46,7 @@ which  shows the candidate regulatory TFs whose expression anti-correlated with 
 \begin{center}
 \begin{figure}[h!]
 \includegraphics[width=16cm]{images/hyper_motif_enrichment.pdf}
-\caption{Motif enrichment analysis: Odds Ratio (x axis) for the selected motifs with OR above 1.5. The range shows the 95\% confidence interval for each Odds Ratio.}
+\caption[G-CIMP analysis: Odds Ratio plot]{Motif enrichment analysis: Odds Ratio (x axis) for the selected motifs with OR above 1.5. The range shows the 95\% confidence interval for each Odds Ratio.}
 \end{figure}
 \label{tab:or}
 \end{center}
@@ -58,7 +58,7 @@ For example, in Table \ref{tab:tf} the motif HXD3 has as potential TF candidate 
 
 \begin{table}[h!]
 \centering
-\caption{TF ranking analysis: statistic For each enriched motif the anti-correlation level of all human TFs expression level with average DNA methylation level at sites with a given motif was access and ranked by the $-log_{10}(P_{value})$, the most relevant one that belongs to the same family as the motif is shown in column \textit{top.potential.TF.family} while the most relevant within the same sub-family classification is shown in column \textit{top.potential.TF.subfamily}}.
+\caption[G-CIMP analysis: TF ranking plot]{TF ranking analysis: statistic For each enriched motif the anti-correlation level of all human TFs expression level with average DNA methylation level at sites with a given motif was access and ranked by the $-log_{10}(P_{value})$, the most relevant one that belongs to the same family as the motif is shown in column \textit{top.potential.TF.family} while the most relevant within the same sub-family classification is shown in column \textit{top.potential.TF.subfamily}}.
 \csvautobooktabular[respect underscore]{tables/getTF.hyper.significant.TFs.with.motif.summary.csv}
 \label{tab:tf}
 \end{table}
@@ -66,7 +66,7 @@ For example, in Table \ref{tab:tf} the motif HXD3 has as potential TF candidate 
 \begin{center}
 \begin{figure}[h!]
 \includegraphics[width=16cm]{images/HOCOMOCO.png}
-\caption{HOCOMOCO V11: HOX-related factors family. Transcription factors HOXD13 and HOXD3 are in the same family (HOX-related factors) but in different subfamilies.}
+\caption[HOCOMOCO: HOX-related factors family]{HOCOMOCO V11: HOX-related factors family. Transcription factors HOXD13 and HOXD3 are in the same family (HOX-related factors) but in different subfamilies.}
 \end{figure}
 \label{tab:hocomoco}
 \end{center}
