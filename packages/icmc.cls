@@ -125,15 +125,23 @@ Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Comput
 \RequirePackage{pgffor}             % Pacote utilizado para gerar as
                                     % palavras-chave da ficha catalográfica
 \RequirePackage{nomencl}            % Pacote para criação da Lista de Siglas
-\RequirePackage[translate=babel,nonumberlist,style=altlist,toc]{glossaries}	 % Pacote para gerar o glossário
+\RequirePackage[translate=babel,
+                nonumberlist,
+                style=altlist,
+                toc]{glossaries}	 % Pacote para gerar o glossário
 \RequirePackage[brazilian,hyperpageref]{backref} % Paginas com as citações na bibl
-\RequirePackage[alf,bibjustif,abnt-last-names=abnt,abnt-etal-text=it,abnt-repeated-title-omit=yes,abnt-emphasize=bf,abnt-etal-cite=3,abnt-etal-list=0]{abntex2cite}   % Citações padrão ABNT
+\RequirePackage[alf,
+                bibjustif,
+                abnt-last-names=abnt,
+                abnt-etal-text=it,
+                abnt-repeated-title-omit=yes,
+                abnt-emphasize=bf,
+                abnt-etal-cite=3,
+                abnt-etal-list=0]{abntex2cite}% Citações padrão ABNT
 
-
-
-%================================================================================
+%===========================================================================
 % Comando para configuração do tipo de trabalho
-%================================================================================
+%=========================================================================
 
 % Configuração da situação do trabalho entregue
 \ifthenelse{\boolean{opt-pre-defesa}}{
@@ -983,23 +991,23 @@ h}%
     
     \vspace*{0.5cm}
    	\begin{tabular}{@{}p{.7in}p{5in}@{}}
-		Prof.Dr.: & \hrulefill \\\\
+		Prof.Dr.:      & \hrulefill \\\\
 		Institution:   & \hrulefill \\\\
-		Verdict: & \hrulefill\\
+		Verdict:       & \hrulefill\\
 	\end{tabular}
 
 	\vspace*{1cm}
    	\begin{tabular}{@{}p{.7in}p{5in}@{}}
-		Prof.Dr.: & \hrulefill \\\\
+		Prof.Dr.:      & \hrulefill \\\\
 		Institution:   & \hrulefill \\\\
-		Verdict: & \hrulefill\\
+		Verdict:       & \hrulefill\\
 	\end{tabular}
     
 	\vspace*{1cm}
 	\begin{tabular}{@{}p{.7in}p{5in}@{}}
-		Prof.Dr.: & \hrulefill \\\\
+		Prof.Dr.:      & \hrulefill \\\\
 		Institution:   & \hrulefill \\\\
-		Verdict: & \hrulefill\\
+		Verdict:       & \hrulefill\\
 	\end{tabular}
      \end{flushleft}
 	\end{folhadeaprovacao}
