@@ -27,6 +27,36 @@
               singlelinecheck=no,
 			  labelfont=ABNTEXfontereduzida, 
               font=ABNTEXfontereduzida}
+\usepackage{pgfplots, pgfplotstable}
+\pgfdeclarelayer{background}
+\pgfdeclarelayer{foreground}
+\pgfsetlayers{background,main,foreground}
+\usetikzlibrary{positioning}
+
+
+%\usepackage{titlesec}
+%\usepackage{titletoc}
+
+% indented subsection (in toc)
+%\titlecontents{chapter}[0.0cm] % left margin
+%{\vspace{1cm}} % above code
+%{%                  % numbered format
+%{{\scshape Chapter} \thecontentslabel---}%
+%}%
+%{}         % unnumbered format
+%{}         % filler-page-format, e.g dots
+
+% indented subsection (in toc)
+%\titlecontents*{subsection}
+%[1.0cm]             % left margin
+%{}                  % above code
+%{%                  % numbered format
+%{\thecontentslabel. }%
+%}%
+%{}         % unnumbered format
+%{ (\thecontentspage)}         % filler-page-format
+%[.~]
+
 
 % ---
 % Informações de dados para CAPA e FOLHA DE ROSTO
@@ -91,7 +121,8 @@ Our expectation is that biOMICs can effectively automate search, retrieve, and a
 		bookmarksdepth=4
 }
 \makeatother
-% --- 
+
+\pagenumbering{roman}
 % ----------------------------------------------------------
 % ELEMENTOS PRÉ-TEXTUAIS
 % ----------------------------------------------------------
@@ -138,6 +169,7 @@ Our expectation is that biOMICs can effectively automate search, retrieve, and a
 % ----------------------------------------------------------
 \textual
 
+\pagenumbering{arabic}
 \chapter{Introduction}
 \label{chapter:introducao}
 \input{tex/introducao}

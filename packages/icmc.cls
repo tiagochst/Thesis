@@ -1038,14 +1038,17 @@ h}%
         \if@openright\cleardoublepage\else\clearpage\fi
         \phantomsection
         \begin{resumo}[\csuse{res-title-\csuse{res-language-\thecount}}]
-             
+           
+
             \begin{otherlanguage*}{\csuse{res-language-\thecount}}
             \ifthenelse{\equal{\thecount}{2}}{
+            \addcontentsline{toc}{chapter}{Abstract}
                 \begin{SingleSpace}
                     {\MakeUppercase{\ABNTautorreferencia}}. {\textbf{\imprimirtitulo}.} \@year. \pageref{LastPage} f. \imprimirtipotrabalho~(\tipodocurso~ -- \imprimirespecialidade) -- \imprimirinstituicao, \imprimirlocal.
                 \end{SingleSpace}
                 \vskip 20pt
                 }{
+                \addcontentsline{toc}{chapter}{Resumo}
 				%\vspace{-0.5cm}                
                 }
                 %\end{flushleft}
@@ -1071,7 +1074,8 @@ h}%
 {
   \@ifundefined{@incluilistadefiguras}{}{
     \pdfbookmark[0]{\listfigurename}{lof}
-    \listoffigures*
+    %\listoffigures*
+    \listoffigures
     \cleardoublepage
   }
 }
@@ -1080,7 +1084,8 @@ h}%
 {
   \@ifundefined{@incluilistadetabelas}{}{
     \pdfbookmark[0]{\listtablename}{lot}
-    \listoftables*
+    %\listoftables*
+    \listoftables
     \cleardoublepage
   }
 }
@@ -1341,7 +1346,7 @@ h}%
     \fi
 \fi
 
-\pretextual
+%\pretextual % remove numeros das paginas
     
     % Capa
     \imprimircapa
@@ -1360,6 +1365,7 @@ h}%
     % DEDICATÓRIA / AGRADECIMENTO / EPÍGRAFE
     \inserededicatoria
     \insereagradecimentos
+    \addcontentsline{toc}{chapter}{Acknowledgements}
     \insereepigrafe
 
     % RESUMOS
@@ -1367,12 +1373,25 @@ h}%
 
     % Insere as Listas que forem setadas no documento
     \inserelistadefiguras
+	\addcontentsline{toc}{chapter}{List of Figures}
+    
     \inserelistadequadros    
+	\addcontentsline{toc}{chapter}{List of Charts}
+    
     \inserelistadealgoritmos
+	\addcontentsline{toc}{chapter}{List of Algorithms}
+    
     \inserelistadecodigos
+	\addcontentsline{toc}{chapter}{List of Source codes}
+    
     \inserelistadetabelas
+	\addcontentsline{toc}{chapter}{List of Tables}
+    
     \inserelistadesiglas
+    \addcontentsline{toc}{chapter}{List of Abbreviation and acronyms}
+
     \inserelistadesimbolos
+	\addcontentsline{toc}{chapter}{List of Symbols}
 
 	\pdfbookmark[0]{\contentsname}{toc}
     \tableofcontents*
