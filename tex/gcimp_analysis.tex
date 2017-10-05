@@ -2,7 +2,7 @@
 \section{Glioma analysis}
 
 The \sigla{ELMER}{Enhancer Linking by Methylation/Expression Relationship} tool was used to analyze the molecular differences between the newly identified G-CIMP-low subtype of glioma that was associated with significantly worse survival compared to the G-CIMP-high, recently described by Dr. Noushmehr and his lab \cite{cell}. 
-For this analysis, TCGA data from the NCI's Genomic Data Commons (\sigla{GDC}{Genomic Data Commons}) was downloaded using our R/Bioconductor TCGAbiolinks package. Table \ref{gcimp.samples} summarizes the number of samples in each group that have both DNA methylation data for the Illumina HumanMethylation450 platform (HM450) and gene expression data
+For this analysis, TCGA data from the NCI's Genomic Data Commons (GDC) was downloaded using our R/Bioconductor TCGAbiolinks package. Table \ref{gcimp.samples} summarizes the number of samples in each group that have both \sigla{DNA}{deoxyribonucleic acid} methylation data for the Illumina HumanMethylation450 platform (HM450) and gene expression data
 (RNA-Seq). and table \ref{gcip.elmer.arg} summarizes the main values for the ELMER arguments.
 
 % Please add the following required packages to your document preamble:
@@ -46,7 +46,7 @@ which  shows the candidate regulatory TFs whose expression anti-correlated with 
 \begin{center}
 \begin{figure}[h!]
 \includegraphics[width=16cm]{images/hyper_motif_enrichment.pdf}
-\caption[G-CIMP analysis: Odds Ratio plot]{Motif enrichment analysis: Odds Ratio (x axis) for the selected motifs with OR above 1.5. The range shows the 95\% confidence interval for each Odds Ratio.}
+\caption[G-CIMP analysis: Odds Ratio plot]{Motif enrichment analysis: Odds Ratio (x axis) for the selected motifs with \sigla{OR}{Odds Ratio} above 1.5. The range shows the 95\% confidence interval for each Odds Ratio.}
 \end{figure}
 \label{tab:or}
 \end{center}

@@ -10,6 +10,7 @@
 \usepackage{rotating} 
 \usepackage[all,knot,arc,import,poly]{xy}   
 \usepackage{csvsimple}
+\usepackage{siunitx}
 \usepackage{tikz}
 \usetikzlibrary{automata}
 \usetikzlibrary{shapes.geometric, arrows}
@@ -32,6 +33,9 @@
 \pgfdeclarelayer{foreground}
 \pgfsetlayers{background,main,foreground}
 \usetikzlibrary{positioning}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{pdflscape}
 
 
 %\usepackage{titlesec}
@@ -63,7 +67,7 @@
 % ---
 \titulo{Development and enhancement of bioinformatic tools to integrate and understand aberrant epigenomic and genomic changes associated with cancer}
 \autor[Silva, T. C.]{Tiago Chedraoui Silva}
-\orientador[Orientador]{Prof. Dr.}{Houtan Noushmehr}
+\orientador[Advisor]{Prof. Dr.}{Houtan Noushmehr}
 %\coorientador{Prof. Dr.}{Fulano de Tal}
 \curso{ONCO}
 \data{5}{8}{2017} % Data do depósito
@@ -114,20 +118,24 @@ Our expectation is that biOMICs can effectively automate search, retrieve, and a
 	    pdfcreator={LaTeX with abnTeX2/FMRP-USP},
 		pdfkeywords={\palavraschave}, 
 		colorlinks=true,       		% false: boxed links; true: colored links
-    	linkcolor=black,          	% color of internal links
+    	linkcolor=blue,          	% color of internal links
     	citecolor=black,        	% color of links to bibliography
     	filecolor=black,      	    % color of file links
-		urlcolor=black,
+		urlcolor=blue,
 		bookmarksdepth=4
 }
 \makeatother
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% SUMARIO
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Uso do sumário tradicional, com espaçamento entre os capítulos
+\setlength{\cftbeforechapterskip}{1em}
+
 % ---- Customizando o sumario
 \addtocontents{toc}{~\hfill\textbf{Page}\par} % adiciona Page ao sumerio
-\usepackage{titletoc}
-\dottedcontents{chapter}[2em]{\bfseries}{2.9em}{10pt}
-%\dottedcontents{section}[8.3em]{}{4.3em}{7pt}
-%\dottedcontents{subsection}[5.5em]{}{3.2em}{5pt}
+
 %%% ----- Source: https://github.com/abntex/abntex2/wiki/HowToPretextuaisRomanos
 %%% Formato de cabeçalho/rodapé romano nos elementos pré-textuais
 %%% -----
@@ -215,30 +223,12 @@ Our expectation is that biOMICs can effectively automate search, retrieve, and a
 
 \chapter{Review of essential concepts}
 \input{tex/concepts}
-%\label{chapter:instalando-abntex}
-%\input{tex/instalando-abntex}
 
-%\chapter{Orientações gerais}
-%\label{chapter:orientacoes-gerais}
-%\input{tex/orientacoes-gerais}
-
-%\chapter{Configuração dos elementos pré-textuais}
-%\label{chapter:config-pre-textual}
-%\input{tex/config-pre-textual}
-
-%\chapter{Corpos flutuantes}
-%\label{chapter:corpos-flutuantes}
-%\input{tex/corpos-flutuantes}
-
-%\chapter{Listas}
-%\label{chapter:listas}
-%\input{tex/listas}
-
-\chapter{Results}
-\label{chapter:results}
-%\input{tex/brca_analysis}
-
+\chapter{Development of methods and softwares for cancer data analysis}
+\label{chapter:softwares}
 \input{tex/tools.tex}
+
+\chapter{Cancer data analysis}
 \input{tex/gcimp_analysis}
 
 

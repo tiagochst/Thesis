@@ -87,14 +87,15 @@ Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Comput
 	                    % (insere página vazia caso preciso)
 	twoside,			% para impressão em verso e anverso. Oposto a oneside
 	a4paper,			% tamanho do papel. 
-	chapter=TITLE,		% títulos de capítulos convertidos em letras maiúsculas
+	%chapter=TITLE,		% títulos de capítulos convertidos em letras maiúsculas
+    sumario = tradicional,
 	brazil              % Define o idioma pt-br para as opções da classe
 	]{abntex2}
 	
 
-%================================================================================
+%============================================================
 % Pacotes fundamentais 
-%================================================================================
+%=============================================================
 \RequirePackage{morewrites}         % Resolve o erro “No room for a new \write”
 \RequirePackage{cmap}				% Mapear caracteres especiais no PDF
 \RequirePackage{lmodern}			% Usa a fonte Latin Modern.
@@ -1081,10 +1082,9 @@ h}%
 \newcommand{\inserelistadefiguras}
 {
   \@ifundefined{@incluilistadefiguras}{}{
-	\pagestyle{plain}
     \pdfbookmark[0]{\listfigurename}{lof}
-    %\listoffigures*
-    \listoffigures
+    \listoffigures*
+    %\listoffigures
     \cleardoublepage
   }
 }
@@ -1092,11 +1092,8 @@ h}%
 \newcommand{\inserelistadetabelas}
 {
   \@ifundefined{@incluilistadetabelas}{}{
-  	\thispagestyle{plain}
-    \pagestyle{plain}
     \pdfbookmark[0]{\listtablename}{lot}
-    %\listoftables*
-    \listoftables
+    \listoftables*
     \cleardoublepage
   }
 }
@@ -1114,7 +1111,7 @@ h}%
 {
   \@ifundefined{@incluilistadequadros}{}{
    \pdfbookmark[0]{\listquadroname}{loq}
-    \listofquadros
+    \listofquadros*
     \cleardoublepage
   }
 }
@@ -1341,9 +1338,9 @@ h}%
 }
 \chapterstyle{icmc}
 
-%================================================================================
+%=====================================================================
 % Configurações ao iniciar documento
-%================================================================================
+%=====================================================================
 \AtBeginDocument{
 
 % suporte a alguns sequências comuns do LaTeX, como -- para travessão

@@ -39,8 +39,26 @@ URL = {http://nar.oxfordjournals.org/content/44/8/e71.abstract},
 eprint = {http://nar.oxfordjournals.org/content/44/8/e71.full.pdf+html}, 
 journal = {Nucleic Acids Research} 
 }
-
-
+@article{zhu2014tcga,
+  title={TCGA-assembler: open-source software for retrieving and processing TCGA data},
+  author={Zhu, Yitan and Qiu, Peng and Ji, Yuan},
+  journal={Nature methods},
+  volume={11},
+  number={6},
+  pages={599--600},
+  year={2014},
+  publisher={Nature Research}
+}
+@article{samur2013canevolve,
+  title={canEvolve: a web portal for integrative oncogenomics},
+  author={Samur, Mehmet Kemal and Yan, Zhenyu and Wang, Xujun and Cao, Qingyi and Munshi, Nikhil C and Li, Cheng and Shah, Parantu K},
+  journal={PLoS One},
+  volume={8},
+  number={2},
+  pages={e56228},
+  year={2013},
+  publisher={Public Library of Science}
+}
 @article{breiman2001random,
   title={Random forests},
   author={Breiman, Leo},
@@ -783,16 +801,13 @@ eprint = {/oup/backfile/content_public/journal/nar/45/4/10.1093_nar_gkw967/4/gkw
   year={2015},
   publisher={Oxford Univ Press}
 }
-@article {ELMERv2,
-	author = {Chedraoui Silva, Tiago and Coetzee, Simon G. and Yao, Lijing and Hazelett, Dennis J. and Noushmehr, Houtan and Berman, Benjamin P.},
-	title = {Enhancer Linking by Methylation/Expression Relationships with the R package ELMER version 2},
-	year = {2017},
-	doi = {10.1101/148726},
-	publisher = {Cold Spring Harbor Labs Journals},
-	abstract = {Recent studies indicate that DNA methylation can be used to identify changes at transcriptional enhancers and other cis-regulatory elements in primary human samples. A systematic approach to inferring gene regulatory networks has been provided by the R/Bioconductor package ELMER (Enhancer Linking by Methylation/Expression Relationships), which first identifies DNA methylation changes in distal regulatory elements and correlates these with expression of nearby genes to identify direct transcriptional targets. Next, ELMER performs a transcription factor binding motif analysis and integrates with expression profiling of all human transcription factors, to identify master regulatory TFs and place each differentially methylated regulatory element into the context of an altered gene regulatory network (GRN). Here we present a completely updated version of the package (ELMER v. 2.0), which uses the latest Bioconductor data structures including the popular MultiAsssayExperiment, supports multiple reference genome assemblies as well as the DNA methylation platforms Infinium MethylationEPIC and Infinium HumanMethylation450, and provides a Supervised analysis mode for paired sample study designs (such as treated vs. untreated replicate samples). It also supports data import from the new NCI Genomic Data Commons (GDC) database. The new version is substantially re-written, improving stability, performance, and extensibility. It also uses improved databases for transcription factor binding domain families and binding motif specificities, and has newly designed output plots for publication-quality figures. Below, we describe the methods and new features of ELMER v. 2.0, and present two use case demonstrating how the tool can be used to analyze TCGA data in either Unsupervised or Supervised mode. ELMER (v2.0.0) is available as an R/Bioconductor package at https://github.com/tiagochst/ELMER. Also, ELMER.data (v2.0.0), which provides auxiliary data required to perform the analysis, is available at https://github.com/tiagochst/ELMER.data.},
-	URL = {http://www.biorxiv.org/content/early/2017/06/11/148726},
-	eprint = {http://www.biorxiv.org/content/early/2017/06/11/148726.full.pdf},
-	journal = {bioRxiv}
+@article{ELMERv2,
+  title={Enhancer Linking by Methylation/Expression Relationships with the R package ELMER version 2},
+  author={Silva, Tiago Chedraoui and Coetzee, Simon G and Yao, Lijing and Hazelett, Dennis J and Noushmehr, Houtan and Berman, Benjamin P},
+  journal={bioRxiv},
+  pages={148726},
+  year={2017},
+  publisher={Cold Spring Harbor Labs Journals}
 }
 
 @article{Muk07,
@@ -3226,11 +3241,6 @@ eprint = {/oup/backfile/Content_public/Journal/nar/45/4/10.1093_nar_gkw967/2/gkw
   howpublished = {\url{https://github.com/Simon-Coetzee/funcivar}},
   note = {Accessed: 2017-06-09}
 }
-@misc{epic,
-  title = {Infinium MethylationEPIC Kit},
-  howpublished = {\url{https://www.illumina.com/products/by-type/microarray-kits/infinium-methylation-epic.html}},
-  note = {Accessed: 2017-05-30}
-}
 
 @Article{ 10.12688/f1000research.8923.2,
 AUTHOR = { Silva, TC and Colaprico, A and Olsen, C and D'Angelo, F and Bontempi, G and Ceccarelli, M and Noushmehr, H},
@@ -5361,7 +5371,32 @@ month = nov
   author={Samur, Mehmet Kemal},
   year={2014}
 }
-
+@article{gao2013integrative,
+  title={Integrative analysis of complex cancer genomics and clinical profiles using the cBioPortal},
+  author={Gao, Jianjiong and Aksoy, B{\"u}lent Arman and Dogrusoz, Ugur and Dresdner, Gideon and Gross, Benjamin and Sumer, S Onur and Sun, Yichao and Jacobsen, Anders and Sinha, Rileen and Larsson, Erik and others},
+  journal={Science signaling},
+  volume={6},
+  number={269},
+  pages={pl1},
+  year={2013},
+  publisher={NIH Public Access}
+}
+@article{deng2017firebrowser,
+  title={FirebrowseR: an R client to the Broad Institute’s Firehose Pipeline},
+  author={Deng, Mario and Br{\"a}gelmann, Johannes and Kryukov, Ivan and Saraiva-Agostinho, Nuno and Perner, Sven},
+  journal={Database},
+  volume={2017},
+  number={1},
+  pages={baw160},
+  year={2017},
+  publisher={Oxford University Press}
+}
+@misc{cerami2012cbio,
+  title={The cBio cancer genomics portal: an open platform for exploring multidimensional cancer genomics data},
+  author={Cerami, Ethan and Gao, Jianjiong and Dogrusoz, Ugur and Gross, Benjamin E and Sumer, Selcuk Onur and Aksoy, B{\"u}lent Arman and Jacobsen, Anders and Byrne, Caitlin J and Heuer, Michael L and Larsson, Erik and others},
+  year={2012},
+  publisher={AACR}
+}
 @article{nishida2006histone,
   title={Histone H3 acetylated at lysine 9 in promoter is associated with low nucleosome density in the vicinity of transcription start site in human cell},
   author={Nishida, Hiromi and Suzuki, Takahiro and Kondo, Shinji and Miura, Hisashi and Fujimura, Yu-ichi and Hayashizaki, Yoshihide},
@@ -6054,7 +6089,16 @@ url="http://dx.doi.org/10.1186/1745-6150-6-31"
    Pages="726--734",
    Month="Oct"
 }
-
+@article{robinson2007small,
+  title={Small-sample estimation of negative binomial dispersion, with applications to SAGE data},
+  author={Robinson, Mark D and Smyth, Gordon K},
+  journal={Biostatistics},
+  volume={9},
+  number={2},
+  pages={321--332},
+  year={2007},
+  publisher={Oxford University Press}
+}
 @article{siegmund2011statistical,
   title={Statistical approaches for the analysis of DNA methylation microarray data},
   author={Siegmund, Kimberly D},
@@ -12920,6 +12964,25 @@ keywords = {dblp }
   publisher={Springer}
 }
 
+@article{sonego2008roc,
+  title={ROC analysis: applications to the classification of biological sequences and 3D structures},
+  author={Sonego, Paolo and Kocsor, Andr{\'a}s and Pongor, S{\'a}ndor},
+  journal={Briefings in bioinformatics},
+  volume={9},
+  number={3},
+  pages={198--209},
+  year={2008},
+  publisher={Oxford University Press}
+}
+@article{wilks2014cancer,
+  title={The Cancer Genomics Hub (CGHub): overcoming cancer through the power of torrential data},
+  author={Wilks, Christopher and Cline, Melissa S and Weiler, Erich and Diehkans, Mark and Craft, Brian and Martin, Christy and Murphy, Daniel and Pierce, Howdy and Black, John and Nelson, Donavan and others},
+  journal={Database},
+  volume={2014},
+  pages={bau093},
+  year={2014},
+  publisher={Oxford University Press}
+}
 @article{zhu2010chippeakanno,
   title={ChIPpeakAnno: a Bioconductor package to annotate ChIP-seq and ChIP-chip data},
   author={Zhu, Lihua J and Gazin, Claude and Lawson, Nathan D and Pag{\`e}s, Herv{\'e} and Lin, Simon M and Lapointe, David S and Green, Michael R},

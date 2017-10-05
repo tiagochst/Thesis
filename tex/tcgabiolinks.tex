@@ -1,438 +1,313 @@
-\section{TCGAbiolinks: An R package to download and analyze data from TCGA}
+\section{TCGAbiolinks: An R/Bioconductor package to download and analyze data from GDC}
 
+% Cancer is among the leading causes of death worldwide,
+% and treatments for cancer range from clinical procedures
+% such as surgery to complex combinations of drugs,
+% surgery and chemoradiation (1). The Cancer Genome Atlas
+% (TCGA), which began in 2006 with the aim of collecting
+% and analyzing both clinical and molecular data
+% on over 33 different tumor types by sampling across 500
+% cases per tumor type, has to date generated the most
+% comprehensive repository of human cancer molecular and
+% clinical data (Figure 1A) (2). Tumors profiled by TCGA
+% range from solid to hematological types, from mildly to
+% severely aggressive in terms of survival and from benign
+% to metastatic. For each cancer case, DNA, RNA and protein
+% were extracted, and genomic, transcriptomic, epigenomic
+% and (recently) proteomic (Figure 1B) profiling was
+% then performed using a diverse set of ‘omics’ platforms,
+% from custom microarrays to large-scale genomic sequencing.
+% The TCGA consortium is organized into several
+% working groups, each responsible for generating, collecting
+% and coordinating data production (Biospecimen core
+% resource and Data coordinating center) or analyzing the
+% data (Genome data analysis center) (https://wiki.nci.nih.
+% gov/display/TCGA/TCGA+Wiki+Home). \sigla{AWGs}{Analysis working groups} are formed by members of the scientific
+% community to lead the data analysis for each tumor
+% type (e.g. Breast or Kidney) and, more recently, for systemspecific
+% cancers (e.g. central nervous system or reproductive
+% system) or pan-cancer (all tumor types together) (2–6).
+% AWG members download and analyze the currently publicly
+% available data through the TCGA data portal (https://
+% tcga-data.nci.nih.gov/tcga/). Members generally include experts
+% in one or more data type (e.g. DNA methylation, expression,
+% copy number or whole-genome sequencing) and
+% experts in disease (generally oncologists specializing in each
+% particular studied tumor). Using the collective knowledge
+% gained by the experts in each platform and disease, a formal
+% characterization and report is generated and published
+% as a landmark TCGA marker (3,5–9).
 
- Integrative analysis of genomic big-data collections from public databases such as The Cancer Genome Atlas (TCGA) can advance knowledge and lead to new discoveries in cancer research.  However, the data retrieval from TCGA is a cumbersome and time-consuming task. The TCGABiolinks Bioconductor package allows to query, download and perform integrative analysis with TCGA data, combining computer science and statistical methods thus authoring reproducible analysis. 
-  Case studies are reported on various cancer system biology applications including a complete downstream analysis with LGG and GBM, by means of gene expression data,  methylation data and integration of both data.
-  The analysis layer and visualization layer were combined into a reusable workflow. 
-  The TCGABiolinks package is released under GPL3 License within Bioconductor project. The source code and vignette are freely available at \url{http://bioconductor.org/packages/TCGAbiolinks/}.
-  
-  The Cancer Genome Atlas (TCGA) has made the effort to collect a wide range of different data sets and at the same time offers an API to access these data sets. However, this can only be seen as the first step towards allowing different researchers access to these data sets. The question that needs to be answered next is how can we best access, prepare and then analyze the data most efficiently given a specific problem. 
-The number of publications in pubmed related to TCGA (July 2015) is 1517 and the number of publications per year has increased every year since its conception (Figure~\ref{NAR-fig1}).
+% These findings have generated a wealth of advanced
+% knowledge on the tumors reported and have led to the development
+% of clinical prognostic and diagnostic biomarkers
+% as well as redefinitions of prior classifications of tumors,
+% as recently described in a study of lower-grade gliomas (3).
+% The scientific cancer community has used TCGA data to
+% advance their research and to provide even greater insight
+% into these debilitating diseases, as evidenced by the growing
+% number of citations of TCGA landmark papers (Figure
+% 1C). In addition to advancing understanding of cancer,
+% the TCGA data offer opportunities to develop novel statistical
+% methodologies and create resources to integrate with
+% other data consortia, such as the Roadmap (10) and Encode
+% projects (11), as has been illustrated in a recent study
+% by Yao et al. (12).
 
-\begin{figure}
-\centering
-\includegraphics[width=1.0\textwidth]{images/figure1_draft2.pdf}
-\caption[]{TCGA data overview. (A) bars represent number of patients by disease; bubbles represent the available data size in TB by disease; (B) number of samples by platform and by level, grouped by type: genomic, transcriptomic and epigenomic. (C) Barplot: number of citations for TCGA papers. Bubble plot: number of TCGA papers, in parenthesis the number of papers published by the TCGA Research Network. Source: Scopus search for 'TCGA', adding TCGA Research Network papers that were not found during this search.}
-\label{fig:my_label}
-\end{figure}
+% Despite the wealth and accessibility of its data, TCGA
+% presents several major challenges for bioinformaticians,
+% clinicians and molecular biologists interested in harnessing
+% TCGA data to further their own research (2,13,14).
+% Among these researchers are data analysts who are interested
+% in reproducing some of the major findings by the
+% TCGA AWGs and incorporating novel methodologies into
+% the preprocessing, processing and filtering steps, such as
+% normalization, feature selection and downstream integrative
+% analyses (13). However, the TCGA data and archives
+% are constantly changing, either because of newly created
+% data or because some data sets have been retracted by the
+% families of the patients or the data were later discovered
+% to be from the wrong tissue source or to be of low quality.
+% To keep up with the dynamic and ever-changing structure
+% of the TCGA data repository, the Data Coordination
+% Center’s Web Service (DCCWS) was made available to access
+% the TCGA database (https://wiki.nci.nih.gov/display/
+% TCGA/TCGA+DCC+Web+Service+User’s+Guide). The
+% DCCWS contains information about the centers, platforms,
+% archives and other information relevant to the project. In
+% addition, methodologies applied to analyze the TCGA data
+% have mostly been presented in Sweave R documents or inhouse
+% R scripts (15–17), thus making it challenging for
+% many to harness the discoveries. Many studies, including
+% TCGA marker papers, deposit supplementary tables with
+% external websites, as PDF files, or Excel tables (https://tcgadata.nci.nih.gov/docs/publications/),
+% thus making the effort
+% to reproduce these findings or integrate them with one’s own
+% data even more challenging.
 
-This increased publication frequency does not only imply that the number of researchers that use TCGA data increases but it also attracts researchers new to these data sets.
-There are two distinct groups of researchers such as beginners-intermediate and advanced and they are very different in nature. 
-While the former still spends a large amount of time on downloading and pre-processing the data for the subsequent analyses, the latter first has to understand both the different data types and the analyses typically applied to them. The usual approach for obtaining help for both types of users consists in asking questions on portals such as \textit{stackoverflow.com}, \textit{support.bioconductor.org} or \textit{biostars.org}.\\
-
-%%%%%%%%% Reduce state of art in one paragraph %%%%%%%%% 
-
-Recently, different tools to retrieve TCGA datasets have been made available, these include TCGA-Assembler  (\cite{Zhu14}), CGDS-R (\cite {gao2013integrative}), cBioPortal \cite{cerami2012cbio}, canEnvolve (\cite{samur2013canevolve}), BioXpress \cite{wan2015bioxpress},  Firehose \footnote{http://gdac.broadinstitute.org}, and
-RTCGAtoolbox~\cite{samur2014rtcgatoolbox}.
-% Reorganize the features in 3 categories
-The features for each tool can be divided into four representative categories (i) downloader, ii) data integration and analysis, and iv) visualization. 
-The fist category comprises tools that mainly download cancer genomics data: TCGA-Assembler, the Bioconductor package CGDS-R and cBioPortal. 
-% TCGA-Assembler written in R apply a recursive algorithm to retrieve the URLs of all data files. This open software package automates and streamlines the acquisition, assembling, and processing of public TCGA data. It can be integrate with R libraries for downstream analysis.
-% CGDS-R, at the moment, the only tool available on CRAN or Bioconductor provides a basic set of R functions for querying the Cancer Genomic Data Server (CGDS) hosted by the Computational Biology Center (cBio).
-% cBioPortal is a web portal for interactively exploring multidimensional cancer genomics data sets in the context of clinical data and biologic pathways. It allows explorative data analysis, and provides simple download of small data slices.
-% A key feature of the cBio portal is ease of use, if you want to explore a pathway of interest in one or more cancer types, but to download raw mRNA expression files or full segmented copy number files, it's not suitable.
-The second category includes tools that focus on data analysis and integration, such as Firehose, canEnvolve or BioXpress.
-% canEnvolve contains integrated data from 90 studies involving more than 10000 patients. Data analysis are involved at different levels: 1) mRNA/miRNA and copy number 2) integrative analysis between genes, protein and copy number 3) network and pathway analysis 4) survival analysis. It is a web portal and can be a limit for researchers that want to analyse data in an R environment. \\
-% BioXpress \cite{wan2015bioxpress} database stores RNA-seq data from several publicly available sources, among them TCGA, and through standardize method identifies the expression levels of the genes. 
-% The third category includes tools to download, analyse, and integration data, such as Firehose.
-% The Firehose has been developed to download and analyze (e.g. GISTIC 2.0 and MutSig), in an automated and reproducible way, the data generated by TCGA. The results are  available via a website.  However, it has several limitations to access the data and it is not easily integrated with programming environments for downstream analysis(\cite{samur2014rtcgatoolbox}). \\
-The third category comprises tools to download, analyze ,integration and visualization such as RTCGA-Toolbox.
-% RTCGAToolbox (\cite{samur2014rtcgatoolbox}) was designed, using R programming language,  
-to systematically access Firehose pre-processed data and to perform basic analysis and visualization.
-
-TCGA provides unprecedented opportunities to interrogate the genome and epigenome of normal and tumor tissues proving public access to more than 20 tumor types. Markedly however, preparing these data for various  analysis pipelines 
-is a time-consuming task as the biological information is stored in different formats through a large number of files.
-
-Despite the existence of some integrative TCGA-specific software packages, few are available from Bioconductor and none or few of them perform integrative analysis. 
-Being part of the Bioconductor project ensures the high-quality, well documented and interoperable software and the possibility of integration with hundreds of available packages.
-%,  helping the user to work with different packages and analysis.
-
-
-We introduce \textit{TCGAbiolinks} an R/Bioconductor package for integrative analysis with TCGA data.
-The aim of TCGAbiolinks is four-fold: i) facilitate the data retrieval, ii) prepare the data using the appropriate pre-processing strategies, iii) provide the means to carry out different standard analyses and iv) allow the user to download a specific version of the data and thus to easily reproduce earlier research results.
-
-In more detail, the package provides multiple methods for analysis (e.g., differential expression analysis, identifying differentially methylated regions) and methods for visualization (e.g., survival plots, starburst plots) in order to easily develop complete analysis pipelines. An example of the package overflow is presented in Figure \ref{NAR-fig3}. %flux
-
-
-%%%%%%%%% NEW FIGURE
-
-\include{tex/nar}
-
-
-
-\section{MATERIALS AND METHODS}
-\subsection{The TCGAbiolinks package}
-
-\textit{TCGAbiolinks} is composed of seven functions / layers that can be grouped into three levels: DATA, APPLICATION and SOCIAL.
-%This idea was inspired to Open Systems Interconnection model (OSI Model) ISO/OSI layers, and like ISO OSI the data passes severals levels from TCGA ftp folders, where TCGA's data are located, to application level. Furthermore we added a social level more.
-These functions can be used independently but also in combination to provide the user with fully understandable analysis pipelines applied to TCGA data.
-
-%\begin{itemize}
-%\item DATA: \textit{TCGAquery}, \textit{TCGAdownload}, \textit{TCGAprepare}
-%\item APPLICATION: TCGAanalyze, TCGAvisualize
-%\item SOCIAL: TCGAinvestigate, TCGASocial
-%\end{itemize}
-
-%\begin{figure}[!h]
-%\begin{center}
-%\includegraphics[width=.9\linewidth]{images/TCGAbiolinks_levels.png}
-%\includegraphics[width=.9\linewidth]{images/TCGAbiolinks_levels2.png}
-%\end{center}
-%\caption{TCGAbiolinks layered functions levels}
-%\label{NAR-fig2}
-%\end{figure}
-
-
-\subsection{Outline of the TCGAbiolinks package functionalities.}
-\begin{figure*}
-\centering
-\includegraphics[width=\textwidth]{images/workflow_draft2_noboxes.pdf}
-\caption{TCGAbiolinks is organized in three categories. In the first category (DATA), functions to query the TCGA database, to download the data and to prepare it are made available. The second category (ANALYSIS) contains functions that allow the user to carry out different types of analyses, these incluse clustering (TCGAanalyze\_Clustering), differential expression analysis (TCGAanalyze\_DEA) and enrichment analysis (TCGAanalyze\_EA). Finally, the obtained results can be visualized using the functions in the third category (VISUALIZATION): these include principal component analysis (TCGAvisualize\_PCA), starburst plots (TCGAvisualize\_starburst) and survival curved (TCGAvisualize\_SurvivalCoxNET). The different dependencies to other R/Bioconductor packages are named in the last row of the figure.}
-\label{fig:workflow}
-\end{figure*}
-%With our new R package, called \textit{TCGAbiolinks}, we proposed some solutions for bioinformaticians to save their (researcher and computational) time, trying  to address the needs of both groups as follows.
-%See TCGAbiolinks Bioconductor user’s guide for a more detailed description.
-
-TCGAbiolinks simplifies access, preparation and downstream analysis of cancer data by providing high-level functions
-which warp different packages as reported in the table below:  
-%In the following table we reported the functions for each layer and related package used / wrapping.
-
-% \begin{table}[ht]
+% \begin{figure*}
 % \centering
-% \begin{tiny}
-% \begin{tabular}{lll}
-% \hline
-% Layer & Function & Package used (wrapping)  \\ 
-% \hline
-% \cellcolor{cyan}query & TCGAquery\_clinic & RCurl \\ 
-% \cellcolor{cyan}query & TCGAquery\_clinicFilt & \\ 
-% \cellcolor{cyan}query & TCGAquery\_integrate & \\ 
-% \cellcolor{cyan}query & TCGAquery\_MatchedCoupledSampleTypes & \\ 
-% \cellcolor{cyan}query & TCGAquery\_samplesfilter & \\ 
-% \cellcolor{cyan}query & TCGAquery\_SampleTypes RCurl & \\ 
-% \cellcolor{cyan}query & TCGAquery\_Version & rvest, stringr \\ 
-% \cellcolor{cyan}query & TCGAquery & downloader\\ 
-% & & \\
-% \cellcolor{yellow}download & TCGAdownload & \\ 
-% & & \\
-% \cellcolor{brightgreen}prepare & TCGAprepare & SummarizedExperiment, Elmer \\ 
-% & & \\
-% \cellcolor{coolgrey}analyze & TCGAanalyze\_DEA & edgeR\\ 
-% \cellcolor{coolgrey}analyze & TCGAanalyze\_DMR & ggplot2, SummarizedExperiment,S4Vectors \\ 
-% \cellcolor{coolgrey}analyze & TCGAanalyze\_EA & stats &\\ 
-% \cellcolor{coolgrey}analyze & TCGAanalyze\_EAcomplete &\\ 
-% \cellcolor{coolgrey}analyze & TCGAanalyze\_Filtering &\\ 
-% \cellcolor{coolgrey}analyze & TCGAanalyze\_LevelTab & \\ 
-% \cellcolor{coolgrey}analyze & TCGAanalyze\_Normalization & EDASeq\\ 
-% \cellcolor{coolgrey}analyze & TCGAanalyze\_Preprocessing & grDevices \\ 
-% \cellcolor{coolgrey}analyze & TCGAanalyze\_survival & GGally,survival,scales  \\ 
-% \cellcolor{coolgrey}analyze & TCGAanalyze\_SurvivalKM & survival \\ 
-% & & \\
-% \cellcolor{darkorange}visualize & TCGAvisualize\_EAbarplot & \\ 
-% \cellcolor{darkorange}visualize & TCGAvisualize\_meanMethylation & ggplot2, SummarizedExperiment\\ 
-% \cellcolor{darkorange}visualize & TCGAvisualize\_PCA & \\ 
-% \cellcolor{darkorange}visualize & TCGAvisualize\_starburst & \\ 
-% \cellcolor{darkorange}visualize & TCGAvisualize\_SurvivalCoxNET & dnet\\ 
-% & & \\
-% \cellcolor{red}investigate & TCGAinvestigate & RCurl\\ 
-% & & \\
-% \cellcolor{bleudefrance}social & TCGAsocial & \\
-
-% \hline
-% \end{tabular}
-% \end{tiny}
-% \caption{TCGAbiolinks proposed functions and related wrapping packages} 
-% \label{table:01}
-% \end{table}
-
-\subsection{TCGAQuery}
-
-This functions is the core of the package that allows user to query data from the TCGA portal. 
-%This function allows user to query TCGA about different datatypes and different platforms.
-The  TCGA portal provides data  for 24 cancer and   7 different datatypes  (clinical,  mRNA,SNP, Protein, miRNA,
-Methylation, Exome) using several platform.
-Data in TCGA are organized in 4 levels: 1) raw, 2) processed, 3) interpreted, and 4) region of interest. The user can access to all level, if TCGA site do not require user certification for data access.
-TCGAQuery allows to programmatically interrogate the  available data in terms of:
-tumor, platform, samples (barcode list), level, center and version.
-
-
-%\lstinputlisting{Rcode/TCGAquery_Rscripts.R}
-
-
-%\begin{lstlisting}[language=R]
-%query <- TCGAquery(tumor = c("gbm","lgg"), platform=Exome)
-%\end{lstlisting}
-
-In above example we reported several example of TCGAquery functions and relative subfunctions that call TCGAquery.
-
-will return the list of available samples with exome sequencing for the Lower Grade Glioma and Glioblastoma tumor types.
-More advanced queries can be created by specifying other parameters such as level, center and others.
-The return type of TCGAQuery is a list of lists, the package also provides higher level query functions (Table 1) 
-which manipulate such lists. For example the TCGAquery\_clinic allows to create a table from the clinical information 
-
-%BRCAclinic <- TCGAquery_clinic(cancer = "BRCA",clinical_data_type = "clinical_patient")
-
-% dim(BRCAclinic)
-
-%what gives in putput
-and TCGAquery\_SampleTypes allows to filter for sample types, for example to download the list of EXOME samples of recurrent tumors for Glioblastoma
-
-% Add an example to download Recurrent tumor of Glioblastoma GBM
-
-%SS <- TCGAquery_SampleTypes(bar,c("TR","TRBM"))
-
-% See table \ref{TCGAQueryoutput}
-
-%TCGA's data are organized according datatype and platform about 24 cancers.
-%In particular there are several samples with identification of TCGAbarcode
-%that it is composed by 16 chrs.
-
-
-%Clinical data are important because it can be used for different analysis
-%like survival analysis and also to retrieve information about samples like drugs, follow up, stages, and also molecular subtypes.
-
-
-\textit{TCGAquery\_clinic} 
-This functions is used to query and retrieve informations about samples available in TCGA data portal see for example Fig~\ref{NAR-fig5}.
-
-% \begin{figure}[!h]
-% \begin{center}
-%   \includegraphics[width=.9\linewidth]{images/clinicData2.png}
-%   \end{center}
-%   \caption{Example of clinical patient's data for BRCA cancer}
-%   \label{NAR-fig5} % \label{fig:sfig2}
-% \end{figure}
-
-\textit{TCGAquery\_clinicFilt} 
-With this function the user will filter the data, returning the list of barcodes that matches all the filter.
-The information that can be retrieved are about 
-\begin{tiny}
-\begin{itemize}[nolistsep]
-\item positive or negative her2 neu immunohistochemistry receptor status. 
-\item gender, MALE or FEMALE
-\item Positive or Negative Progesterone receptor status.
-\item stage, Pathologic Stage: stageIX, stageI, stageIA, stageIB, stageIIX,stageIIA, stageIIB, stageIIIX,stageIIIA, stageIIIB, stageIIIC, stageIV.
-\item Positive or Negative Estrogen receptor status.
-\end{itemize}
-\end{tiny}
-
-
-\textit{TCGAquery\_samplesfilter} 
-As shown in TCGAquery Rcode examples, this function help the researcher for filtering sample output from TCGAquery.
-
-%\begin{enumerate}[topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex]
-\textit{TCGAquery\_integrate} 
-
-Some times researches would like to use samples from different platforms 
-from the same patient. In order to help the user to have an overview of the number of samples in commun we created this function that will receive the data frame returned from TCGAquery and produce a matrix n platforms x n platforms with the values of samples in commum.
-This function creates a table with common samples analyzed with different platforms (e.g. matched miRNA-mRNA), that can be used in two by two comparison to retrieve a list of common samples (TCGA barcode) that can be downloaded saving time. 
-
-The result of the 3 platforms for BRCA is shown below:
-
-\begin{table}[!h]
-\centering
-\begin{tiny}
-\begin{tabular}{llll}
-
-  \hline
-& AgilentG4502A\_07\_3 & HumanMethylation450 & IlluminaHiSeq\_RNASeqV2 \\ 
-\hline
-AgilentG4502A\_07\_3 & 604 & 224 & 530 \\ 
-HumanMethylation450 & 224 & 930 & 790 \\ 
-IlluminaHiSeq\_RNASeqV2 & 530 & 790 & 1218 \\ 
-   \hline
-\end{tabular}
-\end{tiny}
-\caption{Table common samples among platforms from TCGAquery} 
-\label{table:02}
-\end{table}
-
-
-% We can integrate the function TCGAquery_MatchedCoupledSampleTypes in TCGAquery_SampleTypes adding some parameters and using only 1 functions for samples Types.
-
-\textit{TCGAquery\_SampleTypes} 
-This functions allows user to retreive informations about samples for example: TP, TN, etc. % add more informations
-It is possible to retrieve multiple tissue types from the same patients or different one.
-This function allows user to obtain a list of barcodes with a specific clinical data. For instance the user can indicate tissue type to download (primary, recurrent,metastatic,..), in case of multi tissue types can define matched sample from the same patients
-\begin{table}[!h]
-\centering
-\begin{tiny}
-\begin{tabular}{ll}
-  \hline
-typesample &  tissue type definition \\ 
-\hline
-TP &   PRIMARY SOLID TUMOR \\
-TR &   RECURRENT SOLID TUMOR \\
-TB &   Primary Blood Derived Cancer-Peripheral Blood \\
-TRBM & Recurrent Blood Derived Cancer-Bone Marrow \\
-TAP &  Additional-New Primary \\
-TM &   Metastatic \\
-TAM &  Additional Metastatic \\
-THOC & Human Tumor Original Cells \\
-TBM &  Primary Blood Derived Cancer-Bone Marrow \\
-NB &   Blood Derived Normal \\
-NT &   Solid Tissue Normal \\
-NBC &  Buccal Cell Normal \\
-NEBV & EBV Immortalized Normal \\
-NBM &  Bone Marrow Normal \\
-  \hline
-\end{tabular}
-\end{tiny}
-\caption{Table with tissue type definition from TCGAquery} 
-\label{table:03}
-\end{table}
-
-
-\subsection{TCGADownload}
-TCGA's cancer data as organized in table (add) has stored on ftp site and typically and in table are reported average of size of data for each cancer and platform type.
-{\color{red} Give the idea of dimension of file in GByte for each platform}
-It is important the selection of only file that user need for next steps such as preparion and analysis.
-
-The TCGAdownload function will download the data using as reference the the lines of the TCGAquery search result. 
-There is an option to download the entire tar.gz folder or download specific files using the \emph{type} parameter or the \emph{samples} parameter
-The output files will be saved into the path parameters. If this path does not exists the package will try to create the directories. By default, if a sample was already downloaded the function will not download again, unless the force parameter is set to \emph{TRUE}
-TCGAdownload allows also to download only a list of samples as output of TCGAQuery, eg. selecting level (1,2,3) common samples between two or three platforms. 
-
-\begin{tiny}
-\begin{itemize}[nolistsep]
-\item data The TCGAquery output
-\item path Directory to save the downloaded data
-\item type Filter the files that will be downloaded by Example:"rsem.genes.results"
-\item samples List of samples to download data
-\item force Download files even if it was already downladed?
-\end{itemize}
-\end{tiny}
-
-\subsection{TCGAPrepare}
-The TCGAPrepare function will read the data from level 3 the experiments and prepare it for downstream analysis into a SummarizedExperiment object. The samples are always refered by their barcode. If you want to save the data into an rda file, please use the \emph{save}
-parameter that will save an rda object with the  \emph{filename} parameter.
-If no filename was set, the filename will be the concatenation of platform and Sys.time.
-You can easily read the downloaded data using the `TCGAprepare` function.
-This function will prepare the data into a SummarizedExperiment
-
-\url{http://www.nature.com/nmeth/journal/v12/n2/abs/nmeth.3252.html}
-object for downstream analysis. 
-For the moment this function is working only with data level 3.
-
-The arguments are:
-\begin{tiny}
-\begin{itemize}[nolistsep]
-\item query**	Data frame as the one returned from TCGAquery
-\item dir**	Directory with the files
-\item type**	File to prepare.
-\item samples**	List of samples to prepare.
-\item save**	Save a rda object with the prepared object? Default: FALSE
-\item filename** Name of the rda object that will be saved if `save` is `TRUE`
-\item toPackage** Name of the package to prepare the data specific to that package. 
-\item summarizedExperiment** Should the output be a SummarizedExperiment object? Default: `TRUE`
-\item reannotate** Reannotate genes? Source http://grch37.ensembl.org/. 
-Default: `FALSE`. (For the moment only working for methylation data)
-\end{itemize}
-\end{tiny}
-
-In order to add useful information to researchers we added in the colData of the 
-summarize can be found in the section of most recent TCGA's publication.
-\url{https://tcga-data.nci.nih.gov/docs/publications/}
-
-We intend to add more tumor types in the future.
-Also in the  metadata of the objet we added the parameters used in TCGAprepare,
-the query matrix used for preparing, and file information (name,creation time and modification time) in order to help the user know which samples, versions, and parameters they used.
-
-As an example, for the platform IlluminaHiSeq\_RNASeqV2 we prepared  samples for the rsem.genes.normalized\_results type. In order to create the object mapped the gene\_id 
-to the hg19. The genes\_id not found are then removed from the final matrix.
-The default output is a SummarizedExperiment is shown below. 
-
-In order to create the SummarizedExperiment object we mapped the rows of the 
-experiments into GRanges. In order to map miRNA we used the miRNA from the anotation database TxDb.Hsapiens.UCSC.hg19.knownGene, this will exclude the miRNA from viruses and bacteria. 
-In order to map genes, genes alias, we used the biomart hg19 database 
-(hsapiens\_gene\_ensembl from grch37.ensembl.org).
-
-In case you prefere to have the raw data. You can get a data frame without any
-modification setting the `summarizedExperiment` to false. Table of `types` available for the `TCGAprepare`.
-
-Preparing the data with parameter \textit{toPackage} 
-This section will show how to integrate `TCGAbiolinks` with other packages.
-Our intention is to provide as many integrations as possible.
-
-The example below shows how to use `TCGAbiolinks` with `ELMER` package 
-(expression/methylation analysis). The TCGAprepare for the DNA methylation data 
-will Removing probes with NA values in more than 0.80\% samples and remove the 
-anotation data, for the expression data it will take the log2(expression + 1)
-of the expression matrix in order to linearize the relation between 
-DNA methylation and expression also it will prepare the rownames as the 
-specified by the package.
-
-%Prepare data matrices (genes/ loci in rows, samples in columns) for downstream analysis, ready to use also with other R packages such as: limma, edgeR, stats, survival, etc.. See for details Supplementary Table~\ref{table::DownstreamAnalysis}.
-
-\begin{table}[b]
-\caption{Platforms supported by TCGABiolinks.}
-\label{table:01}%
-}{%
-\begin{tiny}
-\begin{tabular*}{\columnwidth}{@{}lll@{}}
-\toprule
-dataType  &  Platform & File type
-\\
-mRNA & agilentg4502a 07 1 & \\
-mRNA & agilentg4502a 07 2 & \\
-mRNA & agilentg4502a 07 3 & \\
-mRNA & hg-u133 plus 2 & \\
-mRNA & ht hg-u133a & \\
-mRNA & huex-1 0-st-v2 & \\
-mRNA & illuminaga mrna dge & \\  
-mRNA & illuminaga rnaseq & exon.quantification, spljxn.quantification,  gene.quantification\\
-mRNA & illuminaga rnaseqv2 & junction\_quantification, rsem.genes.results, rsem.isoforms.results, rsem.genes.normalized\_results, rsem.isoforms.normalized\_results, bt.exon\_quantification \\
-mRNA & illuminahiseq rnaseq & \\
-mRNA & illuminahiseq rnaseqv2 & \\
-mRNA & illuminahiseq totalrnaseqv2 & \\
-toChange & genome\_wide\_snp\_6 & hg18.seg,hg19.seg, nocnv\_hg18.seg, nocnv\_hg19.seg \\
-mRNA & agilentg4502a 07 1 & \\
-mRNA & agilentg4502a 07 2 & \\
-mRNA & agilentg4502a 07 3 & \\
-\end{tabular*}%
-\end{tiny}
-\end{table}
-
-\subsection{TCGAnalyze}
+% %\includegraphics[width=.9\linewidth]{figures/case3_improved.pdf}
+% \includegraphics[width=1.0\linewidth]{images/figure1.pdf}
+% \caption[TCGA data overview.]{TCGA data overview. \textbf{(A)} bars represent number of patients by disease; bubbles represent the available data size in TB by disease; \textbf{(B)} number of samples by platform and by level, grouped by type: genomic, transcriptomic and epigenomic. \textbf{(C)} Barplot: number of citations for TCGA papers. Bubble plot: number of TCGA papers, in parenthesis the number of papers published by the TCGA Research Network. Source: Scopus search for ’TCGA’, adding TCGA Research Network papers that were not found during this search. }
+% \label{fig:tcgabiolinks1}
+% \end{figure*}
 
 
 
-The analysis part of TCGAbiolinks package incorporate several statistical methods 
-for fast analysis of \textit{omic} data from TCGA's portal.
-This allows for example reducing number of features to a signature of genes that can discriminate between dead or alive for survival or between normal and tumor samples, etc.
-For each analytical functions, downstream analysis from modified published vignette and time evaluation analysis methods are provided and are available in Supplementary table.
 
-Analyze data matrices (genes/ loci in rows, samples in columns) for downstream analysis, ready to use also with other R packages, like differential expression analysis, classification, ROC, AUC, inference of gene regulatory network, feature selection, survival analysis, enrichment analysis, and master regulator analysis.
-
-\textit{TCGAanalyze\_DEA}
-
-The most common goal among investigators using either microarrays or RNA-seq is detecting differential expression, for example: discovering transcripts showing different average expression levels across two populations.
-Frequently the important investigations with microarrays and rnaseq's data are to identify the genes whose expression levels change between two sample groups. To understand the effect of a drug we may ask which genes are up-regulated (increased in expression) or down-regulated (decreased in expression) between treatment and
-control groups.
-
-DEA (Differential expression analysis) to identify differentially expressed genes (DEGs) is performed using the `TCGAanalyze\_DEA` function. 
-
-To determine whether a gene is expressed in a differential manner, we apply a test of hypothesis and the fold-change between the two starting conditions, in tumor and normal. In particular we use the edgeR package from Bioconductor that uses the quantile-adjusted conditional maximum likelihood (qCML) method for experiments with single factor to determine genes differentially expressed \cite{Robinson2010}. Compared against several other estimators, qCML is the most reliable in terms of bias on a wide range of conditions and specifically performs best in the situation of many small samples with a common dispersion. The p-values generated from the analysis sorted in ascending order, are corrected using the Benjamini-Hochberg procedure for multiple testing correction.
-
-After DEA it is possible to filter the output of dataDEGs by abs(LogFC) >=1, and uses the `TCGAanalyze\_LevelTab` function to create a table with DEGs (differentially expressed genes), log Fold Change (FC), false discovery rate (FDR), the gene expression level for samples in Cond1type, and Cond2type, and Delta value (the difference of gene expression between the two conditions multiplied logFC).
-
-\subsection{TCGAVisualize}
-Visaulize is an important part of the package.
-Data visualization tools for gene expression and methylation analysis such as Heatmap, cluster and several plots, pathway enrichment analysis.
-
-\subsection{Case study 3b: Downstream Analysis Integration of Gene Expression and Methylation data}
+The aim of TCGAbiolinks is four-fold: (i) to facilitate
+data retrieval via GDC’s API; (ii) to prepare the data
+using the appropriate preprocessing strategies; (iii) to provide
+a means to conduct different standard analyses and
+advanced integrative analyses and (iv) to allow the user to 
+easily reproduce earlier research results. 
+We introduce public methods
+used in several marker papers to integrate DNA methylation
+and gene expression data. In addition, our tool extracts
+published molecular subtype information for each
+TCGA sample within a tumor type (generally embedded in
+supplementary tables, PDFs or external websites). Because
+our tool was developed in the language of R specifically for integration within the Bioconductor project, we have provided most of the TCGA data objects as the Bioconductor specified
+‘SummarizedExperiment’ class \cite{huber2015orchestrating}, thereby allowing easy integration with other data types and statistical
+methods that are common in the Bioconductor repository.
 
 
-In this section we consider a case study with methylation and expression data from COAD samples. 
 
+
+
+\subsection{The TCGAbiolinks package}
+TCGAbiolinks is an R package, which is licensed under
+the General Public License (GPLv3), and is freely available
+through the Bioconductor repository \cite{gentleman2004bioconductor}. By conforming to the strict guidelines for package submission to
+Bioconductor, we were able to utilize and incorporate existing R/Bioconductor packages and statistics to assist in identifying differentially altered genomic regions defined by mutation, copy number, expression or DNA methylation; to reproduce previous TCGA marker studies; and to integrate data types both within TCGA and across other data types outside of TCGA. TCGAbiolinks consists of functions that can be grouped into three main levels: Data, Analysis and Visualization. More specifically, the package provides multiple methods for the analysis of individual experimental platforms (e.g. differential expression analysis or identifying
+differentially methylated regions or copy number alterations) and methods for visualization (e.g. survival plots, volcano plots and starburst plots) to facilitate the development of complete analysis pipelines. In addition, TCGAbiolinks
+offers in-depth integrative analysis of multiple platforms,
+such as copy number and expression or expression
+and DNA methylation, as demonstrated and applied in our
+recent TCGA study of 1122 gliomas \cite{cell}. These functions
+can be used independently or in combination to provide the
+user with fully comprehensible analysis pipelines applied to
+TCGA data. A schematic overview of the package is presented
+in Figure \ref{fig:tcgabiolinksfunctions}. The next subsections describe each of the three main levels (Data, Analysis and Visualization) below, highlighting the importance and utility of each associated function and sub-function. 
 
 \begin{figure*}
 \centering
 %\includegraphics[width=.9\linewidth]{figures/case3_improved.pdf}
-\includegraphics[width=.9\linewidth]{images/case3_improved2.pdf}
+\includegraphics[width=1.0\linewidth]{images/figure1_new.pdf}
 
-\caption{Integrative analysis of expression and DNA methylation from COAD disease}
-\label{fig:workflow}
+
+\caption[Overview of TCGAbiolinks functions.]{ Overview of TCGAbiolinks functions. TCGAbiolinks is organized in three categories. In the first category (Data), functions to query the GDC database, to download the data and to prepare it are made available. The second category (Analysis) contains functions that allow the user to carry out different types of analyses; these include clustering (\textit{TCGAanalyze\_Clustering}), differential expression analysis (\textit{TCGAanalyze\_DEA}) and enrichment analysis (\textit{TCGAanalyze\_EA}). Finally, the obtained results can be visualized using the functions in the third category (Visualization): these include principal component analysis (\textit{TCGAvisualize\_PCA}), starburst plots (\textit{TCGAvisualize\_starburst}) and survival curves (\textit{TCGAvisualize\_SurvivalCoxNET}). The different dependencies to other R/Bioconductor packages are specified in the last row of the figure.  }
+\label{fig:tcgabiolinksfunctions}
+\end{figure*}
+
+\subsubsection*{Data}
+
+TCGA data is accessible via the \href{https://gdc-portal.nci.nih.gov/}{NCI Genomic Data Commons (GDC) data portal}, \href{https://gdc-portal.nci.nih.gov/legacy-archive/search/f}{GDC Legacy Archive} and \href{https://github.com/BioinformaticsFMRP/TCGAWorkflow/blob/master/vignettes/gdac.broadinstitute.org}{the Broad Institute’s GDAC Firehose}. The GDC Data Portal provides access to the subset of TCGA data that has been harmonized against \sigla{GRCh38}{Genome Reference Consortium Human Build 38} (hg38) using GDC Bioinformatics Pipelines which provides methods to the standardization of biospecimen and clinical data, the re-alignment of DNA and RNA sequence data against a common reference genome build GRCh38, and the generation of derived data. Whereas the GDC Legacy Archive provides access to an unmodified copy of data that was previously stored in CGHub \cite{wilks2014cancer} and in the TCGA Data Portal hosted by the TCGA Data Coordinating Center (DCC), in which uses as references \sigla{GRCh37}{Genome Reference Consortium Human Build 37} (hg19) and \sigla{GRCh36}{Genome Reference Consortium Human Build 36} (hg18).
+
+The previously stored data in CGHub, TCGA Data Portal and Broad Institute’s GDAC Firehose, were provided as different levels or tiers that were defined in terms of a specific combination of both processing level (raw, normalized, integrated) and access level (controlled or open access). Level 1 indicated raw and controlled data, level 2 indicated processed and controlled data, level 3 indicated Segmented or Interpreted Data and open access and level 4 indicated region of interest and open access data. While the TCGA data portal provided level 1 to 3 data, Firehose only provides level 3 and 4. An explanation of the different levels can be found at TCGA Wiki (\burl{https://wiki.nci.nih.gov/display/TCGA/Data+level}). However, the GDC data portal no longer uses this based classification model in levels. Instead a new data model was created, its documentation can be found in GDC documentation at \burl{https://gdc.nci.nih.gov/developers/gdc-data-model/gdc-data-model-components}. In this new model, data can be open or controlled access. While the GDC open access data does not require authentication or authorization to access it and generally includes high level genomic data that is not individually identifiable, as well as most clinical and all biospecimen data elements, the GDC controlled access data requires dbGaP authorization and eRA Commons authentication and generally includes individually identifiable data such as low level genomic sequencing data, germline variants, SNP6 genotype data, and certain clinical data elements. The process to obtain access to controlled data is found in GDC web site at \burl{https://gdc.nci.nih.gov/access-data/obtaining-access-controlled-data}.
+
+TCGAbiolinks divides the GDC data retrieval into three main functions: \textit{GDCquery}, \textit{GDCdownload}
+and \textit{GDCprepare}.
+\textit{GDCquery} allows the user to query data from the the The NCI's Genomic Data Commons (GDC) data portal or GDC Legacy Archive by accessing the database API. Up to the moment, the GDC data portal provides data from two programs The Cancer Genome Atlas (TCGA) and Therapeutically Applicable Research to Generate Effective Treatments (TARGET)  on more
+than 38 diseases type cancer types and 5 different molecular data types (Transcriptome Profiling, Raw Sequencing Data, Copy Number Variation, DNA Methylation) as well as 3 different types of clinical reports (clinical tables, pathology reports and histology image slides). The pathology
+reports and histology image slides are not prepared
+but are downloaded from the GDC Legacy Archive to a directory if requested by the user. \textit{GDCdownload} receives the output of \textit{GDCquery}, a file manifest with all the metadata necessary to download it. In order to organize the files downloaded, this function will save the data with the following pattern "Root directory/project/source/data\_category/data\_type/file\_id/file\_name" (i.e Example: GDCdata/TCGA-GBM/harmonized/DNA\_Methylation/Methylation\_Beta\_Value/079fcaff-3ae6-4150-b2e6-2b7330ffbcd9/jhu-usc.edu\_GBM.HumanMethylation450.10.lvl-3.TCGA-19-A6J5-01A-21D-A33U-05.gdc\_hg38.txt)
+If a file was
+previously downloaded it will not be re-downloaded. \textit{TCGAprepare} is a function that reads open processed data and prepares them for downstream analysis. Specifically, the objects are organized in a \textit{SummarizedExperiment}
+object to allow easy integration
+with other Bioconductor packages, such as GRanges \cite{lawrence2013software},
+IRanges \cite{lawrence2013software}, limma \cite{ritchie2015limma} and edgeR \cite{robinson2010edger}. The samples are
+always referred to by their given TCGA/TARGET barcode. If the user prefers the data not to be prepared in a \textit{SummarizedExperiment},
+there is an option to set the argument \textit{SummarizedExperiment}
+to FALSE; the data are then prepared as
+a standard data frame object (rows and columns). 
+
+\subsubsection*{Analysis}
+The analysis functions and subfunctions are designed to analyze TCGA data through both common and novel methods.
+The main function, called \textit{TCGAanalyze}, comprises two distinct types of analysis: molecular analysis and clinical analysis. Once the data are prepared into data matrices
+(genes/loci in rows and samples in columns) or a SummarizedExperiment, the downstream
+analysis can be divided into (i) supervised analysis: differential expression analysis, enrichment analysis and master regulator analysis or (ii) unsupervised analysis: inference of gene regulatory network, cluster, classification, \sigla{ROC}{Receiver Operator Characteristics} \cite{sonego2008roc}, \sigla{AUC}{Area Under the Curve}, feature selection and survival analysis.
+\textit{TCGAanalyze\_Normalization} allows users to normalize mRNA transcripts and miRNA using the EDASeq package \cite{risso2011gc}. This function uses within-lane normalization procedures to adjust for GC-content effects (or other gene-level effects) on read counts: LOESS robust local regression and global-scaling, full-quantile and between-lane normalization procedures to adjust for distributional differences between lanes (e.g. sequencing depth).
+\textit{TCGAanalyze\_DEA} allows the user to identify differential expression or regions between two populations or conditions.
+In particular, we used the edgeR package from
+Bioconductor, which uses the \sigla{qCML}{quantile-adjusted conditional
+maximum likelihood} method for experiments with
+a single factor to detect \sigla{DEGs}{differentially expressed genes} \cite{robinson2010edger}. Compared to several other estimators, qCML is the most reliable in terms of bias on a wide range of conditions; specifically, qCML performs best in situations involving many small samples with a common dispersion \cite{robinson2007small}. The P-values generated from the analysis are sorted in ascending order and corrected using the Benjamini \& Hochberg procedure for multiple testing correction \cite{Ben95}.
+After running \textit{TCGAanalyze\_DEA}, it is possible to filter the output by fold change and/or significance and to use the \textit{TCGAanalyze\_LevelTab} function to create a table of DEGs, including \sigla{FC}{fold change}, \sigla{FDR}{false discovery rate}, gene expression levels of samples under conditions of interest and delta values (the difference in gene expression multiplied by logFC).
+\textit{TCGAanalyse\_DMR} allows the user to identify differentially methylated regions (DMRs) between two groups with a DNA methylation difference above a certain threshold. To calculate P-values, this subfunction uses the Wilcoxon ranksum statistical non-parametric test and adjusts the values using the FDR method.
+\textit{TCGAanalyze\_Clustering} allows the user to perform a hierarchical cluster analysis through two methods: ward.D2 and ConsensusClusterPlus \cite{wilkerson2010consensusclusterplus}.
+
+
+\subsubsection*{Visualization}
+The visualization section allows the user to visualize the results generated by the analysis sections using heatmap, cluster, plots with incremental layers (ggplot2), pathway enrichment analysis and PCA. Furthermore, we provide methods to generate a starburst plot, which  integrates gene expression and DNA methylation data \cite{noushmehr2010identification}. 
+
+
+\subsection{Comparisons}
+
+ Recently, several tools to retrieve TCGA data sets have been made available, as summarized in Table \ref{tab:tcgabiolinks-fig1}. These tools
+ include TCGA-Assembler \cite{zhu2014tcga}, CGDS-R \cite{gao2013integrative}, canEnvolve \cite{samur2013canevolve}, Firehose \cite{deng2017firebrowser}, RCTCGAtoolbox \cite{samur2014rtcgatoolbox}, and  cBioPortal \cite{cerami2012cbio} . These tools can
+ be divided into three representative categories. The first category comprises tools mainly used to download cancer genomics data, such as TCGA-Assembler and CGDSR.
+ The second category includes tools that focus mainly
+ on data analysis and integration, such as canEnvolve. The third category comprises tools to download and analyze data, such as RTCGAToolbox, Firehose and cBioPortal. 
+ 
+ RTCGAToolbox is a tool that systematically accesses the Broad GDAC Firehose (\burl{https://gdac.broadinstitute.org/}) preprocessed data and performs basic analysis and visualization of an individual data type (expression, mutation or DNA methylation). Despite the existence of TCGA specific software packages, none of these tools perform the integrative analysis harnessing methodologies designed by TCGA \sigla{AWGs}{Analysis working groups}, such as identifying epigenetically silenced
+ genes (represented in a starburst plot \cite{noushmehr2010identification} or functional
+ copy number identification \cite{cell}. Although RTCGAToolbox can download and analyze Firehose-generated data, neither tool can provide the downloaded data as a "SummarizedExperiment" object, which is critical for allowing the full integration and use of other popular Bioconductor packages, an integral aspect of Bioconductor \cite{gentleman2004bioconductor,gentleman2004bioconductor}. Briefly, the SummarizedExperiment class is a matrix-like container in which rows represent ranges of interest (as a GRanges or GRangesList object) and columns represent samples (with sample data summarized as a DataFrame). A Summarized Experiment contains one or more assays, each represented by a matrix-like object of numeric or other mode.
+Finally, TCGAbiolinks is able to access data aligned against the Genome Reference Consortium Human Build 38 (hg38) via the 
+\href{https://gdc-portal.nci.nih.gov/}{NCI Genomic Data Commons (GDC) data portal}, and  data aligned against the Genome Reference Consortium Human Build 19 (hg19) via the \href{https://gdc-portal.nci.nih.gov/legacy-archive/search/f}{GDC Legacy Archive}. This feature is only available using TCGA-Assembler.
+
+
+
+
+%\begin{landscape}
+\bgroup
+\def\arraystretch{1.5}%  1 is the default, change whatever you need
+\begin{table}[]
+\footnotesize
+\centering
+\caption[Comparing TCGAbiolinks to competing software]{Each column represents a software tool compared with TCGAbiolinks,
+and each row represents a feature. The cells checked with $X$ indicates
+features that exists in the tool. Available platform abbreviations are defined
+as: R (R script); C (R package deposited in CRAN); B (Bioconductor
+package); W (available only as a web portal);}
+\label{tab:tcgabiolinks-fig1}
+\begin{tabular}{p{3cm}p{5cm}|l|l|l|l|c|l|c|}
+\cline{3-9}
+ &  & \multicolumn{7}{c|}{\cellcolor[HTML]{333333}{\color[HTML]{FFFFFF} \textbf{Packages}}} \\ \cline{3-9} 
+ &  &  &  &  & & &  &  \\
+ &  &  &  &  & & &  &  \\
+ &  &  &  &  & & &  &  \\
+ &  &  &  &  & & &  &  \\
+ &  &  &  &  & & &  &  \\
+{\cellcolor[HTML]{333333}{\color[HTML]{FFFFFF} \textbf{Features}}} & {\cellcolor[HTML]{333333}{\color[HTML]{FFFFFF} \textbf{Sub-features}}} & \multirow{-6}{*}{\rotatebox[origin=c]{90}{TCGAbiolinks}} & 
+\multirow{-6}{*}{\rotatebox[origin=c]{90}{TCGAAssembler}} & 
+\multirow{-6}{*}{\rotatebox[origin=c]{90}{canEnvolve}} & 
+\multirow{-6}{*}{\rotatebox[origin=c]{90}{TCGA2stat}} & 
+\multirow{-6}{*}{\rotatebox[origin=c]{90}{Firehose-FirebrowserR}} & \multirow{-6}{*}{\rotatebox[origin=c]{90}{RTCGAtoolbox}} & 
+\multirow{-6}{*}{\rotatebox[origin=c]{90}{cBio Portal CGDS-R}} \\ \hline
+\multicolumn{1}{|l|}{Availability} & Platform & B & R & W & C & CW & B & CW \\ \hline
+\multicolumn{1}{|l|}{} & Access to data aligned against the GRCh38/hg38 & X & X &  &  &  &  &  \\ \cline{2-9} 
+\multicolumn{1}{|l|}{\multirow{-2}{*}{Genome of reference}} & Access to data aligned against the GRCh37/hg19 & X & X & X & X & X & X & X \\ \hline
+\multicolumn{1}{|l|}{Query TCGA Cases} & Individual TCGA samples (e.g. TCGA-01-0001) & X & X &  &  & X &  &  \\ \hline
+\multicolumn{1}{|l|}{Download} & All TCGA platforms & X &  &  &  &  &  &  \\ \hline
+\multicolumn{1}{|l|}{} & mRNA & X &  & X & X & X & X & X \\ \cline{2-9} 
+\multicolumn{1}{|l|}{} & miRNA & X &  & X & X & X & X & X \\ \cline{2-9} 
+\multicolumn{1}{|l|}{} & copy number & X &  & X & X & X & X & X \\ \cline{2-9} 
+\multicolumn{1}{|l|}{} & DNA methylation & X &  &  & X & X & X & X \\ \cline{2-9} 
+\multicolumn{1}{|l|}{} & Clinical & X &  & X & X & X & X & X \\ \cline{2-9} 
+\multicolumn{1}{|l|}{} & Protein &  &  & X &  & X &  & X \\ \cline{2-9} 
+\multicolumn{1}{|l|}{\multirow{-7}{*}{Data type analysis}} & Mutatation & X &  & X & X & X & X & X \\ \hline
+\multicolumn{1}{|l|}{Integrative analysis} & DNA methylation and gene expression & X &  &  &  & X &  &  \\ \hline
+\multicolumn{1}{|l|}{Other} & Extensible to other BioC packages & X &  &  &  &  &  &  \\ \hline
+\end{tabular}
+\end{table}
+\egroup
+
+\subsection{Software availability}
+
+TCGAbiolinks is available under the \sigla{GNU GPL3}{GNU General Public License version 3}. 
+Its source code is available at \url{https://github.com/BioinformaticsFMRP/TCGAbiolinks}
+ and a binary version for windows, macOSX and Linux is freely available through the Bioconductor repository at \burl{http://bioconductor.org/packages/TCGAbiolinks/}. To execute this tool, it is required to have installed a R version $\geq 3.3$.
+
+\subsection{Public reception}
+
+TCGAbiolinks had a good reception the research community being among the top 5\% of the most downloaded tools of the Bioconductor project. In October 2017, the tool already had more than 17 thousand downloads, with an average of visits to the documentation pages of a thousand users per month. The Figure \ref{fig:tcgabiolinksdownload} shows a summary since the beginning of the project.
+
+\begin{figure*}[h!]
+	\centering
+	\includegraphics[width=1.0\linewidth]{images/tcgabiolinks_download.pdf}
+	\caption[TCGAbiolinks download summary]{TCGAbiolinks download summary. A) Number of downloads per month. B) Number of active users. C) Percentage of sessions connect to the documentation by country.}
+	\label{fig:tcgabiolinksdownload}
+\end{figure*}
+
+\subsection{Case of studies}
+
+In this subsection, we introduce and describe the utility and application of TCGAbiolinks, we used four different TCGA cancer types
+(Brain, Kidney, Breast and Colon) as examples. For each
+tumor type, we describe methods to extract the different experimental
+types and integrate the information into a cohesive,
+biologically specific and hypothesis-driven approach.
+We also describe how to generate a starburst plot \cite{noushmehr2010identification}. The
+starburst plot was introduced to illustrate the results of integrating
+DNA methylation and gene expression data. In
+addition, we describe how TCGAbiolinks prepares data for
+integration with other recently published packages, such as
+ELMER \cite{yao2015inferring}, a new Bioconductor package designed to
+identify candidate regulatory elements in the non-coding
+regions of the genome associated with cancer. Our package
+is freely available within the Bioconductor project at
+\burl{http://bioconductor.org/packages/TCGAbiolinks/}.
+
+
+
+
+\subsubsection*{Case study - LGG downstream analysis with gene expression}
+
+For this case study, we used the recently available \sigla{LGG}{lower-grade glioma} data to investigate gene expression differences between the reported molecular subtypes (IDHmutant, IDHwildtype and IDHmutant codels) \cite{platforms2015comprehensive}. In particular, we used TCGAbiolinks to download 293 samples profiled using messenger RNA expression (IlluminaHiSeq RNASeqV2) with available molecular subtypes. The data was normalized using the \textit{TCGAanalyze\_Normalization} function and we applied three filters to remove features/mRNAs with low signals across samples, obtaining 4578, 4284 and 1187 mRNAs, respectively. A clustering analysis was then applied using the ConsensusClusterPlus package \cite{wilkerson2010consensusclusterplus} which identified four distinct groups of samples (EC1-EC4) (Figure \ref{fig:caseexp}A). The survival curves for each cluster were generated using \textit{TCGAanalyze\_survival} and are shown in Figure \ref{fig:caseexp}B. As expected, each cluster effectively separated IDHwildtype tumors (EC1) from IDHmutant-non-codel (EC2) and IDHmutant-codel tumors (EC3 and EC4) (3)(Figure \ref{fig:caseexp}). Additional biological subtypes (DNA methylation subtypes) were reproduced as expected (Figure \ref{fig:caseexp}D) \cite{platforms2015comprehensive}.
+
+\begin{figure*}
+\centering
+%\includegraphics[width=.9\linewidth]{figures/case3_improved.pdf}
+\includegraphics[width=1.0\linewidth]{images/figure4.pdf}
+\caption[Case study - LGG downstream analysis with gene expression]{Case study - Integrative (or Downstream) analysis of gene expression and clinical data from LGG disease with unsupervised clustering and crossing expression clusters with clinical and molecular information. \textbf{(A)} Heatmap of 1187 more variables genes clustered with tree $k = 4$ in EC1, EC2, EC3, EC4. \textbf{(B)} Kaplan Meier survivals plot for EC clusters. \textbf{(C and D)} Distribution of the DNA Methylation clusters and ATRX mutation within the EC clusters.}
+\label{fig:caseexp}
+\end{figure*}
+
+\subsubsection*{Case study - Downstream analysis integration of gene expression and methylation data}
+
+The DNA methylation of specific promoter CpG islands has the potential to influence gene expression. In this case study, we used TCGAbiolinks to examine the biological relationship between DNA methylation and gene expression in \sigla{COAD}{Colon adenocarcinoma}. Using \textit{GDCquery},\textit{GDCdownload} and \textit{GDCprepare}, we obtained DNA methylation data (Infinium HumanMethylation450 and Infinium HumanMethylation27 platforms) and gene expression data (IlluminaGA RNASeqV2 platform) for the same TCGA COAD samples \cite{cancer2012comprehensive}. A supervised analysis was performed on the molecular subtypes CIMP-Low [CIMP.L] and CIMP-High [CIMP.H].
+The gene expression analysis started by the identification of outliers, followed by the normalization methods. Using \textit{TCGAanalyze\_DEA}, 34 DEGs ($log_2FC\geq 3.0$ and FDR $\leq 10^{-4}$) were identified. The result of this analysis is represented in a volcano plot (Figure \ref{fig:case_starburst}A) created using \textit{TCGAVisualize\_volcano}. 
+For the DNA methylation analysis,
+using \textit{TCGAanlayze\_DMR} we identified 73 CpG-methylated probes ($\Delta\beta-values\geq 0.25$ and  $FDR \leq 10^{-5}$;  (Figure \ref{fig:case_starburst}B). The DNA methylation and gene expression results were integrated as in the previous TCGA marker paper \cite{noushmehr2010identification,cancer2012comprehensive}, by generating a starburst plot (Figure \ref{fig:case_starburst}C) in which the x-axis is the $log_{10}$ of the correct P-value for DNA methylation and the y-axis is the $log_{10}$ of the correct P-value for the expression data. The starburst plot highlights nine distinct quadrants. To incorporate the DNA methylation difference cut-off into the  graph, we highlighted genes that might have the potential for silencing due to epigenetic alterations. We highlighted five genes, EYA1, SIX2, ACSL6, OGDHL and SLC30A2, that showed a $\Delta\beta\geq0.25$ and a $log_2FC\geq 3.0$ between CIMP.L and CIMP.H.
+
+
+
+\begin{figure*}
+\centering
+\includegraphics[width=1.0\linewidth]{images/figure5.pdf}
+\caption[Case study - Integrative analysis of gene expression and DNA methylation data from COAD disease]{Case study - Integrative analysis of gene expression and DNA methylation data from COAD disease, comparing groups CIMP.L and CIMP.H. \textbf{(A)} Expression volcano plot: fold change of expression data versus significance. \textbf{(B)} DNA methylation volcano plot: difference of DNA methylation versus significance. \textbf{(C)} Starburst plot: DNA methylation significance versus gene expression significance.}
+\label{fig:case_starburst}
 \end{figure*}
 
 \newpage
