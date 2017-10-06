@@ -1,9 +1,20 @@
 
 \section{Glioma analysis}
 
-The \sigla{ELMER}{Enhancer Linking by Methylation/Expression Relationship} tool was used to analyze the molecular differences between the newly identified G-CIMP-low subtype of glioma that was associated with significantly worse survival compared to the G-CIMP-high, recently described by Dr. Noushmehr and his lab \cite{ceccarelli2016molecular}. 
-For this analysis, TCGA data from the NCI's Genomic Data Commons (GDC) was downloaded using our R/Bioconductor TCGAbiolinks package. Table \ref{gcimp.samples} summarizes the number of samples in each group that have both \sigla{DNA}{deoxyribonucleic acid} methylation data for the Illumina HumanMethylation450 platform (HM450) and gene expression data
-(RNA-Seq). and table \ref{gcip.elmer.arg} summarizes the main values for the ELMER arguments.
+The \sigla{ELMER}{Enhancer Linking by Methylation/Expression Relationship}
+tool was used to analyze the molecular differences between the newly
+identified G-CIMP-low subtype of glioma that was associated with significantly
+worse survival compared to the G-CIMP-high, recently described by Dr. Noushmehr
+and his lab \cite{ceccarelli2016molecular}.
+
+For this analysis, TCGA data from the NCI's Genomic Data Commons (GDC) was
+downloaded using our R/Bioconductor TCGAbiolinks package described in the previous chapter.
+Table \ref{gcimp.samples} summarizes the number of samples in each group that have both \sigla{DNA}{deoxyribonucleic acid}
+methylation data for the Illumina HumanMethylation450 platform (HM450) and gene expression data
+(RNA-Seq) and table \ref{gcip.elmer.arg} summarizes the main values for the ELMER arguments.
+This analysis was performed with data aligned against the geneome of reference hg38 and
+using ELMER "supervised" mode, which ensures that in all the steps the
+comparisons are made between each group using all their samples.
 
 % Please add the following required packages to your document preamble:
 % \usepackage{booktabs}
@@ -15,33 +26,61 @@ For this analysis, TCGA data from the NCI's Genomic Data Commons (GDC) was downl
 \toprule
 Group       & Number of samples \\ \midrule
 G-CIMP-high & 233               \\
-G-CIMP-low  & 11               
+G-CIMP-low  & 11
 \end{tabular}
 \end{table}
 % Please add the following required packages to your document preamble:
 % \usepackage{booktabs}
 \begin{table}[h!]
 \centering
-\caption[G-CIMP analysis: ELMER arguments values]{G-CIMP-high vs G-CIMP-low analysis: ELMER arguments values}
+\caption[G-CIMP analysis: ELMER arguments values]{G-CIMP-high vs G-CIMP-low analysis: ELMER arguments values.}
 \label{gcip.elmer.arg}
 \begin{tabular}{@{}lll@{}}
 \toprule
 Step                        & Argument                           & Value  \\ \midrule
 createMAE           & genome &  hg38   \\
-Pairs correlation/TF analysis            & Mode &  Supervised   \\
+Pairs probe-gene correlation/master regulator TF             & Mode &  Supervised   \\
 All                         & minSubgroupFrac                    & 100\%  \\
-DNA methylation differences & min mean difference                & 0.3    \\
-DNA methylation differences & p-value adj cut-off                & 0.01   \\
-Pairs correlation           & \# permutations                    & 10000  \\
-Pairs correlation           & raw p-value cut-off                & 0.001 \\
-Pairs correlation           & empirical p-values cut-off         & 0.001 \\
-Motif enrichment            & minimum \# probes (enriched motif) & 10     \\
-Motif enrichment             & lower.OR                           & 1.1    \\ \bottomrule
+All                         & group1                    & GGimp-high  \\
+All                         & group2                    & GGimp-low  \\
+All                         & direction                    & hypermethylated probes  \\
+DMCs & $\min\Delta\overline{\beta}$                & 0.3    \\
+DMCs & p-value adj cut-off                & 0.01   \\
+Pair probe-gene correlation           & \# permutations                    & 10000  \\
+Pairs  probe-gene correlation           & raw p-value cut-off                & 0.001 \\
+Pairs  probe-gene correlation           & empirical p-values cut-off         & 0.001 \\
+Motif enrichment            & minimum \# probes  & 10     \\
+Motif enrichment            & lower OR                           & 1.1    \\ \bottomrule
 \end{tabular}
 \end{table}
 
-The results are summarized in Figure \ref{tab:or}, which shows the Odds Ratio (x axis) for the enriched motifs, and in Table  \ref{tab:tf}, 
-which  shows the candidate regulatory TFs whose expression anti-correlated with the DNA methylation level on the probes of each enriched motifs. From the most anti-correlated ones, ELMER uses the TFClass classification (\cite{doi:10.1093/nar/gku1064}) to identifies which TFs are  known to bind in those motifs. This classification has two levels, family and subfamily, which groups motifs with a similar signature. Depending on the motif, its family classification might have a very similar signature, otherwise, the subfamily classification is the most indicated.    
+
+\begin{table}[h!]
+\centering
+\caption[G-CIMP analysis: Summary results]{G-CIMP-high vs G-CIMP-low analysis:
+number of distal probes, significant differently methylated probes, significant anti-correlated paired gene-probes and enriched motifs}
+\label{gcimp.summary.results}
+\begin{tabular}{@{}ll@{}}
+\toprule
+Result      & Value \\ \midrule
+Distal probes       & 135374 \\
+Significant differently methylated probes & 7540               \\
+Siginificant anti-correlated paired gene-probes  & 886 \\
+Enriched motifs & 84
+\end{tabular}
+\end{table}
+
+The eriched motifs analysis results are summarized in Figure \ref{tab:or},
+which shows the Odds Ratio (x axis) for the enriched motifs, and in Table  \ref{tab:tf},
+which shows the candidate regulatory TFs whose expression anti-correlated
+with the DNA methylation level on the probes of each enriched motifs.
+ From the most anti-correlated ones, ELMER uses the TFClass
+ classification (\cite{doi:10.1093/nar/gku1064}) to identifies
+ which TFs are  known to bind in those motifs.
+ This classification has two levels, family and subfamily,
+  which groups motifs with a similar signature.
+  Depending on the motif, its family classification might have a
+  very similar signature, otherwise, the subfamily classification is the most indicated.
 
 \begin{center}
 \begin{figure}[h!]
@@ -72,5 +111,3 @@ For example, in Table \ref{tab:tf} the motif HXD3 has as potential TF candidate 
 \end{center}
 
 To validate those findings, biological experiments are needed which by either knocking down the TF or by regulating the DNA methylation levels of those binding regions will be able to verify if the downstream genes are being regulated.
-
-

@@ -497,18 +497,8 @@ promoter region for MCF-7 cell. Acronyms - AR: Active region, EAR: active enhanc
  TRS: transcribed, HET: heterochromatin, SCR: Polycomb Repressed Silenced}
 \end{figure}
 
-\begin{table}[h!]
-\centering
-\small
-\csvautobooktabular[respect underscore,
-					before reading=\sisetup{round-mode=places,round-precision=2},
-                    filter expr={test{\ifnumless{\thecsvinputline}{20}}}]{tables/funcivarcode.csv}
-\caption {Chromatin states abbreviation}
-\label{tab:funcivarcode}
-\end{table}
 
-
-\newpage
+\cleardoublepage
 
 \subsection*{Identification of enriched motifs within set of probes in significant probe-gene pairs}
 The function \textit{get.enriched.motif} is used to identify enriched motif in a set of probes.
@@ -528,12 +518,12 @@ The main arguments are described below:
 \caption[Motif enrichment plot]{\label{fig:boxplot2} Motif enrichment plot shows the enrichment levels ($OR\geq2.0$) for the selected motifs. This plot represents a subset of the enriched motifs for $\textit{lower.or}= 1.1$, only selected for representational purposes.}
 \end{figure}
 
+\cleardoublepage
 \subsection*{Identification of master regulator Transcription Factors (TF) for each enriched motif}
 The function \textit{get.TFs} is used to identify regulatory TF whose expression associates with TF binding motif
 DNA methylation which.
 
-\lstinputlisting[language=R, frame = none,label = "tf",caption = "Identify regulatory Transcript Factors"]{codes/tf.R}
-
+\lstinputlisting[language=R, frame = none,label = "tf",caption = "Identifying regulatory Transcript Factors"]{codes/tf.R}
 
 The result of this function is shown in table \ref{tab:get.tf} and in figure \ref{fig:tfplot}.
 
@@ -581,7 +571,7 @@ The result is shown in Figure \ref{fig:chiapet}. Of the 2124 putative pairs iden
 
 
 \newpage
-\section*{Use Case 2: BRCA molecular subtypes analysis (supervised approach)}
+\subsection{Use Case 2: BRCA molecular subtypes analysis (supervised approach)}
 
 Several studies identified distinct molecular Breast cancer classes and  divided them as the luminal-like (Luminal A and Luminal B) subclasses, which are Estrogen receptor-positive (ER-positive), and the basal-like, ErbB2-positive and normal-like subclasses, which are the ER-negative groups \cite{perou2000molecular,yersal2014biological,sorlie2001gene}.  To performed \textit{ELMER} analysis comparing known molecular subtypes (Her2, Luminal A, Luminal B and Basal-like) a TCGA BRCA dataset classification retrieved from \citeonline{ciriello2015comprehensive}.
 
