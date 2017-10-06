@@ -305,8 +305,7 @@ platform ("450K"/"EPIC"). The \textit{feature} argument is used to limit the reg
 %Later, we will use all distal probes and annotate their chromatin state later with
 %MCF-7 annotation tracks from the NIH Roadmap Epigenomics Mapping Consortium \cite{bernstein2010nih}  available at StateHub (\url{http://statehub.org/})\cite{Coetzee127720}.
 
-\lstinputlisting[language=R, frame = none, label = {lst:distal},caption = "Step 2: Selection of probes within biofeatures"]{codes/distal_probes.R}
-
+\lstinputlisting[language=R, frame = none, label = {lst:distal},caption = "Selection of probes within biofeatures"]{codes/distal_probes.R}
 
 \subsection*{Organizing data into a MultiAssayExperiment object}
 The function \textit{createMAE} is used to organize the gene expression and
@@ -346,7 +345,7 @@ The function \textit{createMAE} is used to organize the gene expression and
     argument is optional.
 \end{itemize}
 
-\lstinputlisting[language=R, frame = none, label = {lst:mae},caption = "Step 3: Create MultiAssayExperiment"]{codes/mae.R}
+\lstinputlisting[language=R, frame = none, label = {lst:mae},caption = "Create MultiAssayExperiment"]{codes/mae.R}
 
 Listing \ref{lst:verifymae} shows information about the object created.
 There are 866 samples with both gene expression and DNA methylation data,
@@ -420,7 +419,7 @@ If diff.dir is "hyper" M group will be the group1 and U the group2.
 %\end{figure}
 
 %\begin{minipage}{\linewidth}
-\lstinputlisting[language=R, frame = none, label = {lst:getpair}, caption = "Step 5: Identify putative target genes for differentially methylated distal probes"]{codes/getpair.R}
+\lstinputlisting[language=R, frame = none, label = {lst:getpair}, caption = "Identify putative target genes for differentially methylated distal probes"]{codes/getpair.R}
 %\end{minipage}
 
 The output of this function is shown in table \ref{tab:get.pair}. Probe and GeneID
@@ -444,7 +443,7 @@ To visualize the relationship between the probe-gene pairs inferred, there are t
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=0.7\textwidth]{images/cg04723436_schematic_byProbe.pdf}
-\caption{\label{fig:parplot} Plot probe gene pairs with annotation track for MCF-7 cell line from \url{StateHub.org}. Significant probes and gene pairs are highlighted in red.}
+\caption[Schematic plot gene-probe pairs]{\label{fig:parplot} Plot probe-gene pairs with annotation track for MCF-7 cell line from \url{StateHub.org}. Significant probes and gene pairs are highlighted in red.}
 \end{figure}
 
 
@@ -490,7 +489,7 @@ while for other cell lines this enrichment is not visible.
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=1.0\textwidth]{images/funcivar.pdf}
-\caption{\label{fig:funcivar} Enrichment of paired probes and chromatin states of encode cells.
+\caption[ Enrichment of paired probes and chromatin states of encode cells.]{\label{fig:funcivar} Enrichment of paired probes and chromatin states of encode cells.
 The plot shows enrichment for enhancer active region, weak enhancer  and active
 promoter region for MCF-7 cell. Acronyms - AR: Active region, EAR: active enhancer,
  EWR: Weak Enhancer, EPR: poised enhancer, PAR: active promoter, PWR: Weak Promoter,
@@ -520,20 +519,20 @@ The main arguments are described below:
 \end{itemize}
 
 %\begin{minipage}{\linewidth}
-%\lstinputlisting[language=R, frame = none,label = "motif",caption = "Step 6: Motif enrichment analysis on the selected probes"]{codes/motif.R}
+\lstinputlisting[language=R, frame = none,label = "motif",caption = "Motif enrichment analysis on the selected probes"]{codes/motif.R}
 %\end{minipage}
 
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=1.0\textwidth]{images/OR_nosummary.pdf}
-\caption{\label{fig:boxplot2} Motif enrichment plot shows the enrichment levels ($OR\geq2.0$) for the selected motifs. This plot represents a subset of the enriched motifs for $\textit{lower.or}= 1.1$, only selected for representational purposes.}
+\caption[Motif enrichment plot]{\label{fig:boxplot2} Motif enrichment plot shows the enrichment levels ($OR\geq2.0$) for the selected motifs. This plot represents a subset of the enriched motifs for $\textit{lower.or}= 1.1$, only selected for representational purposes.}
 \end{figure}
 
 \subsection*{Identification of master regulator Transcription Factors (TF) for each enriched motif}
 The function \textit{get.TFs} is used to identify regulatory TF whose expression associates with TF binding motif
 DNA methylation which.
 
-%\lstinputlisting[language=R, frame = none,label = "tf",caption = "Step 7: Identify regulatory Transcript Factors"]{codes/tf.R}
+\lstinputlisting[language=R, frame = none,label = "tf",caption = "Identify regulatory Transcript Factors"]{codes/tf.R}
 
 
 The result of this function is shown in table \ref{tab:get.tf} and in figure \ref{fig:tfplot}.
@@ -556,7 +555,7 @@ The result of this function is shown in table \ref{tab:get.tf} and in figure \re
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=1.0\textwidth]{images/ANDR_HUMAN_H11MO_0_A_TFrankPlot.pdf}
-\caption{\label{fig:tfplot} TF ranking plot shows statistic $-log_{10}(P-value)$ assessing the anti-correlation level
+\caption[TF ranking plot: ANDR motif]{\label{fig:tfplot} TF ranking plot shows statistic $-log_{10}(P-value)$ assessing the anti-correlation level
 of TFs expression level with average DNA methylation level at sites with a given motif. By default, the top 3 associated TFs and the TF family members (dots in red) that are associated with that specific motif  are labeled in the plot.
 But there is also an option to highlight only TF sub-family members (TCClass database classification)}
 \end{figure}
@@ -577,7 +576,7 @@ The result is shown in Figure \ref{fig:chiapet}. Of the 2124 putative pairs iden
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=0.6\textwidth]{images/validation.png}
-\caption{\label{fig:chiapet} The graph shows the comparison of the number of probe-gene pairs identified within MCF7 ChIA-PET data using the putative pairs from BRCA vs. random pairs}
+\caption[MCF7 ChIA-PET validation]{\label{fig:chiapet} The graph shows the comparison of the number of probe-gene pairs identified within MCF7 ChIA-PET data using the putative pairs from BRCA vs. random pairs}
 \end{figure}
 
 
@@ -595,33 +594,6 @@ From the  Luminal A group vs Basal-like group analysis, it can be highlighted th
 On the other hand, when analyzing in the other direction in terms of methylation level, for  those pairs of high expressed genes and hypomethylated probes in the Luminal A group, the TF analysis identified GATA3, FOXA1, RARA, MYB as candidate regulatory TF. GATA3 and FOXA1 are known characterize this  molecular subtype  as described by \citeonline{yersal2014biological} while RARA was associated with the Luminal phenotype by \citeonline{centritto2015cellular}, MYB
 is shown to be required for the proliferation of ER-positive breast cancer cells \cite{mitra2016cdk9}.
 
-
-%\begin{figure}[ht!]
-%\centering
-%\includegraphics[width=1.0\textwidth]{images/mode.pdf}
-%\caption{\label{fig:mode} Difference of groups U and M definition in "supervised" and "unsupervised" mode. A: unsupervised mode; when minSubgroupFrac argument is set to 40\%, the methylated group is defined as the highest quintile and the unmethylated group as the lowest quintile; B: supervised mode; methylated and unmethylated group are defined as one of the know molecular, the unmethylated group is represented by all the LumA samples while the methylated group is represented by all the Basal samples;}
-%\end{figure}
-
-% TODO add code and results in a zip file
-%\begin{minipage}{\linewidth}
-%  \lstinputlisting[language=R]{codes/supervisedMode.R}
-%\end{minipage}
-
-%\section*{Graphical user interface} % Optional - only if NO new
-
-%TBD
-
-\newpage
-\section*{Discussion} % Optional - only if novel data or analyses are included
-We present a new version of \textit{ELMER}, an R/Bioconductor package that allows users to infer altered gene regulatory networks and master regulators, by linking expression changes to DNA methylation changes of nearby cis-regulatory elements. This version is greatly improved in terms of stability, performance, and extensibility.  It also adds a number of new features, including support for support Human genome build 38, to the Infinium MethylationEPIC BeadChip array, import of datasets from the NCI Genomic Data Commons (GDC), and a new Supervised mode for analysis of paired sample study designs. It also performs motif and master regulator analysis using an expanded set of motifs and a well-maintained database for TF binding domain families and binding site preferences. It also provides greater support for Bioconductor standards (such as MultiAssayExperiment) and improved user interaction by improving messages and error handling, as well as newly designed, publication quality output plots. Our case study performed on a TCGA Breast Invasive Carcinoma (TCGA-BRCA) dataset showed that GATA3, ESR1, FOXA1 were identified, consistent with research presented by \citeonline{theodorou2013gata3} and our earlier work \cite{yao2015inferring}. Furthermore, the molecular subtypes case study identified  for the Basal-like  molecular subtype group the SOX11 as a candidate regulatory TF and it also identified FOXC1 as the one whose expression most anti-correlates with the DNA methylation levels. Those findings are consistent with the recent reviews by \citeonline{han2017foxc1} and research by \citeonline{shepherd2016sox11}.  On the other hand, for the Luminal A group some of the candidate regulatory TF analysis identified were GATA3, FOXA1, RARA and MYB  which were also consistent with recent researches.
-
-
-%\section*{Conclusions} % Optional - only if novel data or analyses are included
-%This section is only required if the paper includes novel data or analyses, and should be written as a traditional conclusion.
-
-%\section*{Summary} % Optional - only if NO new datasets are included
-%This section is required if the paper does not include novel data or analyses.  It allows authors to briefly summarize the key points from the article.
-
 \section*{Data availability} % Optional - only if novel data or analyses are included
 The TCGA data was downloaded from the NCI Genomic Data Commons (GDC) data portal \cite{grossman2016toward} using TCGAbiolinks R/Bioconductor package \cite{colaprico2015tcgabiolinks,10.12688/f1000research.8923.2}.
 Gene annotations were retrieved from ENSEMBL \cite{yates2015ensembl} database via biomaRt R/Bioconductor package \cite{durinck2005biomart,durinck2009mapping}.
@@ -632,9 +604,6 @@ The classification of human transcription factors (TFs) can be viewed at \url{ht
 
 \section*{Software availability}
 
-\begin{enumerate}
-	\item The source code of \textit{ELMER} is available at \url{https://github.com/tiagochst/ELMER} and the auxiliary data files are available
-		\url{https://github.com/tiagochst/ELMER.data}.
-	\item \textit{ELMER} is available under the GNU General Public License version 3 (GNU GPL3)
-    \item To create the auxiliary data, the HOMER software was used and is available at \url{http://homer.ucsd.edu/homer/} (Software: v4.9.1, Genome hg19: v5.10, Genome hg38: v5.10).
-\end{enumerate}
+ELMER	source code  is available at \burl{https://github.com/tiagochst/ELMER}
+and the auxiliary data files are available \burl{https://github.com/tiagochst/ELMER.data}.
+\textit{ELMER} is available under the GNU General Public License version 3 (GNU GPL3)
