@@ -1,4 +1,4 @@
-%   Qualificação         = qualificacao 
+%   Qualificação         = qualificacao
 %   Curso                = doutorado/mestrado
 %   Situação do trabalho = pre-defesa/pos-defesa (exceto para qualificação)
 % -- opções do pacote babel --
@@ -7,8 +7,8 @@
 	%english,			% idioma adicional para hifenização
 	%brazil				% o último idioma é o principal do documento
 \documentclass[doutorado, spanish, brazil, english]{packages/icmc}
-\usepackage{rotating} 
-\usepackage[all,knot,arc,import,poly]{xy}   
+\usepackage{rotating}
+\usepackage[all,knot,arc,import,poly]{xy}
 \usepackage{csvsimple}
 \usepackage{siunitx}
 \usepackage{tikz}
@@ -23,10 +23,10 @@
 \captionsetup{style=base,
               %labelfont={color=darkgreen,bf},
               hangindent=-50pt,
-              %textfont={color=black,bf}, 
+              %textfont={color=black,bf},
               format = plain,
               singlelinecheck=no,
-			  labelfont=ABNTEXfontereduzida, 
+			  labelfont=ABNTEXfontereduzida,
               font=ABNTEXfontereduzida}
 \usepackage{pgfplots, pgfplotstable}
 \pgfdeclarelayer{background}
@@ -36,6 +36,66 @@
 \usepackage{booktabs}
 \usepackage{multirow}
 \usepackage{pdflscape}
+
+
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.0,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.99}
+\definecolor{abstractcolor}{rgb}{0.98,0.98,0.98}
+\definecolor{linecolor}{rgb}{0.0,0.7,0.7}
+\definecolor{base}{gray}{0} %black
+\definecolor{comment}{rgb}{0.3,0.60,0.00} %green
+\definecolor{string}{rgb}{0.83,0.21,0.51} %magenta
+\definecolor{keyword1}{rgb}{0.15,0.55,0.82} %blue
+\definecolor{keyword2}{rgb}{0.80,0.29,0.09} %orange
+\definecolor{keyword3}{rgb}{0.71,0.54,0.00} %yellow
+\definecolor{keyword4}{rgb}{0.42,0.44,0.77} %violet
+\usepackage{tcolorbox}
+
+\usepackage{etoolbox}
+\DeclareCaptionFont{white}{\color{white}}
+\DeclareCaptionFormat{listing}{%
+  \colorbox{MidnightBlue}{\parbox{\dimexpr\textwidth-2\fboxsep+.8pt\relax}{#1#2#3}}}
+\captionsetup[lstlisting]{format=listing,labelfont=white,textfont=white}
+
+\lstdefinestyle{mystyle}{
+    language = R,
+    %identifierstyle = \color{black},
+    keywordstyle    = \color{keyword2},
+    backgroundcolor= \color{white},
+    basicstyle={\ttfamily\color{base}\footnotesize},
+    keywordstyle=*\color{MidnightBlue},
+    %numberstyle=\tiny\color{codegray},
+    keywordstyle=[1]{\color{black}},
+    %morekeywords={\color{keyword2}\textbf},
+    %keywordstyle=[3]{\color{keyword3}\textbf},
+    %keywordstyle=[4]{\color{keyword4}\textbf},
+    stringstyle=\color{keyword2},
+    commentstyle={\footnotesize\color{codegreen}},
+    breakatwhitespace=false,
+    breaklines=true,
+    keepspaces=true,
+    %numbers=left,
+    frame=none,
+    belowcaptionskip=0pt,
+    xleftmargin=10pt,
+    % xtopmargin=5pt,
+    %framexrightmargin=5pt,
+    %rulesep=0pt,
+    numbersep=10pt,
+    stepnumber=1,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2,
+    captionpos=t,
+    frame=none
+}
+
+\lstset{style=mystyle}
+
 
 
 %\usepackage{titlesec}
@@ -85,7 +145,7 @@
 O câncer configura uma das maiores causas de mortalidade no mundo, caracterizando-se como uma doença complexa orquestrada por alterações genômicas e epigenômicas capazes de alterar a expressão gênica e a identidade celular. Nova evidência obtida por meio de um estudo genômico em larga escala e cujos dados encontram-se disponíveis no banco público do TCGA sugere que um em cada dez pacientes portadores de câncer pode ser classificado com maior eficácia tendo como base a taxonomia molecular quando comparada à histologia. Dessa maneira, nós hipotetizamos que o estabelecimento de mapas genômicos exibindo a localização de sítios de ligação de fatores de transcrição combinada à identificação de regiões diferencialmente metiladas e perfis alterados de expressão gênica possa nos auxiliar a caracterizar e explorar, ao nível molecular, fenótipos associados ao câncer.
 
 Avanços tecnológicos e bancos de dados públicos a exemplo do The Cancer Genome Atlas (TCGA), The Encyclopedia of DNA Elements (ENCODE) e o NIH Roadmap Epigenomics Mapping Consortium (Roadmap) têm proporcionado um recurso inestimável para interrogar o (epi)genoma de linhagens de células tumorais em cultura, bem como de tecidos normais e tumorais em alta resolução. Todavia, a informação biológica encontra-se armazenada em diferentes formatos e não há ferramentas computacionais para integrar esses dados, evidenciando um cenário atual que requer, com urgência, o desenvolvimento de ferramentas de bioinformática e softwares capazes de direcionar a solução deste obstáculo.
-Nesse contexto, o objetivo principal deste estudo consiste em implementar o desenvolvimento do pacote biOMICs, o qual será codificado usando-se a licença de código aberto GNU GPL e a linguagem de programação R e que, ao final do estudo, será submetido à comunidade científica do projeto Bioconductor. Além disso, ajudaremos nossos colaboradores com o aperfeiçoamento 
+Nesse contexto, o objetivo principal deste estudo consiste em implementar o desenvolvimento do pacote biOMICs, o qual será codificado usando-se a licença de código aberto GNU GPL e a linguagem de programação R e que, ao final do estudo, será submetido à comunidade científica do projeto Bioconductor. Além disso, ajudaremos nossos colaboradores com o aperfeiçoamento
 do ELMER, um pacote R/Bioconductor que  identifica elementos reguladores usando dados de expressão gênica, de metilação do DNA e análise de motivo.
 
 Nossa expectativa é que o pacote biOMICs possa automatizar com acurácia a pesquisa, o download e a análise dos dados (epi)genômicos que se encontram atualmente disponíveis nas bases de dados públicas dos consórcios internacionais TCGA, ENCODE e Roadmap, além de integrá-los facilmente aos dados genômicos e epigenômicos gerados por pesquisadores por meio de experimentos em larga escala. Além disso, realizaremos também o processamento e a análise manual dos dados que serão automatizados pela ferramenta biOMICs, visando validar sua capacidade em descobrir assinaturas epigenômicas que possam redefinir subtipos de câncer. Por fim, usaremos biOMICs e ELMER para investigar as diferenças moleculares entre dois subgrupos de gliomas recentemente descobertos por nosso laboratório.}{Câncer, metilação do DNA, redes reguladoras de genes,  interações de cromatina, sitios de ligação do fator de transcrição, epi-genética, ferramentas computacionais}
@@ -112,11 +172,11 @@ Our expectation is that biOMICs can effectively automate search, retrieve, and a
 \renewcommand{\UrlRight}{}
 \hypersetup{
      	pagebackref=true,
-		pdftitle={\@title}, 
+		pdftitle={\@title},
 		pdfauthor={\@author},
     	pdfsubject={\imprimirpreambulo},
 	    pdfcreator={LaTeX with abnTeX2/FMRP-USP},
-		pdfkeywords={\palavraschave}, 
+		pdfkeywords={\palavraschave},
 		colorlinks=true,       		% false: boxed links; true: colored links
     	linkcolor=blue,          	% color of internal links
     	citecolor=black,        	% color of links to bibliography
@@ -145,7 +205,7 @@ Our expectation is that biOMICs can effectively automate search, retrieve, and a
 \makeevenfoot{estilo_pretextual}
      {} %%pagina par
      {\thepage}
-     {} 
+     {}
   \makeoddfoot{estilo_pretextual} %%pagina ímpar ou com oneside
      {}
      {\thepage}
@@ -168,7 +228,7 @@ Our expectation is that biOMICs can effectively automate search, retrieve, and a
 %  \pagenumbering{arabic} % volta à numeração arábica
 %}
 % ---
- 
+
 \pagenumbering{roman}
 % ----------------------------------------------------------
 % ELEMENTOS PRÉ-TEXTUAIS
@@ -242,7 +302,7 @@ Our expectation is that biOMICs can effectively automate search, retrieve, and a
 % ---
 % Finaliza a parte no bookmark do PDF, para que se inicie o bookmark na raiz
 % ---
-\bookmarksetup{startatroot}% 
+\bookmarksetup{startatroot}%
 % ---
 
 % ----------------------------------------------------------
@@ -278,7 +338,7 @@ Our expectation is that biOMICs can effectively automate search, retrieve, and a
 %    \chapter{Documento básico usando a classe \textit{icmc}}
 %    \label{chapter:documento-basico}
 %    \input{tex/appendix/documento-basico}
-    
+
 %    \chapter{Configuração do programa JabRef}
 %    \label{chapter:configuracao-jabref}
 %    \input{tex/appendix/configuracao-jabref}
@@ -296,7 +356,7 @@ Our expectation is that biOMICs can effectively automate search, retrieve, and a
 % ---
 \begin{anexosenv}
 
-    %\chapter{Páginas interessantes na Internet} 
+    %\chapter{Páginas interessantes na Internet}
     %\label{chapter:paginas-interessantes}
     %\input{tex/annex/paginas-interessantes}
 

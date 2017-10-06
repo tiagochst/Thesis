@@ -1,7 +1,7 @@
 
 \section{Enhancer Linking by Methylation/Expression Relationships (ELMER)}
 
-Motivated by the discovery of transcriptional enhancers in tissue DNA methylation data \cite{berman2012ng}, and subsequent approaches to linking these enhancers to transcriptional targets using a chromQTL approach \cite{aran2013dna} (reviewed in \citeauthoronline{yao2015inferring}), \citeauthoronline{yao2015inferring} developed the the R/Bioconductor  \textit{ELMER} (Enhancer Linking by Methylation/Expression Relationships) package, a tool which infers regulatory element landscapes and transcription factor networks from cancer methylomes. 
+Motivated by the discovery of transcriptional enhancers in tissue DNA methylation data \cite{berman2012ng}, and subsequent approaches to linking these enhancers to transcriptional targets using a chromQTL approach \cite{aran2013dna} (reviewed in \citeauthoronline{yao2015inferring}), \citeauthoronline{yao2015inferring} developed the the R/Bioconductor  \textit{ELMER} (Enhancer Linking by Methylation/Expression Relationships) package, a tool which infers regulatory element landscapes and transcription factor networks from cancer methylomes.
 
 This tool combined DNA methylation and gene expression data from human tissues to infer multi-level cis-regulatory networks through several steps which included the identification of distal enhancer probes with significantly altered DNA methylation levels in primary tumor tissues compared to normal tissues, followed by the identification of putative target genes, and a comprehensive gene regulatory network analysis which combined transcription factor motifs at the altered enhancers with TF expression to identify the underlying master regulators. This approach identified several known and unknown master regulators in TCGA data, such as \sigla{GATA3}{GATA-binding protein 3} and \sigla{FOXA1}{Forkhead box protein A1} in breast cancer, and \sigla{P63}{tumor protein p63} and \sigla{SOX2}{Sex determining region Y-box 2} in squamous cell lung carcinoma \cite{yao2015inferring,silva2016tcga}.
 
@@ -35,19 +35,29 @@ Graphical User interface (GUI) & None & TCGAbiolinksGUI \\
 \end{table}
 \egroup
 
-Here, we present a new version of the R \textit{ELMER} package, which addresses all the issues described above. 
-The new version of \textit{ELMER} (v2.0.0) is available as an R/Bioconductor package at \burl{https://github.com/tiagochst/ELMER}. And, the new version of \textit{ELMER.data} (v2.0.0), which provides auxiliary data required to perform the analysis, is available at 
-\burl{https://github.com/tiagochst/ELMER.data}. 
+In this section, we present a new version of the R \textit{ELMER} package,
+which addresses all the issues described above. We start out by the detailed explanation
+of the algorithms, follow by a case of study using breast Cancer data used as an
+illustration of the use of the tool.
+
+
+%The new version of \textit{ELMER} (v2.0.0) is available as an R/Bioconductor package at \burl{https://github.com/tiagochst/ELMER}. And, the new version of \textit{ELMER.data} (v2.0.0), which provides auxiliary data required to perform the analysis, is available at
+%\burl{https://github.com/tiagochst/ELMER.data}.
 
 \subsection{Implementation}
 
-Here we describe each of following analysis steps shown in figure \ref{fig:elmerworkflow}. For more details, please also check the original ELMER paper \cite{yao2015inferring}. 
+Here we describe each of following analysis steps shown in figure \ref{fig:elmerworkflow}.
+
 \begin{itemize}
     \item Organize data as a \textit{MultiAssayExperiment} object
-	\item Identify distal probes with significantly different DNA methylation level when comparing two sample groups.
-	\item Identify putative target genes for differentially methylated distal probes, using methylation vs. expression correlation
-	\item Identify enriched motifs for each probe belonging to a significant probe-gene pair
-	\item Identify master regulatory Transcription Factors (TF) whose expression associate with DNA methylation changes at multiple regulatory regions.
+	\item Identify distal probes with significantly different DNA methylation
+   level when comparing two sample groups.
+	\item Identify putative target genes for differentially methylated
+   distal probes, using methylation vs. expression correlation
+	\item Identify enriched motifs for each probe belonging
+  to a significant probe-gene pair
+	\item Identify master regulatory Transcription Factors (TF)
+   whose expression associate with DNA methylation changes at multiple regulatory regions.
 \end{itemize}
 
 
@@ -55,76 +65,141 @@ Here we describe each of following analysis steps shown in figure \ref{fig:elmer
 
 \subsubsection{Organization of data as a \textit{MultiAssayExperiment} object}
 
-To facilitate the analysis of experiments and studies with multiple samples the Bioconductor team created the \href{http://bioconductor.org/packages/SummarizedExperiment/}{\textit{SummarizedExperiment}} class \cite{huber2015orchestrating}, a data structure able to store data and metadata for a single experiment but not for data spanning several experiments for the same sample. To overcome this problem, recently, the MultiAssay SIG (Special Interest Group) created the \href{http://bioconductor.org/packages/MultiAssayExperiment/}{MultiAssayExperiment class} \cite{mae2017} a data structure to manage and preprocess multiple assays for integrated genomic analysis. This data structure is now an input for all main functions of \href{https://github.com/tiagochst/ELMER}{\textit{ELMER}} and can be generated by the \textit{createMAE} function. 
+To facilitate the analysis of experiments and studies with multiple samples
+the Bioconductor team created the \href{http://bioconductor.org/packages/SummarizedExperiment/}{\textit{SummarizedExperiment}} class \cite{huber2015orchestrating}, a data structure able to store data and metadata for a single experiment but not for data spanning several experiments for the same sample. To overcome this problem, recently, the MultiAssay SIG (Special Interest Group) created the \href{http://bioconductor.org/packages/MultiAssayExperiment/}{MultiAssayExperiment class} \cite{mae2017} a data structure to manage and preprocess multiple assays for
+integrated genomic analysis. This data structure is now an input for all main functions
+of \href{https://github.com/tiagochst/ELMER}{\textit{ELMER}} and can be generated
+by the \textit{createMAE} function.
 
 
-To perform \textit{ELMER} analyses, users need to populate a \textit{MultiAssayExperiment} with a DNA methylation matrix or \textit{SummarizedExperiment} object from HM450K or EPIC platform; a gene expression matrix or SummarizedExperiment object for the same samples; a matrix mapping DNA methylation samples to gene expression samples; and a matrix with sample metadata (i.e. clinical data, molecular subtype, etc.). If TCGA data are used, the last two matrices will be automatically generated.
+To perform \textit{ELMER} analyses, users need to populate a \textit{MultiAssayExperiment}
+with a DNA methylation matrix or \textit{SummarizedExperiment} object from
+\sigla{HM450}{HumanMethylation450 BeadChip} or \sigla{EPIC}{MethylationEPIC BeadChip} platform;
+ a gene expression matrix or SummarizedExperiment object for the same samples;
+ a matrix mapping DNA methylation samples to gene expression samples; and a matrix with sample metadata (i.e. clinical data, molecular subtype, etc.). If TCGA data are used, the last two matrices will be automatically generated.
 If using non-TCGA data, the matrix with sample metadata should be provided with at least a column with a patient identifier and another one identifying its group which will be used for analysis, if samples in the methylation and expression matrices are not ordered and with same names, a matrix mapping for each patient identifier their DNA methylation samples and their gene expression samples should be provided to the \textit{createMAE} function.
-Based on the genome of reference selected, metadata for the DNA methylation probes, such as genomic coordinates, will be added from   \href{http://zwdzwd.github.io/InfiniumAnnotation}{\citeonline{zhou2016comprehensive}}; 
+Based on the genome of reference selected, metadata for the DNA methylation probes, such as genomic coordinates, will be added from   \href{http://zwdzwd.github.io/InfiniumAnnotation}{\citeonline{zhou2016comprehensive}};
 and metadata for gene expression and annotation is added from ENSEMBL database \cite{yates2015ensembl} using \href{http://bioconductor.org/packages/biomaRt/}{biomaRt}
-\cite{durinck2009mapping}. 
+\cite{durinck2009mapping}.
 
-\subsubsection{Selecting distal probes} 
-Probes from HumanMethylationEPIC (EPIC) array and Infinium HumanMethylation450 (HM450) array are removed from the analysis if they have either internal SNPs close to the $3'$ end of the probe; non-unique mapping to the bisulfite-converted genome; or off-target hybridization due to partial overlap with non-unique elements \cite{doi:10.1093/nar/gkw967}. This probe metadata information is
-included in \href{https://github.com/tiagochst/ELMER.data}{\textit{ELMER.data}} package, populated from the source file at \url{http://zwdzwd.github.io/InfiniumAnnotation} \cite{doi:10.1093/nar/gkw967}.
-To limit ELMER to the analysis of distal elements, probes located in regions of $\pm2 kb$ around \sigla{TSSs}{transcription start sites} were removed.
+\subsubsection{Selecting distal probes}
+Probes from HumanMethylationEPIC (EPIC) array and Infinium HumanMethylation450 (HM450)
+array are removed from the analysis if they have either internal SNPs close to the $3'$
+end of the probe; non-unique mapping to the bisulfite-converted genome;
+or off-target hybridization due to partial overlap with non-unique elements \cite{doi:10.1093/nar/gkw967}.
+This probe metadata information is
+included in \href{https://github.com/tiagochst/ELMER.data}{\textit{ELMER.data}} package,
+populated from the source file at \url{http://zwdzwd.github.io/InfiniumAnnotation}
+\cite{doi:10.1093/nar/gkw967}.
+To limit ELMER to the analysis of distal elements, probes located in regions of $\pm2 kb$
+around \sigla{TSSs}{transcription start sites} were removed.
 
 \subsubsection{Identification of differentially methylated CpGs (DMCs)}
 
-For each distal probe, samples of each group (group 1 and group 2) are ranked by their DNA methylation beta values, those samples in the lower quintile (20\% samples with the lowest methylation levels) of each group are used to identify if the probe is hypomethylated in group 1 compared to group 2, using an unpaired one-tailed t-test. The 20\% is a parameter to the \textit{diff.meth} function called \textit{minSubgroupFrac}. For the (ungrouped) cancer case, this is set to 20\% as in \citeonline{yao2015inferring}, because we typically wanted to be able to detect a specific molecular subtype among the tumor samples; these subtypes often make up only a minority of samples, and 20\% was chosen as a lower bound for the purposes of statistical power (high enough sample numbers to yield t-test p-values that could overcome multiple hypothesis corrections, yet low enough to be able to capture changes in individual molecular subtypes occurring in 20\% or more of the cases.) This number can be set arbitrarily as an input to the \textit{diff.meth} function and should be tuned based on sample sizes in individual studies. In the \textit{Supervised} mode, where the comparison groups are implicit in the sample set and labeled, the \textit{minSubgroupFrac} parameter is set to 100\%.  An example would be a cell culture experiment with 5 replicates of the untreated cell line, and another 5 replicates that include an experimental treatment.
+For each distal probe, samples of each group (group 1 and group 2) are ranked by
+their DNA methylation beta values, those samples in the lower quintile (20\% samples
+with the lowest methylation levels) of each group are used to identify if the probe is
+hypomethylated in group 1 compared to group 2, using an unpaired one-tailed t-test.
+The 20\% is a parameter to the \textit{diff.meth} function called \textit{minSubgroupFrac}. For the (ungrouped) cancer case, this is set to 20\% as in \citeonline{yao2015inferring}, because we typically wanted to be able to detect a specific molecular subtype among the tumor samples; these subtypes often make up only a
+minority of samples, and 20\% was chosen as a lower bound for the purposes of
+statistical power (high enough sample numbers to yield t-test p-values that could
+overcome multiple hypothesis corrections, yet low enough to be able to capture
+changes in individual molecular subtypes occurring in 20\% or more of the cases.)
+This number can be set arbitrarily as an input to the \textit{diff.meth} function
+and should be tuned based on sample sizes in individual studies. In the \textit{Supervised} mode,
+where the comparison groups are implicit in the sample set and labeled,
+the \textit{minSubgroupFrac} parameter is set to 100\%.
+An example would be a cell culture experiment with 5 replicates of the untreated cell line,
+and another 5 replicates that include an experimental treatment.
 
-To identify hypomethylated \sigla{DMCs}{differentially methylated CpGs}, a one-tailed t-test is used to rule out the null hypothesis: $\mu_{group1} \geq \mu_{group2}$, where $\mu_{group1}$ is the mean methylation within the lowest group 1 quintile (or another percentile as specified by the \textit{minSubgroupFrac} parameter) and $\mu_{group2}$ is the mean within the lowest group 2 quintile. Raw p-values are adjusted for multiple hypothesis testing using the Benjamini-Hochberg method \cite{benjamini1995controlling}, and probes are selected when they had adjusted p-value less than $0.01$ (which can be configured using the \textit{pvalue} parameter). For additional stringency, probes are only selected if the methylation difference: $\Delta = \mu_{group1} - \mu_{group2}$ was greater than $0.3$. The same method is used to identify hypermethylated DMCs, except we use the \textit{upper} quintile, and the opposite tail in the t-test is chosen.
+To identify hypomethylated \sigla{DMCs}{differentially methylated CpGs},
+a one-tailed t-test is used to rule out the null hypothesis:
+$\mu_{group1} \geq \mu_{group2}$, where $\mu_{group1}$ is the
+mean methylation within the lowest group 1 quintile (or another percentile
+as specified by the \textit{minSubgroupFrac} parameter) and $\mu_{group2}$
+is the mean within the lowest group 2 quintile. Raw p-values are adjusted
+for multiple hypothesis testing using the Benjamini-Hochberg method
+\cite{benjamini1995controlling}, and probes are selected when they had
+adjusted p-value less than $0.01$ (which can be configured using
+the \textit{pvalue} parameter). For additional stringency, probes are only
+selected if the methylation difference: $\Delta = \mu_{group1} - \mu_{group2}$
+was greater than $0.3$. The same method is used to identify hypermethylated DMCs,
+except we use the \textit{upper} quintile, and the opposite tail in the t-test is chosen.
 
-\subsubsection*{Identification of putative target gene(s)} 
+\subsubsection*{Identification of putative target gene(s)}
 
-For each differentially methylated distal probe (DMC), the closest 10 upstream 
-genes and the closest 10 downstream genes are tested for inverse correlation between 
-methylation of the probe and expression of the gene (the number 10 can be changed using the \textit{numFlankingGenes} parameter). To select these genes, 
-the probe-gene distance is defined as the distance from the probe to the transcription 
+For each differentially methylated distal probe (DMC), the closest 10 upstream
+genes and the closest 10 downstream genes are tested for inverse correlation between
+methylation of the probe and expression of the gene (the number 10 can be changed using the \textit{numFlankingGenes} parameter). To select these genes,
+the probe-gene distance is defined as the distance from the probe to the transcription
 start site specified by the ENSEMBL gene level annotations \cite{yates2015ensembl} accessed via
 the R/Bioconductor package \href{http://bioconductor.org/packages/biomaRt/}{biomaRt} \cite{durinck2009mapping,durinck2005biomart}. By choosing a constant number of genes to test for each probe, our goal is to avoid systematic false positives for probes in gene rich regions. This is especially important given the highly non-uniform gene density of mammalian genomes.
-Thus, exactly 20 statistical tests were performed for each probe, as follows. 
+Thus, exactly 20 statistical tests were performed for each probe, as follows.
 
-For each probe-gene pair, the samples (all samples from both groups) are divided into two 
+For each probe-gene pair, the samples (all samples from both groups) are divided into two
 groups: the $M$ group, which consisted of the upper methylation quintile (the 20\%
-of samples with the highest methylation at the enhancer probe), and the $U$ group, 
-which consists of the lowest methylation quintile (the 20\% of samples with the 
-lowest methylation.) The 20\% ile cutoff is a configurable parameter \textit{minSubgroupFrac} in the \textit{get.pair} function.
-As with its usage in the \textit{diff.meth} function, the default value of 20\% is a balance, allowing for the identification of changes in a 
-molecular subtype making up a minority (i.e. 20\%) of cases, while also yielding 
-enough statistical power to make strong predictions. For larger sample sizes or other experimental designs, this could be set even lower.
+of samples with the highest methylation at the enhancer probe), and the $U$ group,
+which consists of the lowest methylation quintile (the 20\% of samples with the
+lowest methylation.) The 20\% ile cutoff is a
+configurable parameter \textit{minSubgroupFrac} in the \textit{get.pair} function.
+As with its usage in the \textit{diff.meth} function, the default value of 20\% is
+a balance, allowing for the identification of changes in a
+molecular subtype making up a minority (i.e. 20\%) of cases, while also yielding
+enough statistical power to make strong predictions. For larger sample sizes or
+other experimental designs, this could be set even lower.
 
-For each candidate probe-gene pair, 
-the Mann-Whitney U test is used to test the null hypothesis that overall gene 
-expression in group M is greater than or equal than that in group U. 
-This non-parametric test was used in order to minimize the effects 
-of expression outliers, which can  occur across a very wide dynamic range. 
-For each probe-gene pair tested, the raw p-value $P_r$ is corrected for multiple 
+For each candidate probe-gene pair,
+the Mann-Whitney U test is used to test the null hypothesis that overall gene
+expression in group M is greater than or equal than that in group U.
+This non-parametric test was used in order to minimize the effects
+of expression outliers, which can  occur across a very wide dynamic range.
+For each probe-gene pair tested, the raw p-value $P_r$ is corrected for multiple
 hypothesis using a permutation approach as follows.
-The gene in the pair is held constant, and \textit{x} random methylation probes are 
+The gene in the pair is held constant, and \textit{x} random methylation probes are
 chosen to perform the same one-tailed U test, generating a set of \textit{x} permutation
-p-values $P_p$. We chose the x random probes only from among those that were 
-"distal" (farther than $2kb$ from an annotated transcription start site), in order 
-to draw these null-model probes from the same set as the probe being tested \cite{sham2014statistical}. 
-An empirical p-value $P_e$ value was calculated using the following formula 
+p-values $P_p$. We chose the x random probes only from among those that were
+"distal" (farther than $2kb$ from an annotated transcription start site), in order
+to draw these null-model probes from the same set as the probe being tested \cite{sham2014statistical}.
+An empirical p-value $P_e$ value was calculated using the following formula
 (which introduces a pseudo-count of 1):
 
 \begin{equation}
 	P_e = \frac{num(P_p \leq P_r)+ 1}{x+1}
 \end{equation}
 
-Notice that in the \textit{Supervised} mode, no additional filtering is necessary to ensure that the M and U group segregate by sample group labels.  The two sample groups are segregated by definition, since these probes were selected for their differential methylation, with the same directionality, between the two groups. 
+Notice that in the \textit{Supervised} mode, no additional filtering is
+necessary to ensure that the M and U group segregate by sample group labels.
+The two sample groups are segregated by definition, since these probes were
+selected for their differential methylation, with the same directionality,
+between the two groups.
 
 
 
 \subsubsection{Characterization of chromatin state context of enriched probes using FunciVar}
 
-Unlike version 1 of \textit{ELMER}, we now consider \textit{all} distal probes in the identification of regulatory elements. DNA methylation is known to affect several different classes of distal chromatin state element, including active enhancers, poised enhancers, and insulators. In order to provide a functional interpretation of the regulatory elements identified by \textit{ELMER}, we perform a chromatin state enrichment analysis of the probes within significant probe-gene pairs, using the \textit{statePaintR} tools from the \burl{www.statehub.org} \cite{statepaintr}, along with our new FunciVar package \cite{funcivar}. Enrichment of the putative pairs within chromatin states is calculated against a background model that uses the distal probe set that the putative pairs are drawn from. 
+Unlike version 1 of \textit{ELMER}, we now consider \textit{all} distal probes
+in the identification of regulatory elements. DNA methylation is known to affect
+several different classes of distal chromatin state element, including active
+enhancers, poised enhancers, and insulators. In order to provide a functional
+interpretation of the regulatory elements identified by \textit{ELMER},
+we perform a chromatin state enrichment analysis of the probes within significant
+probe-gene pairs, using the \textit{statePaintR} tools from the \burl{www.statehub.org} \cite{statepaintr},
+along with our new FunciVar package \cite{funcivar}. Enrichment of the putative pairs
+ within chromatin states is calculated against a background model that uses the distal
+ probe set that the putative pairs are drawn from.
 
 \subsubsection*{Motif enrichment analysis}
-In order to identify enriched motifs and potential upstream regulatory TFs, all probes with occurring in significant probe-gene pairs are combined for motif enrichment analysis. \sigla{HOMER}{Hypergeometric Optimization of Motif EnRichment} \cite{heinz2010simple} is used to find motif occurrences in a $\pm 250bp$ region around each probe, using HOCOMOCO (HOmo sapiens COmprehensive MOdel COllection) v11 \cite{kulakovskiy2016hocomoco}. Transcription factor (TF) binding models are available at \burl{http://hocomoco.autosome.ru/downloads} (using the HOMER specific format with threshold score levels corresponding to p-value $ \leq 1^{-4}$). 
+In order to identify enriched motifs and potential upstream regulatory TFs,
+all probes with occurring in significant probe-gene pairs are combined for
+motif enrichment analysis. \sigla{HOMER}{Hypergeometric Optimization of Motif EnRichment}
+ \cite{heinz2010simple} is used to find motif occurrences in a $\pm 250bp$ region
+ around each probe, using HOCOMOCO (HOmo sapiens COmprehensive MOdel COllection)
+ v11 \cite{kulakovskiy2016hocomoco}. Transcription factor (TF) binding models are
+ available at \burl{http://hocomoco.autosome.ru/downloads} (using the HOMER specific
+ format with threshold score levels corresponding to p-value $ \leq 1^{-4}$).
 
-For each probe set tested (i.e. the set of all probes occurring in significant probe-gene pairs), a motif enrichment Odds Ratio and a 95\% confidence interval are calculated using following formulas:
+For each probe set tested (i.e. the set of all probes occurring in significant probe-gene pairs),
+a motif enrichment Odds Ratio and a 95\% confidence interval are calculated using following formulas:
 \begin{subequations}
 \begin{align}
 p = \frac{a}{a + b} \\
@@ -134,68 +209,85 @@ SD = \sqrt{\frac{1}{a} + \frac{1}{b} + \frac{1}{c} + \frac{1}{d}}
 \end{align}
 \end{subequations}
 
-where $a$ is the number of probes within the selected probe set that contains one 
-or more motif occurrences; $b$ is the number of probes within the selected probe 
-set that do not contain a motif occurrence; $c$ and $d$ are the same counts within 
-the entire array probe set (drawn from the same set of distal-only probes using the same definition as the primary analysis). A probe set was considered significantly enriched 
-for a particular motif if the 95\% confidence interval of the Odds Ratio was 
-greater than $1.1$ (specified by option \textit{lower.OR}, $1.1$ is default), and the motif 
-occurred at least 10 times (specified by option \textit{min.incidence}, $10$ is default) in 
-the probe set. 
-
-%\section*{Results} % Optional - only if novel data or analyses are included
-%This section is only required if the paper includes novel data or analyses, and should be written as a traditional results section.
+where $a$ is the number of probes within the selected probe set that contains one
+or more motif occurrences; $b$ is the number of probes within the selected probe
+set that do not contain a motif occurrence; $c$ and $d$ are the same counts within
+the entire array probe set (drawn from the same set of distal-only probes using the same definition as the primary analysis). A probe set was considered significantly enriched
+for a particular motif if the 95\% confidence interval of the Odds Ratio was
+greater than $1.1$ (specified by option \textit{lower.OR}, $1.1$ is default), and the motif
+occurred at least 10 times (specified by option \textit{min.incidence}, $10$ is default) in
+the probe set.
 
 \subsubsection{Identification of master regulator TFs}
 
-When a group of enhancers is coordinately altered in a specific sample subset, this is often the result of an altered upstream \textit{master regulator} transcription factor in the gene regulatory network. \textit{ELMER} tries to identify such transcription factors corresponding to each of the TF binding motifs enriched from the previous analysis step.
-For each enriched motif, \textit{ELMER} takes the average DNA methylation of all distal probes (in significant probe-gene pairs) that contain that motif occurrence (within a $\pm 250bp$ region) and compares this average DNA methylation to the expression of each gene annotated as a human TF.
+When a group of enhancers is coordinately altered in a specific sample subset,
+this is often the result of an altered upstream \textit{master regulator}
+transcription factor in the gene regulatory network. \textit{ELMER} tries to identify such
+transcription factors corresponding to each of the TF binding motifs enriched from the previous
+analysis step.
+For each enriched motif, \textit{ELMER} takes the average DNA methylation of all
+distal probes (in significant probe-gene pairs) that contain that motif occurrence
+(within a $\pm 250bp$ region) and compares this average DNA methylation to the
+expression of each gene annotated as a human TF.
 
-A statistical test is performed for each motif-TF pair, as follows. All samples 
-are divided into two groups: the $M$ group, which consists 
+A statistical test is performed for each motif-TF pair, as follows. All samples
+are divided into two groups: the $M$ group, which consists
 of the 20\% of samples with the highest average methylation at all motif-adjacent
-probes, and the $U$ group, which consisted of the 20\%  of samples with the lowest 
-methylation. This step is performed by the \textit{get.TFs} function, which takes \textit{minSubgroupFrac} as an input parameter, again with a default of 20\%.
-For each candidate motif-TF pair, the Mann-Whitney U test is used to test 
-the null hypothesis that overall gene expression in group $M$ is greater or equal 
-than that in group $U$. This non-parametric test was used in order to minimize the 
-effects of expression outliers, which can occur across a very wide dynamic range. 
+probes, and the $U$ group, which consisted of the 20\%  of samples with the lowest
+methylation. This step is performed by the \textit{get.TFs} function,
+which takes \textit{minSubgroupFrac} as an input parameter, again with a default of 20\%.
+For each candidate motif-TF pair, the Mann-Whitney U test is used to test
+the null hypothesis that overall gene expression in group $M$ is greater or equal
+than that in group $U$. This non-parametric test was used in order to minimize the
+effects of expression outliers, which can occur across a very wide dynamic range.
 For each motif tested, this results in a raw p-value ($P_r$) for each of the human TFs.
-All TFs are ranked by their $-log_{10}(Pr)$ values, and those falling within the top 5\% of 
-this ranking were considered candidate upstream regulators. The best upstream 
-TFs which are known to recognize to specific binding motif are automatically extracted as putative 
-regulatory TFs, and rank ordered plots are created to visually inspect these relationships, as shown in the example below. Because the same motif can be recognized by many transcription factors of the same binding domain family, we define these relationships at both the family and subfamily classification level using the 
-classifications from TFClass database \cite{wingender2013tfclass}. Use of this database is a major change from version 1 of ELMER, which used custom curations for DNA binding domain families. Use of the TFClass database is preferable because it is well curated and regularly updated to reflect new findings.
+All TFs are ranked by their $-log_{10}(Pr)$ values, and those falling within the top 5\% of
+this ranking were considered candidate upstream regulators. The best upstream
+TFs which are known to recognize to specific binding motif are automatically extracted as putative
+regulatory TFs, and rank ordered plots are created to visually inspect these
+relationships, as shown in the example below. Because the same motif can be
+recognized by many transcription factors of the same binding domain family,
+we define these relationships at both the family and subfamily classification level using the
+classifications from TFClass database \cite{wingender2013tfclass}.
+ Use of this database is a major change from version 1 of ELMER, which used
+ custom curations for DNA binding domain families. Use of the TFClass database
+ is preferable because it is well curated and regularly updated to reflect new findings.
 
 
 
 %\newpage
 \subsection{Use Case 1: Breast Invasive Carcinoma (unsupervised approach)} % Optional - only if NO new datasets are included
 
-Here, we describe how to perform \textit{ELMER} analysis on TCGA BRCA (Breast Invasive Carcinoma) data retrieved from the GDC server. . We first describe how the data can be downloaded and organized to the default \textit{ELMER} input, followed by the following analysis steps: 
+In this subsection, we describe how to perform \textit{ELMER} analysis on TCGA BRCA
+(Breast Invasive Carcinoma) data retrieved from the GDC server.
+We first describe how the data can be downloaded and organized to
+the default \textit{ELMER} input, followed by the following analysis steps:
 \begin{itemize}
-	\item Identification of distal probes with significant differential DNA methylation (i.e. DMCs) in tumor vs. normal samples 
+	\item Identification of distal probes with significant differential DNA methylation (i.e. DMCs) in tumor vs. normal samples
 	\item Identification of putative target gene(s) for differentially methylated distal probes
-    \item Characterization of chromatin state context of significant probe regions using FunciVar 
+    \item Characterization of chromatin state context of significant probe regions using FunciVar
 	\item Identification of enriched motifs within set of probes in significant probe-gene pairs
 	\item Identification of master regulator Transcription Factors (TF) for each enriched motif
 \end{itemize}
 
-In addition to these standard steps, we also show how to compare the putative probe-gene pairs to those derived from deep-sequenced ChIA-PET data from MCF7 cells (as shown in \cite{yao2015inferring}). This use case uses all data available with the recommended thresholds and can take up to 10 hours to complete and requires a machine with more than 16GB of RAM. For a simpler example, please take a look at the included vignette (see supplemental files).
+In addition to these standard steps, we also compared the
+putative probe-gene pairs to those derived from deep-sequenced ChIA-PET
+data from MCF7 cells (as shown in \cite{yao2015inferring}).
 
 \subsubsection*{Downloading TCGA data}
 
 The function \textit{getTCGA} uses the   \href{http://bioconductor.org/packages/TCGAbiolinks/}{TCGAbiolinks}
-package \cite{colaprico2015tcgabiolinks} to download TCGA data for all samples 
-for a given disease (such as BLCA, LGG, GBM). Its main arguments are 
-the \textit{genome}  that if set to "hg19" will download data from GDC legacy archive, and if set 
+package \cite{colaprico2015tcgabiolinks} to download TCGA data for all samples
+for a given disease (such as BLCA, LGG, GBM). Its main arguments are
+the \textit{genome}  that if set to "hg19" will download data from GDC legacy archive, and if set
 to "hg38" it will download data from the main GDC harmonized data portal.
 
 
 %\begin{codigo}[language=R, style = mystyle,label = "download",caption = "Step 1: Downloading TCGA data from GDC database"]
 %\end{codigo}
 
-If the \textit{getTCGA} function called before was successful it will create the following objects and folders:
+If the \textit{getTCGA} function called before was successful it will
+ create the following objects and folders:
 \begin{verbatim}
 --- DATA/BRCA/
   |----------- BRCA_meth_hg38.rda (object with DNA methylation)
@@ -206,55 +298,62 @@ If the \textit{getTCGA} function called before was successful it will create the
 
 \subsubsection*{Selecting distal probes}
 
-The function \textit{get.feature.probe}, shown in Listing \ref{lst:distal}, is used to select HM450K/EPIC probes located away from any TSS (at least $2Kb$ away).
-Its main arguments are the genome of reference ("hg38"/"hg19") and DNA methylation platform ("450K"/"EPIC"). The \textit{feature} argument is used to limit the region of probes; as we want all distal probes, we set it to NULL.
-%Later, we will use all distal probes and annotate their chromatin state later with 
+The function \textit{get.feature.probe}, shown in Listing \ref{lst:distal},
+is used to select HM450K/EPIC probes located away from any TSS (at least $2Kb$ away).
+Its main arguments are the genome of reference ("hg38"/"hg19") and DNA methylation
+platform ("450K"/"EPIC"). The \textit{feature} argument is used to limit the region of probes; as we want all distal probes, we set it to NULL.
+%Later, we will use all distal probes and annotate their chromatin state later with
 %MCF-7 annotation tracks from the NIH Roadmap Epigenomics Mapping Consortium \cite{bernstein2010nih}  available at StateHub (\url{http://statehub.org/})\cite{Coetzee127720}.
 
-%\lstinputlisting[language=R, label = {lst:distal},caption = "Step 2: Selection of probes within biofeatures"]{codes/distal_probes.R}
+\lstinputlisting[language=R, frame = none, label = {lst:distal},caption = "Step 2: Selection of probes within biofeatures"]{codes/distal_probes.R}
 
 
 \subsection*{Organizing data into a MultiAssayExperiment object}
-The function \textit{createMAE} is used to organize the gene expression and DNA methylation data into a MultiAssayExperiment (MAE) object. Listing \ref{lst:mae} shows how to use it with the data created in the previous steps. Its main arguments are described below:
+The function \textit{createMAE} is used to organize the gene expression and
+ DNA methylation data into a MultiAssayExperiment (MAE) object. Listing \ref{lst:mae}
+ shows how to use it with the data created in the previous steps.
+  Its main arguments are described below:
 
 \begin{itemize}
-\item \textit{exp} : An R object or a path to a file containing a gene expression 
+\item \textit{exp} : An R object or a path to a file containing a gene expression
     matrix or SummarizedExperiment with gene counts.
-\item \textit{met} : An R object or a path to a file containing a DNA methylation 
+\item \textit{met} : An R object or a path to a file containing a DNA methylation
     matrix or SummarizedExperiment with beta values.
 \item \textit{met.platform}: DNA methylation platform.
-    "EPIC" for Infinium MethylationEPIC or "450K" for 
+    "EPIC" for Infinium MethylationEPIC or "450K" for
     Infinium HumanMethylation450.
- \item \textit{genome}: The genome of reference ("hg19" or "hg38") 
+ \item \textit{genome}: The genome of reference ("hg19" or "hg38")
     used to select the correct metadata. Genes genomic ranges will be annotated
     using ENSEMBL database and DNA methylation probes
     using metadata available at \url{http://zwdzwd.github.io/InfiniumAnnotation}.
  \item \textit{linearize.exp}: this step will take the $log_2(gene\; expression + 1)$
-    in order to linearize the relationship between 
+    in order to linearize the relationship between
     gene expression and DNA methylation.
  \item \textit{filter.probes}: genomic ranges (i.e. distal
-    regions) within which  probes from 
+    regions) within which  probes from
     DNA methylation data should be kept.
- \item \textit{met.na.cut}: maximum percentage of empty values (NA) a probe might have to be 
-    considered in the analysis. The default is 20\% (i.e if 50\% of samples has empty values  for a given 
+ \item \textit{met.na.cut}: maximum percentage of empty values (NA) a probe might have to be
+    considered in the analysis. The default is 20\% (i.e if 50\% of samples has empty values  for a given
     probe, it will be removed).
  \item \textit{colData}: A matrix  with samples metadata (i.e. clinical data ,
     molecular  subtype information). If argument TCGA is set to \textit{TRUE}
-    this matrix will be created automatically. In this case, the \textit{colData} 
+    this matrix will be created automatically. In this case, the \textit{colData}
     argument is optional.
  \item \textit{sampleMap}: A matrix mapping DNA methylation data and gene expression
-    data to samples. \textit{ELMER} uses only samples with both data. 
+    data to samples. \textit{ELMER} uses only samples with both data.
     Otherwise,  it will be removed. If argument TCGA is set to \textit{TRUE}
-    this matrix will be created automatically. In this case \textit{sampleMap} 
+    this matrix will be created automatically. In this case \textit{sampleMap}
     argument is optional.
 \end{itemize}
 
-%\lstinputlisting[language=R, label = {lst:mae},caption = "Step 3: Create MultiAssayExperiment"]{codes/mae.R}
+\lstinputlisting[language=R, frame = none, label = {lst:mae},caption = "Step 3: Create MultiAssayExperiment"]{codes/mae.R}
 
-Listing \ref{lst:verifymae} shows information about the object created. There are 866 samples with both gene expression and DNA methylation data,
-and among those 5 are metastatic samples, 778 are Primary Solid Tumor and 83 are Solid Tissue Normal.
+Listing \ref{lst:verifymae} shows information about the object created.
+There are 866 samples with both gene expression and DNA methylation data,
+and among those 5 are metastatic samples, 778 are Primary Solid Tumor and
+83 are Solid Tissue Normal.
 
-%\lstinputlisting[language=R, label = {lst:verifymae},caption = "Verifying MultiAssayExperiment"]{codes/mae_verify.R}
+\lstinputlisting[language=R, frame = none, label = {lst:verifymae},caption = "Verifying MultiAssayExperiment"]{codes/mae_verify.R}
 
 %%%%%%%%%%%%%%%%%%%%%%%%
 % BEN STOPPED EDITING HERE %%%%%%%%
@@ -279,7 +378,7 @@ The function \textit{get.diff.meth} is  used to identify regions differently met
 \end{itemize}
 
 %\begin{minipage}{\linewidth}
-%\lstinputlisting[language=R, label = {lst:diffMeth},caption = "Identify significantly different DNA methylation probes in tumor and normal samples"]{codes/diffMeth.R}
+\lstinputlisting[language=R, frame = none, label = {lst:diffMeth},caption = "Identify significantly different DNA methylation probes in tumor and normal samples"]{codes/diffMeth.R}
 %\end{minipage}
 
 If the \textit{save} argument is set to TRUE, in the \textit{dir.out} folder two files will be created: \textit{getMethdiff.hypo.probes.csv} containing all probes from the DNA methylation data with the difference means of the groups and the significance values, \textit{getMethdiff.hypo.probes.significant.csv} will contain only probes that respect the thresholds. Table \ref{tab:diff.meth} shows the first rows of  \textit{getMethdiff.hypo.probes.significant.csv} file.
@@ -299,18 +398,18 @@ Its main arguments are described below:
 \begin{itemize}
 \item \textit{nearGenes} Output of \textit{GetNearGenes} function.
 \item  \textit{mode} Algorithm mode: "unsupervised" or "supervised". If unsupervised is set
-the U (unmethylated) and M (methylated) groups will be selected 
+the U (unmethylated) and M (methylated) groups will be selected
 among all samples of both groups based on methylation of each probe.
 Otherwise U group and M group will set as all the samples of group1 or group2 as described below:
 If diff.dir is "hypo, U will be the group 1 and M the group2.
 If diff.dir is "hyper" M group will be the group1 and U the group2.
 \item \textit{minSubgroupFrac} A number ranging from 0 to 1, specifying the fraction of extreme  samples that define group U (unmethylated) and group M (methylated), which are used to link probes to genes. The default is 0.4 (the lowest quintile of samples is the U group and the highest quintile samples is the M group) because we typically want to be able to detect a specific (possibly unknown) molecular subtype among tumor; these subtypes often make up only a minority of samples, and 20\% was chosen as a lower bound for the purposes of statistical power. This argument is Only used if mode is "supervised", otherwise if you are using pre-defined group labels ("supervised" mode), such as treated replicates vs. untreated replicated, it will use all samples.
 \item  \textit{permu.size} Number of permutation. The default is $10000$. \textit{Note}: This parameter can strongly impact run time.
-\item \textit{raw.pvalue} Raw p-value cutoff for defining significant pairs. The default is $0.001$. 
+\item \textit{raw.pvalue} Raw p-value cutoff for defining significant pairs. The default is $0.001$.
 \item \textit{Pe} Empirical p-value cutoff for defining significant pairs. The default is $0.001$.
 \item \textit{filter.probes} Should probes be filtered  by selecting only those which have at least a certain number of samples below and above a certain cut-off? If true, arguments \textit{filter.probes} and \textit{filter.percentage} will be used.
-\item  \textit{filter.portion}	A number specifying the cut point to define binary methylation level for probe loci. The default is 0.3. When the beta value is above 0.3, the probe is methylated and vice versa. For one probe, the percentage of methylated and unmethylated samples should be above filter.percentage value. Only used if \textit{filter.probes} is TRUE. 
-\item  \textit{filter.percentage}	Minimum percentage of samples to be considered in methylated and unmethylated for the filter.portion option. Default 5\%. Only used if \textit{filter.probes} is TRUE. 
+\item  \textit{filter.portion}	A number specifying the cut point to define binary methylation level for probe loci. The default is 0.3. When the beta value is above 0.3, the probe is methylated and vice versa. For one probe, the percentage of methylated and unmethylated samples should be above filter.percentage value. Only used if \textit{filter.probes} is TRUE.
+\item  \textit{filter.percentage}	Minimum percentage of samples to be considered in methylated and unmethylated for the filter.portion option. Default 5\%. Only used if \textit{filter.probes} is TRUE.
 \end{itemize}
 
 
@@ -321,7 +420,7 @@ If diff.dir is "hyper" M group will be the group1 and U the group2.
 %\end{figure}
 
 %\begin{minipage}{\linewidth}
-%\lstinputlisting[language=R, label = {lst:getpair}, caption = "Step 5: Identify putative target genes for differentially methylated distal probes"]{codes/getpair.R}
+\lstinputlisting[language=R, frame = none, label = {lst:getpair}, caption = "Step 5: Identify putative target genes for differentially methylated distal probes"]{codes/getpair.R}
 %\end{minipage}
 
 The output of this function is shown in table \ref{tab:get.pair}. Probe and GeneID
@@ -336,10 +435,10 @@ columns show the significant pair and the column $P_e$ shows the adjusted p-valu
 \label{tab:get.pair}
 \end{table}
 
-To visualize the relationship between the probe-gene pairs inferred, there are two auxiliary functions in ELMER. The function \textit{schematic.plot}, shown in Listing \ref{lst:plotpair}, which will plot genes and probes in a specified genomic region, highlighting the significant pairs identified by plotting a genomic interactions track and highlight the genes in the pair in red (Figure \ref{fig:parplot}). Also,  using the function \textit{scatter.plot} (Listing \ref{lst:scatterplot}) it is possible to visualize the correlation between gene expression and DNA methylation levels at probe (Figure \ref{fig:scatterplot}). 
+To visualize the relationship between the probe-gene pairs inferred, there are two auxiliary functions in ELMER. The function \textit{schematic.plot}, shown in Listing \ref{lst:plotpair}, which will plot genes and probes in a specified genomic region, highlighting the significant pairs identified by plotting a genomic interactions track and highlight the genes in the pair in red (Figure \ref{fig:parplot}). Also,  using the function \textit{scatter.plot} (Listing \ref{lst:scatterplot}) it is possible to visualize the correlation between gene expression and DNA methylation levels at probe (Figure \ref{fig:scatterplot}).
 
 %\begin{minipage}{\linewidth}
-%\lstinputlisting[language=R,firstline=5,lastline=13,label = {lst:plotpair},caption = "Schematic plot to visualize gene-probe pairs"]{codes/plotpair.R}
+\lstinputlisting[language=R, frame = none,firstline=5,lastline=13,label = {lst:plotpair},caption = "Schematic plot to visualize gene-probe pairs"]{codes/plotpair.R}
 %\end{minipage}
 
 \begin{figure}[ht!]
@@ -350,7 +449,7 @@ To visualize the relationship between the probe-gene pairs inferred, there are t
 
 
 % \begin{minipage}{\linewidth}
-% \lstinputlisting[language=R,label = {lst:scatterplot},caption = "Scatter plot to visualize correlation between gene expression and DNA methylation levels at probe"]{codes/scatterplot.R}
+\lstinputlisting[language=R, frame = none,label = {lst:scatterplot},caption = "Scatter plot to visualize correlation between gene expression and DNA methylation levels at probe"]{codes/scatterplot.R}
 % \end{minipage}
 
 
@@ -364,28 +463,51 @@ To visualize the relationship between the probe-gene pairs inferred, there are t
 
 \subsection*{Characterization of chromatin state context of significant probe regions using FunciVar}
 
-To understand and compare our set of probes identified in the probe-gene pairs inferred we used chromatin state of IHEC cell types
-from \url{http://statehub.org/}, to calculate the relative enrichment of different states (see Additional file for the code). This procedure uses code from the statepaintR \cite{statepaintr} and FunciVar \cite{funcivar} packages. Figure \ref{fig:funcivar} shows the enrichment for 14 encode cells lines. The plot shows enrichment for enhancer active region (EAR), weak enhancer (EWR) and active promoter region (PAR) in MCF-7 cell (human breast adenocarcinoma cell line) while for other cell lines this enrichment is not visible. 
+To understand and compare our set of probes identified in the probe-gene pairs inferred
+we used chromatin state of IHEC cell types
+from \url{http://statehub.org/}, to calculate the relative enrichment of
+different states.
+This procedure uses code from the statepaintR \cite{statepaintr} and FunciVar \cite{funcivar} packages.
+Figure \ref{fig:funcivar} shows the enrichment for 14 encode cells lines.
+The plot shows enrichment for enhancer active region (EAR), weak enhancer (EWR)
+and active promoter region (PAR) in MCF-7 cell (human breast adenocarcinoma cell line)
+while for other cell lines this enrichment is not visible.
 
 % https://www.ebi.ac.uk/training/online/course/functional-genomics-introduction-embl-ebi-resource/what-functional-genomics-1
 %The functional genomics studies investigates a range of processes such as transcription, translation and epigenetic regulation to understand the complex relationship between genotype and phenotype. Among the main issues it tries to elucidate, we can mention  understanding of the regulation of the genes, finding the active gene promoters in a particular cell type and identifying the functional roles of different genes.
-%In view of these questions, several international consortia emerged whose objectives could help clarify some of these issues. 
-%As examples of these consortia we can cite ENCODE (Encyclopedia of DNA Elements) whose objective was to create a comprehensive catalog of candidate functional elements in the genome and REMC (the Roadmap Epigenomics Mapping Centers project), whose objective was to generate reference epigenomic maps for “normal” human cells/tissues. 
+%In view of these questions, several international consortia emerged whose objectives could help clarify some of these issues.
+%As examples of these consortia we can cite ENCODE (Encyclopedia of DNA Elements) whose objective was to create a comprehensive catalog of candidate functional elements in the genome and REMC (the Roadmap Epigenomics Mapping Centers project), whose objective was to generate reference epigenomic maps for “normal” human cells/tissues.
 
 %These consortia made available a large amount of data such as transcription, transcription factor binding, histone modifications, DNase hypersensitivity, DNA methylation, DNA-DNA interactions, and RNA-protein interactions that have been used to  annotate chromatin state. Listing shows how to use MCF-7 annotation tracks from \url{http://statehub.org/}  to annotate chromatin state of those pairs identified previously.  (see Additional file for the code
 
 %\begin{minipage}{\linewidth}
-%\lstinputlisting[language=R,basicstyle=\ttfamily\scriptsize]{codes/enhancer.R}
+%\lstinputlisting[language=R, frame = none,basicstyle=\ttfamily\scriptsize]{codes/enhancer.R}
 %\end{minipage}
 %\begin{minipage}{\linewidth}
-%\lstinputlisting[language=R,basicstyle=\ttfamily\scriptsize,label = {lst:funcivar},caption = "Chromatin state annotation for probe regions"]{codes/funcivar.R}
+%\lstinputlisting[language=R, frame = none,basicstyle=\ttfamily\scriptsize,label = {lst:funcivar},caption = "Chromatin state annotation for probe regions"]{codes/funcivar.R}
 %\end{minipage}
 
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=1.0\textwidth]{images/funcivar.pdf}
-\caption{\label{fig:funcivar} Enrichment of paired probes and chromatin states of encode cells. The plot shows enrichment for enhancer active region, weak enhancer  and active promoter region for MCF-7 cell. Acronyms - CTCF: architectural complex}
+\caption{\label{fig:funcivar} Enrichment of paired probes and chromatin states of encode cells.
+The plot shows enrichment for enhancer active region, weak enhancer  and active
+promoter region for MCF-7 cell. Acronyms - AR: Active region, EAR: active enhancer,
+ EWR: Weak Enhancer, EPR: poised enhancer, PAR: active promoter, PWR: Weak Promoter,
+ PPR: poised promoter, PPWR: Weak Poised Promoter, CTCF: architectural complex,
+ TRS: transcribed, HET: heterochromatin, SCR: Polycomb Repressed Silenced}
 \end{figure}
+
+\begin{table}[h!]
+\centering
+\small
+\csvautobooktabular[respect underscore,
+					before reading=\sisetup{round-mode=places,round-precision=2},
+                    filter expr={test{\ifnumless{\thecsvinputline}{20}}}]{tables/funcivarcode.csv}
+\caption {Chromatin states abbreviation}
+\label{tab:funcivarcode}
+\end{table}
+
 
 \newpage
 
@@ -398,7 +520,7 @@ The main arguments are described below:
 \end{itemize}
 
 %\begin{minipage}{\linewidth}
-%\lstinputlisting[language=R,label = "motif",caption = "Step 6: Motif enrichment analysis on the selected probes"]{codes/motif.R}
+%\lstinputlisting[language=R, frame = none,label = "motif",caption = "Step 6: Motif enrichment analysis on the selected probes"]{codes/motif.R}
 %\end{minipage}
 
 \begin{figure}[ht!]
@@ -408,10 +530,10 @@ The main arguments are described below:
 \end{figure}
 
 \subsection*{Identification of master regulator Transcription Factors (TF) for each enriched motif}
-The function \textit{get.TFs} is used to identify regulatory TF whose expression associates with TF binding motif 
+The function \textit{get.TFs} is used to identify regulatory TF whose expression associates with TF binding motif
 DNA methylation which.
 
-%\lstinputlisting[language=R,label = "tf",caption = "Step 7: Identify regulatory Transcript Factors"]{codes/tf.R}
+%\lstinputlisting[language=R, frame = none,label = "tf",caption = "Step 7: Identify regulatory Transcript Factors"]{codes/tf.R}
 
 
 The result of this function is shown in table \ref{tab:get.tf} and in figure \ref{fig:tfplot}.
@@ -434,7 +556,7 @@ The result of this function is shown in table \ref{tab:get.tf} and in figure \re
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=1.0\textwidth]{images/ANDR_HUMAN_H11MO_0_A_TFrankPlot.pdf}
-\caption{\label{fig:tfplot} TF ranking plot shows statistic $-log_{10}(P-value)$ assessing the anti-correlation level 
+\caption{\label{fig:tfplot} TF ranking plot shows statistic $-log_{10}(P-value)$ assessing the anti-correlation level
 of TFs expression level with average DNA methylation level at sites with a given motif. By default, the top 3 associated TFs and the TF family members (dots in red) that are associated with that specific motif  are labeled in the plot.
 But there is also an option to highlight only TF sub-family members (TCClass database classification)}
 \end{figure}
@@ -445,9 +567,9 @@ But there is also an option to highlight only TF sub-family members (TCClass dat
 \subsection*{Comparing inferred results with MCF-7 chIA-PET}
 
 As shown in \citeonline{yao2015inferring}, we compared the putative pairs inferred to the chromatin loops derived from deep-sequenced ChIA-PET data from MCF7 cells \cite{li2012extensive}. First, we identify the number of \textit{ELMER} pairs overlapping the ChIA-PET loops, then we repeat using randomly generated  pairs with properties similar to the \textit{ELMER} pairs. For each true ELMER probe in a probe-gene pair, we randomly select a different probe from the complete set of distal probes. We then choose the nth nearest gene to the random probe, where n is the same as the adjacency of the true ELMER probe (i.e. if the true probe is linked to the second gene upstream, the  random probe will also be linked to its second gene upstream). Thus, the random linkage set has both the same number of probes and the same number of linked genes as the true set. One hundred such random datasets were generated to arrive at a 95\% CI ($\pm 1.96* SD$).
-The result is shown in Figure \ref{fig:chiapet}. Of the 2124 putative pairs identified in breast cancer tumors, 316 (approximately 14.9\%) were also identified as loops in the MCF7 ChIA-PET data. This was a three-fold enrichment over randomized probe-gene pairs (see Additional file for the code). 
- 
- 
+The result is shown in Figure \ref{fig:chiapet}. Of the 2124 putative pairs identified in breast cancer tumors, 316 (approximately 14.9\%) were also identified as loops in the MCF7 ChIA-PET data. This was a three-fold enrichment over randomized probe-gene pairs (see Additional file for the code).
+
+
 %\begin{minipage}{\linewidth}
 %\lstinputlisting[language=R]{codes/mcf7-validation.R}
 %\end{minipage}
@@ -460,15 +582,15 @@ The result is shown in Figure \ref{fig:chiapet}. Of the 2124 putative pairs iden
 
 
 \newpage
-\section*{Use Case 2: BRCA molecular subtypes analysis (supervised approach)} 
+\section*{Use Case 2: BRCA molecular subtypes analysis (supervised approach)}
 
-Several studies identified distinct molecular Breast cancer classes and  divided them as the luminal-like (Luminal A and Luminal B) subclasses, which are Estrogen receptor-positive (ER-positive), and the basal-like, ErbB2-positive and normal-like subclasses, which are the ER-negative groups \cite{perou2000molecular,yersal2014biological,sorlie2001gene}.  To performed \textit{ELMER} analysis comparing known molecular subtypes (Her2, Luminal A, Luminal B and Basal-like) a TCGA BRCA dataset classification retrieved from \citeonline{ciriello2015comprehensive}. 
+Several studies identified distinct molecular Breast cancer classes and  divided them as the luminal-like (Luminal A and Luminal B) subclasses, which are Estrogen receptor-positive (ER-positive), and the basal-like, ErbB2-positive and normal-like subclasses, which are the ER-negative groups \cite{perou2000molecular,yersal2014biological,sorlie2001gene}.  To performed \textit{ELMER} analysis comparing known molecular subtypes (Her2, Luminal A, Luminal B and Basal-like) a TCGA BRCA dataset classification retrieved from \citeonline{ciriello2015comprehensive}.
 
 
 The main arguments changed were the percentage of samples used to identify the differentially methylated probes in function \textit{get.diff.meth} which was set to 100\% (use all samples from each group) and the mode in function \textit{get.pair} and in function \textit{get.TFs} which was set to "supervised". In this mode instead of defining the U (unmethylated) group as the samples with lowest quintile of DNA methylation levels and the M (methylated) group as the highest quintile, the U and M group will be defined as all samples of one known molecular subtype (Figure \ref{fig:mode}). For example, if the first step identified probes hypomethylated in Luminal A group compared to Basa-like group, in the next steps the U group will be the Luminal A samples and the M group will be the Basal-like samples.
-The results and code of this supervised analysis can be found in the supplemental files.  
+The results and code of this supervised analysis can be found in the supplemental files.
 
-From the  Luminal A group vs Basal-like group analysis, it can be highlighted that the pairs of high expressed genes and hypomethylated probes in the Basal groups are enriched for the SOX10 TF signature. For this signature, the regulatory TF candidate identified is the SOX11 (Sry-related HMG box-11) TF; this correlation between basal-like and SOX11 was recently described by \citeonline{shepherd2016sox11}. Also, the TF analysis  reported the forkhead box C1 (FOXC1) transcription factor as the TF with the highest anti-correlation between TF expression and DNA methylation levels. Even though, this TF is not in the family of any enriched motifs this correlation between the FOXC1 TF and Basal-like breast cancers (BLBCs) was reported by \citeonline{zuo2016role} and \citeonline{chung2017identification}. 
+From the  Luminal A group vs Basal-like group analysis, it can be highlighted that the pairs of high expressed genes and hypomethylated probes in the Basal groups are enriched for the SOX10 TF signature. For this signature, the regulatory TF candidate identified is the SOX11 (Sry-related HMG box-11) TF; this correlation between basal-like and SOX11 was recently described by \citeonline{shepherd2016sox11}. Also, the TF analysis  reported the forkhead box C1 (FOXC1) transcription factor as the TF with the highest anti-correlation between TF expression and DNA methylation levels. Even though, this TF is not in the family of any enriched motifs this correlation between the FOXC1 TF and Basal-like breast cancers (BLBCs) was reported by \citeonline{zuo2016role} and \citeonline{chung2017identification}.
 
 On the other hand, when analyzing in the other direction in terms of methylation level, for  those pairs of high expressed genes and hypomethylated probes in the Luminal A group, the TF analysis identified GATA3, FOXA1, RARA, MYB as candidate regulatory TF. GATA3 and FOXA1 are known characterize this  molecular subtype  as described by \citeonline{yersal2014biological} while RARA was associated with the Luminal phenotype by \citeonline{centritto2015cellular}, MYB
 is shown to be required for the proliferation of ER-positive breast cancer cells \cite{mitra2016cdk9}.
@@ -485,7 +607,7 @@ is shown to be required for the proliferation of ER-positive breast cancer cells
 %  \lstinputlisting[language=R]{codes/supervisedMode.R}
 %\end{minipage}
 
-%\section*{Graphical user interface} % Optional - only if NO new 
+%\section*{Graphical user interface} % Optional - only if NO new
 
 %TBD
 
@@ -501,7 +623,7 @@ We present a new version of \textit{ELMER}, an R/Bioconductor package that allow
 %This section is required if the paper does not include novel data or analyses.  It allows authors to briefly summarize the key points from the article.
 
 \section*{Data availability} % Optional - only if novel data or analyses are included
-The TCGA data was downloaded from the NCI Genomic Data Commons (GDC) data portal \cite{grossman2016toward} using TCGAbiolinks R/Bioconductor package \cite{colaprico2015tcgabiolinks,10.12688/f1000research.8923.2}. 
+The TCGA data was downloaded from the NCI Genomic Data Commons (GDC) data portal \cite{grossman2016toward} using TCGAbiolinks R/Bioconductor package \cite{colaprico2015tcgabiolinks,10.12688/f1000research.8923.2}.
 Gene annotations were retrieved from ENSEMBL \cite{yates2015ensembl} database via biomaRt R/Bioconductor package \cite{durinck2005biomart,durinck2009mapping}.
 DNA methylation microarrays metadata were retrieved from \url{http://zwdzwd.github.io/InfiniumAnnotation} \cite{doi:10.1093/nar/gkw967}.
 Transcription factor (TF) binding models can be downloaded at HOCOMOCO database (\url{http://hocomoco.autosome.ru/}) \cite{kulakovskiy2016hocomoco}.
@@ -511,9 +633,8 @@ The classification of human transcription factors (TFs) can be viewed at \url{ht
 \section*{Software availability}
 
 \begin{enumerate}
-	\item The source code of \textit{ELMER} is available at \url{https://github.com/tiagochst/ELMER} and the auxiliary data files are available 
+	\item The source code of \textit{ELMER} is available at \url{https://github.com/tiagochst/ELMER} and the auxiliary data files are available
 		\url{https://github.com/tiagochst/ELMER.data}.
 	\item \textit{ELMER} is available under the GNU General Public License version 3 (GNU GPL3)
     \item To create the auxiliary data, the HOMER software was used and is available at \url{http://homer.ucsd.edu/homer/} (Software: v4.9.1, Genome hg19: v5.10, Genome hg38: v5.10).
 \end{enumerate}
-

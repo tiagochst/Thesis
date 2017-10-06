@@ -1,0 +1,11 @@
+diff.probes <- get.diff.meth(data = mae,
+                             group.col = "definition",
+                             group1 = "Primary solid Tumor",
+                             group2 = "Solid Tissue Normal",
+                             diff.dir = "hypo", # Get probes hypometh. in group 1
+                             cores = 1,
+                             minSubgroupFrac = 0.2, # % group samples  used.
+                             pvalue = 0.01,
+                             sig.dif = 0.3,
+                             dir.out = "Results_hypo/",
+                             save = TRUE)

@@ -1,5 +1,5 @@
-%% Customizações do abnTeX2 (http://abnTeX2.googlecode.com) para o 
-%% Instituto de Ciências Matemáticas e de Computação, Universidade 
+%% Customizações do abnTeX2 (http://abnTeX2.googlecode.com) para o
+%% Instituto de Ciências Matemáticas e de Computação, Universidade
 %% de São Paulo
 %%
 %% This work may be distributed and/or modified under the
@@ -11,16 +11,16 @@
 %% version 2005/12/01 or later.
 %%
 %% This work has the LPPL maintenance status `maintained'.
-%% 
-%% The Current Maintainer of this work is Humberto Lidio Antonelli, 
+%%
+%% The Current Maintainer of this work is Humberto Lidio Antonelli,
 %% Contact: humbertoantonelli@usp.br
 %%
-%% Further information about abnTeX2 are available on 
+%% Further information about abnTeX2 are available on
 %% http://abntex2.googlecode.com/
 %%
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{packages/icmc}[2015/05/05 v1.1.7 Classe ICMC baseado em abnTeX2 - Teses e Dissertações dos  
+\ProvidesClass{packages/icmc}[2015/05/05 v1.1.7 Classe ICMC baseado em abnTeX2 - Teses e Dissertações dos
 Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Computação]
 \RequirePackage{xifthen}
 
@@ -32,7 +32,7 @@ Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Comput
 %   completa:       Formata documento para dissertação/tese
 %	doutorado:      Formata documento para tese de doutorado
 % 	mestrado:       Formata documento para dissertação de mestrado
-% 	pre-defesa:     Formata documento para versão de defesa (utilizado 
+% 	pre-defesa:     Formata documento para versão de defesa (utilizado
 %                   apenas para versão completa)
 %   pro-defesa:     Formata documento para versão final (utilizado apenas
 %                   para versão completa)
@@ -70,7 +70,7 @@ Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Comput
 \ExecuteOptions{pos-defesa}
 
 %
-% Repassa demais opções a abntex	
+% Repassa demais opções a abntex
 %
 \DeclareOption*{%
   \PassOptionsToClass{\CurrentOption}{abntex2}%
@@ -83,27 +83,27 @@ Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Comput
 %================================================================
 \LoadClass[% -- opções da classe memoir --
 	12pt,				% tamanho da fonte
-	openright,			% capítulos começam em pág ímpar 
+	openright,			% capítulos começam em pág ímpar
 	                    % (insere página vazia caso preciso)
 	twoside,			% para impressão em verso e anverso. Oposto a oneside
-	a4paper,			% tamanho do papel. 
+	a4paper,			% tamanho do papel.
 	%chapter=TITLE,		% títulos de capítulos convertidos em letras maiúsculas
     sumario = tradicional,
 	brazil              % Define o idioma pt-br para as opções da classe
 	]{abntex2}
-	
+
 
 %============================================================
-% Pacotes fundamentais 
+% Pacotes fundamentais
 %=============================================================
 \RequirePackage{morewrites}         % Resolve o erro “No room for a new \write”
 \RequirePackage{cmap}				% Mapear caracteres especiais no PDF
 \RequirePackage{lmodern}			% Usa a fonte Latin Modern.
 \RequirePackage{lastpage}			% Usado pela Ficha catalográfica
 \RequirePackage{indentfirst}		% Indenta o primeiro parágrafo de cada seção.
-\RequirePackage{color, xcolor}      % Controle das cores
+\RequirePackage{color}      % Controle das cores
 \RequirePackage{colortbl}           % Controle das cores das células da tabela
-                                    % (utilizado no título)
+\RequirePackage[usenames,dvipsnames,table]{xcolor}                           % (utilizado no título)
 \RequirePackage{graphicx}			% Inclusão de gráficos
 \RequirePackage{caption}            % Pacote para definição dos captions
 \RequirePackage{microtype} 		    % para melhorias de justificação
@@ -119,7 +119,7 @@ Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Comput
                                     % resumos
 \RequirePackage{amsthm, amsfonts, amsmath, amssymb} % Pacote para a definição dos ambientes matemáticos
 \RequirePackage{mathptmx}           % Usando times para equações, opcional
-\RequirePackage{listings}           % Pacote para formatação de diversos 
+\RequirePackage{listings}           % Pacote para formatação de diversos
                                     % códigos fontes
 \RequirePackage[linesnumbered, ruled, vlined]{algorithm2e}      % Pacote para
                                     % escrever algoritmos em pseudo-código
@@ -175,7 +175,7 @@ Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Comput
             \newcommand{\degree}{Master}
             \newcommand{\tipodocurso}{Master student}
         }
-        {   
+        {
             \tipotrabalho{Disserta{\c c}{\~a}o}
             \newcommand{\degree}{Mestre}
             \newcommand{\tipodocurso}{Mestrado}
@@ -206,7 +206,7 @@ Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Comput
     { % Preambulo em português
         \renewcommand{\imprimirpreambulo}{\nohyphens{\imprimirtipotrabalho~apresentada ao \imprimirinstituicao,\exam~como parte dos requisitos para obten{\c c}{\~a}o do t{\'i}tulo de \degree~\imprimirespecialidade. \tipoexemplar}}
     }
-    
+
 
 %==========================================================================
 % Configuração da fonte utilizada na capa exigida pelo ICMC
@@ -221,14 +221,14 @@ Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Comput
         BoldFont        = *Bold,
         ItalicFont      = *Italic,
         BoldItalicFont  = *BoldItalic]{TimesNewRoman}
-        
+
     \newfontfamily{\tahoma}[
         Mapping         = tex-text,
         Path            = packages/fonts/,
         BoldFont        = *Bold,
         ItalicFont      = *Italic,
         BoldItalicFont  = *BoldItalic]{Tahoma}
-    
+
     \newcommand\@icmcTitulo{\@icmcFont{17}\tahoma}
     \newcommand\@icmcAutorCapa{\@icmcFont{15}\timesnewroman\bfseries\itshape}
     \newcommand\@icmcAutorFolhaRosto{\@icmcFont{14}\timesnewroman\bfseries}
@@ -247,14 +247,14 @@ Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Comput
         BoldFont        = *Bold,
         ItalicFont      = *Italic,
         BoldItalicFont  = *BoldItalic]{TimesNewRoman}
-        
+
         \newfontfamily{\tahoma}[
         Mapping         = tex-text,
         Path            = packages/fonts/,
         BoldFont        = *Bold,
         ItalicFont      = *Italic,
         BoldItalicFont  = *BoldItalic]{Tahoma}
-      
+
       \newcommand\@icmcTitulo{\@icmcFont{17}\tahoma}
       \newcommand\@icmcAutorCapa{\@icmcFont{15}\timesnewroman\bfseries\itshape}
       \newcommand\@icmcAutorFolhaRosto{\@icmcFont{14}\timesnewroman\bfseries}
@@ -264,7 +264,7 @@ Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Comput
       \newcommand\@icmcLocalData{\@icmcFont{12}\timesnewroman\bfseries}
       \newcommand\@icmcCarimbo{\@icmcFont{12}\timesnewroman}
       \newcommand\@icmcSVPG{\@icmcFont{9}\timesnewroman}
-    
+
     \else % Configuração da fonte para a compilação por PDFLATEX
       \RequirePackage[T1]{fontenc}	    	% Selecao de codigos de fonte.
       \RequirePackage[utf8]{inputenc}		% Codificacao do documento (conversão automática dos acentos)
@@ -374,10 +374,10 @@ Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Comput
 
 % Configuração do pacote nomencl
 % Tamanho da Label da sigla
-\setlength{\nomlabelwidth}{0.15\hsize} 
+\setlength{\nomlabelwidth}{0.15\hsize}
 % Separa as abreviaturas de suas definições com pontos (....)
 \renewcommand{\nomlabel}[1]{#1 \dotfill}
-\setlength{\nomitemsep}{-.05in} 
+\setlength{\nomitemsep}{-.05in}
 % Comando necessário para a criação da lista de abreviaturas
 \makenomenclature
 % Traduz o título da lista de abreviaturas
@@ -386,7 +386,7 @@ Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Comput
 % Comando para criação de abreviaturas e siglas
 \def\sigla{\@ifstar\@sigla\@@sigla}
 % Apenas faz o registro na tabela de siglas
-\def\@sigla#1#2{\nomenclature{#1}{#2}}          % \sigla*{}{} 
+\def\@sigla#1#2{\nomenclature{#1}{#2}}          % \sigla*{}{}
 % Faz o registro na tabela de siglas e insere os dados no corpo do documento
 \def\@@sigla#1#2{#2 (#1)\nomenclature{#1}{#2}}  % \sigla{}{}
 
@@ -456,7 +456,7 @@ Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Comput
 
 % Comando para definição do nome e sobrenome do author
 \renewcommand\autor[2][Nome para Referência]{
-    
+
     \StrCount{#2}{\space}[\nbmatch]%
     \StrCut[\nbmatch]{#2}{\space}\strfirstautor\strsecondautor
 
@@ -483,7 +483,7 @@ Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Comput
 
     \StrCount{#3}{\space}[\nbmatch]%
     \StrCut[\nbmatch]{#3}{\space}\strfirstorientador\strsecondorientador
-    
+
     \renewcommand{\imprimirorientadorRotulo}{#1}
     \newcommand{\titulacaoorientador}{#2}
     \def\ABNTorientadordatabib{\strsecondorientador, \strfirstorientador}
@@ -495,7 +495,7 @@ Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Comput
 
     \StrCount{#3}{\space}[\nbmatch]%
     \StrCut[\nbmatch]{#3}{\space}\strfirstcoorientador\strsecondcoorientador
-    
+
     \renewcommand{\imprimircoorientadorRotulo}{#1}
     \newcommand{\titulacaocoorientador}{#2}
     \def\ABNTcoorientadordatabib{\strsecondcoorientador, \strfirstcoorientador}
@@ -643,14 +643,14 @@ h}%
 % Comando para inclusão da ficha catalográfica
 \def\incluifichacatalografica{\@ifstar\@incluifichacatalografica\@@incluifichacatalografica}
 % Incluir um arquivo externo como ficha catalográfica
-\def\@incluifichacatalografica#1{\gdef\@incluifichacatalografica{true}\gdef\@arquivofichacatalografica{#1}}          % \incluifichacatalografica*{}{} 
+\def\@incluifichacatalografica#1{\gdef\@incluifichacatalografica{true}\gdef\@arquivofichacatalografica{#1}}          % \incluifichacatalografica*{}{}
 % Gera a ficha catalográfica automaticamente de acordo com o número da Tabela de Cutter http://www.davignon.qc.ca/cutter1.html
 \def\@@incluifichacatalografica#1{\gdef\@incluifichacatalografica{true}\gdef\@codigocutter{#1}}  % \incluifichacatalografica{}{}
 
 % Comando para inclusão da ficha de aprovacao
 \def\incluifolhadeaprovacao{\@ifstar\@incluifolhadeaprovacao\@@incluifolhadeaprovacao}
-\def\@incluifolhadeaprovacao#1{\gdef\@incluifolhadeaprovacao{true}\gdef\@incluifolhadeaprovacao{#1}}       
-\def\@@incluifolhadeaprovacao#1{\gdef\@incluifolhadeaprovacao{true}\gdef\@codigocutter{#1}}  % 
+\def\@incluifolhadeaprovacao#1{\gdef\@incluifolhadeaprovacao{true}\gdef\@incluifolhadeaprovacao{#1}}
+\def\@@incluifolhadeaprovacao#1{\gdef\@incluifolhadeaprovacao{true}\gdef\@codigocutter{#1}}  %
 %================================================================================
 % Definição dos ambientes matemáticos
 %================================================================================
@@ -744,7 +744,7 @@ h}%
 % Formatação de código-fonte
 % ---
 
-% Altera o nome padrão do rótulo 
+% Altera o nome padrão do rótulo
 \renewcommand{\lstlistingname}{\codigoname}
 % Altera o rótulo a ser usando no elemento pré-textual "Lista de códigos"
 \renewcommand{\lstlistlistingname}{\listcodigoname}
@@ -767,12 +767,12 @@ h}%
    \oldlstlistoflistings%
    \endgroup}
 
-% Cria um ambiente "codigo" estilizando o ambiente "lstlisting" 
+% Cria um ambiente "codigo" estilizando o ambiente "lstlisting"
 \newcounter{countcodigo}
 \setcounter{countcodigo}{1}
 \lstnewenvironment{codigo}[1][]
   {\lstset{basicstyle=\ttfamily\ABNTEXfontereduzida,
-           numbers=left, 
+           numbers=left,
            numbersep=5pt,
            numberstyle=\tiny\bfseries,
             xleftmargin=20pt,
@@ -801,8 +801,8 @@ h}%
 % Folha de aprovação
 %===========================================================================
 \def\incluifolhadeaprovacao{\@ifstar\@incluifolhadeaprovacao\@@incluifolhadeaprovacao}
-\def\@incluifolhadeaprovacao#1{\gdef\@incluifolhadeaprovacao{true}\gdef\@incluifolhadeaprovacao{#1}}       
-\def\@@incluifolhadeaprovacao#1{\gdef\@incluifolhadeaprovacao{true}\gdef\@codigocutter{#1}}  % 
+\def\@incluifolhadeaprovacao#1{\gdef\@incluifolhadeaprovacao{true}\gdef\@incluifolhadeaprovacao{#1}}
+\def\@@incluifolhadeaprovacao#1{\gdef\@incluifolhadeaprovacao{true}\gdef\@codigocutter{#1}}  %
 
 %===========================================================================
 % Dedicatória
@@ -811,7 +811,7 @@ h}%
 % Comando para definição da dedicatória
 \def\textodedicatoria{\@ifstar\@textodedicatoria\@@textodedicatoria}
 % Inclui texto de um arquivo como dedicatória
-\def\@textodedicatoria#1{\gdef\@dedicatoria{\input{#1}}} % \textodedicatoria*{}{} 
+\def\@textodedicatoria#1{\gdef\@dedicatoria{\input{#1}}} % \textodedicatoria*{}{}
 % Inclui o texto como dedicatória
 \def\@@textodedicatoria#1{\gdef\@dedicatoria{#1}}       % \textodedicatoria{}{}
 
@@ -857,7 +857,7 @@ h}%
 % Comando para definição da epígafe
 \def\textoepigrafe{\@ifstar\@textoepigrafe\@@textoepigrafe}
 % Inclui texto de um arquivo como epígafe
-\def\@textoepigrafe#1{\gdef\@epigrafe{\input{#1}}}      % \textoepigrafe*{}{} 
+\def\@textoepigrafe#1{\gdef\@epigrafe{\input{#1}}}      % \textoepigrafe*{}{}
 % Inclui o texto como epígafe
 \def\@@textoepigrafe#1{\gdef\@epigrafe{#1}}             % \textoepigrafe{}{}
 
@@ -870,8 +870,8 @@ h}%
 	  \begin{flushright}
 		\textit{\@epigrafe}
 	 \end{flushright}
-    \end{epigrafe}	 
-    
+    \end{epigrafe}
+
   }
 }
 
@@ -913,30 +913,30 @@ h}%
 \arabic{count}.\enspace\i.\ %
     }%
 }
-    
+
 \newcommand{\inserefichacatalografica}
 {
     \@ifundefined{@arquivofichacatalografica}
     {
-    
+
     % Captura a primeira letra do sobrenome do autor
     \expandafter\StrLeft\expandafter{\ABNTautordatabib}{1}[\firstletterauthor]
     % Captura a primeira letra do título
     \expandafter\StrLeft\expandafter{\thetitle}{1}[\firstlettertitle]
-    
+
         \begin{fichacatalografica}
         	\vspace*{\fill}					% Posição vertical
 
 	% Conteúdo
 	\begin{tabular}{c|p{1.6cm}p{10.5cm}|}
-	
+
 	\multicolumn{3}{c}{\sffamily\small Ficha catalográfica} \\
 	\multicolumn{3}{c}{\sffamily\small } \\
 	\multicolumn{3}{c}{\sffamily\small } \\ \cline{2-3}
 	& & \\
 	& & \texttt{\ABNTautordatabib}\\
 	& {\ttfamily \MakeUppercase{\firstletterauthor}\@codigocutter}\MakeLowercase{\firstlettertitle}
-	&  {\ttfamily~~~\imprimirtitulo{} / \imprimirautor; \MakeLowercase{\orientadorname}~\imprimirorientador \abntex@ifnotempty{\imprimircoorientador}{; \MakeLowercase{\coorientadorname}~\imprimircoorientador}.-- \imprimirlocal, \@year.} \\ 
+	&  {\ttfamily~~~\imprimirtitulo{} / \imprimirautor; \MakeLowercase{\orientadorname}~\imprimirorientador \abntex@ifnotempty{\imprimircoorientador}{; \MakeLowercase{\coorientadorname}~\imprimircoorientador}.-- \imprimirlocal, \@year.} \\
 	& & {\ttfamily~~~\pageref{LastPage} p.}\\
 	& &\\
 	& & {\ttfamily~~~\imprimirtipotrabalho~(\tipodocurso~-- \imprimirprograma) -- \imprimirinstituicao, \imprimiruniversidade, \@year.}\\
@@ -960,36 +960,36 @@ h}%
 {
     \@ifundefined{@arquivofolhadeaprovacao}
     {
-    
+
     % Captura a primeira letra do sobrenome do autor
     \expandafter\StrLeft\expandafter{\ABNTautordatabib}{1}[\firstletterauthor]
     % Captura a primeira letra do título
     \expandafter\StrLeft\expandafter{\thetitle}{1}[\firstlettertitle]
-    
+
 	\begin{folhadeaprovacao}
 
 	  \begin{center}
-	     {\ABNTEXchapterfont\large\imprimirautor} 
+	     {\ABNTEXchapterfont\large\imprimirautor}
 
 	    \vspace*{1cm}%\vspace*{\fill}
 	    {\ABNTEXchapterfont\bfseries\Large\imprimirtitulo}
-        
+
 	    \vspace*{1cm}
-        
+
 	    \hspace{.45\textwidth}
 	    \begin{minipage}{.5\textwidth}
 	        \imprimirpreambulo
 	    \end{minipage}%
-        
+
         \vspace*{1cm}
         %\vspace*{\fill}
 	   \end{center}
       \begin{flushleft}
    	Approved in \imprimirlocal,  January 24, 2018:
-    
+
     \vspace*{0.5cm}
     \begin{center}{\ABNTEXchapterfont\large Examining Committee}\end{center}
-    
+
     \vspace*{0.5cm}
    	\begin{tabular}{@{}p{.7in}p{5in}@{}}
 		Prof.Dr.:      & \hrulefill \\\\
@@ -1003,7 +1003,7 @@ h}%
 		Institution:   & \hrulefill \\\\
 		Verdict:       & \hrulefill\\
 	\end{tabular}
-    
+
 	\vspace*{1cm}
 	\begin{tabular}{@{}p{.7in}p{5in}@{}}
 		Prof.Dr.:      & \hrulefill \\\\
@@ -1043,11 +1043,11 @@ h}%
     { test {\ifnumcomp{\value{count}}{<}{\thenumresumo}} }%
     {
         \stepcounter{count}
-        
+
         \if@openright\cleardoublepage\else\clearpage\fi
         \phantomsection
         \begin{resumo}[\csuse{res-title-\csuse{res-language-\thecount}}]
-           
+
 
             \begin{otherlanguage*}{\csuse{res-language-\thecount}}
             \ifthenelse{\equal{\thecount}{2}}{
@@ -1058,13 +1058,13 @@ h}%
                 \vskip 20pt
                 }{
                 \addcontentsline{toc}{chapter}{Resumo}
-				%\vspace{-0.5cm}                
+				%\vspace{-0.5cm}
                 }
                 %\end{flushleft}
                 \csuse{res-text-\thecount}
-                
+
                 \vspace{\onelineskip}
-                
+
                 \noindent
                 \textbf{\csuse{res-label-keywords-\csuse{res-language-\thecount}}:}
                 \@tempswafalse
@@ -1145,7 +1145,7 @@ h}%
 %===========================================================================
 % Configuração do modelo de capa exigido pelo programa do ICMC
 %===========================================================================
-										
+
 
 % alterando a capa
 \renewcommand{\imprimircapa}{%
@@ -1155,10 +1155,10 @@ h}%
     \includegraphics[scale = 0.15]{brasao_fmrp.png}\\[0.5 cm]	% University Logo
     \textsc{\large University of São Paulo\\Ribeirão Preto Medical School (FMRP)}\\[3.0 cm]	% University Name
 	{\large \itshape DOCTORAL THESIS}
-    
+
     \rule{16.0cm}{1.6pt}\vspace*{-\baselineskip}\vspace*{2pt} \rule{16.0cm}{0.4pt} \\[0.5 cm]
     {\large Development and enhancement of bioinformatic tools to integrate and understand aberrant epigenomic and genomic changes associated with cancer}\\[0.5 cm]
-    {\large \itshape Methods, development and analysis}  
+    {\large \itshape Methods, development and analysis}
      \rule{16.0cm}{0.4pt} \\[-0.5 cm] \rule{16.0cm}{1.6pt}
      \vspace{6.5mm}\\
 	{\large By}\\
@@ -1175,12 +1175,12 @@ h}%
 \vspace*{-13.2mm}
 \makebox[16.2cm][r]{\fbox{\parbox{7.5cm}{
 \makebox[\linewidth][c]{\@icmcSVPG{SERVIÇO DE PÓS-GRADUAÇÃO FMRP-USP}}
-  
+
   {
       \@icmcCarimbo
       \vspace{12pt}
       \hspace{3pt} Data de Depósito:
-      
+
       \vspace{10pt}
       \hspace{3pt} Assinatura: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
       \vspace{3pt}
@@ -1250,8 +1250,8 @@ h}%
 
 
 \makechapterstyle{icmc}{%
-  \renewcommand{\chapterheadstart}{} 
-  
+  \renewcommand{\chapterheadstart}{}
+
     % Secao secundaria (Section) Caixa baixa, Negrito
     \renewcommand*{\cftsectionfont}{\bfseries}
     % Secao terciaria (Subsection) Caixa baixa, Negrito, italico
@@ -1262,56 +1262,56 @@ h}%
     \renewcommand*{\cftparagraphfont}{\normalsize}
 
 
-  % tamanhos de fontes de chapter e part	
+  % tamanhos de fontes de chapter e part
    \ifthenelse{\equal{\ABNTEXisarticle}{true}}{%
      \setlength\beforechapskip{\baselineskip}
      \renewcommand{\chaptitlefont}{\ABNTEXsectionfont\ABNTEXsectionfontsize}
    }{%else
      \setlength{\beforechapskip}{0pt}
      \renewcommand{\ABNTEXchapterfontsize}{\LARGE}
-    
+
     %\renewcommand{\ABNTEXchapterfont}{\sffamily\bfseries}  %alteração da fonte dos capítulos, seções e subseções
     \renewcommand{\chaptitlefont}{\ABNTEXchapterfont\bfseries\ABNTEXchapterfontsize}
    }
-  
+
   \renewcommand{\chapnumfont}{\chaptitlefont}
   \renewcommand{\parttitlefont}{\ABNTEXpartfont\ABNTEXpartfontsize}
   \renewcommand{\partnumfont}{\ABNTEXpartfont\ABNTEXpartfontsize}
   \renewcommand{\partnamefont}{\ABNTEXpartfont\ABNTEXpartfontsize}
-  
+
   % tamanhos de fontes de section, subsection, subsubsection e subsubsubsection
   \setsecheadstyle{\ABNTEXsectionfont\ABNTEXsectionfontsize\bfseries\ABNTEXsectionupperifneeded}
   \setsubsecheadstyle{\ABNTEXsubsectionfont\ABNTEXsubsectionfontsize\bfseries\itshape\ABNTEXsubsectionupperifneeded}
   \setsubsubsecheadstyle{\ABNTEXsubsubsectionfont\ABNTEXsubsubsectionfontsize\itshape\ABNTEXsubsubsectionupperifneeded}
   \setsubsubsubsecheadstyle{\ABNTEXsubsubsubsectionfont\ABNTEXsubsubsubsectionfontsize\ABNTEXsubsubsubsectionupperifneeded}
- 
+
   % impressao do numero do capitulo
   \renewcommand{\chapternamenum}{}
-  
+
   % impressao do nome do capitulo
   \renewcommand{\printchaptername}{%
    %\chaptitlefont
    %\ifthenelse{\boolean{abntex@apendiceousecao}}{\appendixname}{\chaptername}%
   }
-    
+
   % impressao do titulo do capitulo
   \def\printchaptertitle##1{%
-    
+
     \setboolean{ABNTEXupperchapter}{true}
-    
+
     \ifthenelse{\boolean{abntex@innonumchapter}}{
         \vskip 0ex \hrulefill\chaptitlefont\bfseries\ABNTEXchapterupperifneeded{##1}
-        \vskip -0.6ex\hfill\rule{.8\textwidth}{0.5pt} 
+        \vskip -0.6ex\hfill\rule{.8\textwidth}{0.5pt}
         \vskip -2.8ex\hfill\rule{.8\textwidth}{2pt}
         \vskip 1.5ex
-    
+
     }{%
     % else
         {\hrulefill
         {\renewcommand{\arraystretch}{1} %  1 is the default, change whatever you need
         \begin{tabular}{|c|}
             \rowcolor{black}\color{white}\normalsize\ABNTEXchapterfont
-              \ifthenelse{\boolean{abntex@apendiceousecao}}{\MakeTextUppercase{\appendixname}}{\MakeTextUppercase{\chaptername}}  \\ 
+              \ifthenelse{\boolean{abntex@apendiceousecao}}{\MakeTextUppercase{\appendixname}}{\MakeTextUppercase{\chaptername}}  \\
             \vspace{-1.5ex}\\ %coloquei para aumentar o espaço entre o título e o número
             \resizebox{!}{1.1cm}{\ABNTEXchapterfont\thechapter}
             \\[2.5ex]
@@ -1321,16 +1321,16 @@ h}%
         \vskip -0.6ex\hfill\rule{.8\textwidth}{0.5pt} \\
         \vskip -2.8ex\hfill\rule{.8\textwidth}{2pt}\\
         \vskip 1.5ex
-	}    
-        
+	}
+
   }
-       
-  % impressao do numero do capitulo     	
+
+  % impressao do numero do capitulo
   \renewcommand{\printchapternum}{%
     \setboolean{abntex@innonumchapter}{false}
   }
   \renewcommand{\afterchapternum}{}
-  
+
   % impressao do capitulo nao numerado
   \renewcommand\printchapternonum{%
      \setboolean{abntex@innonumchapter}{true}%
@@ -1350,12 +1350,12 @@ h}%
 \else
     \ifluatex
         \defaultfontfeatures{Mapping=tex-text}
-        \setmainfont[Ligatures=TeX]{Latin Modern Roman} 
+        \setmainfont[Ligatures=TeX]{Latin Modern Roman}
     \fi
 \fi
 
 \pretextual % remove numeros das paginas
-    
+
     % Capa
     \imprimircapa
 
@@ -1364,7 +1364,7 @@ h}%
         \imprimirfolhaderosto{}
     }{
         % (o * indica que haverá a ficha bibliográfica)
-        \imprimirfolhaderosto*{} 
+        \imprimirfolhaderosto*{}
 		\inserefichacatalografica
        	\inserefolhadeaprovacao
 		\newpage
@@ -1382,19 +1382,19 @@ h}%
     % Insere as Listas que forem setadas no documento
     \inserelistadefiguras
 	\addcontentsline{toc}{chapter}{List of Figures}
-    
-    \inserelistadequadros    
+
+    \inserelistadequadros
 	\addcontentsline{toc}{chapter}{List of Charts}
-    
+
     \inserelistadealgoritmos
 	\addcontentsline{toc}{chapter}{List of Algorithms}
-    
+
     \inserelistadecodigos
 	\addcontentsline{toc}{chapter}{List of Source codes}
-    
+
     \inserelistadetabelas
 	\addcontentsline{toc}{chapter}{List of Tables}
-    
+
     \inserelistadesiglas
     \addcontentsline{toc}{chapter}{List of Abbreviation and acronyms}
 
@@ -1404,19 +1404,19 @@ h}%
 	\pdfbookmark[0]{\contentsname}{toc}
     \tableofcontents*
     \cleardoublepage
-    
+
     % Configuração dos caracteres especiais utilizados no pacote <listings>
     \lstset{%
         frame=top,
         frame=bottom,
-        breakatwhitespace=false,         
-        breaklines=true,                 
-        keepspaces=true,                 
-        numbers=left,                    
-        numbersep=5pt,                  
-        showspaces=false,                
+        breakatwhitespace=false,
+        breaklines=true,
+        keepspaces=true,
+        numbers=left,
+        numbersep=5pt,
+        showspaces=false,
         showstringspaces=false,
-        showtabs=false,                  
+        showtabs=false,
         tabsize=2,
         inputencoding=utf8,
         extendedchars=true,
@@ -1453,13 +1453,13 @@ h}%
         {Ü}{{\"U}}1
         {ü}{{\"u}}1
     }
-    
+
     % Numeração contínua do elementos do presentes no documento
     \counterwithout{quadro}{chapter}
     \counterwithout{lstlisting}{chapter}
-    
+
     % Retira espaço extra obsoleto entre as frases.
-    \frenchspacing 
+    \frenchspacing
 }
 
 % Finaliza comandos com @ no nome

@@ -1,0 +1,10 @@
+
+mae <- createMAE(exp = "DATA/BRCA/BRCA_RNA_hg38.rda", 
+                 met = "DATA/BRCA/BRCA_meth_hg38.rda", 
+                 met.platform = "450K",
+                 genome = "hg38",
+                 linearize.exp = TRUE,
+                 filter.probes = distal.probes,
+                 met.na.cut = 0.2,
+                 save = TRUE,
+                 TCGA = TRUE) 
