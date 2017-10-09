@@ -12,7 +12,7 @@ downloaded using our R/Bioconductor TCGAbiolinks package described in the previo
 Table \ref{gcimp.samples} summarizes the number of samples in each group that have both \sigla{DNA}{deoxyribonucleic acid}
 methylation data for the Illumina HumanMethylation450 platform (HM450) and gene expression data
 (RNA-Seq) and table \ref{gcip.elmer.arg} summarizes the main values for the ELMER arguments.
-This analysis was performed with data aligned against the geneome of reference hg38 and
+This analysis was performed with data aligned against the genome of reference hg38 and
 using ELMER "supervised" mode, which ensures that in all the steps the
 comparisons are made between each group using all their samples.
 
@@ -54,11 +54,48 @@ Motif enrichment            & lower OR                           & 1.1    \\ \bo
 \end{tabular}
 \end{table}
 
+The DMCs (differently methylated CpGs) analysis, which uses a one-tailed t.test to find
+probes with higher mean level in GCIMP-high group compared to the GCIMP-low one.
+The result of this analysis is summarized in Figure \ref{fig:gcimpvolcano}.
+The volcano plot shows the difference of DNA methylation ($\Delta\overline{\beta}$)
+versus significance $-log_{10}(\textrm{FDR corrected P-values})$. Using as defalt cutt-offs
+ $\Delta\overline{\beta}\geq0.3$ and $-log_{10}(\textrm{FDR corrected P-values})\leq 0.01$,
+$7540$ probes were identified to be differently methylated.
+
+\begin{center}
+\begin{figure}[h!]
+\includegraphics[width=16cm]{images/gcimp_volcano.png}
+\caption[G-CIMP analysis: Volcano plot]{G-CIMP analysis: DNA methylation  Volcano plot). Difference of DNA methylation ($\min\Delta\overline{\beta}$) versus significance $-log_{10}(FDR corrected P-values)$.}
+\end{figure}
+\label{fig:gcimpvolcano}
+\end{center}
+
+Those differently methylated were then paired with their 10 upstream and 10 downstream genes
+and an anti-correlation test which searches for genes highly expressed when the DNA methylation levels
+decreases was performed.
+Using as cutt-offs
+$-log_{10}(\textrm{raw P-values})\leq 0.001$ and $-log_{10}(\textrm{Permutated corrected P-values})\leq 0.001$
+for a  $10000$ permutation correction approach,
+886 pairs of gene and probes were identified to be anti-correlated.
+The result of this analysis is summarized in Figure \ref{fig:gcimpheatmap}.
+The heatmap is composed of other three heatmaps, one heatmap for the DNA methylation levels,
+one heatmap for the gene expression levels and one with the distance between
+the gene and the probe.
+
+\begin{center}
+\begin{figure}[h!]
+\includegraphics[width=16cm]{images/gcimp_heatmap.png}
+\caption[G-CIMP analysis: Heatmap of paired probes and distal genes]{G-CIMP analysis:
+Heatmap of paired probes and distal genes.}
+\end{figure}
+\label{fig:gcimpheatmap}
+\end{center}
 
 \begin{table}[h!]
 \centering
 \caption[G-CIMP analysis: Summary results]{G-CIMP-high vs G-CIMP-low analysis:
-number of distal probes, significant differently methylated probes, significant anti-correlated paired gene-probes and enriched motifs}
+number of distal probes, significant differently methylated probes,
+significant anti-correlated paired gene-probes and enriched motifs}
 \label{gcimp.summary.results}
 \begin{tabular}{@{}ll@{}}
 \toprule
@@ -75,7 +112,7 @@ which shows the Odds Ratio (x axis) for the enriched motifs, and in Table  \ref{
 which shows the candidate regulatory TFs whose expression anti-correlated
 with the DNA methylation level on the probes of each enriched motifs.
  From the most anti-correlated ones, ELMER uses the TFClass
- classification (\cite{doi:10.1093/nar/gku1064}) to identifies
+ classification \cite{doi:10.1093/nar/gku1064} to identifies
  which TFs are  known to bind in those motifs.
  This classification has two levels, family and subfamily,
   which groups motifs with a similar signature.
