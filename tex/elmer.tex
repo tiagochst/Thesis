@@ -579,20 +579,44 @@ The result is shown in Figure \ref{fig:chiapet}. Of the 2124 putative pairs iden
 \newpage
 \subsection{Use Case 2: BRCA molecular subtypes analysis (supervised approach)}
 
-Several studies identified distinct molecular Breast cancer classes and  divided them as the luminal-like (Luminal A and Luminal B) subclasses, which are Estrogen receptor-positive (ER-positive), and the basal-like, ErbB2-positive and normal-like subclasses, which are the ER-negative groups \cite{perou2000molecular,yersal2014biological,sorlie2001gene}.  To performed \textit{ELMER} analysis comparing known molecular subtypes (Her2, Luminal A, Luminal B and Basal-like) a TCGA BRCA dataset classification retrieved from \citeonline{ciriello2015comprehensive}.
+Several studies identified distinct molecular Breast cancer classes and
+divided them as the luminal-like (Luminal A and Luminal B) subclasses,
+which are Estrogen receptor-positive (ER-positive), and the basal-like,
+ErbB2-positive and normal-like subclasses, which are the ER-negative
+groups \cite{perou2000molecular,yersal2014biological,sorlie2001gene}.
+To performed \textit{ELMER} analysis comparing known molecular subtypes
+(Her2, Luminal A, Luminal B and Basal-like) a TCGA BRCA dataset classification
+retrieved from \citeonline{ciriello2015comprehensive}.
 
 
-The main arguments changed were the percentage of samples used to identify the differentially methylated probes in function \textit{get.diff.meth} which was set to 100\% (use all samples from each group) and the mode in function \textit{get.pair} and in function \textit{get.TFs} which was set to "supervised". In this mode instead of defining the U (unmethylated) group as the samples with lowest quintile of DNA methylation levels and the M (methylated) group as the highest quintile, the U and M group will be defined as all samples of one known molecular subtype (Figure \ref{fig:mode}). For example, if the first step identified probes hypomethylated in Luminal A group compared to Basa-like group, in the next steps the U group will be the Luminal A samples and the M group will be the Basal-like samples.
+The main arguments changed were the percentage of samples used to identify the
+differentially methylated probes in function \textit{get.diff.meth} which was
+set to 100\% (use all samples from each group) and the mode in function \textit{get.pair}
+and in function \textit{get.TFs} which was set to "supervised". In this mode instead
+of defining the U (unmethylated) group as the samples with lowest quintile of DNA
+methylation levels and the M (methylated) group as the highest quintile, the $U$ and $M$ group
+ will be defined as all samples of one known molecular subtype (Figure \ref{fig:mode}).
+ For example, if the first step identified probes hypomethylated in Luminal A group compared to Basa-like group,
+in the next steps the U group will be the Luminal A samples and the M group will be the Basal-like samples.
 The results and code of this supervised analysis can be found in the supplemental files.
 
-From the  Luminal A group vs Basal-like group analysis, it can be highlighted that the pairs of high expressed genes and hypomethylated probes in the Basal groups are enriched for the SOX10 TF signature. For this signature, the regulatory TF candidate identified is the SOX11 (Sry-related HMG box-11) TF; this correlation between basal-like and SOX11 was recently described by \citeonline{shepherd2016sox11}. Also, the TF analysis  reported the forkhead box C1 (FOXC1) transcription factor as the TF with the highest anti-correlation between TF expression and DNA methylation levels. Even though, this TF is not in the family of any enriched motifs this correlation between the FOXC1 TF and Basal-like breast cancers (BLBCs) was reported by \citeonline{zuo2016role} and \citeonline{chung2017identification}.
+From the  Luminal A group vs Basal-like group analysis, it can be highlighted that the pairs of
+high expressed genes and hypomethylated probes in the Basal groups are enriched for the SOX10 TF signature.
+For this signature, the regulatory TF candidate identified is the SOX11 (Sry-related HMG box-11) TF; this
+correlation between basal-like and SOX11 was recently described by \citeonline{shepherd2016sox11}.
+Also, the TF analysis  reported the forkhead box C1 (FOXC1) transcription factor as the TF with the
+highest anti-correlation between TF expression and DNA methylation levels. Even though,
+this TF is not in the family of any enriched motifs this correlation between the FOXC1 TF and Basal-like
+breast cancers (BLBCs) was reported by \citeonline{zuo2016role} and \citeonline{chung2017identification}.
 
 On the other hand, when analyzing in the other direction in terms of methylation level, for  those pairs of high expressed genes and hypomethylated probes in the Luminal A group, the TF analysis identified GATA3, FOXA1, RARA, MYB as candidate regulatory TF. GATA3 and FOXA1 are known characterize this  molecular subtype  as described by \citeonline{yersal2014biological} while RARA was associated with the Luminal phenotype by \citeonline{centritto2015cellular}, MYB
 is shown to be required for the proliferation of ER-positive breast cancer cells \cite{mitra2016cdk9}.
 
 \section*{Data availability} % Optional - only if novel data or analyses are included
-The TCGA data was downloaded from the NCI Genomic Data Commons (GDC) data portal \cite{grossman2016toward} using TCGAbiolinks R/Bioconductor package \cite{colaprico2015tcgabiolinks,10.12688/f1000research.8923.2}.
-Gene annotations were retrieved from ENSEMBL \cite{yates2015ensembl} database via biomaRt R/Bioconductor package \cite{durinck2005biomart,durinck2009mapping}.
+The TCGA data was downloaded from the NCI Genomic Data Commons (GDC) data portal \cite{grossman2016toward}
+using TCGAbiolinks R/Bioconductor package \cite{colaprico2015tcgabiolinks,10.12688/f1000research.8923.2}.
+Gene annotations were retrieved from ENSEMBL \cite{yates2015ensembl} database via biomaRt R/Bioconductor
+package \cite{durinck2005biomart,durinck2009mapping}.
 DNA methylation microarrays metadata were retrieved from \url{http://zwdzwd.github.io/InfiniumAnnotation} \cite{doi:10.1093/nar/gkw967}.
 Transcription factor (TF) binding models can be downloaded at HOCOMOCO database (\url{http://hocomoco.autosome.ru/}) \cite{kulakovskiy2016hocomoco}.
 The list of human TF can be accessed at \url{http://www.uniprot.org/}  \cite{apweiler2004uniprot}.
