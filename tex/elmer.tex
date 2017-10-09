@@ -361,7 +361,11 @@ and among those 5 are metastatic samples, 778 are Primary Solid Tumor and
 
 \subsection*{Identification of distal probes with significant differential DNA methylation (i.e. DMCs) in tumor vs. normal samples}
 
-The function \textit{get.diff.meth} is  used to identify regions differently methylation between two groups.  Listing \ref{lst:diffMeth} shows how to use it to select hypomethylated probes in "Primary solid tumor" samples when compared to "solid tissue normal" samples  ($FDR \leq 0.01$,$\Delta mean \geq 0.3$), using those samples in the lower quintile ($percentage = 0.2$) of DNA methylation levels for each probe. Its main arguments are described below:
+The function \textit{get.diff.meth} is  used to identify regions differently methylation between two groups.
+Listing \ref{lst:diffMeth} shows how to use it to select hypomethylated probes in "Primary solid tumor" samples
+when compared to "solid tissue normal" samples  ($FDR \leq 0.01$, $\Delta\overline{\beta}\geq 0.3$), using those samples
+in the lower quintile ($minSubgroupFrac = 0.2$) of DNA methylation levels for each probe.
+Its main arguments are described below:
 
 
 \begin{itemize}
@@ -385,7 +389,7 @@ If the \textit{save} argument is set to TRUE, in the \textit{dir.out} folder two
 \begin{table}[h!]
 \csvautobooktabular[respect underscore,
                     filter expr={test{\ifnumless{\thecsvinputline}{5}}}]{tables/getMethdiff.hypo.probes.significant.csv}
-\caption {First three rows of  getMethdiff.hypo.probes.significant.csv file. }
+\caption[Identification of distal probes with significant differential DNA methylation (i.e. DMCs)]{Identification of distal probes with significant differential DNA methylation (i.e. DMCs): First three rows of  getMethdiff.hypo.probes.significant.csv file. }
 \label{tab:diff.meth}
 \end{table}
 
@@ -430,7 +434,9 @@ columns show the significant pair and the column $P_e$ shows the adjusted p-valu
 \csvautobooktabular[respect underscore,
 					before reading=\sisetup{round-mode=places,round-precision=2},
                     filter expr={test{\ifnumless{\thecsvinputline}{5}}}]{tables/getPair.hypo.pairs.significant.csv}
-\caption {First three rows of  getPair.hypo.pairs.significant.csv file.}
+\caption [Identification of putative target gene(s) for differentially methylated distal probes]{
+Identification of putative target gene(s) for differentially methylated distal probes: First three rows of  getPair.hypo.pairs.significant.csv file.
+}
 \label{tab:get.pair}
 \end{table}
 
@@ -535,7 +541,7 @@ The result of this function is shown in table \ref{tab:get.tf} and in figure \re
 \csvautobooktabular[respect underscore,
 					before reading=\sisetup{round-mode=places,round-precision=2},
                     filter expr={test{\ifnumless{\thecsvinputline}{20}}}]{tables/getTF.hypo.significant.TFs.with.motif.summary.csv}
-\caption {First twenty rows of  the \textit{getTF.hypo.significant.TFs.with.motif.summary.csv} file created by \textit{get.Tfs} function (suffix "\_HUMAN.H11MO" was removed from motifs names). First column shows the enriched motif, "top\_5percent\_TFs" shows the top 5\% TFs ranked (the same as all TFs to the left of the dashed line in figure \ref{fig:tfplot}), "potential.TFs.family" are the TF from the "top\_5percent"  that belongs to the same family as the TF of the motif, "top.potential.TFs.family" is the highest ranked TF belonging to the same family as the TF of the motif (same as the first TF from "potential.TFs.family" column). The columns "potential.TFs.subfamily" and "top.potential.TFs.subfamily" are the same as "potential.TFs.family" and "top.potential.TFs.family"  but considering the subfamily classification instead. For example, the motif ANDR has two TFs in the top 5\% that belongs to the same TF family (Steroid hormone receptors): ESR1 and AR, but if considering subfamilies only AR in considered.
+\caption[Identification of master regulator Transcription Factors (TF) for each enriched motif] {First twenty rows of  the \textit{getTF.hypo.significant.TFs.with.motif.summary.csv} file created by \textit{get.Tfs} function (suffix "\_HUMAN.H11MO" was removed from motifs names). First column shows the enriched motif, "top\_5percent\_TFs" shows the top 5\% TFs ranked (the same as all TFs to the left of the dashed line in figure \ref{fig:tfplot}), "potential.TFs.family" are the TF from the "top\_5percent"  that belongs to the same family as the TF of the motif, "top.potential.TFs.family" is the highest ranked TF belonging to the same family as the TF of the motif (same as the first TF from "potential.TFs.family" column). The columns "potential.TFs.subfamily" and "top.potential.TFs.subfamily" are the same as "potential.TFs.family" and "top.potential.TFs.family"  but considering the subfamily classification instead. For example, the motif ANDR has two TFs in the top 5\% that belongs to the same TF family (Steroid hormone receptors): ESR1 and AR, but if considering subfamilies only AR in considered.
 }
 \label{tab:get.tf}
 \end{table}
