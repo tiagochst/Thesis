@@ -9,5 +9,130 @@ This chapter introduces the fundamental concepts related to the developments pre
 
 
 \section{(Epi)Genomic data analysis}
+
 \subsection{Statistical analysis}
+
+\subsubsection{Hypothesis Testing}
+
+Human genetic studies aims to identify if a phenotype is related to the genotypes
+at various loci, that is, if genetic variations have an influence on risk of
+disease or other health-related phenotypes.
+Statistical analysis is a crucial to present the findings in an
+interpretable and objective manner \cite{sham2014statistical}.
+
+The most popular hypothesis testing approach used to test if
+genotypes and phenotypes are related  is the frequentist significance testing approach.
+This is a classical approach that involves setting up two competing hypothesis: a
+null hypothesis ($H_0$) and an alternative hypothesis ($H_1$).
+
+Computing the statistical significance can be done using a one-tailed or a two-tailed test.
+A two-sided test is appropriate to evaluate both direction of the test, for example,
+is the estimated value smaller or higher than the reference, which acctualy test if the
+ estimated value is different from the reference.
+A one-sided test is  is appropriate to evaluate only one direction of the test,
+for example, is the estimated value smaller than the reference.
+An example in genetic studies for a two-sided test would be $H_0$
+hypothesis that genotypes has no effect on the phenotypes
+while the $H_1$ hypothesis is that there is a effect.
+Table \ref{hypothesis-tests} shows other examples.
+
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}[h!]
+\centering
+\caption[Hypothesis tests]{Example of three hypothesis tests about the population mean $\mu$. In genetics it could be the mean level of expression of a gene.}
+\label{hypothesis-tests}
+\begin{tabular}{@{}lll@{}}
+\toprule
+\multicolumn{1}{c}{\textbf{Type}} & \multicolumn{1}{c}{\textbf{Null}} & \multicolumn{1}{c}{\textbf{Alternative}} \\ \midrule
+Right-tailed & $H_{0}:\mu = 0$ & $H_{1}: \mu >  0 $  \\
+Left-tailed & $H_{0}:\mu = 0$ & $H_{1}: \mu <  0 $  \\
+Two-tailed & $H_{0}:\mu = 0$ & $H_{1}: \mu \neq 0 $ \\ \bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Making a decision: P-value approach}
+
+The decision to reject or accept $H_0$ is made based on the calculation of a test statistic (T) from the observed data.
+As the value of T depends on particular individuals in the population, repeating the study
+using  different random samples from the population would provide of many different values for T.
+These set of T can be summarized as a probability distribution.
+
+% Errors in hypothesis testing
+Even though, the decision made to reject or accept $H_0$ just state that we had
+enough evidence to behave one way or the other.
+The rejection of the null hypothesis does not prove that the alternative hypothesis is true as
+the acceptance the null hypothesis does not prove that the null hypothesis is true.
+It might happen that null hypothesis was reject when it was true, or it was not
+rejected when it was false. The first error in statistics is called a Type I error ("false positive"),
+ while the second a Type II error ("false negative").
+
+It is denotated  rate of the type I error  or significance level $\alpha$ the probability of having a false positive.
+To denotate the acceptable level of false positives. Normally, the significance level is set to 5\%,
+implying that it is acceptable to have a 5\% probability of incorrectly rejecting the null hypothesis.
+With the same logic, the rate of the type II error is denoted by $\beta$.
+
+To make a decision wheter to reject or accept the null hypothesis, the concept of
+probability value was introduced.
+\citeonline{wasserstein2016asa} defined a p-value  ($\textrm{p-value}\in [0,1]$) as the probability under a specified statistical model, constructed under a set of assumptions (normally “null hypothesis"), that a statistical summary of the data
+(e.g., the sample mean difference between two compared groups) would be equal to or more extreme than its observed value \cite{wasserstein2016asa}. That means, the smaller the p-value, the greater the statistical incompatibility of the data with the null hypothesis and greater the p-value more compatibible is the data with the null hypothesis.
+In summary, if P-value is small (e.g.$\textrm{P-value} \leq \alpha$) then the null hypothesis is rejected,
+otherwise it is not rejected.
+
+It is important to highlight that a p-value does not measure the size of an effect or the importance of a result.
+It might happen that a very small effect produces smaller p-values if the
+sample size is big or measurement precision is high.
+On the other hand, a large effect might produce higher p-values if
+the sample size is small or measurements are imprecise.
+
+
+%The P-value approach consists in the following steps to conducting any hypothesis test:
+%\begin{enumerate}
+%  \item Set $H_0$ (null hypotheses) and $H_1$ (alternative hypotheses)
+%  \item Using the sample data and assuming the null hypothesis is true, calculate the value of the test statistic.
+%  Again, to conduct the hypothesis test for the population mean $\mu$, we use the t-statistic $t^{\ast}= \frac{\bar{x}-\mu}{s/\sqrt{n}}$ which follows a t-distribution with n - 1 degrees of freedom.
+%  \item Using the known distribution of the test statistic, calculate the P-value: "If the null hypothesis is true, what is the probability that we'd observe a more extreme test statistic in the direction of the alternative hypothesis than we did?"
+%  \item Set the significance level, $\alpha$, the probability of making a Type I
+%  error to be small - 0.01, 0.05, or 0.10. Compare the P-value to  $\alpha$.
+%  If the P-value is less than (or equal to)  $\alpha$, reject the null hypothesis
+%  in favor of the alternative hypothesis. If the P-value is greater than  $\alpha$,
+%  do not reject the null hypothesis.
+%\end{enumerate}
+
+
+%For a one-sided test (for example, a test for effect size greater than zero), the definition of the P value is slightly more complicated: P* = P/2 if the observed effect
+%is in the pre-specified direction, or P* = (1 – P)/2 otherwise, where P is defined as above. In the Neyman–Pearson hypothesis testing framework, if the P value is smaller than a preset threshold α (for example, 5 × 10−8 for genome-wide association studies), then H is rejected and the result is considered to be significant.
+
+%By setting up a hypothesis test in this manner, the probability of making the error of
+% rejecting H0 when it is true (that is, a type 1 error) is ensured to be α. However, another possible type of error is the failure to reject H0 when it is false (that is, type 2 error, the probability of which is denoted as β). Statistical power is defined as 1 – β (that is,
+%the probability of correctly rejecting H0 when a true association is present).
+
+
+\subsubsection{Correcting for multiple testing}
+
+When performing  a set of statistical inferences simultaneously more likely erroneous inferences are to occur.
+For example, if 1,000,000 tests are carried
+out, then 5\% of them (that is, 50,000 tests) are expected to
+have $P-value < 0.05$ by chance when $H_0$ is in fact true for all the tests.
+
+To handle this multiple statistical testing problem,
+some techniques  to re-calculating probabilities obtained from a statistical test which was repeated multiple times
+have been developed to prevent the inflation of false positive rates.
+
+
+
+Some traditional Bonferroni correction sets the critical sig-
+nificance threshold as 0.05 divided by the number of
+tests
+As many SNPs are being tested, keeping
+the significance threshold at the conventional value of
+0.05 would lead to a large number of false-positive sig-
+nificant results.
+
+
+
+%The Bonferroni method of correcting for multiple testing simply reduces the critical significance level according to the number of independent tests carried out in the study. For M independent tests, the critical significance level can be set at 0.05/M. The justification for this method is that this controls the family-wise error rate (FWER) — the probability of having at least one false-positive result when the null hypothesis (H0) is true for all M tests — at 0.05. As the P values are each distributed as uniform (0, 1) under H0, the FWER (α*) is related to the test-wise error rate (α) by the formula α* = 1 − (1 − α)M (Ref. 89). For example, if α* is set to be 0.05, then solving 1 − (1 − α)M = 0.05 gives α = 1 − (1 − 0.05)1/M. Taking the approximation that (1 − 0.05)1/M ≈ 1 − 0.05/M gives α ≈ 0.05/M, which is the critical P value, adjusted for M independent tests, to control the FWER at 0.05. Instead of making the critical P value (α) more stringent, another way of implementing the Bonferroni correction is to inflate all the calculated P values by a factor of M before considering against the conventional critical P value (for example, 0.05).
+
+The permutation procedure is a robust but computationally intensive alternative to the Bonferroni correction in the face of dependent tests. To calculate permutation-based P values, the case–control (or phenotype) labels are randomly shuffled (which assures that $H_0$ holds, as there can be no relationship between phenotype and genotype), and all M tests are recalculated on the reshuffled data set, with the smallest P value of these M tests being recorded. The procedure is repeated for many times to construct an empirical frequency distribution of the smallest P values. The P value calculated from the real data is then compared to this distribution to determine an empirical adjusted P value. If n permutations were carried out and the P value from the actual data set is smaller than r of the n smallest P values from the permuted data sets, then an empirical adjusted P value ($P_{*}$) is given by $$P_{*} = \frac{r + 1}{n + 1}$$ (Refs 25,26,90).
+
 \subsection{Machine Learning}
