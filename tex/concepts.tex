@@ -23,14 +23,14 @@ interpretable and objective manner \cite{sham2014statistical}.
 The most popular hypothesis testing approach used to test if
 genotypes and phenotypes are related  is the frequentist significance testing approach.
 This is a classical approach that involves setting up two competing hypothesis: a
-null hypothesis ($H_0$) and an alternative hypothesis ($H_1$).
+null hypothesis ($H_0$\simbolo{H_0}{Null hypothesis}) and an alternative hypothesis ($H_1$\simbolo{H_1}{Alternative hypothesis}).
 
 Computing the statistical significance can be done using a one-tailed or a two-tailed test.
 A two-sided test is appropriate to evaluate both direction of the test, for example,
 is the estimated value smaller or higher than the reference, which acctualy test if the
  estimated value is different from the reference.
 A one-sided test is  is appropriate to evaluate only one direction of the test,
-for example, is the estimated value smaller than the reference.
+for example, is the estimated v alue smaller than the reference.
 An example in genetic studies for a two-sided test would be $H_0$
 hypothesis that genotypes has no effect on the phenotypes
 while the $H_1$ hypothesis is that there is a effect.
@@ -68,8 +68,11 @@ rejected when it was false. The first error in statistics is called a Type I err
  while the second is called a Type II error ("false negative").
 Table \ref{type_errors} shows the relations between truth/falseness of the null hypothesis and outcomes of the test.
 
-It is denotated  rate of the type I error  or significance level $\alpha$ the probability of having a false positive.
-Normally, the significance level is set to 5\%, implying that it is acceptable to have a 5\% probability of incorrectly rejecting the null hypothesis. With the same logic, the rate of the type II error is denoted by $\beta$.
+It is denotated  rate of the type I error  or significance level
+$\alpha$\simbolo{\alpha}{Significance level} the probability of having a false positive.
+Normally, the significance level is set to 5\%, implying that it is acceptable to have a 5\%
+probability of incorrectly rejecting the null hypothesis. With the same logic, the rate of the
+type II error is denoted by $\beta$\simbolo{\beta}{rate of the type II error}.
 
 % Please add the following required packages to your document preamble:
 \begin{table}[]
@@ -176,7 +179,43 @@ a high number of permutations is required in order to produce reliable permutate
  \cite{davison1997bootstrap,north2002note,north2003note,sham2014statistical}.
 
 
+\subsubsection{Nonparametric and parametric tests}
 
+Statistical procedures can be classified into two groups:  Parametric and nonparametric.
+Parametric statistical procedures rely on assumptions about the shape of the distribution
+(i.e., assume a normal distribution) in the underlying population and about the form or
+parameters (i.e., means and standard deviations) of the assumed distribution.
+While nonparametric statistical procedures doest not rely or rely on only few assumptions about the shape or
+parameters of the population distribution from which the sample was drawn.
+Some of these producedures are summarized in Table \ref{Parametric-nonparametric}.
+
+The t-test, a parametric test, is the most widely used statistical test for comparing the means of two independent groups.
+It assumes that the data are distributed Normally, that samples from different groups are independent and that the variances between the groups are equal. The most commonly used nonparametric test in this situation is the \sigla{WRST}{Wilcoxon Rank Sum Test} and the closely related \sigla{MWU}{Mann-Whitney U-test}. The WRST assumes that observations from the different groups are random samples (i.e. independent and identically distributed) from their respective populations and are mutually independent and that the observations are ordinal or continuous measurements.
+When there are more than two groups being compared,
+the nonparametric test used is \sigla{KW}{Kruskal-Wallis test}, a generalization of the WRST. KW is the nonparametric equivalent to \sigla{ANOVA}{Analysis of variance}.
+
+
+\bgroup
+\def\arraystretch{2.0}%  1 is the default, change whatever you need
+
+\begin{table}[h!]
+\footnotesize
+\centering
+\caption{Parametric and non parametric procedures.}
+\label{Parametric-nonparametric}
+\begin{tabular}{p{3.5cm}p{4cm}p{3cm}p{3cm}}
+\toprule
+\textbf{Analysis Type} & \textbf{Example} & \textbf{Parametric} & \textbf{Nonparametric} \\ \midrule
+Compare means between two distinct/independent groups & Is the mean TP53 gene expression for control group different from the mean for treatment group? & Two-sample t-test & Wilcoxon ranksum test \\
+Compare two quantitative measurements taken from the same individual & Was there a change in gene expression after the treatment? & Paired t-test & Wilcoxon signedrank test \\
+Compare means between three or more distinct/independent groups & For a given three groups (e.g., placebo, drug \#1, drug \#2), is the TP53 gene expression different among the three groups? & Analysis of variance (ANOVA) & Kruskal-Wallis test \\
+Estimate the degree of association between two quantitative variables & Is age related to the TP53 gene expression? & Pearson coefficient of correlation & Spearman’s rank correlation \\ \bottomrule
+\end{tabular}
+\end{table}
+\egroup
+
+% https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2743502/
+% http://blog.minitab.com/blog/adventures-in-statistics-2/choosing-between-a-nonparametric-test-and-a-parametric-test
 
 
 \subsection{Machine Learning}
