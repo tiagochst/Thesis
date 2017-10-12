@@ -65,12 +65,24 @@ The rejection of the null hypothesis does not prove that the alternative hypothe
 the acceptance the null hypothesis does not prove that the null hypothesis is true.
 It might happen that null hypothesis was reject when it was true, or it was not
 rejected when it was false. The first error in statistics is called a Type I error ("false positive"),
- while the second a Type II error ("false negative").
+ while the second is called a Type II error ("false negative").
+Table \ref{type_errors} shows the relations between truth/falseness of the null hypothesis and outcomes of the test.
 
 It is denotated  rate of the type I error  or significance level $\alpha$ the probability of having a false positive.
-To denotate the acceptable level of false positives. Normally, the significance level is set to 5\%,
-implying that it is acceptable to have a 5\% probability of incorrectly rejecting the null hypothesis.
-With the same logic, the rate of the type II error is denoted by $\beta$.
+Normally, the significance level is set to 5\%, implying that it is acceptable to have a 5\% probability of incorrectly rejecting the null hypothesis. With the same logic, the rate of the type II error is denoted by $\beta$.
+
+% Please add the following required packages to your document preamble:
+\begin{table}[]
+  \centering
+  \caption{Type I and II Errors. $\alpha = P(\textrm{Type I Error)}$, $\beta = P(\textrm{Type II Error})$}
+  \label{type_errors}
+  \begin{tabular}{ccc}
+    \toprule
+    \textbf{Decision} & \textbf{$H_0$ is True} & \textbf{$H_0$ is False} \\ \midrule
+  Do Not Reject $H_0$ & Correct Decision  & Incorrect Decision (1 - $\beta$)\\
+  Rejct $H_0$ & Incorrect Decision (1 -  $\alpha$)& Correct Decision \\ \bottomrule
+  \end{tabular}
+\end{table}
 
 To make a decision wheter to reject or accept the null hypothesis, the concept of
 probability value was introduced.
@@ -111,28 +123,60 @@ the sample size is small or measurements are imprecise.
 \subsubsection{Correcting for multiple testing}
 
 When performing  a set of statistical inferences simultaneously more likely erroneous inferences are to occur.
-For example, if 1,000,000 tests are carried
-out, then 5\% of them (that is, 50,000 tests) are expected to
+For example, if 100 tests are carried
+out, then 5\% of them (that is 5 tests) are expected to
 have $P-value < 0.05$ by chance when $H_0$ is in fact true for all the tests.
+Compared to a single test (equations \ref{eq_error} and \ref{eq_error2}), the probability of having a type 1 error multiple test is given by the equations \ref{eq_multiple_error} and \ref{eq_multiple_errorb} \cite{vsidak1967rectangular}.
+
+\begin{subequations}
+
+\begin{align}
+  P(\textrm{Making an error)} = \alpha \label{eq_error}\\
+  P(\textrm{Not making an error)} = 1 - \alpha \label{eq_error2}\\
+  P(\textrm{Not making an error in m tests)} = (1 - \alpha)^m  \label{eq_multiple_error}\\
+  P(\textrm{Making at least 1 error in m tests}) = 1 - (1 - \alpha)^m  \label{eq_multiple_errorb}
+\end{align}
+\end{subequations}
 
 To handle this multiple statistical testing problem,
 some techniques  to re-calculating probabilities obtained from a statistical test which was repeated multiple times
 have been developed to prevent the inflation of false positive rates.
 
 
+Among the different approaches to control type I errors we have
+\sigla{FWER}{Family-wise error rate} which controls the probability of at least one type I error,
+and \sigla{FDR}{False discovery rate}
+which controls the expected proportion of Type I errors
+among the rejected hypotheses. Compapred to FDR, controlling FWER is extremely conservative
+approach as the power to detect $H_1$ gets very small.
 
-Some traditional Bonferroni correction sets the critical sig-
-nificance threshold as 0.05 divided by the number of
-tests
-As many SNPs are being tested, keeping
-the significance threshold at the conventional value of
-0.05 would lead to a large number of false-positive sig-
-nificant results.
+Among the different adjustment methods to control FWER includes the Bonferroni correction
+  in which the p-values are multiplied by the number of comparisons ($M * P_i < \alpha$) and the Holm correction, $P-adjusted_i = P_i * (M + 1 - i)$, where $i \in \{1,2,\dots,n\}$ and smaller the p-value is smaller will the index $i$ be \cite{aickin1996adjusting}.
+ The Benjamini-Hochberg (BH) method to control FDR procedure will identify the largest $k$,
+ such that $P_k \leq \frac{k}{m}\alpha$, all null hypotheses $H_i$ for $i \in \{1,\ldots,k\}$ are rejected.
+
+
+These methods makes the assumption that
+the tests are independent tests, which often is not valid for genomics data.
+For dependent tests, permutation methods are often used to calculate
+ p-values.  This approach recalculate a p-value comparing the P-value calculated
+ from the real data test with random ones,
+ which are performed by randomly shuffling the case–control (or phenotype)
+ labels. All $M$ tests are recalculated on the reshuffled data set, with the smallest P value of these M tests being recorded. The procedure is repeated for many times to construct an empirical frequency distribution of the smallest P values.
+This  empirical adjusted P value ($P_{*}$) is given by: $$P_{*} = \frac{r + 1}{n + 1}$$ where $n$ are the number of
+permutation carried out, and $r$ is the number of permutated p-values smaller than P-value calculated
+from the real data.
+
+For example, considering $\textrm{P-value = 0.1}$ and the
+permutated p-values $$P_{permu} =\{0.001,0.01,0.02,0.03,0.05,0.2,0.5,0.6,1\}$$ the first 5 permutated p-values
+are smaller than the original p-value, which would give us $r = 5$, resulting in:
+$$P_{*} = \frac{r + 1}{n + 1} =  \frac{5 + 1}{9 + 1} = 0.6 $$
+It is important to highlight that
+a high number of permutations is required in order to produce reliable permutated p-value adjusted.
+ \cite{davison1997bootstrap,north2002note,north2003note,sham2014statistical}.
 
 
 
-%The Bonferroni method of correcting for multiple testing simply reduces the critical significance level according to the number of independent tests carried out in the study. For M independent tests, the critical significance level can be set at 0.05/M. The justification for this method is that this controls the family-wise error rate (FWER) — the probability of having at least one false-positive result when the null hypothesis (H0) is true for all M tests — at 0.05. As the P values are each distributed as uniform (0, 1) under H0, the FWER (α*) is related to the test-wise error rate (α) by the formula α* = 1 − (1 − α)M (Ref. 89). For example, if α* is set to be 0.05, then solving 1 − (1 − α)M = 0.05 gives α = 1 − (1 − 0.05)1/M. Taking the approximation that (1 − 0.05)1/M ≈ 1 − 0.05/M gives α ≈ 0.05/M, which is the critical P value, adjusted for M independent tests, to control the FWER at 0.05. Instead of making the critical P value (α) more stringent, another way of implementing the Bonferroni correction is to inflate all the calculated P values by a factor of M before considering against the conventional critical P value (for example, 0.05).
 
-The permutation procedure is a robust but computationally intensive alternative to the Bonferroni correction in the face of dependent tests. To calculate permutation-based P values, the case–control (or phenotype) labels are randomly shuffled (which assures that $H_0$ holds, as there can be no relationship between phenotype and genotype), and all M tests are recalculated on the reshuffled data set, with the smallest P value of these M tests being recorded. The procedure is repeated for many times to construct an empirical frequency distribution of the smallest P values. The P value calculated from the real data is then compared to this distribution to determine an empirical adjusted P value. If n permutations were carried out and the P value from the actual data set is smaller than r of the n smallest P values from the permuted data sets, then an empirical adjusted P value ($P_{*}$) is given by $$P_{*} = \frac{r + 1}{n + 1}$$ (Refs 25,26,90).
 
 \subsection{Machine Learning}
