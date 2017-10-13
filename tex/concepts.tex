@@ -218,4 +218,97 @@ Estimate the degree of association between two quantitative variables & Is age r
 % http://blog.minitab.com/blog/adventures-in-statistics-2/choosing-between-a-nonparametric-test-and-a-parametric-test
 
 
+\subsection{Survival analysis}
+
+In the medical sciences, in several situations it is necessary to evaluate if
+a treatment had a beneficial effect on the survival of patients.
+For this, it is measured the fraction of patients living for a certain amount of time after treatment.
+
+It is called "Survival times" data that measure follow-up time from a
+defined starting time to the occurrence of a given event
+(e.g. from the diagnosis of a disease to death) \cite{bewick2004statistics}.
+This survival times are "censored" when there is a follow-up time
+but the event has not yet occurred or is not known to have occurred.
+That might happen if a patient drops out of the study before its end,
+or if you are studying a treatment and it is not over yet.
+
+%Standard statistical techniques cannot usually be applied
+%because the underlying distribution is rarely Normal and the
+%data are often ‘censored’.
+\subsubsection{Kaplan–Meier method: Estimating the survival curve}
+
+It is defined  survival function $S(t)$ is defined as the
+probability of surviving at least to time t, while a
+ graph of S(t) against t is called the survival curve.
+To estimate this curve there exists the Kaplan-Meier method:
+$$ S(t) = \prod_{i: t_i\leq t}\left(1 - \frac{d_i}{n_i}\right),$$
+where  $d_{i}$ are the number of events and  $n_{i}$
+the total individuals at risk at time $i$. Table \ref{survival-example} shows
+an example of survival data and Table \ref{Kaplan-Meier-example} shows
+and example of applying Kaplan-Meier method. It is important to highlight that
+for a censored time the proportion surviving will be 1, that means
+an individual is considered to be at risk of dying in the next event of the censoring
+but not in subsequent events \cite{bland2004logrank}.
+
+\begin{table}[h!]
+\centering
+\caption[Survival time example]{Survival time and status for a group of patients.}
+\label{survival-example}
+\begin{tabular}{ccc}
+\hline
+\multicolumn{1}{l}{\textbf{Patient ID}} & \multicolumn{1}{l}{\textbf{Survival times (in days)}} & \multicolumn{1}{l}{\textbf{Status}} \\ \hline
+1 & 1 & Dead \\
+2 & 1 & Dead \\
+3 & 2 & Alive (cencored) \\
+4 & 3 & Dead \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+\centering
+\caption[Kaplan-Meier method  example]{Kaplan-Meier method example for table \ref{survival-example}}
+\label{Kaplan-Meier-example}
+\begin{tabular}{cp{3cm}p{3cm}p{3cm}c}
+\hline
+\textbf{Interval} & \textbf{$n_i$: patient at risk at time $t_i^-$} &
+\textbf{$d_i$ = deaths at time $t_i$} &
+\textbf{$c_i$ = censored at time $t_i$} &  \textbf{$S(t)$}  \\ \hline
+$[0,1)$ & 4          & 0 & 0 & 1 \\
+$[1,3)$ & 4 - 0 = 4  & 2 & 1 & $1 - \frac{2}{4} = 0.5$ \\
+$[3,\textrm{End of study}]$  & 4 - 2 - 1 = 1  & 1 & 0 & $0.5 * (1 - \frac{1}{1})$ = 0 \\ \hline
+\end{tabular}
+\end{table}
+
+
+\begin{figure*}
+\centering
+\includegraphics[width=1.0\linewidth]{images/example_survival.pdf}
+\caption[Example of survival curve.]{
+Example of survival curve for table \ref{survival-example}. Censored data is marked (+) in the plot.}
+\end{figure*}
+
+
+
+%In analyzing survival data, two functions that are dependent
+%on time are of particular interest: the survival function and the
+%hazard function.
+%The survival function S(t) is defined as the
+%probability of surviving at least to time t. The hazard function
+%h(t) is the conditional probability of dying at time t having
+%survived to that time.
+
+\subsubsection{Comparing survival curves of two groups using the log rank test}
+
+ To compare the survival distributions of two or more groups,  the hypothesis test log-rank test is
+ used to test the null hypothesis that there is no difference between the populations
+ in the probability of an event at any time point.
+%
+ The approximated statistics used for comparison purposes for $k$ groups is
+ $$T = \sum_{i \in \{1,\ldots,k\}}\frac{(O_i - E_i)^2}{E_i},$$
+ where $O_i$ is the observed numbers of death in  group $i$
+ while $E_i$ is its expected numbers of deaths.
+ If the null hypothesis is true, $T$ is distributed approximately as a $\chi^2_{k-1}$ \cite{matthews1996using}.
+If T calculated is $9.44$, and $k = 2$,  evaluating the quantile function (also known as “inverse CDF” or “ICDF”) of the chi-squared distribution the significance level of these data is equal to
+$P_r(\chi^2_{1}\geq9.44 = 0.002)$ \cite{yau2012r}.
+
 \subsection{Machine Learning}
