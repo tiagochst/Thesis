@@ -342,19 +342,22 @@ The most common unsupervised learning method is cluster analysis, which is used 
 %In genomics, the Hierarchical clustering, Centroid-based clustering and PCA are commonly used.
 \begin{description}
 
-\item[Hierarchical clustering:] This clustering methods builds a hierarchy of clusters, through either a agglomerative ("bottom up") or a divisive ("top down") procedures.
+\item[Hierarchical clustering:] {This clustering methods builds a hierarchy of clusters, through either a agglomerative ("bottom up") or a divisive ("top down") procedures.
 In the agglomerative procedures, each $n$ observation starts in its own cluster and until only one cluster remains the groups with the smallest dissimilarity are merged.
 On the other hand, in the divise procedures, all observations start in one cluster and until all observations are in their own cluster the group is splitted in two groups with biggest dissimilarity. To decide which clusters to merge or divide a metric to measure of dissimilarity between sets of observations is required.
 Among the existing agglomerative techniques are the single linkage, also known as the nearest-neighbour technique, which defines the smallest dissimilarity between two points in each group as the dissimilarity between two groups \cite{florek1951liaison}, the complete linkage which defines the largest dissimilarity between two points in each group as the dissimilarity between two groups \cite{defays1977efficient}, the average linkage which defines the average dissimilarity over all points as the dissimilarity between two groups \cite{sokal1958statistical} and the Ward’s method which at each merge step minimizes the increase in the total within-cluster error sum of
-squares, which means that  the groups leading to minimum increase in total within-cluster variance are merged \cite{ward1963hierarchical,everitt2011hierarchical}. 
-The results of hierarchical clustering are usually represented in a dendrogram a branching diagram in which the objects are represented in one of the axis while the similarity between clusters are represented in the other axis by the length of the connection which joins them \cite{manning1999foundations}.
+squares, which means that  the groups leading to minimum increase in total within-cluster variance are merged \cite{ward1963hierarchical,everitt2011hierarchical}.
+The results of hierarchical clustering are usually represented in a dendrogram a branching diagram in which the objects are represented in one of the axis while the similarity between clusters are represented in the other axis by the length of the connection which joins them \cite{manning1999foundations}.}
 
-
-Centroid-based clustering:
-These set of non-hierarchical algorithms identifies objects that cluster together into $k$ clusters. Let $S = \{S_1,S_2,\ldots,S_k\}$  the set of clusters, this algorithms tries to minimize the squared distances of the elements from the cluster center:
-$$ J(M) = min\sum_{i = 1}^{k}\sum_{x \in S_i}\Vert x_i - \mu_i\Vert^2,$$
-where $x_i$ is a data element, and $\mu_i$ is the center of points of  a $S_i$ cluster it belongs.
+\item[Optimization clustering
+techniques:]{
+These is a set of non-hierarchical clustering techniques that cluster individuals into a specified number of groups, by either minimizing or maximizing some numerical criterion \cite{everitt2011hierarchical}.  One of these technique is the k-means algorithms, which iteratively updates a partition by simultaneously relocating each object to the group to whose mean it was closest and then recalculating the group means until the groups no longer change.
+More explicitly, let $S = \{S_1,S_2,\ldots,S_k\}$  be the set of k clusters, this algorithms tries to minimize the squared distances of the elements from the cluster center:
+$$ N(n,k) = min\sum_{g = 1}^{k}\sum_{j \in S_g}\Vert x_j - \mu_g\Vert^2,$$
+where $x_j$ is a data element that belongs to a group g, and $\mu_g$ is the center of points of the $g$ group.
 The most common algorithm is the k-means, an iterative refinement technique that starts by randomly choosing k observations from the data set and uses these as the initial means. The nearest points are clustered and the mean of the cluster is recalculated. Using the new means, again the cluster are updated. The algorithm has converged when the groups no longer change.
+}
+
 \end{description}
 
 %Another classical and very useful example of unsupervised techniques is the Principal Component Analysis (PCA)
