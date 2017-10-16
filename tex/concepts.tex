@@ -339,6 +339,7 @@ cluster the data without using labels, which requires an additional step in whic
 
 Unsupervised learning is a type of machine learning algorithm used to draw inferences from datasets consisting of input data without labeled responses.
 The most common unsupervised learning method is cluster analysis, which is used for exploratory data analysis to find hidden patterns or grouping in data. These algorithms seeks to group a set of objects into cluster (groups) such that those in the same group are more similar to each other than to those in other cluster.
+The major unsupervised learning techniques used in bioinformatics are described below.
 %In genomics, the Hierarchical clustering, Centroid-based clustering and PCA are commonly used.
 \begin{description}
 
@@ -351,13 +352,25 @@ The results of hierarchical clustering are usually represented in a dendrogram a
 
 \item[Optimization clustering
 techniques:]{
-These is a set of non-hierarchical clustering techniques that cluster individuals into a specified number of groups, by either minimizing or maximizing some numerical criterion \cite{everitt2011hierarchical}.  One of these technique is the k-means algorithms, which iteratively updates a partition by simultaneously relocating each object to the group to whose mean it was closest and then recalculating the group means until the groups no longer change.
+These are a set of non-hierarchical clustering techniques that cluster individuals into a specified number of groups, by either minimizing or maximizing some numerical criterion \cite{everitt2011hierarchical}.  One of these technique is the k-means algorithms, which iteratively updates a partition by simultaneously relocating each object to the group to whose mean it was closest and then recalculating the group means until the groups no longer change.
 More explicitly, let $S = \{S_1,S_2,\ldots,S_k\}$  be the set of k clusters, this algorithms tries to minimize the squared distances of the elements from the cluster center:
 $$ N(n,k) = min\sum_{g = 1}^{k}\sum_{j \in S_g}\Vert x_j - \mu_g\Vert^2,$$
-where $x_j$ is a data element that belongs to a group g, and $\mu_g$ is the center of points of the $g$ group.
-The most common algorithm is the k-means, an iterative refinement technique that starts by randomly choosing k observations from the data set and uses these as the initial means. The nearest points are clustered and the mean of the cluster is recalculated. Using the new means, again the cluster are updated. The algorithm has converged when the groups no longer change.
+where $x_j$ is a data element that belongs to a group g, and $\mu_g$ is the center of points of the $g$ group. A counterpoint of these techniques also requirement to ‘estimate’ the number of clusters in the data, for which a variety of methods
+have been suggested and  most are
+relatively informal and involve, essentially, plotting the value of the clustering
+criterion against the number of groups in which large changes of levels in the plot are
+usually taken as suggestive of a particular number of groups.
+Some formal methods were also proposed such as the Silhouette index by \citeonline{rousseeuw1987silhouettes}.
+And a second counterpoint of this technique is the choice of initial starting values which might lead to local optimal solution, some solution to this problem such as a  bootstrap-like approach to ‘refine’ initial seeds are suggested \cite{steinley2003local}.
 }
+\item[Principal component analysis (PCA):]{
 
+PCA is a method for transforming the variables in a multivariate data set into new variables, a linear combination of the original variables, which are uncorrelated with each other and a linear combination of the original variables. This technique provides a means of
+projecting the data into a lower dimensional space, which is very useful  mainly due to the problems of high dimensional data which is called ``curse of dimensionality''.
+Generally, \citeonline{verleysen2005curse} defines the curse of dimensionality as the expression of all phenomena that appear with high-dimensional data, and that have most often unfortunate consequences on the behavior and performances of learning algorithms. In summary,  the number of learning data should grow exponentially with
+the dimension, that means if 10 data  is reasonable to learn a 1-dimensional model, for a 2-dimensional model it will be need 100 data). For example, in genetics, microarray experiments have information for thousand of genes, if each one is considered a variable we would have thousand dimensions,
+and we would need an enormous amount of observations to obtain a reliable result. If a dimensionality reduction is not performed, with a increase of data features (dimensions), it is very likely that, by chance, one feature perfectly separates the training examples into positive and negative classes, which would leadto good performance on the training data but poor generalization to data that were not used in training \cite{libbrecht2015machine}.
+}
 \end{description}
 
 %Another classical and very useful example of unsupervised techniques is the Principal Component Analysis (PCA)
