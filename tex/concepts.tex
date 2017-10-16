@@ -337,24 +337,24 @@ cluster the data without using labels, which requires an additional step in whic
 
 % In Transcriptomics analysis clustering is used to build groups of genes with related expression patterns
 
-Some of the data clustering techniques are listed below:
-
-As stated before, unsupervised learning is a type of machine learning algorithm used to draw inferences from datasets consisting of input data without labeled responses.
-
+Unsupervised learning is a type of machine learning algorithm used to draw inferences from datasets consisting of input data without labeled responses.
 The most common unsupervised learning method is cluster analysis, which is used for exploratory data analysis to find hidden patterns or grouping in data. These algorithms seeks to group a set of objects into cluster (groups) such that those in the same group are more similar to each other than to those in other cluster.
 %In genomics, the Hierarchical clustering, Centroid-based clustering and PCA are commonly used.
+\begin{description}
 
-Hierarchical clustering:
-This a method builds a hierarchy of clusters, through two main approaches,the "bottom up" approach in which  each observation starts in its own cluster, and pairs of clusters are merged as one moves up the hierarchy and the  "top down" approach in which all observations start in one cluster, and splits are performed recursively as one moves down the hierarchy. To make a decision which are the clusters being merged or divided a metric to measure of dissimilarity between sets of observations is required. Those metrics can be for example distance such as Euclidean distance, Manhattan distance, etc. For the "bottom up" approach, clusters with smalled distance are merged.
-The results of hierarchical clustering are usually presented in a dendrogram, in which the objects are represented in one of the axis while the distance between clusters are represented in the other axis.
+\item[Hierarchical clustering:] This clustering methods builds a hierarchy of clusters, through either a agglomerative ("bottom up") or a divisive ("top down") procedures.
+In the agglomerative procedures, each $n$ observation starts in its own cluster and until only one cluster remains the groups with the smallest dissimilarity are merged.
+On the other hand, in the divise procedures, all observations start in one cluster and until all observations are in their own cluster the group is splitted in two groups with biggest dissimilarity. To decide which clusters to merge or divide a metric to measure of dissimilarity between sets of observations is required.
+Among the existing agglomerative techniques are the single linkage, also known as the nearest-neighbour technique, which defines the smallest dissimilarity between two points in each group as the dissimilarity between two groups \cite{florek1951liaison}, the complete linkage which defines the largest dissimilarity between two points in each group as the dissimilarity between two groups \cite{defays1977efficient}, the average linkage which defines the average dissimilarity over all points as the dissimilarity between two groups \cite{sokal1958statistical} and the Ward’s method which at each merge step minimizes the increase in the total within-cluster error sum of
+squares, which means that  the groups leading to minimum increase in total within-cluster variance are merged \cite{ward1963hierarchical,everitt2011hierarchical}. 
+The results of hierarchical clustering are usually represented in a dendrogram a branching diagram in which the objects are represented in one of the axis while the similarity between clusters are represented in the other axis by the length of the connection which joins them \cite{manning1999foundations}.
 
 
 Centroid-based clustering:
-These set of algorithms identifies objects that cluster together into $k$ clusters. Let $S = \{S_1,S_2,\ldots,S_k\}$  the set of clusters, this algorithms tries to minimize the squared distances of the elements from the cluster center:
+These set of non-hierarchical algorithms identifies objects that cluster together into $k$ clusters. Let $S = \{S_1,S_2,\ldots,S_k\}$  the set of clusters, this algorithms tries to minimize the squared distances of the elements from the cluster center:
 $$ J(M) = min\sum_{i = 1}^{k}\sum_{x \in S_i}\Vert x_i - \mu_i\Vert^2,$$
 where $x_i$ is a data element, and $\mu_i$ is the center of points of  a $S_i$ cluster it belongs.
 The most common algorithm is the k-means, an iterative refinement technique that starts by randomly choosing k observations from the data set and uses these as the initial means. The nearest points are clustered and the mean of the cluster is recalculated. Using the new means, again the cluster are updated. The algorithm has converged when the groups no longer change.
-
-
+\end{description}
 
 %Another classical and very useful example of unsupervised techniques is the Principal Component Analysis (PCA)
