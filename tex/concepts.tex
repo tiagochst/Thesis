@@ -282,7 +282,7 @@ $[3,\textrm{End of study}]$  & 4 - 2 - 1 = 1  & 1 & 0 & $0.5 * (1 - \frac{1}{1})
 
 \begin{figure*}
 \centering
-\includegraphics[width=1.0\linewidth]{images/example_survival.pdf}
+\includegraphics[width=0.5\linewidth,hight=4cm]{images/example_survival.pdf}
 \caption[Example of survival curve.]{
 Example of survival curve for table \ref{survival-example}. Censored data is marked (+) in the plot.}
 \end{figure*}
@@ -328,6 +328,20 @@ cluster the data without using labels, which requires an additional step in whic
 
 
 \subsubsection{Supervised learning}
+
+Supervised learning is a type of machine learning algorithm that identify patterns in data to make predictions.
+Specifically, the algorithm takes a known set of input data and known responses to the data (labels), and trains a model to generate predictions for the response to new data.
+Supervised learning algorithm can be classified into two  categories: classification and regression.
+
+In classification, the goal is to assign a label to an observation. That is, responses are categorical variables.
+For example, given dataset known to be
+enhancer or not enhancer, one could want to predict the locations of enhancers in the genome.
+
+In regression, the goal is to predict a continuous measurement for an observation. That is, the responses variables are real numbers. In genomocs, these methods are  used in genetic epidemiology to detect association of genetic variants with a trait or disease of interest \cite{dasgupta2011brief}.
+
+
+
+
 \subsubsection{Unsupervised learning}
 
 
@@ -364,8 +378,7 @@ Some formal methods were also proposed such as the Silhouette index by \citeonli
 And a second counterpoint of this technique is the choice of initial starting values which might lead to local optimal solution, some solution to this problem such as a  bootstrap-like approach to ‘refine’ initial seeds are suggested \cite{steinley2003local}.
 }
 \item[Principal component analysis (PCA):]{
-
-PCA is a method for transforming the variables in a multivariate data set into new variables, a linear combination of the original variables, which are uncorrelated with each other and a linear combination of the original variables. This technique provides a means of
+This method transformes the variables in a multivariate data set into new variables, a linear combination of the original variables, which are uncorrelated with each other and a linear combination of the original variables. This technique provides a means of
 projecting the data into a lower dimensional space, which is very useful  mainly due to the problems of high dimensional data which is called ``curse of dimensionality''.
 Generally, \citeonline{verleysen2005curse} defines the curse of dimensionality as the expression of all phenomena that appear with high-dimensional data, and that have most often unfortunate consequences on the behavior and performances of learning algorithms. In summary,  the number of learning data should grow exponentially with
 the dimension, that means if 10 data  is reasonable to learn a 1-dimensional model, for a 2-dimensional model it will be need 100 data). For example, in genetics, microarray experiments have information for thousand of genes, if each one is considered a variable we would have thousand dimensions,
