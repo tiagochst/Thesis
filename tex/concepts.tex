@@ -11,12 +11,42 @@ This chapter introduces the fundamental concepts related to the developments pre
 \section{(Epi)Genomic data analysis}
 
 \subsection{Integrative analysis}
+Often the onset and progression of cancerous diseases is linked to the aberrant function of proteins and alterations in gene expression, which has led research in genetics in search of the molecular alterations responsible for such aberrant behavior.
+Among the types of alterations genetic and epigenetic
+that can impact gene function are, gene copy number
+(CN), DNA methylation, single nucleotide variations (SNV), and indels (small insertions and
+deletions).
+These variantions can have a direct affect by modifying
+ function of the gene product, for example a
+indel in a coding region, or a indirect affect such as
+the modification of regulatory regulatory regions
+ which can interfere
+ with gene expression by inhibiting transcription \cite{thingholm2016strategies}.
+
+Furthermore, recent technological developments have enabled the creation of genome-wide data for multiple types of variations.
+Although individual analyzes of these variations helped  increasing knowledge of the genome and of complex
+disorders, integrative analyses that evaluate cancer transcriptome data in the context of other data sources are often capable of extracting deeper biological insight from the data \cite{rhodes2005integrative}.
+
+In this section we will highlight several integrative  approaches, including meta-analysis for extracting robust profiles from independent data sets, enrichment analysis for identifying coordinately regulated functional gene modules, protein interaction networks for detecting interaction complexes deregulated in cancer, transcriptional networks for inferring regulatory mechanisms in cancer and analyses of model system profiles with human tumor profiles for inferring activity of oncogenic pathways.
+
+\subsubsection{Functional enrichment analysis of cancer signatures}
+
+A \sigla{GSEA}{gene set enrichment analysis} or  functional enrichment analysis is a method to identify classes of genes or proteins that are over-represented in a large set of genes or proteins, and may have an association with disease phenotypes.
+This type of analysis integrates  differentially expressed genes identified by a  \sigla{DEA}{differential expression analysis} and integrating these information with external functional information is necessary for interpreting and summarizing large cancer signatures.
+Most approaches use external annotation databases such as Gene Ontology which is a database of controlled vocabulary gene annotations describing the biological processes, molecular functions and cellular localizations of genes as a resource for enrichment analysis in cancer signatures.
+
+Let $L$ be a  list of genes ranked by their differential expression between the classes, the goal of GSEA is to determine whether members of a gene set $S$ tend to occur toward the top (or bottom) this list,  which might correlated with the phenotypic class
+distinction \cite{subramanian2005gene}.
+
+\subsubsection{Protein interaction networks and cancer signatures}
+
+A major objective of systems biology is to organize molecular interactions as networks \cite{vinayagam2014integrating}. \sigla{PPIs}{Protein-protein interactions } are essential to almost every process in a cell, and they are not only crucial for understanding cell physiology in normal and disease states since the disruption of protein-protein interactions may result in disruption of the cell component or process to which they contribute, compromising the cell viability or even leading to cell death, but also for the drug development, since drugs can affect PPIs \cite{PPIs,alzate2009neuroproteomics}.
+These interaction are represetented as Protein-protein interaction networks (PPIN), a mathematical representations of the physical contacts between proteins in the cell.
+The totality of PPIs that happen in a cell, an organism or a specific biological context is called interactome.
+
+ A detailed human interactome network that captures the entire cellular network is invaluable in interpreting cancer signatures, allowing one to infer activated subnetworks and specific proteins that are most important to a subnetwork. For example, for a given set of overexpressed proteins in the same subnetwork, one specific protein thart interacts with the entire subnetwork might be the key to control the expression the entire subnetwork.
 
 
-Data integration can be divided into two main categories:
-single-platform integration and cross-platform integration.
-The first category related to the integration of data with information on one type of variation, such as the integration of expression data generated in
-different studies, while the second integrates data with information on different types of variation, such as integrated analysis of expression and methylation \cite{thingholm2016strategies}.
 
 \subsection{Statistical analysis}
 
