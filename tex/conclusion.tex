@@ -3,13 +3,51 @@
 
 The main goal of this project has been to develop tools and workflows to perform integrative analysis as well as their application in the analysis of public cancer data. The motivations came from the fact that integrating data from different databases, stored in different formats and with different biological meanings is a complex process from both a computational point of view by dealing with big datasets which requires an optimized use of computational resources as well as from a biological point of view for dealing with a biological process still under study, often unknown, or even without a scientific consensus.
 
-\section{Future Works}
+\section{Conclusions and future studies}
+
+In this section, we list the conclusions and future studies for the results reported in the previous chapters.
+
+\subsection{Conclusions and future works of TCGAbiolinks}
+
+This work has presented an effort towards the search, download and
+prepare of data from the NCI's Genomic Data Commons (GDC) data portal for
+downstream analysis. It offered several single-dataset
+exploratory analysis such as PCA, clustering methods, box plots,
+ differential gene expression analysis, differential methylated CpGs (DMCs) analysis,
+ survival analysis and some integrative analysis
+ such as the integration of differential methylated CpGs results with  differential gene expression analysis
+ to identify regions different metylated with the nearest gene level expression changed.
+
+
+\subsection{Conclusions and future works of TCGAbiolinksGUI}
+
+This work created a Graphical User Interface (GUI) to our command-line tools,
+with the purpose to help users without promogramming knowlegde to perform
+deeper downstream analysis. Among possible improvements in future works are
+the export of figures in vector formats (PDF, SVG) that do not lose quality
+if altered (enlarged or reduced), the facilitation of the incorporation of external
+user data, which although can be incorporated if formatted in the current defined standard,
+this can still be improved, the creation of a modularization of the tool, which would load only the packages chosen by the user in order to decrease the amount of libraries needed to run the interface, which
+would be a challenge and may not be possible due to the limitations of the development tools used R / Shiny).
+
+\subsection{Conclusions and future works of ELMER}
+
+This work has presented an effort towards the integrative analaysis performed
+using RNA-seq, DNA methylation and histone marks to identify a candidate regulatory network.
+It mainly identifies distal regions with a difference of DNA methylation and correlates them
+with the gene expression levels of upstream and downstream genes.
+A motif enrichment analysis is performed in the regulatory regions from the anti-correlated
+pairs (loss of DNA methylation and gain o gene expression) to identify potential
+regulatory TF candidates. As future works we suggest to expand the algorithm to
+the promoter regions and to use mutation information instead of DNA methylation
+to identify regulatory regions mutated that might have affected the
+regulation of a upstream/downstream genes.
 
 
 \section{Publications, presentations and softwares of the Doctorate Period}
 
 The work produced during the Doctorate period in form of scientific articles,
-softwares and conference presentations is shown in the next subsections. 
+softwares and conference presentations is shown in the next subsections.
 The published scientific articles were divided into two groups, one with the  first authorship ones, and the other with the co-authorship ones. Those are listed in the following subsection: "First-authored papers", "Co-authored papers","First-authored softwares" and "Co-authored softwares".
 The subsection "workshops and workflows" contains all the material created to help users to use the developed tools. Finally, the subsection "Conferences \& presentations" list all oral and poster presentations in international and national conferences.
 
@@ -33,14 +71,14 @@ The subsection "workshops and workflows" contains all the material created to he
 
 \subsection{First-authored softwares}
 \begin{description}
-	\item[TCGAbiolinks (version 2.0)] An R/Bioconductor package for integrative analysis of TCGA data. Published in Bioconductor \burl{http://bioconductor.org/packages/TCGAbiolinks/}. Source code available in GitHub \burl{https://github.com/BioinformaticsFMRP/TCGAbiolinks}.	
+	\item[TCGAbiolinks (version 2.0)] An R/Bioconductor package for integrative analysis of TCGA data. Published in Bioconductor \burl{http://bioconductor.org/packages/TCGAbiolinks/}. Source code available in GitHub \burl{https://github.com/BioinformaticsFMRP/TCGAbiolinks}.
     \item[TCGAbiolinksGUI] A Graphical User Interface to analyze cancer genomics and epigenomics data. Published in GitHub \burl{https://github.com/BioinformaticsFMRP/TCGAbiolinksGUI}.
     \item[ELMER (version 2.0)] Enhancer Linking by Methylation/Expression Relationship (ELMER) is package to identify tumor-specific changes in DNA methylation within distal enhancers, and link these enhancers to downstream target genes. Published in Bioconductor \burl{http://bioconductor.org/packages/ELMER/}. Source code available in GitHub  \burl{https://github.com/tiagochst/ELMER}.
 \end{description}
 
 \subsection{Co-authored softwares}
 \begin{description}
-	\item[SpidermiR: An R/Bioconductor package for integrative network analysis with miRNA data]{Published in Bioconductor \burl{http://bioconductor.org/packages/SpidermiR/}. Source code available in GitHub \burl{https://github.com/claudiacava/SpidermiR}}.	
+	\item[SpidermiR: An R/Bioconductor package for integrative network analysis with miRNA data]{Published in Bioconductor \burl{http://bioconductor.org/packages/SpidermiR/}. Source code available in GitHub \burl{https://github.com/claudiacava/SpidermiR}}.
 \end{description}
 
 
