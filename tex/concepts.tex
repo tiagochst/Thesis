@@ -41,14 +41,26 @@ distinction \cite{subramanian2005gene}.
 \subsubsection{Protein interaction networks and cancer signatures}
 
 A major objective of systems biology is to organize molecular interactions as networks \cite{vinayagam2014integrating}. \sigla{PPIs}{Protein-protein interactions } are essential to almost every process in a cell, and they are not only crucial for understanding cell physiology in normal and disease states since the disruption of protein-protein interactions may result in disruption of the cell component or process to which they contribute, compromising the cell viability or even leading to cell death, but also for the drug development, since drugs can affect PPIs \cite{PPIs,alzate2009neuroproteomics}.
-These interaction are represetented as Protein-protein interaction networks (PPIN), a mathematical representations of the physical contacts between proteins in the cell.
+These interaction are represetented as \sigla{PPIN}{Protein-protein interaction networks}, a mathematical representations of the physical contacts between proteins in the cell.
 The totality of PPIs that happen in a cell, an organism or a specific biological context is called interactome.
 
  A detailed human interactome network that captures the entire cellular network is invaluable in interpreting cancer signatures, allowing one to infer activated subnetworks and specific proteins that are most important to a subnetwork. For example, for a given set of overexpressed proteins in the same subnetwork, one specific protein thart interacts with the entire subnetwork might be the key to control the expression the entire subnetwork.
 
- A lot of this information is available through molecular interaction databases such as IntAct (\burl{ http://www.ebi.ac.uk/intact}) \cite{orchard2013mintact}.  
+ A lot of this information is available through molecular interaction databases such as IntAct (\burl{ http://www.ebi.ac.uk/intact}) \cite{orchard2013mintact}.
 
+\subsubsection{Transcriptional targets and cancer signatures}
 
+Similar to the Protein-protein interaction networks, global transcriptional networks, which defines directional pathways (i.e. which gene actives are activated by a given gene), have the potential to improve the interpretation of cancer signatures. For example, if the targets of all transcription factors  were known, then one could easily infer which transcription factors must be activated in a tumor to yield the observed cancer signature. With that information, it is possible to reduce a complex cancer signature to a small number of activated transcriptional factors which will be potencial therapeutic targets.
+
+The identification of \sigla{TFBSs}{transcription factor−binding sites} is done using high throughput experimental methods  such as
+ChIP-Chip and  \sigla{ChIP-seq}{ChIP-sequencing} which identifies a region of 100–1000
+base pairs (b.p.) in which the TFBS
+(typically 9–15 b.p.) resides \cite{jayaram2016evaluating}.
+In-silico  sequence-based methods were develop to predicted TFBSs. These methods scans a DNA sequence of interest
+with a \sigla{PWM}{position weight matrix},a 4 × n matrix of
+scores for each of the 4 bases across each position in the
+binding motif, for a transcription factor of interest and perform a pattern-matching.
+PWM models can be obtained from a number of resources including the the open access database JASPAR \cite{portales2009jaspar}, HOCOMOCO \cite{kulakovskiy2013hocomoco} and HOMER \cite{heinz2010simple}.
 
 \subsection{Statistical analysis}
 
