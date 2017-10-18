@@ -61,6 +61,39 @@ scores for each of the 4 bases across each position in the
 binding motif, for a transcription factor of interest and perform a pattern-matching.
 PWM models can be obtained from a number of resources including the the open access database JASPAR \cite{portales2009jaspar}, HOCOMOCO \cite{kulakovskiy2013hocomoco} and HOMER \cite{heinz2010simple}. Among the existing  software that scans a sequence database for individual matches to each of the motifs are \sigla{FIMO}{Find Individual Motif Occurrences} \cite{grant2011fimo}, HOMER \cite{heinz2010simple} and PATSER \cite{turatsinze2008using}.
 
+\subsubsection{Human Epigenomes}
+The human body contains  more than 200 different cell types
+each one has an identical copy of the genome but expresses a distinct set of genes, due to their epigenome which in each cell regulates gene expression in a number of ways - by organizing the nuclear architecture of the chromosomes, restricting or facilitating transcription factor access to DNA, and preserving a memory of past transcriptional activities \cite{rivera2013mapping}.
+The integrative analysis of epigenomic maps, which references to the collection of DNA methylation state and covalent modification of histone proteins along the genome \cite{bonasio2010molecular}, has been shown to be important in the study of the gene regulatory programs \cite{gifford2013transcriptional,hawkins2010distinct,rada2012epigenomic}.
+
+
+\bgroup
+\def\arraystretch{2.0}%  1 is the default, change whatever you need
+\begin{table}[]
+\centering
+\small
+\caption[Histone and epigenomic marks]{Core set of five histone modification marks and other epigenomic marks}
+\label{histonemarks}
+\begin{tabular}{lp{8cm}}
+\toprule
+ \textbf{Histone marks}   & \textbf{Role} \\ \toprule
+ Histone H3 lysine 4 trimethylation (H3K4me3)  & Promoter regions \cite{heintzman2007distinct,bernstein2005genomic} \\
+ Histone H3 lysine 4 monomethylation (H3K4me1) & Enhancer regions \cite{heintzman2007distinct}  \\
+ Histone H3 lysine 36 trimethylation (H3K36me3) & Transcribed regions  \\
+ Histone H3 lysine 27 trimethylation (H3K27me3) & Polycomb repression \cite{bonasio2010molecular}  \\
+ Histone H3 lysine 9 trimethylation (H3K9me3) & Heterochromatin regions \cite{peters2003partitioning} \\
+ Histone H3 acetylated at lysine 27 (H3K27ac)  &  Increase activation of genomic elements \cite{heintzman2009histone,rada2011unique,creyghton2010histone} \\
+ Histone H3 lysine 9 acetylation  (H3K9ac)  & Transcriptional activation \cite{nishida2006histone} \\
+ DNase hypersensitivity &  Regions of accessible chromatin \cite{thurman2012accessible}\\
+ DNA methylation & Repressed regulatory regions \cite{cedar2009linking,moore2013dna}\\  \bottomrule
+\end{tabular}
+\end{table}
+\egroup
+%The goal is to discover epigenomic states and aid in understanding
+%“non-coding” genomic elements in an unbiased and biologically meaningful way
+
+%The most popular and widely used of these machine learning methods is ChromHMM
+
 \subsection{Statistical analysis}
 
 \subsubsection{Hypothesis Testing}
