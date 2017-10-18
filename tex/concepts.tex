@@ -89,10 +89,22 @@ shows a summary of the epigenomic marks and their associate role.
 \end{tabular}
 \end{table}
 \egroup
-%The goal is to discover epigenomic states and aid in understanding
-%“non-coding” genomic elements in an unbiased and biologically meaningful way
 
-%The most popular and widely used of these machine learning methods is ChromHMM
+Using these set of epigenetics marks, it is possible to
+ discover epigenomic states which would aid in understanding
+ “non-coding” genomic elements \cite{statepaintr}.
+ Several tools can use those marks to infer chromatin-state such as ChromHMM \cite{ernst2012chromhmm} and StatePaintR \cite{statepaintr}.
+A 15-state model created from RoADMAP data using ChromHMM is presented as follows: active TSS-proximal promoter states (TssA, TssAFlnk), a transcribed state at the 5’ and 3’ end of genes showing both promoter and enhancer signatures (TxFlnk), actively-transcribed states (Tx, TxWk), enhancer states (Enh, EnhG), and a state associated with zinc finger protein genes (ZNF/Rpts). The inactive states consist of constitutive heterochromatin (Het), bivalent regulatory states (TssBiv, BivFlnk, EnhBiv), repressed Polycomb states (ReprPC, ReprPCWk), and a quiescent state (Quies) .
+Those precomputed chromatin-state segmentation from
+ public databases such as Blueprint, ENCODE and ROADMAP using ChromHMM (\burl{http://compbio.mit.edu/ChromHMM/})
+ are available at \burl{http://egg2.wustl.edu/roadmap/web_portal/chr_state_learning.html#core_15state} and
+ using StatePaintR  are available at \burl{statehub.org}.
+
+These data is extermely useful o characterize each different region of the genome.
+For exmaple, using those information \citeonline{kundaje2015integrative} were able to identify enhancer regions
+containing strong H3K27ac signal which showed a higher DNA accessibility,
+lower methylation, and higher TF binding than enhancers regions lacking H3K27ac.
+Those regions with strong H3K27ac signal are more likely to have a regulatory role.
 
 \subsection{Statistical analysis}
 
