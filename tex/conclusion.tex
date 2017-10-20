@@ -18,7 +18,14 @@ exploratory analysis such as PCA, clustering methods, box plots,
  such as the integration of differential methylated CpGs results with  differential gene expression analysis
  to identify regions different metylated with the nearest gene level expression changed, and
  gene set enrichment analysis.
-
+As future works it is required the improvement of integrative analysis of the starburst plot, this method
+integrates the results from two different analysis DEA (differential expression analysis) and DMR
+(differential methylated regions).
+There is however a problem that the results are analyzed considering the set and not the same sample,
+that means the expression and methylation data of a sample are not compared to each other.
+It is inferred if a data set has a differentiated average of methylation and a mean of
+expression of the nearest differentiated gene, and may even be different populations.
+This flaw is corrected in ELMER algorithms.
 
 \subsection{Conclusions and future works of TCGAbiolinksGUI}
 
@@ -28,7 +35,9 @@ deeper downstream analysis. Among possible improvements in future works are
 the export of figures in vector formats (PDF, SVG) that do not lose quality
 if altered (enlarged or reduced), the facilitation of the incorporation of external
 user data, which although can be incorporated if formatted in the current defined standard,
-this can still be improved, the creation of a modularization of the tool, which would load only the packages chosen by the user in order to decrease the amount of libraries needed to run the interface, which
+this can still be improved, the creation of a modularization of the tool,
+which would load only the packages chosen by the user in order to decrease the
+amount of libraries needed to run the interface, which
 would be a challenge and may not be possible due to the limitations of the development tools used R / Shiny).
 
 \subsection{Conclusions and future works of ELMER}
@@ -41,7 +50,7 @@ A motif enrichment analysis is performed in the regulatory regions from the anti
 pairs (loss of DNA methylation and gain o gene expression) to identify potential
 regulatory TF candidates. As future works we suggest to expand the algorithm to
 the promoter regions, to expand the DNA methylation analysis to accept
-\sigla{WGBS}{whole-genome bisulfite sequencing} data, 
+\sigla{WGBS}{whole-genome bisulfite sequencing} data,
  and to use mutation information instead of DNA methylation
 to identify regulatory regions mutated that might have affected the
 regulation of a upstream/downstream genes.
