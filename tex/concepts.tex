@@ -123,7 +123,7 @@ null hypothesis ($H_0$\simbolo{H_0}{Null hypothesis}) and an alternative hypothe
 
 Computing the statistical significance can be done using a one-tailed or a two-tailed test.
 A two-sided test is appropriate to evaluate both direction of the test, for example,
-is the estimated value smaller or higher than the reference, which acctualy test if the
+is the estimated value smaller or higher than the reference, which actually test if the
  estimated value is different from the reference.
 A one-sided test is  is appropriate to evaluate only one direction of the test,
 for example, is the estimated v alue smaller than the reference.
@@ -183,10 +183,10 @@ type II error is denoted by $\beta$\simbolo{\beta}{rate of the type II error}.
   \end{tabular}
 \end{table}
 
-To make a decision wheter to reject or accept the null hypothesis, the concept of
+To make a decision whether to reject or accept the null hypothesis, the concept of
 probability value was introduced.
 \citeonline{wasserstein2016asa} defined a p-value  ($\textrm{p-value}\in [0,1]$) as the probability under a specified statistical model, constructed under a set of assumptions (normally “null hypothesis"), that a statistical summary of the data
-(e.g., the sample mean difference between two compared groups) would be equal to or more extreme than its observed value \cite{wasserstein2016asa}. That means, the smaller the p-value, the greater the statistical incompatibility of the data with the null hypothesis and greater the p-value more compatibible is the data with the null hypothesis.
+(e.g., the sample mean difference between two compared groups) would be equal to or more extreme than its observed value \cite{wasserstein2016asa}. That means, the smaller the p-value, the greater the statistical incompatibility of the data with the null hypothesis and greater the p-value more compatible is the data with the null hypothesis.
 In summary, if P-value is small (e.g.$\textrm{P-value} \leq \alpha$) then the null hypothesis is rejected,
 otherwise it is not rejected.
 
@@ -246,7 +246,7 @@ Among the different approaches to control type I errors we have
 \sigla{FWER}{Family-wise error rate} which controls the probability of at least one type I error,
 and \sigla{FDR}{False discovery rate}
 which controls the expected proportion of Type I errors
-among the rejected hypotheses. Compapred to FDR, controlling FWER is extremely conservative
+among the rejected hypotheses. Compared to FDR, controlling FWER is extremely conservative
 approach as the power to detect $H_1$ gets very small.
 
 Among the different adjustment methods to control FWER includes the Bonferroni correction
@@ -414,9 +414,9 @@ Machine learning is a field of computer science focused on the development and a
 
 In genetics and genomics, its  has been applied
  for the interpretation of large genomic data sets and annotation of a wide variety of genomic sequence elements.
-For example, for the detection of  transcription start sites (TSSs) locations, which have proven hard to detect in silico due to the complexity and the fairly diffuse structures of Eukaryotic promoters, \citeonline{down2002computational} developped a machine-learning method is able to build useful models of promoters for $>50\%$ of human transcription start sites \cite{down2002computational}.
+For example, for the detection of  transcription start sites (TSSs) locations, which have proven hard to detect in silico due to the complexity and the fairly diffuse structures of Eukaryotic promoters, \citeonline{down2002computational} developed a machine-learning method is able to build useful models of promoters for $>50\%$ of human transcription start sites \cite{down2002computational}.
 
-The machine learning techniques can classified into two main categories: supervised and unsupervised learning (Mitchell, 1997). The supervised learning, which aims to infer data labels by learning from already labeled data, has three stages: design, model and test. The first stage refers to the selection of a learning algorithm used to learn from data (e.g. choose between support vector machines or random forest algoritms) and its training data. The second stage is the creation of a model from labeled data using the algorithm selected priviously.  The last stage uses of this generated model to  preditct the labels of unlabeled data.
+The machine learning techniques can classified into two main categories: supervised and unsupervised learning (Mitchell, 1997). The supervised learning, which aims to infer data labels by learning from already labeled data, has three stages: design, model and test. The first stage refers to the selection of a learning algorithm used to learn from data (e.g. choose between support vector machines or random forest algorithms) and its training data. The second stage is the creation of a model from labeled data using the algorithm selected previously.  The last stage uses of this generated model to  predict the labels of unlabeled data.
 The unsupervised learning methods, on the other hand,
 cluster the data without using labels, which requires an additional step in which semantics must be manually assigned to each cluster. As this discovery is not tied to previously defined classes, these methods have as benefit the ability to identify potentially novel types of genomic elements.
 
@@ -433,7 +433,7 @@ In classification, the goal is to assign a label to an observation. That is, res
 For example, given dataset known to be
 enhancer or not enhancer, one could want to predict the locations of enhancers in the genome.
 
-In regression, the goal is to predict a continuous measurement for an observation. That is, the responses variables are real numbers. In genomocs, these methods are  used in genetic epidemiology to detect association of genetic variants with a trait or disease of interest \cite{dasgupta2011brief}.
+In regression, the goal is to predict a continuous measurement for an observation. That is, the responses variables are real numbers. In genomics, these methods are  used in genetic epidemiology to detect association of genetic variants with a trait or disease of interest \cite{dasgupta2011brief}.
 
 
 
