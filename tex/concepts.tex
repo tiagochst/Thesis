@@ -159,13 +159,13 @@ Even though, the decision made to reject or accept $H_0$ just state that we had
 enough evidence to behave one way or the other.
 The rejection of the null hypothesis does not prove that the alternative hypothesis is true as
 the acceptance the null hypothesis does not prove that the null hypothesis is true.
-It might happen that null hypothesis was reject when it was true, or it was not
+It might happen that null hypothesis was rejected when it was true, or it was not
 rejected when it was false. The first error in statistics is called a Type I error ("false positive"),
  while the second is called a Type II error ("false negative").
 Table \ref{type_errors} shows the relations between truth/falseness of the null hypothesis and outcomes of the test.
 
-It is denotated  rate of the type I error  or significance level
-$\alpha$\simbolo{\alpha}{Significance level} the probability of having a false positive.
+The rate of the type I error  or significance level
+$\alpha$\simbolo{\alpha}{Significance level} is the probability of having a false positive.
 Normally, the significance level is set to 5\%, implying that it is acceptable to have a 5\%
 probability of incorrectly rejecting the null hypothesis. With the same logic, the rate of the
 type II error is denoted by $\beta$\simbolo{\beta}{rate of the type II error}.
@@ -188,7 +188,7 @@ probability value was introduced.
 \citeonline{wasserstein2016asa} defined a p-value  ($\textrm{p-value}\in [0,1]$) as the probability under a specified statistical model, constructed under a set of assumptions (normally “null hypothesis"), that a statistical summary of the data
 (e.g., the sample mean difference between two compared groups) would be equal to or more extreme than its observed value \cite{wasserstein2016asa}. That means, the smaller the p-value, the greater the statistical incompatibility of the data with the null hypothesis and greater the p-value more compatible is the data with the null hypothesis.
 In summary, if P-value is small (e.g.$\textrm{P-value} \leq \alpha$) then the null hypothesis is rejected,
-otherwise it is not rejected.
+otherwise, it is not rejected.
 
 It is important to highlight that a p-value does not measure the size of an effect or the importance of a result.
 It might happen that a very small effect produces smaller p-values if the
@@ -224,7 +224,7 @@ the sample size is small or measurements are imprecise.
 When performing  a set of statistical inferences simultaneously more likely erroneous inferences are to occur.
 For example, if 100 tests are carried
 out, then 5\% of them (that is 5 tests) are expected to
-have $P-value < 0.05$ by chance when $H_0$ is in fact true for all the tests.
+have $P-value < 0.05$ by chance when $H_0$ is, in fact, true for all the tests.
 Compared to a single test (equations \ref{eq_error} and \ref{eq_error2}), the probability of having a type 1 error multiple test is given by the equations \ref{eq_multiple_error} and \ref{eq_multiple_errorb} \cite{vsidak1967rectangular}.
 
 \begin{subequations}
@@ -237,7 +237,7 @@ Compared to a single test (equations \ref{eq_error} and \ref{eq_error2}), the pr
 \end{align}
 \end{subequations}
 
-To handle this multiple statistical testing problem,
+To handle this multiple statistical testing problems,
 some techniques  to re-calculating probabilities obtained from a statistical test which was repeated multiple times
 have been developed to prevent the inflation of false positive rates.
 
@@ -255,14 +255,15 @@ Among the different adjustment methods to control FWER includes the Bonferroni c
  such that $P_k \leq \frac{k}{m}\alpha$, all null hypotheses $H_i$ for $i \in \{1,\ldots,k\}$ are rejected.
 
 
-These methods makes the assumption that
+These methods make the assumption that
 the tests are independent tests, which often is not valid for genomics data.
 For dependent tests, permutation methods are often used to calculate
- p-values.  This approach recalculate a p-value comparing the P-value calculated
+ p-values.  This approach recalculates a p-value comparing
+ the P-value calculated
  from the real data test with random ones,
  which are performed by randomly shuffling the case–control (or phenotype)
  labels. All $M$ tests are recalculated on the reshuffled data set, with the smallest P value of these M tests being recorded. The procedure is repeated for many times to construct an empirical frequency distribution of the smallest P values.
-This  empirical adjusted P value ($P_{*}$) is given by: $$P_{*} = \frac{r + 1}{n + 1}$$ where $n$ are the number of
+This  empirical adjusted P value ($P_{*}$) is given by: $$P_{*} = \frac{r + 1}{n + 1}$$ where $n$ is the number of
 permutation carried out, and $r$ is the number of permutated p-values smaller than P-value calculated
 from the real data.
 
@@ -281,7 +282,7 @@ Statistical procedures can be classified into two groups:  Parametric and nonpar
 Parametric statistical procedures rely on assumptions about the shape of the distribution
 (i.e., assume a normal distribution) in the underlying population and about the form or
 parameters (i.e., means and standard deviations) of the assumed distribution.
-While nonparametric statistical procedures doest not rely or rely on only few assumptions about the shape or
+While nonparametric statistical procedures don't rely or rely on only a few assumptions about the shape or
 parameters of the population distribution from which the sample was drawn.
 Some of these procedures are summarized in Table \ref{Parametric-nonparametric}.
 
@@ -316,14 +317,14 @@ Estimate the degree of association between two quantitative variables & Is age r
 
 \subsection{Survival analysis}
 
-In the medical sciences, in several situations it is necessary to evaluate if
+In the medical sciences, in several circumstances, it is necessary to evaluate if
 a treatment had a beneficial effect on the survival of patients.
 For this, it is measured the fraction of patients living for a certain amount of time after treatment.
 
 It is called "Survival times" data that measure follow-up time from a
 defined starting time to the occurrence of a given event
 (e.g. from the diagnosis of a disease to death) \cite{bewick2004statistics}.
-This survival times are "censored" when there is a follow-up time
+These survival times are "censored" when there is a follow-up time
 but the event has not yet occurred or is not known to have occurred.
 That might happen if a patient drops out of the study before its end,
 or if you are studying a treatment and it is not over yet.
@@ -406,17 +407,17 @@ Example of survival curve for table \ref{survival-example}. Censored data is mar
  If the null hypothesis is true, $T$ is distributed approximately as a $\chi^2_{k-1}$ \cite{matthews1996using}.
 If T calculated is $9.44$, and $k = 2$,  evaluating the quantile function (also known as “inverse CDF” or “ICDF”) of the chi-squared distribution the significance level of these data is equal to
 $P_r(\chi^2_{1}\geq9.44 = 0.002)$ \cite{yau2012r}.
-For a given cut-off, normally $0.05$, the results with p-value smaller are considered significant.
+For a given cut-off, normally $0.05$, the results with a p-value smaller are considered significant.
 
 \subsection{Machine Learning}
 
 Machine learning is a field of computer science focused on the development and application of algorithms that improve with experience \cite{mitchell1997machine}.
 
-In genetics and genomics, its  has been applied
+In genetics and genomics, it has been applied
  for the interpretation of large genomic data sets and annotation of a wide variety of genomic sequence elements.
 For example, for the detection of  transcription start sites (TSSs) locations, which have proven hard to detect in silico due to the complexity and the fairly diffuse structures of Eukaryotic promoters, \citeonline{down2002computational} developed a machine-learning method is able to build useful models of promoters for $>50\%$ of human transcription start sites \cite{down2002computational}.
 
-The machine learning techniques can classified into two main categories: supervised and unsupervised learning (Mitchell, 1997). The supervised learning, which aims to infer data labels by learning from already labeled data, has three stages: design, model and test. The first stage refers to the selection of a learning algorithm used to learn from data (e.g. choose between support vector machines or random forest algorithms) and its training data. The second stage is the creation of a model from labeled data using the algorithm selected previously.  The last stage uses of this generated model to  predict the labels of unlabeled data.
+The machine learning techniques can be classified into two main categories: supervised and unsupervised learning (Mitchell, 1997). The supervised learning, which aims to infer data labels by learning from already labeled data, has three stages: design, model, and test. The first stage refers to the selection of a learning algorithm used to learn from data (e.g. choose between support vector machines or random forest algorithms) and its training data. The second stage is the creation of a model from labeled data using the algorithm selected previously.  The last stage uses of this generated model to  predict the labels of unlabeled data.
 The unsupervised learning methods, on the other hand,
 cluster the data without using labels, which requires an additional step in which semantics must be manually assigned to each cluster. As this discovery is not tied to previously defined classes, these methods have as benefit the ability to identify potentially novel types of genomic elements.
 
@@ -476,7 +477,7 @@ And a second counterpoint of this technique is the choice of initial starting va
 \item[Principal component analysis (PCA):]{
 This method transformes the variables in a multivariate data set into new variables, a linear combination of the original variables, which are uncorrelated with each other and a linear combination of the original variables. This technique provides a means of
 projecting the data into a lower dimensional space, which is very useful  mainly due to the problems of high dimensional data which is called ``curse of dimensionality''.
-Generally, \citeonline{verleysen2005curse} defines the curse of dimensionality as the expression of all phenomena that appear with high-dimensional data, and that have most often unfortunate consequences on the behavior and performances of learning algorithms. In summary,  the number of learning data should grow exponentially with
+Generally, \citeonline{verleysen2005curse} defines the curse of dimensionality as the expression of all phenomena that appear with high-dimensional data, and that have most often unfortunate consequences on the behavior and performances of learning algorithms. In summary, the number of learning data should grow exponentially with
 the dimension, that means if 10 data  is reasonable to learn a 1-dimensional model, for a 2-dimensional model it will be need 100 data). For example, in genetics, microarray experiments have information for thousand of genes, if each one is considered a variable we would have thousand dimensions,
 and we would need an enormous amount of observations to obtain a reliable result. If a dimensionality reduction is not performed, with a increase of data features (dimensions), it is very likely that, by chance, one feature perfectly separates the training examples into positive and negative classes, which would lead
 to good performance on the training data but poor generalization to data that were not used in training \cite{libbrecht2015machine}.
