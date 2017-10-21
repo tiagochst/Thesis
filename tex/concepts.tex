@@ -16,7 +16,7 @@ Among the types of alterations genetic and epigenetic
 that can impact gene function are, gene copy number
 (CN), DNA methylation, single nucleotide variations (SNV), and indels (small insertions and
 deletions).
-These variantions can have a direct affect by modifying
+These variations can have a direct affect by modifying
  function of the gene product, for example a
 indel in a coding region, or a indirect affect such as
 the modification of regulatory regulatory regions
@@ -41,10 +41,10 @@ distinction \cite{subramanian2005gene}.
 \subsubsection{Protein interaction networks and cancer signatures}
 
 A major objective of systems biology is to organize molecular interactions as networks \cite{vinayagam2014integrating}. \sigla{PPIs}{Protein-protein interactions } are essential to almost every process in a cell, and they are not only crucial for understanding cell physiology in normal and disease states since the disruption of protein-protein interactions may result in disruption of the cell component or process to which they contribute, compromising the cell viability or even leading to cell death, but also for the drug development, since drugs can affect PPIs \cite{PPIs,alzate2009neuroproteomics}.
-These interaction are represetented as \sigla{PPIN}{Protein-protein interaction networks}, a mathematical representations of the physical contacts between proteins in the cell.
+These interaction are represented as \sigla{PPIN}{Protein-protein interaction networks}, a mathematical representations of the physical contacts between proteins in the cell.
 The totality of PPIs that happen in a cell, an organism or a specific biological context is called interactome.
 
- A detailed human interactome network that captures the entire cellular network is invaluable in interpreting cancer signatures, allowing one to infer activated subnetworks and specific proteins that are most important to a subnetwork. For example, for a given set of overexpressed proteins in the same subnetwork, one specific protein thart interacts with the entire subnetwork might be the key to control the expression the entire subnetwork.
+ A detailed human interactome network that captures the entire cellular network is invaluable in interpreting cancer signatures, allowing one to infer activated subnetworks and specific proteins that are most important to a subnetwork. For example, for a given set of overexpressed proteins in the same subnetwork, one specific protein that interacts with the entire subnetwork might be the key to control the expression the entire subnetwork.
 
  A lot of this information is available through molecular interaction databases such as IntAct (\burl{ http://www.ebi.ac.uk/intact}) \cite{orchard2013mintact}.
 
@@ -283,7 +283,7 @@ Parametric statistical procedures rely on assumptions about the shape of the dis
 parameters (i.e., means and standard deviations) of the assumed distribution.
 While nonparametric statistical procedures doest not rely or rely on only few assumptions about the shape or
 parameters of the population distribution from which the sample was drawn.
-Some of these producedures are summarized in Table \ref{Parametric-nonparametric}.
+Some of these procedures are summarized in Table \ref{Parametric-nonparametric}.
 
 The t-test, a parametric test, is the most widely used statistical test for comparing the means of two independent groups.
 It assumes that the data are distributed Normally, that samples from different groups are independent and that the variances between the groups are equal. The most commonly used nonparametric test in this situation is the \sigla{WRST}{Wilcoxon Rank Sum Test} and the closely related \sigla{MWU}{Mann-Whitney U-test}. The WRST assumes that observations from the different groups are random samples (i.e. independent and identically distributed) from their respective populations and are mutually independent and that the observations are ordinal or continuous measurements.
@@ -455,7 +455,7 @@ The major unsupervised learning techniques used in bioinformatics are described 
 
 \item[Hierarchical clustering:] {This clustering methods builds a hierarchy of clusters, through either a agglomerative ("bottom up") or a divisive ("top down") procedures.
 In the agglomerative procedures, each $n$ observation starts in its own cluster and until only one cluster remains the groups with the smallest dissimilarity are merged.
-On the other hand, in the divise procedures, all observations start in one cluster and until all observations are in their own cluster the group is splitted in two groups with biggest dissimilarity. To decide which clusters to merge or divide a metric to measure of dissimilarity between sets of observations is required.
+On the other hand, in the divise procedures, all observations start in one cluster and until all observations are in their own cluster the group is split in two groups with biggest dissimilarity. To decide which clusters to merge or divide a metric to measure of dissimilarity between sets of observations is required.
 Among the existing agglomerative techniques are the single linkage, also known as the nearest-neighbour technique, which defines the smallest dissimilarity between two points in each group as the dissimilarity between two groups \cite{florek1951liaison}, the complete linkage which defines the largest dissimilarity between two points in each group as the dissimilarity between two groups \cite{defays1977efficient}, the average linkage which defines the average dissimilarity over all points as the dissimilarity between two groups \cite{sokal1958statistical} and the Ward’s method which at each merge step minimizes the increase in the total within-cluster error sum of
 squares, which means that  the groups leading to minimum increase in total within-cluster variance are merged \cite{ward1963hierarchical,everitt2011hierarchical}.
 The results of hierarchical clustering are usually represented in a dendrogram a branching diagram in which the objects are represented in one of the axis while the similarity between clusters are represented in the other axis by the length of the connection which joins them \cite{manning1999foundations}.}
@@ -478,7 +478,8 @@ This method transformes the variables in a multivariate data set into new variab
 projecting the data into a lower dimensional space, which is very useful  mainly due to the problems of high dimensional data which is called ``curse of dimensionality''.
 Generally, \citeonline{verleysen2005curse} defines the curse of dimensionality as the expression of all phenomena that appear with high-dimensional data, and that have most often unfortunate consequences on the behavior and performances of learning algorithms. In summary,  the number of learning data should grow exponentially with
 the dimension, that means if 10 data  is reasonable to learn a 1-dimensional model, for a 2-dimensional model it will be need 100 data). For example, in genetics, microarray experiments have information for thousand of genes, if each one is considered a variable we would have thousand dimensions,
-and we would need an enormous amount of observations to obtain a reliable result. If a dimensionality reduction is not performed, with a increase of data features (dimensions), it is very likely that, by chance, one feature perfectly separates the training examples into positive and negative classes, which would leadto good performance on the training data but poor generalization to data that were not used in training \cite{libbrecht2015machine}.
+and we would need an enormous amount of observations to obtain a reliable result. If a dimensionality reduction is not performed, with a increase of data features (dimensions), it is very likely that, by chance, one feature perfectly separates the training examples into positive and negative classes, which would lead
+to good performance on the training data but poor generalization to data that were not used in training \cite{libbrecht2015machine}.
 }
 \end{description}
 
