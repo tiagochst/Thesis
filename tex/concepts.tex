@@ -3,7 +3,9 @@ This chapter introduces the fundamental concepts related to the developments pre
 
 \section{Genetics and epigenetics alterations}
 
-While genetics is the study of heritable changes in gene activity or function due to the direct alteration of the DNA sequence such as  point mutations, deletions, insertions, and translocation, epigenetics is the study of  those not associated with any change of the DNA sequence \cite{moore2013dna}.
+While genetics is the study of heritable changes in gene activity or function due
+to the direct alteration of the DNA sequence such as point mutations, deletions,
+insertions, and translocation, epigenetics is the study of  those not associated with any change of the DNA sequence \cite{moore2013dna}.
 Even though all cells in an organism contain the same genetic information,
 this epigenetic mechanism controls which gene are expressed enabling the existence of
 a diversified gene expression profiles
@@ -35,7 +37,7 @@ Whitin the gene body, region of the gene past the first exon, the methylation of
 \cite{brenet2011dna}.
 
 
-\section{Histone modifications}
+\subsection{Histone modifications}
 
 This process of transcription regulation involving DNA methylation,
 works in association with histone modifications and noncoding RNAs.
@@ -63,7 +65,78 @@ It can repress gene expression by inhibiting translation or inducing RNA degrada
 Overall, miRNAs, DNA methylation and histone modifications work closely
 together to regulate gene expression \cite{moore2013dna}.
 
-\section{Genetics alterations}
+\subsection{Genetics alterations}
+
+Although the haploid human genome consists of 3 billion nucleotides,
+changes in even a single base pair might result in dramatic physiological malfunctions.
+A mutation, defined as any alteration in the DNA sequence,
+can be a  germ-line mutation, which occurs in a germ-line cell
+(one that will give rise to gametes) and
+can be passed to a descendant of the organism, and somatic mutations,
+which occurs in a somatic cell (one that develop into the body tissues) and
+are never transmit to their descendants \cite{clancy2008genetic}.
+
+
+ A single base pair alteration that is present in at least 1\% of the population
+is called  \sigla{SNP}{single nucleotide polymorphism} and is generally used to refer to a
+normal variation (does not directly cause disease) \cite{clancy2008genetic}.
+
+A point mutations is able to  alter proteins by the insertion or the deletion of a single base, called frameshift mutations.
+This change of nucleotides alters the codons (group of three nucleotides) read by the ribosomes, which
+ affects the protein resulted during the translation process. 
+
+Not only changes in DNA can occur on a single nucleotide called point mutations but they can
+also occur at the level of the chromosome, in which large segments of chromosomes are altered
+(deleted, duplicated, inverted, translocated to different chromosomes, rearranged)
+resulting in levels of gene expression, the complete absence of genes, or the alteration of gene sequence.
+\citeonline{feuk2006structural} define structural variants as genomic alterations that involve segments
+of DNA that are larger than $1 kb$ which can be microscopic ($> 3Mb$) or submicroscopic ($~1 kb$ to $3 Mb$) variants,
+and also define smaller ($<1 kb$) variations or polymorphisms that involve the copy-number change
+ of a segment of DNA as insertions or deletions (indels).
+A type of structural variant is the \sigla{CNV}{copy number variation} are a segment of DNA that is 1 kb or larger and is present at a variable copy number in comparison with a reference genome while \sigla{CNP}{Copy-number polymorphism} are CNVs that occurs in more than 1\% of the population. Also, it is commom to refer to changes in copy number that have arisen in somatic tissue as copy number alterations/aberrations (CNAs or SCNAs), and changes in copy number in germline cells
+ as copy number variations (CNVs).
+Table \ref{mutation} summarizes the types of mutations.
+
+
+% The size of CNVs ranges from 50bp to 3 Mb \cite{macdonald2013database}
+
+% Within this class, \sigla{CNV}{copy number variation}, which involves unbalanced rearrangements
+% that increase or decrease the DNA content, accounts for the largest component by far9,11.
+% We now typically define the size of CNVs as larger than 50 bp12, whereas smaller elements are known as insertions
+% or deletions (indels). These structural variations encompass more polymorphic base pairs than SNPs by an order of magnitude
+
+ \begin{landscape}
+ \bgroup
+ \def\arraystretch{2.0}%  1 is the default, change whatever you need
+
+ % Please add the following required packages to your document preamble:
+ % \usepackage{multirow}
+ \begin{table}[]
+ \centering
+ \small
+ \caption{Types of DNA Mutations and Their Impact \cite{comis_cnv,clancy2008genetic,feuk2006structural}}
+ \label{mutation}
+ \begin{tabular}{p{4cm}c|p{13cm}}
+ \hline \hline
+ \multicolumn{1}{c}{\textbf{Class of Mutation}} & \multicolumn{1}{c}{\textbf{Type of Mutation}} & \multicolumn{1}{c}{\textbf{Description}}  \\ \hline \hline
+\multicolumn{1}{c|}{\multirow{3}{*}{\parbox{3cm}{\vspace{1.2cm} Point mutation}}}
+& Substitution  & One base is incorrectly added during replication and replaces the pair in the corresponding position on the complementary strand \\  \cline{2-3}
+\multicolumn{1}{c|}{}                                       & Insertion                                     & One or more extra nucleotides are inserted into replicating DNA, often resulting in a frameshift                                 \\  \cline{2-3}
+\multicolumn{1}{c|}{}                                       & Deletion                                      & One or more nucleotides is "skipped" during replication or otherwise excised, often resulting in a frameshift                  \\ \hline
+\multicolumn{1}{c|}{\multirow{4}{*}{\parbox{4cm}{\vspace{1.2cm} Chromosomal mutation}}}  &
+Inversion  & A segment of DNA that is reversed in orientation with respect to the rest of the chromosome. \\  \cline{2-3}
+\multicolumn{1}{l|}{}    & Deletion & A region of a chromosome is lost,
+resulting in the absence of all the genes in that area      \\  \cline{2-3}
+\multicolumn{1}{l|}{}    & Duplication   or low-copy repeat   & A segment of DNA $<1 kb$ in size that occurs in two or more copies per haploid genome, with the different copies sharing $>90\%$ sequence identity.  \\  \cline{2-3}
+\multicolumn{1}{l|}{}    & Translocation   &  A change in position of a chromosomal segment within a genome that involves no change to the total DNA content. Translocations can be intra- or inter- chromosomal.   \\ \hline
+\multicolumn{1}{l|}{\multirow{2}{*}{Copy number variation}} & Gain/Amplification
+ & A single-copy gain or a multi-copy amplification of the entire gene  \\  \cline{2-3}
+\multicolumn{1}{l|}{}  & Loss/Deletion  &
+A loss  for part or all of a coding region within the gene footprint in a single allele/copy (hemizygous deletion) or deletion  for part or all of a coding region within the gene footprint in both alleles/copies (homozygous deletion). \cite{comis_cnv} \\\hline
+\end{tabular}
+ \end{table}
+ \egroup
+ \end{landscape}
 
 
 \section{(Epi)Genomic data analysis}
