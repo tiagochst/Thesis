@@ -84,6 +84,42 @@ normal variation (does not directly cause disease) \cite{clancy2008genetic}.
 An example of a point mutations that is able to  alter proteins are the insertion or the deletion of a single base, called frameshift mutations. This change of nucleotides alters the codons (group of three nucleotides) read by the ribosomes, which
  affects the protein resulted during the translation process.
 
+\begin{landscape}
+
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}[]
+\centering
+\caption{Translational effect of variant allele. \cite{GTAK_maf}}
+\label{mutation-effect}
+\begin{tabular}{@{}ll@{}}
+\toprule
+\toprule
+\multicolumn{1}{c}{\textbf{Variant\_Classification}} & \multicolumn{1}{c}{\textbf{Group}} \\ \midrule \midrule
+Frame\_Shift\_Del & Deletion that moves the coding sequence out of frame \\
+Frame\_Shift\_Ins & Insertion that moves the coding sequence out of frame \\
+Missense\_Mutation &  The point mutation alters the protein structure by one amino acid \\
+Nonsense\_Mutation & A premature stop codon is created by the variant \\
+Silent & Variant is in coding region of the chosen transcript, but protein structure is identical \\
+Splice\_Site & The variant is within two bases of a splice site.  \\
+In\_Frame\_Del & Deletion that keeps the sequence in frame \\
+In\_Frame\_Ins & Insertion that keeps the sequence in frame \\
+Translation\_Start\_Site & Point mutation, insertion or deletion that overlaps the start codon \\
+Nonstop\_Mutation & variant removes stop codon. \\
+3'UTR & The variant is on the 3'UTR for the chosen transcript \\
+3'Flank & The variant is downstream of the chosen transcript (within 3kb) \\
+5'UTR & The variant is on the 5'UTR for the chosen transcript \\
+5'Flank & The variant is upstream of the chosen transcript (within 3kb) \\
+IGR & Intergenic region. Does not overlap any transcript. \\
+Intron & The variant lies between exons within the bounds of the chosen transcript. \\
+De\_novo\_Start\_InFrame & New start codon is created in frame relative to the coded protein. \\
+De\_novo\_Start\_OutOfFrame & New start codon is created out of frame relative to the coded protein. \\
+RNA & The variant lies on one of the RNA transcripts. \\
+lincRNA & The variant lies on one of the lincRNAs. \\\bottomrule
+\end{tabular}
+\end{table}
+
+\end{landscape}
 Not only changes in DNA can occur on a single nucleotide called point mutations but they can
 also occur at the level of the chromosome, in which large segments of chromosomes are altered
 (deleted, duplicated, inverted, translocated to different chromosomes, rearranged)
