@@ -1,5 +1,28 @@
 This chapter introduces the fundamental concepts related to the developments presented in this thesis. The major areas introduced are: Epigenetics, Genetics, (Epi)Genomic data analysis.
 
+\section{Cancer}
+
+Tumors are complex tissues composed of multiple distinct cell types that participate in heterotypic interactions with one another. For the onset of tumorigenesis,  cancer cells create a "tumor microenvironment"
+ recruiting normal cells which are active participants in tumorigenesis rather than passive bystanders.
+If compared to normal cells, cancer cells acquired capabilities which includes sustaining proliferative signaling,
+ evading growth suppressors, resisting cell death, enabling replicative immortality,
+ inducing angiogenesis, activating invasion and metastasis, reprogramming of energy metabolism and
+ evading immune destruction.  Those capabilities were acquired mainly due to a genetic diversity
+ genereted  by genome instability and enable tumor growth and metastatic dissemination \cite{hanahan2011hallmarks}.
+
+\begin{description}
+  \item [Sustaining Proliferative Signaling]
+  While normal tissues carefully control the production and release of growth-promoting
+  signals the cancer cells deregulates these signals in ways that promote proliferation.
+    Cancer cells can acquire the capability to sustain proliferative signaling in a number of alternative ways: They may produce growth factor ligands themselves, they may send signals to stimulate normal cells within the supporting tumor-associated stroma, to supply them with various growth factors \cite{cheng2008transforming}, or
+   they may elevate the levels of receptor proteins displayed at the cancer cell surface,
+   rendering such cells hyperresponsive to otherwise-limiting amounts of growth factor ligand.
+   Cancer cell also disruptes Negative-Feedback Mechanisms that Attenuate Proliferative Signaling,
+   for example,  loss-of-function mutations or promoter methylation of the PTEN, a tumor supressor, amplify PI3K signaling and promote tumorigenesis in a variety of experimental models of cancer \cite{jiang2009pi3k}. A second example is the oncogene RAS that some mutations affecting it compromise Ras GTPase activity,  a protein that normally regulate the inactivation of Ras. In addition to the oncogenic mutations in Ras, another mechanism affecting this gene,  showed silence of the regulatory Ras GTPase proteins through CpG methylation \cite{jin2007epigenetic}.
+   
+
+\end{description}
+
 
 \section{Genetics and epigenetics alterations}
 
@@ -234,6 +257,9 @@ each one has an identical copy of the genome but expresses a distinct set of gen
 The integrative analysis of epigenomic maps, which references to the collection of DNA methylation state and covalent modification of histone proteins along the genome \cite{bonasio2010molecular}, has been shown to be important in the study of the gene regulatory programs \cite{gifford2013transcriptional,hawkins2010distinct,rada2012epigenomic}. Table \ref{histonemarks}
 shows a summary of the epigenomic marks and their associate role.
 
+\begin{landscape}
+
+
 \bgroup
 \def\arraystretch{2.0}%  1 is the default, change whatever you need
 \begin{table}[]
@@ -241,9 +267,10 @@ shows a summary of the epigenomic marks and their associate role.
 \small
 \caption[Histone and epigenomic marks]{Core set of five histone modification marks and other epigenomic marks}
 \label{histonemarks}
-\begin{tabular}{lp{8cm}}
+\begin{tabular}{lp{14cm}}
 \toprule
- \textbf{Histone marks}   & \textbf{Role} \\ \toprule
+\toprule
+ \textbf{Histone marks}   & \textbf{Role} \\ \toprule \toprule
  Histone H3 lysine 4 trimethylation (H3K4me3)  & Promoter regions \cite{heintzman2007distinct,bernstein2005genomic} \\
  Histone H3 lysine 4 monomethylation (H3K4me1) & Enhancer regions \cite{heintzman2007distinct}  \\
  Histone H3 lysine 36 trimethylation (H3K36me3) & Transcribed regions  \\
@@ -256,6 +283,7 @@ shows a summary of the epigenomic marks and their associate role.
 \end{tabular}
 \end{table}
 \egroup
+\end{landscape}
 
 Using these set of epigenetics marks, it is possible to
  discover epigenomic states which would aid in understanding
