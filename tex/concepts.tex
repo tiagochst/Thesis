@@ -179,7 +179,7 @@ also occur at the level of the chromosome, in which large segments of chromosome
 (deleted, duplicated, inverted, translocated to different chromosomes, rearranged)
 resulting in levels of gene expression, the complete absence of genes, or the alteration of gene sequence.
 \citeonline{feuk2006structural} define structural variants as genomic alterations that involve segments
-of DNA that are larger than $1 kb$ which can be microscopic ($> 3Mb$) or submicroscopic ($~1 kb$ to $3 Mb$) variants,
+of DNA that are larger than $1 kb$ which can be microscopic ($> 3Mb$) or submicroscopic ($1 kb$ to $3 Mb$) variants,
 and also define smaller ($<1 kb$) variations or polymorphisms that involve the copy-number change
  of a segment of DNA as insertions or deletions (indels).
 A type of structural variant is the \sigla{CNV}{copy number variation} are a segment of DNA that is 1 kb or larger and is present at a variable copy number in comparison with a reference genome while \sigla{CNP}{Copy-number polymorphism} are CNVs that occurs in more than 1\% of the population. Also, it is commom to refer to changes in copy number that have arisen in somatic tissue as copy number alterations/aberrations (CNAs or SCNAs), and changes in copy number in germline cells
@@ -276,7 +276,7 @@ structures used in this project.
   \item [Somatic Variant data:]  The DNA-Seq Somatic Variant Analysis algorithms, such as MuSE \cite{fan2016muse}, Mutect2 \cite{cibulskis2013sensitive}, SomaticSniper \cite{larson2011somaticsniper} and Varscan2 \cite{koboldt2012varscan},   identify and characterizes somatic mutations by comparing reference alignments from tumor and normal samples from the same case.  The   results of the variant calls are stored in a \sigla{MAF}{Mutation Annotation Format}, which are filtered to remove any potentially erroneous or germline variant calls. Each row of these  represents a mutation in the genome of a sample \cite{GDC_maf}.
   \item [RNA-Seq Gene Expression data]: The processed data contains read counts measured on a gene level, which might be normalized using some methods such as the Fragments Per Kilobase of transcript per Million mapped reads (FPKM) \cite{GDC_fpmk} and FPKM Upper Quartile (FPKM-UQ) \cite{GDC_fpmkuq}.
   \item [miRNA-Seq  data:]  The processed data contains expression levels measured and normalized post-alignment. Normalization is performed using the Reads per Millions (RPM) method. Expression levels for known miRNAs and observed miRNA isoforms are generated for each sample.
-  \item [Copy Number Variation data:] The processed data is a table that associates contiguous chromosomal segments with genomic coordinates, mean array intensity (log2 ratio segment means), and the number of probes that bind to each segment. This information might be masked to remove segments with probes known to contain germline mutations are removed. 
+  \item [Copy Number Variation data:] The processed data is a table that associates contiguous chromosomal segments with genomic coordinates, mean array intensity (log2 ratio segment means), and the number of probes that bind to each segment. This information might be masked to remove segments with probes known to contain germline mutations are removed.
   From the CBS output, algorithms such as GISTIC2 \cite{mermel2011gistic2} are used to identify significantly altered regions of amplification or deletion across sets of patients.
   \item [Histone ChIP-Seq data:] The processed data contains either the fold change over control and signal p-value stored
   in a bigWig format or as peaks in a bed and bigBed format \cite{ENCODE_chipseq}.  The ENCODE consortium highlight that these peak files are not meant to be interpreted as definitive binding events, but are rather intended to be used as input for subsequent statistical comparison of replicates \cite{ENCODE_chipseq}. This data is used as input for software
@@ -302,13 +302,13 @@ Some of the mainly data strutures from the R/Bioconductor used in this project a
   \begin{figure}[ht!]
   \centering
   \includegraphics[width=1.0\textwidth]{images/Granges.png}
-  \caption{\label{fig:granges} Example of Granges object.}
+  \caption[Granges object]{\label{fig:granges} Example of Granges object.}
   \end{figure}
   \item [\sigla{SE}{SummarizedExperiment}:]  This data strucute, exemplified in Figure \ref{fig:SE}, is a  matrix-like container where rows represent ranges of interest (as a GRanges object) and columns represent samples (with sample data summarized as a DataFrame). It can contains one or more assays, each represented by a matrix-like object of numeric or other mode.
   \begin{figure}[ht!]
   \centering
   \includegraphics[width=1.0\textwidth]{images/summarizedExperiment.png}
-  \caption{\label{fig:SE} Example of Sumarized Experiment object. Figure reproduced from SummarizedExperiment manual \cite{SummarizedExperiment}.}
+  \caption[Sumarized Experiment object]{\label{fig:SE} Example of Sumarized Experiment object. Figure reproduced from SummarizedExperiment manual \cite{SummarizedExperiment}.}
   \end{figure}
   \item [\sigla{MAE}{MultiAssayExperiment}:] This data strucute is an integrative environment where multiple assays are managed and preprocessed for genomic data analysis.  It is composed of at least two metadata matrices, one with the phenotype metadata (i.e. clinical data) and one table mapping each data column from different assays to a entry in the phenotype metadata. The data handle by this data strucute can be several SummarizedExperiment objects (i.e DNA methylation, gene expression, copy number, histone mofication signals).
 
