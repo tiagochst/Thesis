@@ -263,21 +263,25 @@ data structures to handle genetics, epigenetics and clinical data.
 Some of these data strutures are described below.
 
 \begin{description}
-  \item [GenomicRanges (GRanges):] This data strucute was created to representation and manipulate genomic intervals and variables defined along a genome
-  GRanges is a vector of genomic locations, which are composed by the sequence names (chr1, chr2), the sequence range (start and end) and the strand information, and associated annotations (metadata) \cite{lawrence2013software}.
+  \item [\sigla{GRanges}{GenomicRanges}:] This data strucute was created to representation and manipulate genomic intervals and variables defined along a genome
+  GRanges is a vector of genomic locations, which are composed by the sequence names (chr1, chr2), the sequence range (start and end) and the strand information, and associated annotations (metadata) \cite{lawrence2013software}. An example of GRanges object is shown in Figure \ref{fig:granges}.
 
   \begin{figure}[ht!]
   \centering
   \includegraphics[width=1.0\textwidth]{images/Granges.png}
   \caption{\label{fig:granges} Example of Granges object.}
   \end{figure}
-
+  \item [\sigla{SE}{SummarizedExperiment}:]  a matrix-like container where rows represent ranges of interest (as a GRanges or GRangesList object) and columns represent samples (with sample data summarized as a DataFrame). It can contains one or more assays, each represented by a matrix-like object of numeric or other mode. An example of GRanges object is shown in Figure \ref{fig:SE}.
+  \begin{figure}[ht!]
+  \centering
+  \includegraphics[width=1.0\textwidth]{images/summarizedExperiment.png}
+  \caption{\label{fig:SE} Example of Sumarized Experiment object. Figure reproduced from SummarizedExperiment manual \cite{SummarizedExperiment}.}
+  \end{figure}
+  \item [\sigla{MAE}{MultiAssayExperiment}:]
 \end{description}
 
 
 
-SummarizedExperiment
-MultiAssay Experiment
 
 
 \section{(Epi)Genomic data analysis} \label{sec:concept-analysis}
