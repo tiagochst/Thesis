@@ -237,7 +237,7 @@ A loss  for part or all of a coding region within the gene footprint in a single
 \begin{description}
   \item [The Cancer Genome Atlas (TCGA):] The TCGA consortium, which was a National Institute of Health (NIH) initiative, made publicly available molecular and clinical information for more than 30 types of human cancers including exome (variant analysis), single nucleotide polymorphism (SNP), DNA methylation, transcriptome (mRNA), microRNA (miRNA) and proteome . Sample types available at TCGA are: primary solid tumors, recurrent solid tumors, blood derived normal and tumor, metastatic, and solid tissue normal \cite{weinstein2013cancer}. This project was shutdown in mid 2016 and its data was moved to  the NCI Genomic Data Commons (GDC).
   \item [The Genomic Data Commons (GDC):]  The NCI's Genomic Data Commons (GDC) provides the cancer research community with a unified data repository that enables data sharing across cancer genomic studies in support of precision medicine.
-  It supports several cancer genome programs at the NCI \sigla{CCG}{Center for Cancer Genomics}, including The Cancer Genome Atlas (TCGA) and Therapeutically Applicable Research to Generate Effective Treatments (TARGET).
+  It supports several cancer genome programs at the NCI \sigla{CCG}{Center for Cancer Genomics}, including The Cancer Genome Atlas (TCGA) and Therapeutically Applicable Research to Generate Effective Treatments (TARGET) \cite{GDC_web}.
   Those data is harmonized against GRCh38 (hg38) using GDC Bioinformatics Pipelines which provides methods to the standardization of biospecimen and clinical data, the re-alignment of DNA and RNA sequence data against a common reference genome build GRCh38, and the generation of derived data. Also, this repository has a Legacy Archive to provide access to an unmodified copy of data that was previously stored in CGHub \cite{wilks2014cancer} and in the TCGA Data Portal hosted by the TCGA Data Coordinating Center (DCC), in which uses as references GRCh37 (hg19) and GRCh36 (hg18).
   \item [The Encyclopedia of DNA Elements (ENCODE):] Found in 2003 by the \sigla{NHGRI}{National Human Genome Research Institute}, the project aims to build a comprehensive list of functional elements that have an active role in the genome, including regulatory elements that govern gene expression. Biosamples includes immortalized cell lines, tissues, primary cells and stem cells \cite{encode2011user}.
   \item [The NIH Roadmap Epigenomics Mapping Consortium:] This was launched with the goal of producing a public resource of human epigenomic data in order to analyze biology and disease-oriented research. Roadmap maps DNA methylation, histone modifications, chromatin accessibility, and small RNA transcripts in stem cells and primary ex vivo tissues
@@ -247,6 +247,38 @@ A loss  for part or all of a coding region within the gene footprint in a single
  Briefly, these three consortia provide large scale epigenomic data onto a variety of microarrays and \sigla{NGS}{next-generation sequencing } platforms. Each consortium encompasses specific types of biological information on specific type of tissue or cell and when analyzed together, it provides an invaluable opportunity for research laboratories to better understand the developmental progression of normal cells to cancer state at the molecular level and importantly, correlate these phenotypes with tissue of origins.
 
 \subsection{Data and data structure} \label{susec:structure}
+
+The previously stored data in CGHub, TCGA Data Portal and Broad Institute’s GDAC Firehose, were provided as different levels or tiers that were defined in terms of a specific combination of both processing level (raw, normalized, integrated) and access level (controlled or open access). Level 1 indicated raw and controlled data, level 2 indicated processed and controlled data, level 3 indicated Segmented or Interpreted Data and open access and level 4 indicated region of interest and open access data. While the TCGA data portal provided level 1 to 3 data, Firehose only provides level 3 and 4. An explanation of the different levels can be found at TCGA Wiki. However, the GDC data portal no longer uses this based classification model in levels. Instead a new data model was created, its documentation can be found in GDC documentation. In this new model, data can be open or controlled access. While the GDC open access data does not require authentication or authorization to access it and generally includes high level genomic data that is not individually identifiable, as well as most clinical and all biospecimen data elements, the GDC controlled access data requires dbGaP authorization and eRA Commons authentication and generally includes individually identifiable data such as low level genomic sequencing data, germline variants, SNP6 genotype data, and certain clinical data elements. The process to obtain access to controlled data is found in GDC web site.
+
+% Falar sobre barcodes
+% representação de dados geneticos e epigeneticos
+% dados brutos vs processados
+
+Although there exists a wealth of possibilities \cite{kannan2015public}
+in accessing cancer associated data, Bioconductor (\burl{https://www.bioconductor.org/})
+represent the most comprehensive set of open source,
+updated and integrated professional tools for the statistical analysis of large scale genomic data.
+It uses the R statistical programming language and has been developing several
+data structures to handle genetics, epigenetics and clinical data.
+Some of these data strutures are described below.
+
+\begin{description}
+  \item [GenomicRanges (GRanges):] This data strucute was created to representation and manipulate genomic intervals and variables defined along a genome
+  GRanges is a vector of genomic locations, which are composed by the sequence names (chr1, chr2), the sequence range (start and end) and the strand information, and associated annotations (metadata) \cite{lawrence2013software}.
+
+  \begin{figure}[ht!]
+  \centering
+  \includegraphics[width=1.0\textwidth]{images/Granges.png}
+  \caption{\label{fig:granges} Example of Granges object.}
+  \end{figure}
+
+\end{description}
+
+
+
+SummarizedExperiment
+MultiAssay Experiment
+
 
 \section{(Epi)Genomic data analysis} \label{sec:concept-analysis}
 
