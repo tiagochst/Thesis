@@ -244,23 +244,53 @@ A loss  for part or all of a coding region within the gene footprint in a single
   \cite{Fingerman,Bernstein}.
 \end{description}
 
- Briefly, these three consortia provide large scale epigenomic data onto a variety of microarrays and \sigla{NGS}{next-generation sequencing } platforms. Each consortium encompasses specific types of biological information on specific type of tissue or cell and when analyzed together, it provides an invaluable opportunity for research laboratories to better understand the developmental progression of normal cells to cancer state at the molecular level and importantly, correlate these phenotypes with tissue of origins.
+ Briefly, these consortia provide large scale epigenomic data onto a variety of microarrays and \sigla{NGS}{next-generation sequencing } platforms. Each consortium encompasses specific types of biological information on specific type of tissue or cell and when analyzed together, it provides an invaluable opportunity for research laboratories to better understand the developmental progression of normal cells to cancer state at the molecular level and importantly, correlate these phenotypes with tissue of origins.
 
 \subsection{Data and data structure} \label{susec:structure}
 
-The previously stored data in CGHub, TCGA Data Portal and Broad Institute’s GDAC Firehose, were provided as different levels or tiers that were defined in terms of a specific combination of both processing level (raw, normalized, integrated) and access level (controlled or open access). Level 1 indicated raw and controlled data, level 2 indicated processed and controlled data, level 3 indicated Segmented or Interpreted Data and open access and level 4 indicated region of interest and open access data. While the TCGA data portal provided level 1 to 3 data, Firehose only provides level 3 and 4. An explanation of the different levels can be found at TCGA Wiki. However, the GDC data portal no longer uses this based classification model in levels. Instead a new data model was created, its documentation can be found in GDC documentation. In this new model, data can be open or controlled access. While the GDC open access data does not require authentication or authorization to access it and generally includes high level genomic data that is not individually identifiable, as well as most clinical and all biospecimen data elements, the GDC controlled access data requires dbGaP authorization and eRA Commons authentication and generally includes individually identifiable data such as low level genomic sequencing data, germline variants, SNP6 genotype data, and certain clinical data elements. The process to obtain access to controlled data is found in GDC web site.
+If previously the main bottleneck to scientific progress in cellular biology was data collection, now this
+ bottleneck shifted to analysis of data \cite{mcpherson2009next}.
+ The large-scale genomic data mining, which is the process of using many diverse datasets to address a specific biological question, involves three main tasks: establishing methodology for efficiently querying large data collections; assembling data from appropriate repositories; and integrating information from a variety of experimental data types \cite{huttenhower2010quick}.
+In data science, raw data refers to data that have not been changed since acquisition which after editing, cleaning or modifying the it results in processed data. In genomics the raw data, sequencing read data,
+ from next generation sequencing machines is stored in a FASTQ,
+ a common file format data that combines both the sequence and an associated per base quality score \cite{cock2009sanger}.
+ Those stored reads are then aligned to a reference genome sequence with software like Bowtie 2 \cite{langmead2012fast},
+generating SAM files, the accepted standard for storing short read alignment data, which are subsequently compressed to binary  format (Binary Alignment/Map (BAM)) via SAMtools \cite{li2009sequence}. It in common to consider this set of SAM, BAM and FASTQ files as raw data. Some databases classifies this raw data as level 1, protected level or raw level.
+It is important to highlight that due to privacy concerns, the access to this raw data is controlled
+because it could be used in identity tracing attacks \cite{erlich2014routes,ayday2014privacy} as
+generally includes individually identifiable data such as low level genomic sequencing data, germline variants, SNP6 genotype data, and certain clinical data elements \cite{GDC_data}.
+This raw data are processed through bioinformatics pipelines generating
+processed data files or matrices (usually in the form of tab-delimited text files).
+Some databases classifies this raw data as level 2 or more or open.
+For example, the previously stored data in CGHub, TCGA Data Portal and Broad Institute’s GDAC Firehose, were provided as different levels or tiers that were defined in terms of a specific combination of both processing level (raw, normalized, integrated) and access level (controlled or open access). Level 1 indicated raw and controlled data, level 2 indicated processed and controlled data, level 3 indicated Segmented or Interpreted Data and open access and level 4 indicated region of interest and open access data.
 
-% Falar sobre barcodes
-% representação de dados geneticos e epigeneticos
-% dados brutos vs processados
+In the next subsections we will focus on the processed data and their data
+structures used in this project.
 
+\subsubsection{Data}
+
+\begin{description}
+  \item [Array-based DNA methylation data:]
+  DNA methylation data files contain information on raw and normalized signal intensities, detection confidence and calculated beta values for methylated and unmethylated probes.
+  The processed data from DNA methylation array-based platforms such as GoldenGate, Infinium Human Methylation27 and the Infinium HD 450K methylation array, are presented in the form of beta-values that uses a scale ranging from 0.0 (probes completely unmethylated ) up to 1.0 (probes completely methylated). In each file, one per sample,  one row represents a 1 bp region (probe) and its beta-value. Also, propes overlapping with SNPs are normally masked.
+  \item [Somatic Variant data:]  The DNA-Seq Somatic Variant Analysis algorithms, such as MuSE \cite{fan2016muse}, Mutect2 \cite{cibulskis2013sensitive}, SomaticSniper \cite{larson2011somaticsniper} and Varscan2 \cite{koboldt2012varscan},   identify and characterizes somatic mutations by comparing reference alignments from tumor and normal samples from the same case.  The   results of the variant calls are stored in a \sigla{MAF}{Mutation Annotation Format}, which are filtered to remove any potentially erroneous or germline variant calls. Each row of these  represents a mutation in the genome of a sample \cite{GDC_maf}.
+  \item [RNA-Seq Gene Expression data]: The processed data contains read counts measured on a gene level, which might be normalized using some methods such as the Fragments Per Kilobase of transcript per Million mapped reads (FPKM) \cite{GDC_fpmk} and FPKM Upper Quartile (FPKM-UQ) \cite{GDC_fpmkuq}.
+  \item [miRNA-Seq  data:]  The processed data contains expression levels measured and normalized post-alignment. Normalization is performed using the Reads per Millions (RPM) method. Expression levels for known miRNAs and observed miRNA isoforms are generated for each sample.
+  \item [Copy Number Variation data:] The processed data is a file with detected duplications or deletions of contiguous chromosomal regions by measuring array intensity levels. This files that might contain or not germline CN variations (files with  the prefix "nocnv" had the removed). This processed data is used as input for \sigla{CBS}{circular binary segmentations}  which divides each chromosome into contiguous segments of equal copy-number and quantifies each.
+  \item [Histone ChIP-Seq data:] The processed data contains either the fold change over control and signal p-value stored
+  in a bigWig format or as peaks in a bed and bigBed format. \cite{ENCODE_chipseq}
+\end{description}
+
+% CNV book https://books.google.com.br/books?id=2URhBAAAQBAJ&pg=PA411&lpg=PA411&dq=Log2(T/R)+CNV&source=bl&ots=8Zviyd68Qx&sig=Ujd6ehNLbNGjaLgkHg17Sx1nyok&hl=pt-BR&sa=X&ved=0ahUKEwi50JjS6InXAhXGG5AKHfwUBBMQ6AEIaTAH#v=onepage&q=Log2(T%2FR)%20CNV&f=false
+
+\subsubsection{Data structures}
 Although there exists a wealth of possibilities \cite{kannan2015public}
 in accessing cancer associated data, Bioconductor (\burl{https://www.bioconductor.org/})
 represent the most comprehensive set of open source,
 updated and integrated professional tools for the statistical analysis of large scale genomic data.
 It uses the R statistical programming language and has been developing several
 data structures to handle genetics, epigenetics and clinical data.
-Some of these data strutures are described below.
+Some of the mainly data strutures from the R/Bioconductor used in this project are described below.
 
 \begin{description}
   \item [DataFrame:] A data frame is used for storing data tables. It is a list of vectors of equal length.
