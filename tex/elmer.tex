@@ -441,7 +441,7 @@ Identification of putative target gene(s) for differentially methylated distal p
 \end{table}
 
 To visualize the relationship between the probe-gene pairs inferred, there are two auxiliary functions in ELMER. The function \textit{schematic.plot}, shown in Listing \ref{lst:plotpair}, which will plot genes and probes in a specified genomic region, highlighting the significant pairs identified by plotting a genomic interactions track and highlight the genes in the pair in red (Figure \ref{fig:parplot}). Also,  using the function \textit{scatter.plot} (Listing \ref{lst:scatterplot}) it is possible to visualize the correlation between gene expression and DNA methylation levels at probe (Figure \ref{fig:scatterplot}).
- Finally, an overall summary of the DNA  methylation levels and gene expression levels  can be visualized using the auxiliary function \textit{heatmapPairs}, as shown in Listing \ref{lst:heatmap}. This function creates a heatmap for all samples  as shown in plots \ref{fig:heatmap}.
+ Finally, an overall summary of the DNA  methylation levels and gene expression levels  can be visualized using the auxiliary function \textit{heatmapPairs}, as shown in Listing \ref{lst:heatmap}. This function creates a heatmap for all samples  as shown in Figure \ref{fig:heatmap}.
 
 %\begin{minipage}{\linewidth}
 \lstinputlisting[language=R, frame = none,firstline=5,lastline=13,label = {lst:plotpair},caption = "Schematic plot to visualize gene-probe pairs"]{codes/plotpair.R}
@@ -607,7 +607,7 @@ set to 100\% (use all samples from each group) and the mode in function \textit{
 and in function \textit{get.TFs} which was set to "supervised". In this mode instead
 of defining the U (unmethylated) group as the samples with lowest quintile of DNA
 methylation levels and the M (methylated) group as the highest quintile, the $U$ and $M$ group
- will be defined as all samples of one known molecular subtype (Figure \ref{fig:mode}).
+ will be defined as all samples of one known molecular subtype.
  For example, if the first step identified probes hypomethylated in Luminal A group compared to Basa-like group,
 in the next steps the U group will be the Luminal A samples and the M group will be the Basal-like samples.
 The results and code of this supervised analysis can be found in the supplemental files,
