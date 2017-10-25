@@ -126,7 +126,7 @@ selected if the methylation difference: $\Delta = \mu_{group1} - \mu_{group2}$
 was greater than $0.3$. The same method is used to identify hypermethylated DMCs,
 except we use the \textit{upper} quintile, and the opposite tail in the t-test is chosen.
 
-\subsubsection*{Identification of putative target gene(s)}
+\subsubsection{Identification of putative target gene(s)}
 
 For each differentially methylated distal probe (DMC), the closest 10 upstream
 genes and the closest 10 downstream genes are tested for inverse correlation between
@@ -188,7 +188,7 @@ along with our new FunciVar package \cite{funcivar}. Enrichment of the putative 
  within chromatin states is calculated against a background model that uses the distal
  probe set that the putative pairs are drawn from.
 
-\subsubsection*{Motif enrichment analysis}
+\subsubsection{Motif enrichment analysis}
 In order to identify enriched motifs and potential upstream regulatory TFs,
 all probes with occurring in significant probe-gene pairs are combined for
 motif enrichment analysis. \sigla{HOMER}{Hypergeometric Optimization of Motif EnRichment}
@@ -359,7 +359,7 @@ and among those 5 are metastatic samples, 778 are Primary Solid Tumor and
 %%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\subsection*{Identification of distal probes with significant differential DNA methylation (i.e. DMCs) in tumor vs. normal samples}
+\subsubsection*{Identification of distal probes with significant differential DNA methylation (i.e. DMCs) in tumor vs. normal samples}
 
 The function \textit{get.diff.meth} is  used to identify regions differently methylation between two groups.
 Listing \ref{lst:diffMeth} shows how to use it to select hypomethylated probes in "Primary solid tumor" samples
@@ -394,7 +394,7 @@ If the \textit{save} argument is set to TRUE, in the \textit{dir.out} folder two
 \end{table}
 
 \newpage
-\subsection*{Identification of putative target gene(s) for differentially methylated distal probes}
+\subsubsection*{Identification of putative target gene(s) for differentially methylated distal probes}
 The function \textit{get.pair} is used to link enhancer probes with methylation changes to target genes with expression changes and report the putative target gene for selected probes. Listing \ref{lst:getpair} shows how to select the 20 nearest genes (10 downstream and 10 upstream) and evaluate if each pair is anti-correlated (probes with higher methylation levels have lower gene expression levels).
 Its main arguments are described below:
 
@@ -447,28 +447,25 @@ To visualize the relationship between the probe-gene pairs inferred, there are t
 \lstinputlisting[language=R,basicstyle=\tiny, frame = none,firstline=5,lastline=13,label = {lst:plotpair},caption = "Schematic plot to visualize gene-probe pairs"]{codes/plotpair.R}
 %\end{minipage}
 
-\begin{figure}[ht!]
+\begin{figure}
 \centering
 \includegraphics[width=0.7\textwidth]{images/cg04723436_schematic_byProbe.pdf}
 \caption[Schematic plot gene-probe pairs]{\label{fig:parplot} Plot probe-gene pairs with annotation track for MCF-7 cell line from \url{StateHub.org}. Significant probes and gene pairs are highlighted in red.}
 \end{figure}
 
-
-% \begin{minipage}{\linewidth}
 \lstinputlisting[language=R,basicstyle=\tiny, frame = none,label = {lst:scatterplot},caption = "Scatter plot to visualize correlation between gene expression and DNA methylation levels at probe"]{codes/scatterplot.R}
-% \end{minipage}
 
 
-\begin{figure}[ht!]
+\begin{figure}
 \centering
 \includegraphics[width=0.7\textwidth]{images/cg04723436_GATA3_bypair.pdf}
 \caption{\label{fig:scatterplot} Scatter plot for significant probe (cg04723436) gene (GATA3) pair.}
 \end{figure}
 
-\begin{figure}[ht!]
+\begin{figure}
 \centering
 \includegraphics[width=1.0\textwidth]{images/heatmap.png}
-\caption{\label{fig:heatmap} Heatmap of paired probes and distal genes. The first heatmap (left one) shows DNA methylation $\beta$ levels ranging from 0 (non-methylated) up to 1 (methylated probes).
+\caption[Heatmap of anticorrelated pairs of DNA methylation probes and gene]{\label{fig:heatmap} Heatmap of paired probes and distal genes. The first heatmap (left one) shows DNA methylation $\beta$ levels ranging from 0 (non-methylated) up to 1 (methylated probes).
 The second heatmap (middle one) shows z-scores for gene expression levels (standard deviations from each gene means). The last heatmap (right heatmap) shows the distance between the probe
 and gene anti-correlated.}
 \end{figure}
@@ -478,7 +475,7 @@ and gene anti-correlated.}
 
 \clearpage
 
-\subsection*{Characterization of chromatin state context of significant probe regions using FunciVar}
+\subsubsection*{Characterization of chromatin state context of significant probe regions using FunciVar}
 
 To understand and compare our set of probes identified in the probe-gene pairs inferred
 we used chromatin state of IHEC cell types
@@ -504,7 +501,7 @@ while for other cell lines this enrichment is not visible.
 %\lstinputlisting[language=R,basicstyle=\tiny, frame = none,basicstyle=\ttfamily\scriptsize,label = {lst:funcivar},caption = "Chromatin state annotation for probe regions"]{codes/funcivar.R}
 %\end{minipage}
 
-\begin{figure}[ht!]
+\begin{figure}
 \centering
 \includegraphics[width=1.0\textwidth]{images/funcivar.pdf}
 \caption[ Enrichment of paired probes and chromatin states of encode cells.]{\label{fig:funcivar} Enrichment of paired probes and chromatin states of encode cells.
@@ -518,7 +515,7 @@ promoter region for MCF-7 cell. Acronyms - AR: Active region, EAR: active enhanc
 
 %\cleardoublepage
 
-\subsection*{Identification of enriched motifs within set of probes in significant probe-gene pairs}
+\subsubsection*{Identification of enriched motifs within set of probes in significant probe-gene pairs}
 The function \textit{get.enriched.motif} is used to identify enriched motif in a set of probes.
 The main arguments are described below:
 \begin{itemize}
@@ -530,14 +527,15 @@ The main arguments are described below:
 \lstinputlisting[language=R,basicstyle=\tiny, frame = none,label = "motif",caption = "Motif enrichment analysis on the selected probes"]{codes/motif.R}
 %\end{minipage}
 
-\begin{figure}[ht!]
+%\clearpage
+\begin{figure}
 \centering
 \includegraphics[width=1.0\textwidth]{images/OR_nosummary.pdf}
 \caption[Motif enrichment plot]{\label{fig:boxplot2} Motif enrichment plot shows the enrichment levels ($OR\geq2.0$) for the selected motifs. This plot represents a subset of the enriched motifs for $\textit{lower.or}= 1.1$, only selected for representational purposes.}
 \end{figure}
 
 %\cleardoublepage
-\subsection*{Identification of master regulator Transcription Factors (TF) for each enriched motif}
+\subsubsection*{Identification of master regulator Transcription Factors (TF) for each enriched motif}
 The function \textit{get.TFs} is used to identify regulatory TF whose expression associates with TF binding motif
 DNA methylation which.
 
@@ -547,7 +545,7 @@ The result of this function is shown in table \ref{tab:get.tf} and in figure \re
 
 \begin{landscape}
 
-\begin{table}[h!]
+\begin{table}
 \centering
 \small
 \csvautobooktabular[respect underscore,
@@ -560,7 +558,7 @@ The result of this function is shown in table \ref{tab:get.tf} and in figure \re
 \end{landscape}
 
 
-\begin{figure}[ht!]
+\begin{figure}
 \centering
 \includegraphics[width=1.0\textwidth]{images/ANDR_HUMAN_H11MO_0_A_TFrankPlot.pdf}
 \caption[TF ranking plot: ANDR motif]{\label{fig:tfplot} TF ranking plot shows statistic $-log_{10}(P-value)$ assessing the anti-correlation level
@@ -568,56 +566,50 @@ of TFs expression level with average DNA methylation level at sites with a given
 But there is also an option to highlight only TF sub-family members (TCClass database classification)}
 \end{figure}
 
-\newpage
+%\clearpage
 
 
-\subsection*{Comparing inferred results with MCF-7 chIA-PET}
+\subsubsection*{Comparing inferred results with MCF-7 chIA-PET}
 
 As shown in \citeonline{yao2015inferring}, we compared the putative pairs inferred to the chromatin loops derived from deep-sequenced ChIA-PET data from MCF7 cells \cite{li2012extensive}. First, we identify the number of \textit{ELMER} pairs overlapping the ChIA-PET loops, then we repeat using randomly generated  pairs with properties similar to the \textit{ELMER} pairs. For each true ELMER probe in a probe-gene pair, we randomly select a different probe from the complete set of distal probes. We then choose the nth nearest gene to the random probe, where n is the same as the adjacency of the true ELMER probe (i.e. if the true probe is linked to the second gene upstream, the  random probe will also be linked to its second gene upstream). Thus, the random linkage set has both the same number of probes and the same number of linked genes as the true set. One hundred such random datasets were generated to arrive at a 95\% CI ($\pm 1.96* SD$).
 The result is shown in Figure \ref{fig:chiapet}. Of the 2124 putative pairs identified in breast cancer tumors, 316 (approximately 14.9\%) were also identified as loops in the MCF7 ChIA-PET data. This was a three-fold enrichment over randomized probe-gene pairs (see Additional file for the code).
 
 
-%\begin{minipage}{\linewidth}
-%\lstinputlisting[language=R]{codes/mcf7-validation.R}
-%\end{minipage}
-
-\begin{figure}[ht!]
+\begin{figure}
 \centering
-\includegraphics[width=0.6\textwidth]{images/validation.png}
+\includegraphics[width=0.5\textwidth]{images/validation.png}
 \caption[MCF7 ChIA-PET validation]{\label{fig:chiapet} The graph shows the comparison of the number of probe-gene pairs identified within MCF7 ChIA-PET data using the putative pairs from BRCA vs. random pairs}
 \end{figure}
 
-
-\clearpage
+%\clearpage
 \subsection{Use Case 2: BRCA molecular subtypes analysis (supervised approach)}
 
 Several studies identified distinct molecular Breast cancer classes and
-divided them as the luminal-like (Luminal A and Luminal B) subclasses,
+divided them as the following subclasses: luminal-like (Luminal A and Luminal B),
 which are Estrogen receptor-positive (ER-positive), and the basal-like,
 ErbB2-positive and normal-like subclasses, which are the ER-negative
 groups \cite{perou2000molecular,yersal2014biological,sorlie2001gene}.
-To performed \textit{ELMER} analysis comparing known molecular subtypes
+To perform \textit{ELMER} analysis comparing known molecular subtypes
 (Her2, Luminal A, Luminal B and Basal-like) a TCGA BRCA dataset classification
-retrieved from \citeonline{ciriello2015comprehensive}.
+was retrieved from \citeonline{ciriello2015comprehensive}.
 
 
 The main arguments changed were the percentage of samples used to identify the
-differentially methylated probes in function \textit{get.diff.meth} which was
-set to 100\% (use all samples from each group) and the mode in function \textit{get.pair}
+differentially methylated probes in function \textit{get.diff.meth}, which was
+set to 100\% (use all samples from each group), and the mode in function \textit{get.pair}
 and in function \textit{get.TFs} which was set to "supervised". In this mode instead
-of defining the U (unmethylated) group as the samples with lowest quintile of DNA
-methylation levels and the M (methylated) group as the highest quintile, the $U$ and $M$ group
- will be defined as all samples of one known molecular subtype.
- For example, if the first step identified probes hypomethylated in Luminal A group compared to Basa-like group,
-in the next steps the U group will be the Luminal A samples and the M group will be the Basal-like samples.
-The results and code of this supervised analysis can be found in the supplemental files,
-a venn diagram with the candidate TF actives in each molecular subtype are shown in Figure \ref{fig:venn}.
+of defining the $U$ (unmethylated) group as the samples with lowest quintile of DNA
+methylation levels and the $M$ (methylated) group as the highest quintile, the $U$ and $M$ group
+ were defined as all samples of one known molecular subtype.
+ For example, if the first step identified probes hypomethylated in Luminal A group when compared to Basa-like group,
+ the next steps will use the Luminal A samples as $U$ group  and the Basal-like samples as the $M$ group.
+A venn diagram with the candidate TF actives in each molecular subtype are shown in Figure \ref{fig:venn}.
 
-From the  Luminal A group vs Basal-like group analysis, it can be highlighted that the pairs of
+From the  analysis Luminal A group vs Basal-like, it can be highlighted that the pairs of
 high expressed genes and hypomethylated probes in the Basal groups are enriched for the SOX10 TF signature.
-For this signature, the regulatory TF candidate identified is the SOX11 (Sry-related HMG box-11) TF; this
+For this signature, the regulatory TF candidate identified was the SOX11 (Sry-related HMG box-11) TF; this
 correlation between basal-like and SOX11 was recently described by \citeonline{shepherd2016sox11}.
-Also, the TF analysis  reported the forkhead box C1 (FOXC1) transcription factor as the TF with the
+Also, the TF analysis reported the forkhead box C1 (FOXC1) transcription factor as the TF with the
 highest anti-correlation between TF expression and DNA methylation levels. Even though,
 this TF is not in the family of any enriched motifs this correlation between the FOXC1 TF and Basal-like
 breast cancers (BLBCs) was reported by \citeonline{zuo2016role} and \citeonline{chung2017identification}.
@@ -631,7 +623,7 @@ is shown to be required for the proliferation of ER-positive breast cancer cells
 \caption{\label{fig:venn} Venn diagram of candidate regulatory TFs for each molecular subtype found in at least one of the pairwise comparisons.}
 \end{figure}
 
-\section*{Data availability} % Optional - only if novel data or analyses are included
+\subsection*{Data availability} % Optional - only if novel data or analyses are included
 The TCGA data was downloaded from the NCI Genomic Data Commons (GDC) data portal \cite{grossman2016toward}
 using TCGAbiolinks R/Bioconductor package \cite{colaprico2015tcgabiolinks,10.12688/f1000research.8923.2}.
 Gene annotations were retrieved from ENSEMBL \cite{yates2015ensembl} database via biomaRt R/Bioconductor
@@ -641,7 +633,7 @@ Transcription factor (TF) binding models can be downloaded at HOCOMOCO database 
 The list of human TF can be accessed at \url{http://www.uniprot.org/}  \cite{apweiler2004uniprot}.
 The classification of human transcription factors (TFs) can be viewed at \url{http://tfclass.bioinf.med.uni-goettingen.de/tfclass}  \cite{wingender2013tfclass}.
 
-\section*{Software availability}
+\subsection*{Software availability}
 
 ELMER	source code  is available at \burl{https://github.com/tiagochst/ELMER}
 and the auxiliary data files are available \burl{https://github.com/tiagochst/ELMER.data}.
