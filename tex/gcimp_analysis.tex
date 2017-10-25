@@ -123,18 +123,24 @@ with the DNA methylation level on the probes of each enriched motifs.
   Depending on the motif, its family classification might have a
   very similar signature, otherwise, the subfamily classification is the most indicated.
 
-\begin{center}
-\begin{figure}[h!]
-\includegraphics[width=16cm]{images/gcimp_motif_enrichment.pdf}
-\caption[G-CIMP analysis: Odds Ratio plot]{\label{tab:or}Motif enrichment analysis: Odds Ratio (x axis) for the selected motifs with lower OR above 1.3. The range shows the 95\% confidence interval for each Odds Ratio.}
-\end{figure}
 
-\end{center}
 
 
 For example, in Table \ref{tab:tf} the motif HXD3 has as potential TF candidate the HOXD13 if we consider the family \sigla{TF}{Transcription Factor} classification and the HOXD3 TF candidate considering the subfamily TF classification. Figure \ref{tab:hocomoco} shows the motif signature for the HOX-related factors family from \sigla{HOCOMOCO}{HOmo sapiens COmprehensive MOdel COllection} database. The transcription factors \sigla{HOXD13}{Homeobox D13} and \sigla{HOXD3}{Homeobox D3} are in the same family (HOX-related factors) but in different subfamilies.
 
 
+
+
+Overall, the results suggests that those regions that lost DNA methylation are bound by the regulatory TF Hmx3,
+which  has been related to activation and maintenance of Gsh1 expression and subsequent downstream generation of \sigla{GHRH}{growth hormone-releasing hormone} expressing neurons \cite{morales2014regionalized} and \citeonline{pozsgai2010effect} conducted test with GHRH antagonists in glioblastoma cells showing efficacy of those drugs for experimental treatment of glioblastoma, HOXD13, which have been reported to be substantially up regulated in GBMs and may contribute to malignancy \cite{lee2015identification}, PAX3, which is essential for gliomagenesis \cite{xia2013pax3} also FOXM1  was shown by \citeonline{wang2015glioblastoma} to  promote the development and progression of GBM  and to be a novel therapeutic target against GBM.
+To validate these findings, biological experiments are needed which by either knocking down these TFs or by regulating the DNA methylation levels of those binding regions will be able to verify if the downstream genes are being regulated.
+
+\begin{center}
+\begin{figure}
+\includegraphics[width=16cm]{images/gcimp_motif_enrichment.pdf}
+\caption[G-CIMP analysis: Odds Ratio plot]{\label{tab:or}Motif enrichment analysis: Odds Ratio (x axis) for the selected motifs with lower OR above 1.3. The range shows the 95\% confidence interval for each Odds Ratio.}
+\end{figure}
+\end{center}
 
 \begin{table}[h!]
 \centering
@@ -148,9 +154,4 @@ For example, in Table \ref{tab:tf} the motif HXD3 has as potential TF candidate 
 \includegraphics[width=16cm]{images/HOCOMOCO.png}
 \caption[HOCOMOCO: HOX-related factors family]{\label{tab:hocomoco}HOCOMOCO V11: HOX-related factors family. Transcription factors HOXD13 and HOXD3 are in the same family (HOX-related factors) but in different subfamilies.}
 \end{figure}
-
 \end{center}
-
-Overall, the results suggests that those regions that lost DNA methylation are bound by the regulatory TF Hmx3,
-which  has been related to activation and maintenance of Gsh1 expression and subsequent downstream generation of \sigla{GHRH}{growth hormone-releasing hormone} expressing neurons \cite{morales2014regionalized} and \citeonline{pozsgai2010effect} conducted test with GHRH antagonists in glioblastoma cells showing efficacy of those drugs for experimental treatment of glioblastoma, HOXD13, which have been reported to be substantially up regulated in GBMs and may contribute to malignancy \cite{lee2015identification}, PAX3, which is essential for gliomagenesis \cite{xia2013pax3} also FOXM1  was shown by \citeonline{wang2015glioblastoma} to  promote the development and progression of GBM  and to be a novel therapeutic target against GBM.
-To validate these findings, biological experiments are needed which by either knocking down these TFs or by regulating the DNA methylation levels of those binding regions will be able to verify if the downstream genes are being regulated.

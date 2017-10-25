@@ -305,7 +305,7 @@ platform ("450K"/"EPIC"). The \textit{feature} argument is used to limit the reg
 %Later, we will use all distal probes and annotate their chromatin state later with
 %MCF-7 annotation tracks from the NIH Roadmap Epigenomics Mapping Consortium \cite{bernstein2010nih}  available at StateHub (\url{http://statehub.org/})\cite{Coetzee127720}.
 
-\lstinputlisting[language=R, frame = none, label = {lst:distal},caption = "Selection of probes within biofeatures"]{codes/distal_probes.R}
+\lstinputlisting[language=R,basicstyle=\tiny, frame = none, label = {lst:distal},caption = "Selection of probes within biofeatures"]{codes/distal_probes.R}
 
 \subsection*{Organizing data into a MultiAssayExperiment object}
 The function \textit{createMAE} is used to organize the gene expression and
@@ -345,14 +345,14 @@ The function \textit{createMAE} is used to organize the gene expression and
     argument is optional.
 \end{itemize}
 
-\lstinputlisting[language=R, frame = none, label = {lst:mae},caption = "Create MultiAssayExperiment"]{codes/mae.R}
+\lstinputlisting[language=R,basicstyle=\tiny, frame = none, label = {lst:mae},caption = "Create MultiAssayExperiment"]{codes/mae.R}
 
 Listing \ref{lst:verifymae} shows information about the object created.
 There are 866 samples with both gene expression and DNA methylation data,
 and among those 5 are metastatic samples, 778 are Primary Solid Tumor and
 83 are Solid Tissue Normal.
 
-\lstinputlisting[language=R, frame = none, label = {lst:verifymae},caption = "Verifying MultiAssayExperiment"]{codes/mae_verify.R}
+\lstinputlisting[language=R,basicstyle=\tiny, frame = none, label = {lst:verifymae},caption = "Verifying MultiAssayExperiment"]{codes/mae_verify.R}
 
 %%%%%%%%%%%%%%%%%%%%%%%%
 % BEN STOPPED EDITING HERE %%%%%%%%
@@ -381,7 +381,7 @@ Its main arguments are described below:
 \end{itemize}
 
 %\begin{minipage}{\linewidth}
-\lstinputlisting[language=R, frame = none, label = {lst:diffMeth},caption = "Identify significantly different DNA methylation probes in tumor and normal samples"]{codes/diffMeth.R}
+\lstinputlisting[language=R,basicstyle=\tiny, frame = none, label = {lst:diffMeth},caption = "Identify significantly different DNA methylation probes in tumor and normal samples"]{codes/diffMeth.R}
 %\end{minipage}
 
 If the \textit{save} argument is set to TRUE, in the \textit{dir.out} folder two files will be created: \textit{getMethdiff.hypo.probes.csv} containing all probes from the DNA methylation data with the difference means of the groups and the significance values, \textit{getMethdiff.hypo.probes.significant.csv} will contain only probes that respect the thresholds. Table \ref{tab:diff.meth} shows the first rows of  \textit{getMethdiff.hypo.probes.significant.csv} file.
@@ -423,7 +423,7 @@ If diff.dir is "hyper" M group will be the group1 and U the group2.
 %\end{figure}
 
 %\begin{minipage}{\linewidth}
-\lstinputlisting[language=R, frame = none, label = {lst:getpair}, caption = "Identify putative target genes for differentially methylated distal probes"]{codes/getpair.R}
+\lstinputlisting[language=R,basicstyle=\tiny, frame = none, label = {lst:getpair}, caption = "Identify putative target genes for differentially methylated distal probes"]{codes/getpair.R}
 %\end{minipage}
 
 The output of this function is shown in table \ref{tab:get.pair}. Probe and GeneID
@@ -444,7 +444,7 @@ To visualize the relationship between the probe-gene pairs inferred, there are t
  Finally, an overall summary of the DNA  methylation levels and gene expression levels  can be visualized using the auxiliary function \textit{heatmapPairs}, as shown in Listing \ref{lst:heatmap}. This function creates a heatmap for all samples  as shown in Figure \ref{fig:heatmap}.
 
 %\begin{minipage}{\linewidth}
-\lstinputlisting[language=R, frame = none,firstline=5,lastline=13,label = {lst:plotpair},caption = "Schematic plot to visualize gene-probe pairs"]{codes/plotpair.R}
+\lstinputlisting[language=R,basicstyle=\tiny, frame = none,firstline=5,lastline=13,label = {lst:plotpair},caption = "Schematic plot to visualize gene-probe pairs"]{codes/plotpair.R}
 %\end{minipage}
 
 \begin{figure}[ht!]
@@ -455,7 +455,7 @@ To visualize the relationship between the probe-gene pairs inferred, there are t
 
 
 % \begin{minipage}{\linewidth}
-\lstinputlisting[language=R, frame = none,label = {lst:scatterplot},caption = "Scatter plot to visualize correlation between gene expression and DNA methylation levels at probe"]{codes/scatterplot.R}
+\lstinputlisting[language=R,basicstyle=\tiny, frame = none,label = {lst:scatterplot},caption = "Scatter plot to visualize correlation between gene expression and DNA methylation levels at probe"]{codes/scatterplot.R}
 % \end{minipage}
 
 
@@ -474,7 +474,7 @@ and gene anti-correlated.}
 \end{figure}
 
 \clearpage
-\lstinputlisting[language=R,frame = none,label = {lst:heatmap},caption = "Heatmap to visualize gene-probe pairs"]{codes/heatmap.R}
+\lstinputlisting[language=R,basicstyle=\tiny,frame = none,label = {lst:heatmap},caption = "Heatmap to visualize gene-probe pairs"]{codes/heatmap.R}
 
 \clearpage
 
@@ -498,10 +498,10 @@ while for other cell lines this enrichment is not visible.
 %These consortia made available a large amount of data such as transcription, transcription factor binding, histone modifications, DNase hypersensitivity, DNA methylation, DNA-DNA interactions, and RNA-protein interactions that have been used to  annotate chromatin state. Listing shows how to use MCF-7 annotation tracks from \url{http://statehub.org/}  to annotate chromatin state of those pairs identified previously.  (see Additional file for the code
 
 %\begin{minipage}{\linewidth}
-%\lstinputlisting[language=R, frame = none,basicstyle=\ttfamily\scriptsize]{codes/enhancer.R}
+%\lstinputlisting[language=R,basicstyle=\tiny, frame = none,basicstyle=\ttfamily\scriptsize]{codes/enhancer.R}
 %\end{minipage}
 %\begin{minipage}{\linewidth}
-%\lstinputlisting[language=R, frame = none,basicstyle=\ttfamily\scriptsize,label = {lst:funcivar},caption = "Chromatin state annotation for probe regions"]{codes/funcivar.R}
+%\lstinputlisting[language=R,basicstyle=\tiny, frame = none,basicstyle=\ttfamily\scriptsize,label = {lst:funcivar},caption = "Chromatin state annotation for probe regions"]{codes/funcivar.R}
 %\end{minipage}
 
 \begin{figure}[ht!]
@@ -527,7 +527,7 @@ The main arguments are described below:
 \end{itemize}
 
 %\begin{minipage}{\linewidth}
-\lstinputlisting[language=R, frame = none,label = "motif",caption = "Motif enrichment analysis on the selected probes"]{codes/motif.R}
+\lstinputlisting[language=R,basicstyle=\tiny, frame = none,label = "motif",caption = "Motif enrichment analysis on the selected probes"]{codes/motif.R}
 %\end{minipage}
 
 \begin{figure}[ht!]
@@ -541,7 +541,7 @@ The main arguments are described below:
 The function \textit{get.TFs} is used to identify regulatory TF whose expression associates with TF binding motif
 DNA methylation which.
 
-\lstinputlisting[language=R, frame = none,label = "tf",caption = "Identifying regulatory Transcript Factors"]{codes/tf.R}
+\lstinputlisting[language=R,basicstyle=\tiny, frame = none,label = "tf",caption = "Identifying regulatory Transcript Factors"]{codes/tf.R}
 
 The result of this function is shown in table \ref{tab:get.tf} and in figure \ref{fig:tfplot}.
 
@@ -588,7 +588,7 @@ The result is shown in Figure \ref{fig:chiapet}. Of the 2124 putative pairs iden
 \end{figure}
 
 
-\newpage
+\clearpage
 \subsection{Use Case 2: BRCA molecular subtypes analysis (supervised approach)}
 
 Several studies identified distinct molecular Breast cancer classes and
