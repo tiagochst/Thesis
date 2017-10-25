@@ -473,9 +473,8 @@ The second heatmap (middle one) shows z-scores for gene expression levels (stand
 and gene anti-correlated.}
 \end{figure}
 
-\begin{minipage}{\linewidth}
-\lstinputlisting[language=R,firstline=1,lastline=13,label = {lst:heatmap},caption = "Heatmap to visualize gene-probe pairs"]{codes/heatmap.R}
-\end{minipage}
+\clearpage
+\lstinputlisting[language=R,frame = none,label = {lst:heatmap},caption = "Heatmap to visualize gene-probe pairs"]{codes/heatmap.R}
 
 \clearpage
 
@@ -611,7 +610,8 @@ methylation levels and the M (methylated) group as the highest quintile, the $U$
  will be defined as all samples of one known molecular subtype (Figure \ref{fig:mode}).
  For example, if the first step identified probes hypomethylated in Luminal A group compared to Basa-like group,
 in the next steps the U group will be the Luminal A samples and the M group will be the Basal-like samples.
-The results and code of this supervised analysis can be found in the supplemental files.
+The results and code of this supervised analysis can be found in the supplemental files,
+a venn diagram with the candidate TF actives in each molecular subtype are shown in Figure \ref{fig:venn}.
 
 From the  Luminal A group vs Basal-like group analysis, it can be highlighted that the pairs of
 high expressed genes and hypomethylated probes in the Basal groups are enriched for the SOX10 TF signature.
@@ -624,6 +624,12 @@ breast cancers (BLBCs) was reported by \citeonline{zuo2016role} and \citeonline{
 
 On the other hand, when analyzing in the other direction in terms of methylation level, for  those pairs of high expressed genes and hypomethylated probes in the Luminal A group, the TF analysis identified GATA3, FOXA1, RARA, MYB as candidate regulatory TF. GATA3 and FOXA1 are known characterize this  molecular subtype  as described by \citeonline{yersal2014biological} while RARA was associated with the Luminal phenotype by \citeonline{centritto2015cellular}, MYB
 is shown to be required for the proliferation of ER-positive breast cancer cells \cite{mitra2016cdk9}.
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=1.0\textwidth]{images/BRCA_ven.pdf}
+\caption{\label{fig:venn} Venn diagram of candidate regulatory TFs for each molecular subtype found in at least one of the pairwise comparisons.}
+\end{figure}
 
 \section*{Data availability} % Optional - only if novel data or analyses are included
 The TCGA data was downloaded from the NCI Genomic Data Commons (GDC) data portal \cite{grossman2016toward}

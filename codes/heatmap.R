@@ -1,4 +1,3 @@
-
 # Get molecular subytpes/purity from cell paper
 # https://doi.org/10.1016/j.cell.2015.09.033
 file <- "http://ars.els-cdn.com/content/image/1-s2.0-S0092867415011952-mmc2.xlsx"
@@ -17,6 +16,11 @@ heatmapPairs(data = mae,
              group.col = "definition",
              group1 = "Primary solid Tumor",
              group2 = "Solid Tissue Normal",
-             annotation.col = c("TumorPurity","PAM50"),
+             annotation.col = c("TumorPurity",
+                                "Final.Pathology",
+                                "PR.IHC",
+                                "HER2.IHC",
+                                "ER.IHC",
+                                "PAM50"),
              pairs = Hypo.pair,
              filename = "heatmap.pdf")
