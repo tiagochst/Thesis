@@ -4,7 +4,7 @@
 
 \section{Objectives}
 
-The main goal of this project it to develop tools for searching, retrieving and
+The main goal of this project is to develop tools for searching, retrieving and
 analyzing pan-cancer genomic data from several databases, such as the NCI's
 \sigla{GDC}{Genomic Data Commons}, which contains data from the \sigla{TCGA}{The Cancer Genome Atlas}
 and \sigla{TARGET}{Therapeutically Applicable Research to Generate Effective Treatments},
@@ -30,35 +30,34 @@ elements associated with glioma progression.
     \item Identify statistically \sigla{DMR}{Differentially methylated regions} at the single CpG resolution;
     \item Determine statistically enriched proximal transcription factor binding sites (TFBSs) to altered DNA-methylated regions at the level of individual DNA/protein site interaction;
     \item Within known DMRs, classify and identify statistically known and novel DNA binding motifs;
-    \item Download and process RNA-seq data from both cancer and non-tumor control cases
+    \item Download and process RNA-seq data from both cancer and non-tumor control cases;
     \item Use standard data structure to organize the data and the metadata;
     \item Correlate the DNA methylation status of \sigla{TFBSs}{Transcription factor binding sites } with target gene RNA-seq expression in order to determine regulatory networks that might alter the pan-cancer genome;
     \item Use learning machine algorithms for classifying an independent set of gliomas based on newly identified regulatory networks as related to pan-cancer deregulation;
     \item Develop tools to automate the previous steps;
     \item Use those tools to investigate the intergenic epigenomic changes associated with distinct biological and clinical subgroups of gliomas g-cimp-low and g-cimp-high discovered by our laboratory and collaborators;
     \item Compare the automated results with ones found manually in order to validate the package capacity in providing searching, retrieving and downstream biological analysis to discover pan-cancer epigenomic signatures able to redefine subgroups of gliomas;
-    \item Submit those set of tools to be freely available at the open-source Bioconductor environment (available at \burl{http://www.bioconductor.org}).
+    \item Submit those set of tools to be freely available in the open-source Bioconductor environment (available at \burl{http://www.bioconductor.org}).
 \end{enumerate}
 
 \section{Motivations}
 
-Unravelling the genomic, epigenomic, and proteomic features using high-throughput methodologies is a central question for understanding regulatory gene networks in cancer. However, a major challenge is the fact that the biological information necessary for a complete gene regulatory analysis is spread over different databases that store data in different formats. Moreover, to date there is no current computational tool that can integrate and interpret such information. Consequently, the process of analysis is performed manually by the end user, who must access all databases, select and process the data necessary to the project, and integrate that data using multiple downstream analysis tools to extract and interpret the relevant biological information.
+Unravelling the genomic, epigenomic, and proteomic features using high-throughput methodologies is a central question for understanding regulatory gene networks in cancer. However, a major challenge is the fact that the biological information necessary for a complete gene regulatory analysis is spread over different databases that store data in different formats. Moreover, to date, there is no current computational tool that can integrate and interpret such information. Consequently, the process of analysis is performed manually by the end user, who must access all databases, select and process the data necessary to the project, and integrate that data using multiple downstream analysis tools to extract and interpret the relevant biological information.
 
-Recently, to address this need, our laboratory published the open-source software package known as \href{http://bioconductor.org/packages/TCGAbiolinks/}{TCGAbiolinks}~\cite{TCGAbiolinks} that automates the retrieval, assembly, and processing of public TCGA data. Also, laboratory of Dr Benjamin Berman published an open-source software package known as \href{http://bioconductor.org/packages/ELMER/}{ELMER}~\cite{yao2015inferring} that identifies regulatory enhancers using gene expression, DNA methylation data and motif analysis. Although both tools are of utmost importance, there is still the need to create a more complete tool that can work with more data from different platforms and new methods of analysis.
+Recently, to address this need, our laboratory published the open-source software package known as \href{http://bioconductor.org/packages/TCGAbiolinks/}{TCGAbiolinks}~\cite{TCGAbiolinks} that automates the retrieval, assembly, and processing of public TCGA data. Also, laboratory of Dr. Benjamin Berman published an open-source software package known as \href{http://bioconductor.org/packages/ELMER/}{ELMER}~\cite{yao2015inferring} that identifies regulatory enhancers using gene expression, DNA methylation data, and motif analysis. Although both tools are of utmost importance, there is still the need to create a complete tool that can work with more data from different platforms and new methods of analysis.
 
-To overcome this challenge, we are creating a bioinformatic tool to automates the retrieval, assembly, processing and analysis of data that are publicly deposited by international consortia such as TCGA, ENCODE and Roadmap and we will help on the improvement of the ELMER package. Finally, we will use these tools to perform molecular analysis between the newly identified groups G-CIMP-low and G-CIMP-high and understand tumor genesis and the tumorigenic process.
+To overcome this challenge, we created a bioinformatic tool to automates the retrieval, assembly, processing and analysis of data that are publicly deposited by international consortia such as TCGA, ENCODE and Roadmap and we will help on the improvement of the ELMER package. Finally, we will use these tools to perform a molecular analysis between the newly identified groups G-CIMP-low and G-CIMP-high and understand tumor genesis and the tumorigenic process.
 
 
 
 \section{Organization of the Remainder of the Document}
 
-This paper is organized in chapters as follows. In Chapter 2, we introduce
-the fundamental concepts required to the development
-of this project. With this respect, we review the basic definitions genetics and epigenetics area. After presenting the theoretical concepts required to understand the work, we present the results of the work in Chapters 3, 4, and 5. Specifically, in
-Chapter 3, we explore the methods and computational tools developed.
-In Chapter 4, we show the results of the use of the methods and tools presented in chapter 3 another real-world application. Enclosing this thesis, in Chapter 5, we draw the
-main conclusions of this work. Moreover, the scientific contributions derived from this
-project are listed, as well as possible future works. Lastly, we show the main papers
-that have been published during the Doctorate period.
 
-%Este documento explica brevemente como trabalhar com a classe \LaTeX~\textit{icmc} para confeccionar trabalhos acadêmicos seguindo as normas da \sigla{ABNT}{Associação Brasileira de Normas Técnicas} e as \aspas{\textit{Diretrizes para apresentação de dissertações e teses da USP: documento eletrônico e impresso. Parte I (ABNT)}}, publicado pelo \sigla{SIBi}{Sistema Integrado de Bibliotecas} USP. O presente manual também atende as exigências prevista no regimento do Programa de Pós-graduação em \sigla{CCMC}{Ciências da Computação e Matemática Computacional} do \sigla{ICMC}{Instituto de Ciências Matemáticas e de Computação} da \sigla{USP}{Universidade de São Paulo}.
+This paper is organized into chapters as follows: In Chapter 2,
+fundamental concepts required to the development of this project are introduced.
+Chapters 3, 4, and 5 highlights the results of this work. Specifically, in Chapter 3,
+we detail the methods and computational tools developed, while in Chapter 4 we
+show their application in the real world. Enclosing this thesis, in Chapter 5,
+we draw the main conclusions of this work. Moreover, the scientific contributions
+derived from this project are listed, as well as possible future works. Lastly, we show the main papers
+that have been published during the Doctorate period.
