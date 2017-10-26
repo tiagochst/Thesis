@@ -472,7 +472,7 @@ Table \ref{hypothesis-tests} shows other examples.
 
 % Please add the following required packages to your document preamble:
 % \usepackage{booktabs}
-\begin{table}[h!]
+\begin{table}
 \centering
 \caption[Hypothesis tests]{Example of three hypothesis tests about the population mean $\mu$. In genetics it could be the mean level of expression of a gene.}
 \label{hypothesis-tests}
@@ -680,7 +680,9 @@ $$ S(t) = \prod_{i: t_i\leq t}\left(1 - \frac{d_i}{n_i}\right),$$
 \simbolo{S(t)}{Kaplan–Meier estimator} where $d_{i}$ are the number of events and  $n_{i}$
 the total individuals at risk at time $i$. Table \ref{survival-example} shows
 an example of survival data and Table \ref{Kaplan-Meier-example} shows
-and example of applying Kaplan-Meier method. It is important to highlight that
+and example of applying Kaplan-Meier method. Figure \ref{fig:survival_example}
+shows a more real data example.
+ It is important to highlight that
 for a censored time the proportion surviving will be 1, that means
 an individual is considered to be at risk of dying in the next event of the censoring
 but not in subsequent events \cite{bland2004logrank}.
@@ -716,10 +718,11 @@ $[3,\textrm{End of study}]$  & 4 - 2 - 1 = 1  & 1 & 0 & $0.5 * (1 - \frac{1}{1})
 
 
 \begin{figure*}
-\centering
-\includegraphics[width=0.5\linewidth,height=4cm]{images/example_survival.pdf}
-\caption[Example of survival curve.]{
-Example of survival curve for table \ref{survival-example}. Censored data is marked (+) in the plot.}
+%\centering
+\includegraphics[width=0.5\linewidth,height=4cm]{images/example_survival.png}
+\caption[Example of survival curve.]{\label{fig:survival_example}
+Example of survival curve for TCGA samples clustered by RNA expresssion levels. Group 2 has
+the worst survival. Censored data is marked (+) in the plot.}
 \end{figure*}
 
 
@@ -750,12 +753,11 @@ For a given cut-off, normally $0.05$, the results with a p-value smaller are con
 \subsection{Machine Learning}
 
 Machine learning is a field of computer science focused on the development and application of algorithms that improve with experience \cite{mitchell1997machine}.
-
 In genetics and genomics, it has been applied
- for the interpretation of large genomic data sets and annotation of a wide variety of genomic sequence elements.
-For example, for the detection of  transcription start sites (TSSs) locations, which have proven hard to detect in silico due to the complexity and the fairly diffuse structures of Eukaryotic promoters, \citeonline{down2002computational} developed a machine-learning method is able to build useful models of promoters for $>50\%$ of human transcription start sites \cite{down2002computational}.
+ for the interpretation of large genomic datasets and annotation of a wide variety of genomic sequence elements.
+For example, for the detection of  transcription start sites (TSSs) locations, which have proven hard to detect in silico due to the complexity and the fairly diffuse structures of Eukaryotic promoters, \citeonline{down2002computational} developed a machine-learning method is able to build useful models of promoters for more than 50\% of the human transcription start sites \cite{down2002computational}.
 
-The machine learning techniques can be classified into two main categories: supervised and unsupervised learning (Mitchell, 1997). The supervised learning, which aims to infer data labels by learning from already labeled data, has three stages: design, model, and test. The first stage refers to the selection of a learning algorithm used to learn from data (e.g. choose between support vector machines or random forest algorithms) and its training data. The second stage is the creation of a model from labeled data using the algorithm selected previously.  The last stage uses of this generated model to  predict the labels of unlabeled data.
+The machine learning techniques can be classified into two main categories: supervised and unsupervised learning (Mitchell, 1997). The supervised learning, which aims to infer data labels by learning from already labeled data, has three stages: design, model, and test. The first stage refers to the selection of a learning algorithm used to learn from data (e.g. choose between support vector machines or random forest algorithms) and its training data. The second stage is the creation of a model from labeled data using the algorithm selected previously.  The last stage uses this generated model to  predict the labels of unlabeled data.
 The unsupervised learning methods, on the other hand,
 cluster the data without using labels, which requires an additional step in which semantics must be manually assigned to each cluster. As this discovery is not tied to previously defined classes, these methods have as benefit the ability to identify potentially novel types of genomic elements.
 
@@ -764,13 +766,13 @@ cluster the data without using labels, which requires an additional step in whic
 
 \subsubsection{Supervised learning}
 
-Supervised learning is a type of machine learning algorithm that identify patterns in data to make predictions.
+Supervised learning is a type of machine learning algorithm that identifies patterns in data to make predictions.
 Specifically, the algorithm takes a known set of input data and known responses to the data (labels), and trains a model to generate predictions for the response to new data.
 Supervised learning algorithm can be classified into two  categories: classification and regression.
 
 In classification, the goal is to assign a label to an observation. That is, responses are categorical variables.
 For example, given dataset known to be
-enhancer or not enhancer, one could want to predict the locations of enhancers in the genome.
+an enhancer or not enhancer, one could want to predict the locations of enhancers in the genome.
 
 In regression, the goal is to predict a continuous measurement for an observation. That is, the responses variables are real numbers. In genomics, these methods are  used in genetic epidemiology to detect association of genetic variants with a trait or disease of interest \cite{dasgupta2011brief}.
 
@@ -780,29 +782,25 @@ In regression, the goal is to predict a continuous measurement for an observatio
 \subsubsection{Unsupervised learning}
 
 
-
-%When a labelled training set is not available, unsupervised learning is required. For example, consider the interpretation of a heterogeneous collection of epigenomic data sets, such as those generated by the Encyclopedia of DNA Elements (ENCODE) Consortium and the Roadmap Epigenomics Project. A priori, we expect that the patterns of chromatin accessibility, histone modifications and transcription factor binding along the genome should be able to provide a detailed picture of the biochemical and functional activity of the genome. We may also expect that these activities could be accurately summarized using a fairly small set of labels. If we are interested in discovering what types of label best explain the data, rather than imposing
-%a pre-determined set of labels on the data, then we must use unsupervised rather than supervised learning. In this type of approach, the machine learning algorithm uses only the unlabelled data and the desired number of different labels to assign as input.
-
-% In Transcriptomics analysis clustering is used to build groups of genes with related expression patterns
-
 Unsupervised learning is a type of machine learning algorithm used to draw inferences from datasets consisting of input data without labeled responses.
-The most common unsupervised learning method is cluster analysis, which is used for exploratory data analysis to find hidden patterns or grouping in data. These algorithms seeks to group a set of objects into cluster (groups) such that those in the same group are more similar to each other than to those in other cluster.
+The most common unsupervised learning method is cluster analysis, which is used for exploratory data analysis to find hidden patterns or grouping in data. These algorithms seek to group a set of objects into clusters (groups)
+such that those in the same group are more similar to each other than to those in another cluster.
 The major unsupervised learning techniques used in bioinformatics are described below.
 %In genomics, the Hierarchical clustering, Centroid-based clustering and PCA are commonly used.
 \begin{description}
 
-\item[Hierarchical clustering:] {This clustering methods builds a hierarchy of clusters, through either a agglomerative ("bottom up") or a divisive ("top down") procedures.
+\item[Hierarchical clustering:] {This clustering method builds a hierarchy of clusters,
+through either anm agglomerative ("bottom-up") or a divisive ("top-down") procedures.
 In the agglomerative procedures, each $n$ observation starts in its own cluster and until only one cluster remains the groups with the smallest dissimilarity are merged.
-On the other hand, in the divise procedures, all observations start in one cluster and until all observations are in their own cluster the group is split in two groups with biggest dissimilarity. To decide which clusters to merge or divide a metric to measure of dissimilarity between sets of observations is required.
-Among the existing agglomerative techniques are the single linkage, also known as the nearest-neighbour technique, which defines the smallest dissimilarity between two points in each group as the dissimilarity between two groups \cite{florek1951liaison}, the complete linkage which defines the largest dissimilarity between two points in each group as the dissimilarity between two groups \cite{defays1977efficient}, the average linkage which defines the average dissimilarity over all points as the dissimilarity between two groups \cite{sokal1958statistical} and the Ward’s method which at each merge step minimizes the increase in the total within-cluster error sum of
-squares, which means that  the groups leading to minimum increase in total within-cluster variance are merged \cite{ward1963hierarchical,everitt2011hierarchical}.
-The results of hierarchical clustering are usually represented in a dendrogram a branching diagram in which the objects are represented in one of the axis while the similarity between clusters are represented in the other axis by the length of the connection which joins them \cite{manning1999foundations}.}
+On the other hand, in the divisive procedures, all observations start in one cluster and until all observations are in their own cluster the group is split into two groups with the biggest dissimilarity. To decide which clusters to merge or divide a metric to measure of dissimilarity between sets of observations is required.
+Among the existing agglomerative techniques are the single linkage, also known as the nearest-neighbour technique, which defines the smallest dissimilarity between two points in each group as the dissimilarity between two groups \cite{florek1951liaison}, the complete linkage which defines the largest dissimilarity between two points in each group as the dissimilarity between two groups \cite{defays1977efficient}, the average linkage which defines the average dissimilarity overall points as the dissimilarity between two groups \cite{sokal1958statistical} and the Ward’s method which at each merge step minimizes the increase in the total within-cluster error sum of
+squares, which means that  the groups leading to a minimum increase in total within-cluster variance are merged \cite{ward1963hierarchical,everitt2011hierarchical}.
+The results of hierarchical clustering are usually represented in a dendrogram a branching diagram in which the objects are represented in one of the axes while the similarity between clusters are represented in the other axis by the length of the connection which joins them \cite{manning1999foundations}.}
 
 \item[Optimization clustering
 techniques:]{
-These are a set of non-hierarchical clustering techniques that cluster individuals into a specified number of groups, by either minimizing or maximizing some numerical criterion \cite{everitt2011hierarchical}.  One of these technique is the k-means algorithms, which iteratively updates a partition by simultaneously relocating each object to the group to whose mean it was closest and then recalculating the group means until the groups no longer change.
-More explicitly, let $S = \{S_1,S_2,\ldots,S_k\}$  be the set of k clusters, this algorithms tries to minimize the squared distances of the elements from the cluster center:
+These are a set of non-hierarchical clustering techniques that cluster individuals into a specified number of groups, by either minimizing or maximizing some numerical criterion \cite{everitt2011hierarchical}.  One of these techniques is the k-means algorithms, which iteratively updates a partition by simultaneously relocating each object to the group to whose mean it was closest and then recalculating the group means until the groups no longer change.
+More explicitly, let $S = \{S_1,S_2,\ldots,S_k\}$  be the set of k clusters, this algorithm tries to minimize the squared distances of the elements from the cluster center:
 $$ N(n,k) = min\sum_{g = 1}^{k}\sum_{j \in S_g}\Vert x_j - \mu_g\Vert^2,$$
 where $x_j$ is a data element that belongs to a group g, and $\mu_g$ is the center of points of the $g$ group. A counterpoint of these techniques also requirement to ‘estimate’ the number of clusters in the data, for which a variety of methods
 have been suggested and  most are
@@ -810,16 +808,14 @@ relatively informal and involve, essentially, plotting the value of the clusteri
 criterion against the number of groups in which large changes of levels in the plot are
 usually taken as suggestive of a particular number of groups.
 Some formal methods were also proposed such as the Silhouette index by \citeonline{rousseeuw1987silhouettes}.
-And a second counterpoint of this technique is the choice of initial starting values which might lead to local optimal solution, some solution to this problem such as a  bootstrap-like approach to ‘refine’ initial seeds are suggested \cite{steinley2003local}.
+And the second counterpoint of this technique is the choice of initial starting values which might lead to a local optimal solution, some solution to this problem such as a  bootstrap-like approach to ‘refine’ initial seeds are suggested \cite{steinley2003local}.
 }
 \item[Principal component analysis (PCA):]{
-This method transformes the variables in a multivariate data set into new variables, a linear combination of the original variables, which are uncorrelated with each other and a linear combination of the original variables. This technique provides a means of
+This method transforms the variables in a multivariate data set into new variables, a linear combination of the original variables, which are uncorrelated with each other and a linear combination of the original variables. This technique provides a means of
 projecting the data into a lower dimensional space, which is very useful  mainly due to the problems of high dimensional data which is called ``curse of dimensionality''.
 Generally, \citeonline{verleysen2005curse} defines the curse of dimensionality as the expression of all phenomena that appear with high-dimensional data, and that have most often unfortunate consequences on the behavior and performances of learning algorithms. In summary, the number of learning data should grow exponentially with
-the dimension, that means if 10 data  is reasonable to learn a 1-dimensional model, for a 2-dimensional model it will be need 100 data). For example, in genetics, microarray experiments have information for thousand of genes, if each one is considered a variable we would have thousand dimensions,
+the dimension, that means if 10 data  is reasonable to learn a 1-dimensional model, for a 2-dimensional model it will need 100 data). For example, in genetics, microarray experiments have information for thousands of genes, if each one is considered a variable we would have a thousand dimensions,
 and we would need an enormous amount of observations to obtain a reliable result. If a dimensionality reduction is not performed, with a increase of data features (dimensions), it is very likely that, by chance, one feature perfectly separates the training examples into positive and negative classes, which would lead
 to good performance on the training data but poor generalization to data that were not used in training \cite{libbrecht2015machine}.
 }
 \end{description}
-
-%Another classical and very useful example of unsupervised techniques is the Principal Component Analysis (PCA)
