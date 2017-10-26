@@ -283,6 +283,29 @@ structures used in this project.
    to infer chromatin-state such as ChromHMM \cite{ernst2012chromhmm} and StatePaintR \cite{statepaintr}.
 \end{description}
 
+To identify each of these samples, each database use an unique identifier, which is able
+to help users to find a certain sample in the database or to find associated information.
+The TCGA database for example created an ID in two forms, a human readable version called barcode and
+a non-human readable called UUID. A TCGA barcode is composed of 28 alphanumeric elements, representing
+the sample information. How those elements are grouped and which information they have is shown in table \ref{tab:barcode}, a code table for each field value is found in the GDC website \ref{gdc_code_table}.
+The barcode identifies if a samples is a primary solid tumor sample or a normal tissue samples,
+but if there was a mistake in the metadata and the sample which was normal was set to a tumor samples,
+the barcode is then invalid. Due to this issue the TCGA UUID, composed of 32 randomly generated digits, was created.
+
+\begin{table}[]
+\centering
+\caption{Example TCGA barcode}
+\label{tab:barcode}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+\hline
+TCGA    & 02                 & 0001        & 01     & C    & 01      & D       & 0182  & 01     \\ \hline
+Project & Tissue source site & Participant & sample & vial & portion & analyte & place & center \\ \hline
+\end{tabular}
+\end{table}
+
+The TCGA barcode was the primary identifier of biospecimen data since the pilot project began. However, since for any one sample, the barcode can change as the meta-data associated with it changes, the TCGA project transitioned to using UUIDs as the primary identifier.
+
+
 % CNV book https://books.google.com.br/books?id=2URhBAAAQBAJ&pg=PA411&lpg=PA411&dq=Log2(T/R)+CNV&source=bl&ots=8Zviyd68Qx&sig=Ujd6ehNLbNGjaLgkHg17Sx1nyok&hl=pt-BR&sa=X&ved=0ahUKEwi50JjS6InXAhXGG5AKHfwUBBMQ6AEIaTAH#v=onepage&q=Log2(T%2FR)%20CNV&f=false
 
 \subsubsection{Data structures}

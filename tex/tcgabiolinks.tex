@@ -107,14 +107,11 @@ used in several marker papers to integrate DNA methylation
 and gene expression data. In addition, our tool extracts
 published molecular subtype information for each
 TCGA sample within a tumor type (generally embedded in
-supplementary tables, PDFs or external websites). Because
-our tool was developed in the language of R specifically for integration within the Bioconductor project, we have provided most of the TCGA data objects as the Bioconductor specified
-‘SummarizedExperiment’ class \cite{huber2015orchestrating}, thereby allowing easy integration with other data types and statistical
+supplementary tables, PDFs or external websites). The tool was developed in the  R language specifically
+for integration within the Bioconductor project, thus we have provided most of the data objects as the Bioconductor specified
+‘SummarizedExperiment’ class \cite{huber2015orchestrating},
+thereby allowing easy integration with other data types and statistical
 methods that are common in the Bioconductor repository.
-
-
-
-
 
 \subsection{The TCGAbiolinks package}
 TCGAbiolinks is an R package, which is licensed under
@@ -154,7 +151,7 @@ than 38 diseases type cancer types and 5 different molecular data types (Transcr
 reports and histology image slides are not prepared
 but are downloaded from the GDC Legacy Archive to a directory if requested by the user. \textit{GDCdownload} receives the output of \textit{GDCquery}, a file manifest with all the metadata necessary to download it. In order to organize the files downloaded, this function will save the data with the following pattern "Root directory/project/source/data\_category/data\_type/file\_id/file\_name" (i.e Example: GDCdata/TCGA-GBM/harmonized/DNA\_Methylation/Methylation\_Beta\_Value/079fcaff-3ae6-4150-b2e6-2b7330ffbcd9/jhu-usc.edu\_GBM.HumanMethylation450.10.lvl-3.TCGA-19-A6J5-01A-21D-A33U-05.gdc\_hg38.txt)
 If a file was
-previously downloaded it will not be re-downloaded. \textit{TCGAprepare} is a function that reads open processed data and prepares them for downstream analysis. Specifically, the objects are organized in a \textit{SummarizedExperiment}
+previously downloaded it will not be re-downloaded. \textit{GDCprepare} is a function that reads open processed data and prepares them for downstream analysis. Specifically, the objects are organized in a \textit{SummarizedExperiment}
 object to allow easy integration
 with other Bioconductor packages, such as GRanges \cite{lawrence2013software},
 IRanges \cite{lawrence2013software}, limma \cite{ritchie2015limma} and edgeR \cite{robinson2010edger}. The samples are
