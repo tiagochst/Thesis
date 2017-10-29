@@ -1157,7 +1157,7 @@ h}%
 	{\large \itshape DOCTORAL THESIS}
 
     \rule{16.0cm}{1.6pt}\vspace*{-\baselineskip}\vspace*{2pt} \rule{16.0cm}{0.4pt} \\[0.5 cm]
-    {\large Development and enhancement of bioinformatic tools to integrate and understand aberrant epigenomic and genomic changes associated with cancer}\\[0.5 cm]
+    {\large Bioinformatic tool to integrate and understand aberrant epigenomic and genomic changes associated with cancer}\\[0.5 cm]
     {\large \itshape Methods, development and analysis}
      \rule{16.0cm}{0.4pt} \\[-0.5 cm] \rule{16.0cm}{1.6pt}
      \vspace{6.5mm}\\
