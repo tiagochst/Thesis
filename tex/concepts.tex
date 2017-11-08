@@ -288,7 +288,8 @@ a non-human readable called UUID. A TCGA barcode is composed of 28 alphanumeric 
 the sample information. How those elements are grouped and which information they have is shown in table \ref{tab:barcode}, a code table for each field value is found in the GDC website \ref{gdc_code_table}.
 The barcode identifies if a sample is a primary solid tumor sample or a normal tissue sample,
 but if there was a mistake in the metadata and the sample which was normal was set to a tumor sample,
-the barcode is then invalid. Due to this issue the TCGA UUID, composed of 32 randomly generated digits, was created.
+the barcode is then invalid. Due to this issue, the TCGA UUID, composed of 32 randomly generated digits, was created.
+The TCGA barcode was the primary identifier of biospecimen data since the pilot project began. However, since for any one sample, the barcode can change as the meta-data associated with it changes, the TCGA project transitioned to using UUIDs as the primary identifier.
 
 \begin{table}[]
 \centering
@@ -301,7 +302,6 @@ Project & Tissue source site & Participant & sample & vial & portion & analyte &
 \end{tabular}
 \end{table}
 
-The TCGA barcode was the primary identifier of biospecimen data since the pilot project began. However, since for any one sample, the barcode can change as the meta-data associated with it changes, the TCGA project transitioned to using UUIDs as the primary identifier.
 
 
 % CNV book https://books.google.com.br/books?id=2URhBAAAQBAJ&pg=PA411&lpg=PA411&dq=Log2(T/R)+CNV&source=bl&ots=8Zviyd68Qx&sig=Ujd6ehNLbNGjaLgkHg17Sx1nyok&hl=pt-BR&sa=X&ved=0ahUKEwi50JjS6InXAhXGG5AKHfwUBBMQ6AEIaTAH#v=onepage&q=Log2(T%2FR)%20CNV&f=false
@@ -363,16 +363,15 @@ In this section we will highlight several integrative  approaches, including met
 
 \subsubsection{Functional enrichment analysis of cancer signatures}
 
-A \sigla{GSEA}{gene set enrichment analysis} or  functional enrichment analysis is a method to identify classes of genes or proteins that are over-represented in a large set of genes or proteins and may have an association with disease phenotypes.
-This type of analysis integrates  differentially expressed genes identified by a  \sigla{DEA}{differential expression analysis} and integrating this information with external functional information is necessary for interpreting and summarizing large cancer signatures.
+A \sigla{GSEA}{gene set enrichment analysis} or functional enrichment analysis is a method to identify classes of genes or proteins that are over-represented in a large set of genes or proteins and may have an association with disease phenotypes.
+This type of analysis integrates  differentially expressed genes identified by a  \sigla{DEA}{differential expression analysis}  with external functional information which is necessary for interpreting and summarizing large cancer signatures.
 Most approaches use external annotation databases such as Gene Ontology which is a database of controlled vocabulary gene annotations describing the biological processes, molecular functions and cellular localizations of genes as a resource for enrichment analysis in cancer signatures.
 
-Let $L$ be a  list of genes ranked by their differential expression between the classes, the goal of GSEA is to determine whether members of a gene set $S$ tend to occur toward the top (or bottom) this list,  which might correlate with the phenotypic class
-distinction \cite{subramanian2005gene}.
+Let $L$ be a  list of genes ranked by their differential expression between the classes, the goal of GSEA is to determine whether members of a gene set $S$ tend to occur toward the top (or bottom) this list,  which might correlate with the phenotypic class distinction \cite{subramanian2005gene}.
 
 \subsubsection{Protein interaction networks and cancer signatures}
 
-A major objective of systems biology is to organize molecular interactions as networks \cite{vinayagam2014integrating}. \sigla{PPIs}{Protein-protein interactions } are essential to almost every process in a cell, and they are not only crucial for understanding cell physiology in normal and disease states since the disruption of protein-protein interactions may result in disruption of the cell component or process to which they contribute, compromising the cell viability or even leading to cell death, but also for the drug development, since drugs can affect PPIs \cite{PPIs,alzate2009neuroproteomics}.
+A major objective of systems biology is to organize molecular interactions as networks \cite{vinayagam2014integrating}. \sigla{PPIs}{Protein-protein interactions} are essential to almost every process in a cell and are not only crucial for understanding cell physiology in normal and disease states, since the disruption of protein-protein interactions may result in disruption of the cell component or process to which they contribute compromising the cell viability or even leading to cell death, but also for the drug development, since drugs can affect PPIs \cite{PPIs,alzate2009neuroproteomics}.
 These interactions are represented as \sigla{PPIN}{Protein-protein interaction networks}, a mathematical representation of the physical contacts between proteins in the cell.
 The totality of PPIs that happen in a cell, an organism or a specific biological context is called interactome.
 
@@ -625,7 +624,7 @@ parameters of the population distribution from which the sample was drawn.
 Some of these procedures are summarized in Table \ref{Parametric-nonparametric}.
 
 The t-test, a parametric test, is the most widely used statistical test for comparing the means of two independent groups.
-It assumes that the data are distributed Normally, that samples from different groups are independent and that the variances between the groups are equal. The most commonly used nonparametric test in this situation is the \sigla{WRST}{Wilcoxon Rank Sum Test} and the closely related \sigla{MWU}{Mann-Whitney U-test}. The WRST assumes that observations from the different groups are random samples (i.e. independent and identically distributed) from their respective populations and are mutually independent and that the observations are ordinal or continuous measurements.
+It assumes that the data are normally distributed, that samples from different groups are independent and that the variances between the groups are equal. The most commonly used nonparametric test in this situation is the \sigla{WRST}{Wilcoxon Rank Sum Test} and the closely related \sigla{MWU}{Mann-Whitney U-test}. The WRST assumes that observations from the different groups are random samples (i.e. independent and identically distributed) from their respective populations and are mutually independent and that the observations are ordinal or continuous measurements.
 When there are more than two groups being compared,
 the nonparametric test used is \sigla{KW}{Kruskal-Wallis test}, a generalization of the WRST. KW is the nonparametric equivalent to \sigla{ANOVA}{Analysis of variance}.
 
