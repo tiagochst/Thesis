@@ -57,13 +57,13 @@ Motif enrichment            & lower OR                           & 1.1    \\ \bo
 \end{tabular}
 \end{table}
 
-The DMCs (differently methylated CpGs) analysis, which uses a one-tailed t.test to find
+The DMCs (differentially methylated CpGs) analysis, which uses a one-tailed t.test to find
 probes with higher mean level in GCIMP-high group compared to the GCIMP-low one.
 The result of this analysis is summarized in Figure \ref{fig:gcimpvolcano}.
 The volcano plot shows the difference of DNA methylation ($\Delta\overline{\beta}$)
-versus significance $-log_{10}(\textrm{FDR corrected P-values})$. Using as defalt cutt-offs
+versus significance $-log_{10}(\textrm{FDR corrected P-values})$. Using as default cuttoffs
  $\Delta\overline{\beta}\geq0.3$ and $-log_{10}(\textrm{FDR corrected P-values})\leq 0.01$,
-$7540$ probes were identified to be differently methylated.
+$7540$ probes were identified to be differentially methylated.
 
 \begin{center}
 \begin{figure}[h!]
@@ -73,11 +73,11 @@ $7540$ probes were identified to be differently methylated.
 
 \end{center}
 
-Those differently methylated were then paired with their 10 upstream and 10 downstream genes
+Those differentially methylated were then paired with their 10 upstream and 10 downstream genes
 and an anti-correlation test which searches for genes highly expressed when the DNA methylation levels
 decreases was performed.
 Using as cutt-offs
-$-log_{10}(\textrm{raw P-values})\leq 0.001$ and $-log_{10}(\textrm{Permutated corrected P-values})\leq 0.001$
+$-log_{10}(\textrm{raw P-values})\leq 0.001$ and $-log_{10}(\textrm{Permuted corrected P-values})\leq 0.001$
 for a  $10000$ permutation correction approach,
 886 pairs of gene and probes were identified to be anti-correlated.
 The result of this analysis is summarized in Figure \ref{fig:gcimpheatmap}.
@@ -100,20 +100,20 @@ and gene anti-correlated. The top annotation in the heatmap was retried from \ci
 \begin{table}[h!]
 \centering
 \caption[G-CIMP analysis: Summary results]{G-CIMP-high vs G-CIMP-low analysis:
-number of distal probes, significant differently methylated probes,
+number of distal probes, significant differentially methylated probes,
 significant anti-correlated paired gene-probes and enriched motifs}
 \label{gcimp.summary.results}
 \begin{tabular}{@{}ll@{}}
 \toprule
 Result      & Value \\ \midrule
 Distal probes       & 135374 \\
-Significant differently methylated probes & 7540               \\
-Siginificant anti-correlated paired gene-probes  & 886 \\
+Significant differentially methylated probes & 7540               \\
+Significant anti-correlated paired gene-probes  & 886 \\
 Enriched motifs & 84
 \end{tabular}
 \end{table}
 
-The eriched motifs analysis results are summarized in Figure \ref{tab:or},
+The enriched motifs analysis results are summarized in Figure \ref{tab:or},
 which shows the \sigla{OR}{Odds Ratio} (x axis) for the enriched motifs, and in Table  \ref{tab:tf},
 which shows the candidate regulatory TFs whose expression anti-correlated
 with the DNA methylation level on the probes of each enriched motifs.

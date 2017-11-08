@@ -1,10 +1,10 @@
-This chapter explains some of the fundamental concepts used in the developments presented in this thesis.
-In section \ref{sec:concept-cancer}  cancer introduced. Its characteristics when compared to normal cells,
+This chapter explains some of the fundamental concepts used in the development in this thesis.
+In section \ref{sec:concept-cancer} cancer introduced. Its characteristics when compared to normal cells,
 the molecular mechanisms responsible for its onset and those that facilitate its maintenance and proliferation.
 In section \ref{sec:concept-alteration} the genetic and epigenetic changes in cancer cells are detailed.
 In section \ref{sec:concept-data} the clinical, genetic and epigenetic data publicly available used for cancer data analysis is described. Their computational representation and data structures available to manipulate large collections of data are detailed.
 Finally, in section \ref{sec:concept-analysis} several techniques of data analysis
-used to extract biological knowledge of this data is presented.
+used to extract biological knowledge from this data is presented.
 
 \section{Cancer} \label{sec:concept-cancer}
 
@@ -13,7 +13,7 @@ Tumors are complex tissues composed of multiple distinct cell types that partici
 If compared to normal cells, cancer cells acquired capabilities which includes sustaining proliferative signaling,
  evading growth suppressors, resisting cell death, enabling replicative immortality,
  inducing angiogenesis, activating invasion and metastasis, reprogramming of energy metabolism and
- evading immune destruction.  Some examples of these acquired capabilities are described below.
+ evading immune destruction \cite{hanahan2011hallmarks}.  Some examples of these acquired capabilities are described below.
 
 \begin{description}
   \item [Sustaining Proliferative Signaling]
@@ -42,8 +42,7 @@ If compared to normal cells, cancer cells acquired capabilities which includes s
 Those capabilities, which enable tumor growth and metastatic dissemination, were acquired mainly due to a genetic diversity
  generated  by genome instability \cite{hanahan2011hallmarks}.
  A multistep tumor progression can be portrayed as
-a succession of clonal expansions, which can be triggered
-by nonmutational changes (epigenetic mechanisms such as DNA methylation and histone modifications \cite{berdasco2010aberrant})
+a succession of clonal expansions, which can be triggered by non mutational changes (epigenetic mechanisms such as DNA methylation and histone modifications \cite{berdasco2010aberrant})
 or mutational changes affecting the regulation of gene expression.
 
 To increase  the rates of mutation, cancer cells often breakdown components of the genomic maintenance machinery
@@ -78,7 +77,7 @@ are involved in establishing a new methylation pattern to unmodified DNA, and Dn
 to the methylation of a daughter strand during the DNA replication process.
 
 The majority of DNA methylation occurs on cytosines that precede a guanine nucleotide (CpG sites), however
-\citeonline{xie2012base} reporte a significant percentage of methylated non-CpG sites \cite{xie2012base}.
+\citeonline{xie2012base} it was reported a significant percentage of methylated non-CpG sites \cite{xie2012base}.
 
 The role of DNA methylation varies in different genomic regions.
 Within intergenic regions, the DNA methylation represses the expression of potentially harmful genetic elements,
@@ -179,7 +178,7 @@ resulting in levels of gene expression, the complete absence of genes, or the al
 of DNA that are larger than $1 kb$ which can be microscopic ($> 3Mb$) or submicroscopic ($1 kb$ to $3 Mb$) variants,
 and also define smaller ($<1 kb$) variations or polymorphisms that involve the copy-number change
  of a segment of DNA as insertions or deletions (indels).
-A type of structural variant is the \sigla{CNV}{copy number variation} are a segment of DNA that is 1 kb or larger and is present at a variable copy number in comparison with a reference genome while \sigla{CNP}{Copy-number polymorphism} are CNVs that occurs in more than 1\% of the population. Also, it is common to refer to changes in copy number that have arisen in somatic tissue as copy number alterations/aberrations (CNAs or SCNAs) and changes in copy number in germline cells
+A type of structural variant is the \sigla{CNV}{copy number variation} which refers to a segment of DNA that is $1 kb$ or larger and is present at a variable copy number in comparison with a reference genome, while \sigla{CNP}{Copy-number polymorphism} are CNVs that occurs in more than 1\% of the population. Also, it is common to refer to changes in copy number that have arisen in somatic tissue as copy number alterations/aberrations (CNAs or SCNAs) and changes in copy number in germline cells
  as copy number variations (CNVs).
 Table \ref{mutation} summarizes the types of mutations.
 
@@ -324,13 +323,13 @@ Some of the main data structures from the R/Bioconductor used in this project ar
   \includegraphics[width=1.0\textwidth]{images/Granges.png}
   \caption[Granges object]{\label{fig:granges} Example of Granges object.}
   \end{figure}
-  \item [\sigla{SE}{SummarizedExperiment}:]  This data strucute, exemplified in Figure \ref{fig:SE}, is a  matrix-like container where rows represent ranges of interest (as a GRanges object) and columns represent samples (with sample data summarized as a DataFrame). It can contains one or more assays, each represented by a matrix-like object of numeric or other mode.
+  \item [\sigla{SE}{SummarizedExperiment}:]  This data structure, exemplified in Figure \ref{fig:SE}, is a  matrix-like container where rows represent ranges of interest (as a GRanges object) and columns represent samples (with sample data summarized as a DataFrame). It can contains one or more assays, each represented by a matrix-like object of numeric or other mode.
   \begin{figure}[ht!]
   \centering
   \includegraphics[width=1.0\textwidth]{images/summarizedExperiment.png}
   \caption[Sumarized Experiment object]{\label{fig:SE} Example of Sumarized Experiment object. Figure reproduced from SummarizedExperiment manual \cite{SummarizedExperiment}.}
   \end{figure}
-  \item [\sigla{MAE}{MultiAssayExperiment}:] This data strucute is an integrative environment where multiple assays are managed and preprocessed for genomic data analysis.  It is composed of at least two metadata matrices, one with the phenotype metadata (i.e. clinical data) and one table mapping each data column from different assays to a entry in the phenotype metadata. The data handle by this data strucute can be several SummarizedExperiment objects (i.e DNA methylation, gene expression, copy number, histone mofication signals).
+  \item [\sigla{MAE}{MultiAssayExperiment}:] This data structure is an integrative environment where multiple assays are managed and preprocessed for genomic data analysis.  It is composed of at least two metadata matrices, one with the phenotype metadata (i.e. clinical data) and one table mapping each data column from different assays to a entry in the phenotype metadata. The data handle by this data structure can be several SummarizedExperiment objects (i.e DNA methylation, gene expression, copy number, histone modification signals).
 
 \end{description}
 
@@ -437,7 +436,7 @@ Those precomputed chromatin-state segmentation from
  are available at \burl{http://egg2.wustl.edu/roadmap/web_portal/chr_state_learning.html#core_15state} and
  using StatePaintR  are available at \burl{www.statehub.org}.
 
-These data are extremely useful o characterize each different region of the genome.
+These data are extremely useful to characterize each different region of the genome.
 For example, using those information \citeonline{kundaje2015integrative} were able to identify enhancer regions
 containing strong H3K27ac signal which showed a higher DNA accessibility,
 lower methylation, and higher TF binding than enhancers regions lacking H3K27ac.
@@ -516,7 +515,7 @@ type II error is denoted by $\beta$\simbolo{\beta}{rate of the type II error}.
     \toprule
     \textbf{Decision} & \textbf{$H_0$ is True} & \textbf{$H_0$ is False} \\ \midrule
   Do Not Reject $H_0$ & Correct Decision  & Incorrect Decision (1 - $\beta$)\\
-  Rejct $H_0$ & Incorrect Decision (1 -  $\alpha$)& Correct Decision \\ \bottomrule
+  Reject $H_0$ & Incorrect Decision (1 -  $\alpha$)& Correct Decision \\ \bottomrule
   \end{tabular}
 \end{table}
 
@@ -581,7 +580,7 @@ have been developed to prevent the inflation of false positive rates.
 
 Among the different approaches to control type I errors we have
 \sigla{FWER}{Family-wise error rate} which controls the probability of at least one type I error,
-and \sigla{FDR}{False discovery rate}
+and False discovery rate (FDR)
 which controls the expected proportion of Type I errors
 among the rejected hypotheses. Compared to FDR, controlling FWER is extremely conservative
 approach as the power to detect $H_1$ gets very small.
@@ -601,15 +600,15 @@ For dependent tests, permutation methods are often used to calculate
  which are performed by randomly shuffling the case–control (or phenotype)
  labels. All $M$ tests are recalculated on the reshuffled data set, with the smallest P value of these M tests being recorded. The procedure is repeated for many times to construct an empirical frequency distribution of the smallest P values.
 This  empirical adjusted P value ($P_{*}$) is given by: $$P_{*} = \frac{r + 1}{n + 1}$$ where $n$ is the number of
-permutation carried out, and $r$ is the number of permutated p-values smaller than P-value calculated
+permutation carried out, and $r$ is the number of permuted p-values smaller than P-value calculated
 from the real data.
 
 For example, considering $\textrm{P-value = 0.1}$ and the
-permutated p-values $$P_{permu} =\{0.001,0.01,0.02,0.03,0.05,0.2,0.5,0.6,1\}$$ the first 5 permutated p-values
+permuted p-values $$P_{permu} =\{0.001,0.01,0.02,0.03,0.05,0.2,0.5,0.6,1\}$$ the first 5 permuted p-values
 are smaller than the original p-value, which would give us $r = 5$, resulting in:
 $$P_{*} = \frac{r + 1}{n + 1} =  \frac{5 + 1}{9 + 1} = 0.6 $$
 It is important to highlight that
-a high number of permutations is required in order to produce reliable permutated p-value adjusted.
+a high number of permutations is required in order to produce reliable permuted p-value adjusted.
  \cite{davison1997bootstrap,north2002note,north2003note,sham2014statistical}.
 
 
@@ -635,7 +634,7 @@ the nonparametric test used is \sigla{KW}{Kruskal-Wallis test}, a generalization
 \begin{table}[h!]
 \footnotesize
 \centering
-\caption{Summary of parametric and non parametric procedures.}
+\caption{Summary of parametric and nonparametric procedures.}
 \label{Parametric-nonparametric}
 \begin{tabular}{p{3.5cm}p{4cm}p{3cm}p{3cm}}
 \toprule
@@ -679,7 +678,7 @@ $$ S(t) = \prod_{i: t_i\leq t}\left(1 - \frac{d_i}{n_i}\right),$$
 \simbolo{S(t)}{Kaplan–Meier estimator} where $d_{i}$ are the number of events and  $n_{i}$
 the total individuals at risk at time $i$. Table \ref{survival-example} shows
 an example of survival data and Table \ref{Kaplan-Meier-example} shows
-and example of applying Kaplan-Meier method. Figure \ref{fig:survival_example}
+an example of applying Kaplan-Meier method. Figure \ref{fig:survival_example}
 shows a more real data example.
  It is important to highlight that
 for a censored time the proportion surviving will be 1, that means
@@ -695,7 +694,7 @@ but not in subsequent events \cite{bland2004logrank}.
 \multicolumn{1}{l}{\textbf{Patient ID}} & \multicolumn{1}{l}{\textbf{Survival times (in days)}} & \multicolumn{1}{l}{\textbf{Status}} \\ \hline
 1 & 1 & Dead \\
 2 & 1 & Dead \\
-3 & 2 & Alive (cencored) \\
+3 & 2 & Alive (censored) \\
 4 & 3 & Dead \\ \hline
 \end{tabular}
 \end{table}
