@@ -7,33 +7,34 @@ This tool combined DNA methylation and gene expression data from human tissues t
 
 Based on user feedback and a full review of the source code, we identified and implemented a number of software improvements, which are summarized in table \ref{tab:summary}: (i) The original package contained no standard data structure to handle multiple assays (DNA methylation, gene expression, and clinical data), which would be required for an integrative genomic data analysis. Recently, the Bioconductor team provided such a data structure through the \href{http://bioconductor.org/packages/MultiAssayExperiment/}{MultiAssayExperiment} package. (ii) All auxiliary databases (human TF list, classification of TF in families, gene annotation, DNA methylation annotation and motif occurrences within probe sites) used in the package were created and maintained manually, thereby making the upgrade process laborious; thus, we automated this process. (iii) The package was developed to analyze primary tumor tissue samples compared to normal tissues samples, thus not allowing arbitrary subgroups to be compared (for instance mutants vs. non-mutants, treated vs. untreated, etc.) (iv) Our original approach used known epigenomic markers for enhancers to constrain the genomic regions searched for differential methylation. However, this selection could limit our algorithm to identifying regulatory networks for tissue types that exist in the epigenomic databases; we found this constraint problematic, and thus now search \textit{all} distal regulatory regions without any such filter. (v) The function used to download data from The Cancer Genome Atlas (TCGA) data portal \cite{tomczak2015cancer} broke when the TCGA site was shutdown and its data transferred to The NCI's Genomic Data Commons (GDC) \cite{grossman2016toward}; we now have a more general data provider interface that supports GDC as the default provider. (vi) The package only supported data aligned to Genome Reference Consortium GRCh37 (hg19), and we now provide support for Genome Reference Consortium GRCh38 (hg38). (vii) There was no support to the recent HumanMethylationEPIC (EPIC) array. In addition to the specific improvements listed above, we substantially re-wrote most of the code to be more efficient and maintainable,  also most of the output plots generated were improved.
 
-\bgroup
-\def\arraystretch{2.0}%  1 is the default, change whatever you need
 
 \begin{table}[h!]
-\footnotesize
 \centering
+\small
 \caption{Main differences between ELMER old version (v.1) and the new version (v.2)}
 \label{tab:summary}
-\begin{tabular}{|p{4cm}|p{5cm}|p{6cm}|}
+%{\def\arraystretch{2}\tabcolsep=10pt
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}m{4.6cm}m{5cm}m{6cm}@{}}
 \toprule
 \toprule
-\multicolumn{1}{|c|}{\textbf{Features}} & \multicolumn{1}{|c|}{\textbf{ELMER Version 1}} & \multicolumn{1}{|c|}{\textbf{ELMER Version 2}}   \\ \midrule \midrule
-Primary data structure   & mee object (custom data structure)   & MAE object (Bioconductor data structure) \\ \hline
-Auxiliary data  & Manually created  & Programmatically created \\  \hline
-Number of human TFs & 1,982  & 1,987 (Uniprot database)  \\  \hline
-Number of TF motifs  & 91  & 771  (HOCOMOCO v11 database)  \\  \hline
-TF classification    & 78 families & 82 families and 331 subfamilies \newline(TFClass database) \\  \hline
-Analysis performed  & Normal vs tumor samples & Group 1 vs group 2  \\  \hline
-Statistical grouping   & unsupervised only & unsupervised or supervised using labeled groups   \\  \hline
-TCGA data source   & The Cancer Genome Atlas (TCGA) (not available)          & The NCI's Genomic Data Commons (GDC) \\  \hline
-Genome of reference   & GRCh37 (hg19)   & GRCh37 (hg19)/GRCh38 (hg38)          \\ \hline
-DNA methylation platforms  & HumanMethylation450   & HumanMethylationEPIC and HumanMethylation450   \\  \hline
-Graphical User interface (GUI) & None & TCGAbiolinksGUI \\
+\multicolumn{1}{c}{\textbf{Features}} & \multicolumn{1}{c}{\textbf{ELMER Version 1}} & \multicolumn{1}{c}{\textbf{ELMER Version 2}}   \\ \midrule \midrule
+Primary data structure                   &  \makecell[l]{mee object \\ (custom data structure)}                       & \makecell[l]{MAE object\\ (Bioconductor data structure)}\\ \midrule
+Auxiliary data                   & Manually created                       & Programmatically created \\\midrule
+Number of human TFs                    & 1,982                                  & 1,987 (Uniprot database)               \\\midrule
+Number of TF motifs                   & 91                                     & 771 (HOCOMOCO v11 database)               \\\midrule
+TF classification                     &  78 families                             & 82 families and 331 subfamilies \newline(TFClass database) \\\midrule
+Analysis performed            & Normal vs tumor samples & Group 1 vs group 2                       \\ \midrule
+Statistical grouping            & Unsupervised only & Unsupervised or supervised using labeled groups                       \\ \midrule
+TCGA data source                   & The Cancer Genome Atlas (TCGA) (not available)                   & The NCI's Genomic Data Commons (GDC)                                      \\\midrule
+Genome of reference                   & GRCh37 (hg19)                          & GRCh37 (hg19)/GRCh38 (hg38)          \\\midrule
+DNA methylation platforms             & HM450                                   & EPIC and HM450                                \\\midrule
+Graphical User interface (GUI)        & None                                   & TCGAbiolinksGUI                       \\
 \bottomrule
 \end{tabular}
+}
+%}
 \end{table}
-\egroup
 
 In this section, we present a new version of the R \textit{ELMER} package,
 which addresses all the issues described above. We start out by the detailed explanation

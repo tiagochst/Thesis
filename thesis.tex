@@ -6,7 +6,7 @@
 	%spanish,			% idioma adicional para hifenização
 	%english,			% idioma adicional para hifenização
 	%brazil				% o último idioma é o principal do documento
-\documentclass[doutorado, spanish, brazil, english]{packages/icmc}
+\documentclass[doutorado, spanish, brazil, english,pre-defesa]{packages/icmc}
 \usepackage{rotating}
 \usepackage[all,knot,arc,import,poly]{xy}
 \usepackage{csvsimple}
@@ -16,6 +16,7 @@
 \usetikzlibrary{shapes.geometric, arrows}
 \usetikzlibrary{mindmap,shadows}
 \usepackage{booktabs}
+\usepackage{makecell}
 \usepackage[hyphenbreaks]{breakurl}
 \usetikzlibrary{fit, arrows, calc, positioning}
 \newcommand{\VerbL}{0.52\textwidth}
@@ -125,12 +126,12 @@
 % ---
 % Informações de dados para CAPA e FOLHA DE ROSTO
 % ---
-\titulo{Development and enhancement of bioinformatic tools to integrate and understand aberrant epigenomic and genomic changes associated with cancer}
+\titulo{Bioinformatic tool to integrate and understand aberrant epigenomic and genomic changes associated with cancer:  Methods, development and analysis}
 \autor[Silva, T. C.]{Tiago Chedraoui Silva}
 \orientador[Advisor]{Prof. Dr.}{Houtan Noushmehr}
 %\coorientador{Prof. Dr.}{Fulano de Tal}
 \curso{ONCO}
-\data{5}{8}{2017} % Data do depósito
+\data{5}{11}{2017} % Data do depósito
 % ---
 
 
