@@ -623,10 +623,10 @@ While nonparametric statistical procedures don't rely or rely on only a few assu
 parameters of the population distribution from which the sample was drawn.
 Some of these procedures are summarized in Table \ref{Parametric-nonparametric}.
 
-The t-test, a parametric test, is the most widely used statistical test for comparing the means of two independent groups.
-It assumes that the data are normally distributed, that samples from different groups are independent and that the variances between the groups are equal. The most commonly used nonparametric test in this situation is the \sigla{WRST}{Wilcoxon Rank Sum Test} and the closely related \sigla{MWU}{Mann-Whitney U-test}. The WRST assumes that observations from the different groups are random samples (i.e. independent and identically distributed) from their respective populations and are mutually independent and that the observations are ordinal or continuous measurements.
+The most used parametric test for comparing the means of two independent groups is the t-test, which
+ assumes that the data are normally distributed, that samples from different groups are independent and that the variances between the groups are equal \cite{kitchen2009nonparametric}. The most commonly used nonparametric test for indepedent samples is the  \sigla{MWU}{Mann-Whitney U-test}, which assumes that observations from the different groups are random samples (i.e. independent and identically distributed) from their respective populations, are mutually independent and are ordinal or continuous measurements. If matched or dependent samples are compared  the nonparametric  Wilcoxon signed-rank test is used \cite{whitley2002statistics}.
 When there are more than two groups being compared,
-the nonparametric test used is \sigla{KW}{Kruskal-Wallis test}, a generalization of the WRST. KW is the nonparametric equivalent to \sigla{ANOVA}{Analysis of variance}.
+the nonparametric test used is the \sigla{KW}{Kruskal-Wallis test}, a generalization of the MWU and the parametric test used is the \sigla{ANOVA}{Analysis of variance} \cite{parab2010choosing}.
 
 
 \bgroup
@@ -647,6 +647,10 @@ Estimate the degree of association between two quantitative variables & Is age r
 \end{tabular}
 \end{table}
 \egroup
+
+It is also important to highlight that for larger sample sizes (greater than 20 or 30)
+P values can be calculated using a Normal distribution,
+on other words parametric tests could be used instead of the nonparametric ones \cite{vickers2005parametric}.
 
 % https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2743502/
 % http://blog.minitab.com/blog/adventures-in-statistics-2/choosing-between-a-nonparametric-test-and-a-parametric-test
