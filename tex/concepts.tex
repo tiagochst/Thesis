@@ -67,24 +67,25 @@ position of the cytosine to form 5-methylcytosine, which regulates
 gene expression  by either blocking the binding of Transcription factors or
 recruiting proteins involved in gene repression \cite{moore2013dna}.
 The pattern of DNA methylation in the genome can change by DNA methylation and demethylation process,
-which  are process involved in cell differentiation as unique DNA methylation pattern that regulates
+these processes are involved in cell differentiation as unique DNA methylation pattern is able to regulate
 tissue-specific gene transcription \cite{moore2013dna}.
 
-The DNA methylation process is mediated by the family of DNA methyltransferases (Dnmts)
-proteins which catalyze the transfer of a methyl group from S-adenyl methionine (SAM) to the fifth carbon of cytosine residue to form 5-methylcytosine (5mC).
+The DNA methylation process is mediated by the family of \sigla{Dnmts}{DNA methyltransferases}
+proteins which catalyze the transfer of a methyl group from \sigla{SAM}{S-adenyl methionine} to the fifth carbon of cytosine residue to form \sigla{5mc}{5-methylcytosine}.
 The main proteins responsible for this transfer are the Dnmt3a and Dnmt3b, which
 are involved in establishing a new methylation pattern to unmodified DNA, and Dnmt1, which is responsible
 to the methylation of a daughter strand during the DNA replication process.
 
 The majority of DNA methylation occurs on cytosines that precede a guanine nucleotide (CpG sites), however
-\citeonline{xie2012base} it was reported a significant percentage of methylated non-CpG sites \cite{xie2012base}.
+\citeonline{xie2012base} it has already been reported a significant percentage of methylated non-CpG sites \cite{xie2012base}.
 
 The role of DNA methylation varies in different genomic regions.
 Within intergenic regions, the DNA methylation represses the expression of potentially harmful genetic elements,
-while within promoter regions containing CpG islands, stretches of DNA roughly 1000 base pairs long that have a higher CpG density than the rest of the genome and  often  are not methylated  \cite{bird1985fraction}, results in stable silencing of gene expression, results in stable silencing of gene expression \cite{mohn2008lineage}.
-Within the gene body, region of the gene past the first exon, the methylation of the first exon leads to gene silencing
+while within promoter regions containing CpG islands, stretches of DNA roughly 1000 base pairs long that have a higher CpG density than the rest of the genome and  often  are not methylated  \cite{bird1985fraction}, results in stable silencing of gene expression \cite{mohn2008lineage}.
+Also, within the gene body, region of the gene past the first exon, the methylation of the first exon leads to gene silencing
 \cite{brenet2011dna}.
 
+% Falar sobre regioes distais ? Enhancers ?
 
 \subsection{Histone modifications}
 
@@ -101,11 +102,10 @@ Those modifications that loosen DNA association with histones generally provide 
 These modifications involved in adding and/or stripping histone markers in order to impose a repressive state on a gene region, are lead by histone-modifying enzymes and are in general in cooperation with the Dnmts proteins
 which are involved in the mechanism of DNA methylation.
 For example, Dnmt1 and Dnmt3 are known to bind to the histone methyltransferase SUV39H1 that
-restricts gene expression by methylation on H3K9 \cite{fuks2003dna}.
+restricts gene expression by methylation on \sigla{H3K9}{histone H3 lysine 9} \cite{fuks2003dna}.
 Other examples are Dnmt1 and Dnmt3b than can both bind to histone deacetylases that remove
 acetylation from histones to make DNA pack more tightly and restrict access for transcription \cite{fuks2000dna,geiman2004dnmt3b}.
-Also, H3K36 trimethylation, a repressive histone mark, stimulates the methyltransferase activity, the
-H3K4 trimethylation (H3K4me3) prevents it \cite{ooi2007dnmt3l,zhang2010chromatin}.
+Also, \sigla{H3K36}{histone H3 lysine 9} trimethylation, a repressive histone mark, stimulates the methyltransferase activity, the \sigla{H3K4me3}{H3K4 trimethylation} prevents it \cite{ooi2007dnmt3l,zhang2010chromatin}.
 
 The miRNAs have emerged as another important epigenetic mechanism that influences gene expression.
 It can repress gene expression by inhibiting translation or inducing RNA degradation \cite{berezikov2011evolution} and
@@ -113,6 +113,8 @@ It can repress gene expression by inhibiting translation or inducing RNA degrada
 
 Overall, miRNAs, DNA methylation, and histone modifications work closely
 together to regulate gene expression \cite{moore2013dna}.
+
+% Tabela de modificacoes de histona ?
 
 \subsection{Genetics alterations}
 
@@ -231,7 +233,7 @@ A loss  for part or all of a coding region within the gene footprint in a single
 
 \subsection{Databases} \label{susec:db}
 \begin{description}
-  \item [The Cancer Genome Atlas (TCGA):] The TCGA consortium, which was a National Institute of Health (NIH) initiative, made publicly available molecular and clinical information for more than 30 types of human cancers including exome (variant analysis), single nucleotide polymorphism (SNP), DNA methylation, transcriptome (mRNA), microRNA (miRNA) and proteome . Sample types available at TCGA are primary solid tumors, recurrent solid tumors, blood-derived normal and tumor, metastatic, and solid tissue normal \cite{weinstein2013cancer}. This project was ended in mid-2016 and its data was moved to  the NCI Genomic Data Commons (GDC).
+  \item [The Cancer Genome Atlas (TCGA):] The TCGA consortium, which was a \sigla{NIH}{National Institute of Health} initiative, made publicly available molecular and clinical information for more than 30 types of human cancers including exome (variant analysis), single nucleotide polymorphism (SNP), DNA methylation, transcriptome (mRNA), microRNA (miRNA) and proteome. Sample types available at TCGA are primary solid tumors, recurrent solid tumors, blood-derived normal and tumor, metastatic, and solid tissue normal \cite{weinstein2013cancer}. This project was ended in mid-2016 and its data was moved to  the NCI Genomic Data Commons (GDC).
   \item [The Genomic Data Commons (GDC):]  The NCI's Genomic Data Commons (GDC) provides the cancer research community with a unified data repository that enables data sharing across cancer genomic studies in support of precision medicine.
   It supports numerous cancer genome programs at the NCI \sigla{CCG}{Center for Cancer Genomics}, including The Cancer Genome Atlas (TCGA) and Therapeutically Applicable Research to Generate Effective Treatments (TARGET) \cite{GDC_web}.
   Those data is harmonized against GRCh38 (hg38) using GDC Bioinformatics Pipelines which provides methods to the standardization of biospecimen and clinical data, the re-alignment of DNA and RNA sequence data against a common reference genome build GRCh38, and the generation of derived data. Also, this repository has a Legacy Archive to provide access to a unmodified copy of data that was previously stored in CGHub \cite{wilks2014cancer} and in the TCGA Data Portal hosted by the TCGA Data Coordinating Center (DCC), in which uses as references GRCh37 (hg19) and GRCh36 (hg18).
@@ -240,24 +242,24 @@ A loss  for part or all of a coding region within the gene footprint in a single
   \cite{Fingerman,Bernstein}.
 \end{description}
 
- Briefly, these consortia provide large-scale epigenomic data onto a variety of microarrays and \sigla{NGS}{next-generation sequencing } platforms. Each consortium encompasses specific types of biological information on specific type of tissue or cell and when analyzed together, it provides an invaluable opportunity for research laboratories to better understand the developmental progression of normal cells to cancer state at the molecular level and importantly, correlate these phenotypes with tissue of origins.
+ Briefly, these consortia provide large-scale epigenomic data onto a variety of microarrays and \sigla{NGS}{next-generation sequencing} platforms. Each consortium encompasses specific types of biological information on specific type of tissue or cell and, when analyzed together, it provides an invaluable opportunity for research laboratories to better understand the developmental progression of normal cells to cancer state at the molecular level and importantly, correlate these phenotypes with tissue of origins.
 
 \subsection{Data and data structure} \label{susec:structure}
 
 If previously the main bottleneck to scientific progress in cellular biology was data collection, now this
  bottleneck shifted to analysis of data \cite{mcpherson2009next}.
  The large-scale genomic data mining, which is the process of using many diverse datasets to address a specific biological question, involves three main tasks: establishing methodology for efficiently querying large data collections; assembling data from appropriate repositories, and integrating information from a variety of experimental data types \cite{huttenhower2010quick}.
-In data science, raw data refers to data that have not been changed since acquisition which after editing, cleaning or modifying it results in processed data. In genomics the raw data, sequencing read data,
+In data science, raw data refers to data that have not been changed since acquisition and after its editing, cleaning or modification results in processed data. In genomics the raw data, sequencing read data,
  from next-generation sequencing machines is stored in a FASTQ,
  a common file format data that combines both the sequence and an associated per base quality score \cite{cock2009sanger}.
  Those stored reads are then aligned to a reference genome sequence with software like Bowtie 2 \cite{langmead2012fast},
-generating SAM files, the accepted standard for storing short read alignment data, which are subsequently compressed to binary  format (Binary Alignment/Map (BAM)) via SAMtools \cite{li2009sequence}. It in common to consider this set of SAM, BAM, and FASTQ files as raw data. Some databases classify this raw data as level 1, protected level or raw level.
+generating SAM files, the accepted standard for storing short read alignment data, which are subsequently compressed to binary  format (\sigla{BAM}{Binary Alignment/Map }) via SAMtools \cite{li2009sequence}. It in common to consider this set of SAM, BAM, and FASTQ files as raw data. Some databases classify this raw data as level 1, protected level or raw level.
 It is important to highlight that due to privacy concerns, the access to this raw data is controlled
 because it could be used in identity tracing attacks \cite{erlich2014routes,ayday2014privacy} as
 generally includes individually identifiable data such as low-level genomic sequencing data, germline variants, SNP6 genotype data, and certain clinical data elements \cite{GDC_data}.
 This raw data are processed through bioinformatics pipelines generating
 processed data files or matrices (usually in the form of tab-delimited text files).
-Some databases classify this processed data as level 2 or more or open.
+Some databases classify this processed data as level 2 or high or as open.
 For example, the previously stored data in CGHub, TCGA Data Portal and Broad Institute’s GDAC Firehose, were provided as different levels or tiers that were defined in terms of a specific combination of both processing level (raw, normalized, integrated) and access level (controlled or open access). Level 1 indicated raw and controlled data, level 2 indicated processed and controlled data, level 3 indicated Segmented or Interpreted Data and open access and level 4 indicated region of interest and open access data.
 
 In the next subsections, we will focus on the processed data and their data
@@ -268,12 +270,12 @@ structures used in this project.
 \begin{description}
   \item [Array-based DNA methylation data:]
   DNA methylation data files contain information on raw and normalized signal intensities, detection confidence and calculated beta values for methylated and unmethylated probes.
-  The processed data from DNA methylation array-based platforms such as GoldenGate, Infinium Human Methylation27, and the Infinium HD 450K methylation array, are presented in the form of beta-values that uses a scale ranging from 0.0 (probes completely unmethylated ) up to 1.0 (probes completely methylated). In each file, one per sample,  one row represents a 1 bp region (probe) and its beta-value. Also, probes overlapping with SNPs are normally masked.
+  The processed data from DNA methylation array-based platforms such as GoldenGate, Infinium Human Methylation27, and the Infinium HD 450K methylation array, are presented in the form of beta-values that uses a scale ranging from 0.0 (probes completely unmethylated ) up to 1.0 (probes completely methylated). In each sample file, each row represents a 1 bp region (probe) and its correspondent beta-value. Also, probes overlapping with SNPs are normally masked as they are based largely on ad hoc assumptions and subjective criteria \cite{zhou2016comprehensive}.
   \item [Somatic Variant data:]  The DNA-Seq Somatic Variant Analysis algorithms, such as MuSE \cite{fan2016muse}, Mutect2 \cite{cibulskis2013sensitive}, SomaticSniper \cite{larson2011somaticsniper} and Varscan2 \cite{koboldt2012varscan},   identify and characterizes somatic mutations by comparing reference alignments from tumor and normal samples from the same case.  The   results of the variant calls are stored in a Mutation Annotation Format (MAF), which are filtered to remove any potentially erroneous or germline variant calls. Each row of these  represents a mutation in the genome of a sample \cite{GDC_maf}.
-  \item [RNA-Seq Gene Expression data]: The processed data contains read counts measured on a gene level, which might be normalized using some methods such as the Fragments Per Kilobase of transcript per Million mapped reads (FPKM) \cite{GDC_fpmk} and FPKM Upper Quartile (FPKM-UQ) \cite{GDC_fpmkuq}.
-  \item [miRNA-Seq  data:]  The processed data contains expression levels measured and normalized post-alignment. Normalization is performed using the Reads per Millions (RPM) method. Expression levels of known miRNAs and observed miRNA isoforms are generated for each sample.
-  \item [Copy Number Variation data:] The processed data is a table that associates contiguous chromosomal segments with genomic coordinates, mean array intensity (log2 ratio segment means), and the number of probes that bind to each segment. This information might be masked to remove segments with probes known to contain germline mutations are removed.
-  From the CBS output, algorithms such as GISTIC2 \cite{mermel2011gistic2} are used to identify significantly altered regions of amplification or deletion across sets of patients.
+  \item [RNA-Seq Gene Expression data]: The processed data contains read counts measured on a gene level, which might be normalized using some methods such as the \sigla{FPKM}{Fragments Per Kilobase of transcript per Million mapped reads} \cite{GDC_fpmk} and FPKM Upper Quartile (FPKM-UQ) \cite{GDC_fpmkuq}.
+  \item [miRNA-Seq data:] The processed data contains expression levels measured and normalized post-alignment. Normalization is performed using the \sigla{RPM}{Reads per Millions} method. Expression levels of known miRNAs and observed miRNA isoforms are generated for each sample.
+  \item [Copy Number Variation data:] The processed data is a table that associates contiguous chromosomal segments with genomic coordinates, mean array intensity (log2 ratio segment means), and the number of probes that binds to each segment. This information might be masked to remove segments with probes known to contain germline mutations.
+  From the \sigla{CBS}{Circular Binary Segmentation} methods output described previously, algorithms such as GISTIC2 \cite{mermel2011gistic2} are used to identify significantly altered regions of amplification or deletion across sets of patients.
   \item [Histone ChIP-Seq data:] The processed data contains either the fold change over control and signal p-value stored
   in a bigWig format or as peaks in a bed and bigBed format \cite{ENCODE_chipseq}.  The ENCODE consortium highlight that these peak files are not meant to be interpreted as definitive binding events, but are rather intended to be used as input for subsequent statistical comparison of replicates \cite{ENCODE_chipseq}. This data is used as input for software
    to infer chromatin-state such as ChromHMM \cite{ernst2012chromhmm} and StatePaintR \cite{statepaintr}.
