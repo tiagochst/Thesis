@@ -45,6 +45,17 @@ The user interface has been divided into three main \sigla{GUI}{Graphical User I
   \label{fig:maftoools_oncoplot}
 \end{figure}
 
+
+\begin{figure}[h!]
+
+\includegraphics[width=1.0\linewidth]{images/gui_acc_survival.png}
+
+  \caption[TCGAbiolinksGUI: Survival analysis]{TCGAbiolinksGUI: Survival analysis.
+  The plot shows the Kaplan-Meier Overall Survival Curves for \sigla{ACC}{Adrenocortical carcinoma} stratified by tumor stage.
+  As expected, hihger levels which are more agressive have a lower survival.}
+  \label{fig:gui_survival}
+\end{figure}
+
 %  \begin{figure}[h!]
 %  \includegraphics[width=1.0\linewidth]{images/fig4-ELMER_MAE.png}
 
@@ -69,12 +80,12 @@ The user interface has been divided into three main \sigla{GUI}{Graphical User I
 %   \end{figure}
 
 \begin{itemize}
-	\item \textbf{GDC Data:} Provides a guided approach to search for published molecular subtype information, clinical and molecular data. In addition, it downloads and processes the molecular data into an R object that can be used for further analysis. Figure \ref{fig:geneexp}.
-	\item \textbf{Clinical analysis:} Performs survival analysis to quantify and test survival differences between two or more groups of patients and draws survival curves with the 'number at risk' table, the cumulative number of events table and the cumulative number of censored subjects table using the R/CRAN package survminer \cite{survminer}.
+	\item \textbf{GDC Data:} Provides a guided approach to search for published molecular subtype information, clinical and molecular data. In addition, it downloads and processes the molecular data into an R object that can be used for further analysis (Figure \ref{fig:geneexp})
+	\item \textbf{Clinical analysis:} Performs survival analysis to quantify and test survival differences between two or more groups of patients and draws survival curves with the 'number at risk' table, the cumulative number of events table and the cumulative number of censored subjects table using the R/CRAN package survminer \cite{survminer} (Figure \ref{fig:gui_survival}).
 	\item \textbf{Epigenetic analysis:} Performs a Differentially methylated regions (DMR) analysis, visualizes the results through both volcano and heatmap plots, and visualizes the mean DNA methylation level by groups.
 	\item \textbf{Transcriptomic analysis:} Performs a Differential Expression Analysis (DEA), and visualizes the results through both volcano and heatmap plots. For the genes found as upregulated or downregulated an enrichment analysis can be performed and pathway data can be integrated \cite{luo2013pathview}.
- 	\item \textbf{Genomic analysis:} Visualize and summarize the mutations from MAF (Mutation Annotation Format) files through summary plots and oncoplots using the R/Bioconductor maftools package \cite{Gu20052016,Maftools}.
-  Figures \ref{fig:maftoools_oncoplot} and \ref{fig:maftoools_summary} shows examples of summary and visualizations available.
+ 	\item \textbf{Genomic analysis:} Visualize and summarize the mutations from MAF (Mutation Annotation Format) files through summary plots and oncoplots using the R/Bioconductor maftools package \cite{Gu20052016,Maftools}
+  (Figures \ref{fig:maftoools_oncoplot} and \ref{fig:maftoools_summary}).
 	\item \textbf{Integrative analysis:} Integrate the DMR and DEA results through a starburst plot. Also, using the DNA methylation data and the gene expression data the R/Bioconductor ELMER package can be used to discover functionally relevant genomic regions associated with cancer \cite{yao2015inferring, ELMER2}.
 \end{itemize}
 
