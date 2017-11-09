@@ -126,7 +126,7 @@ recent TCGA study of 1122 gliomas \cite{ceccarelli2016molecular}. These function
 can be used independently or in combination to provide the
 user with fully comprehensible analysis pipelines applied to
 TCGA data. A schematic overview of the package is presented
-in Figure \ref{fig:tcgabiolinksfunctions}. The next subsections describe each of the three main levels (Data, Analysis and Visualization) below, highlighting the importance and utility of each associated function and sub-function.
+in Figure \ref{fig:tcgabiolinksfunctions}. The next subsections describe each of the three main levels (Data, Analysis and Visualization), highlighting the importance and utility of each associated function and sub-function.
 
 \begin{figure*}
 \centering
@@ -164,7 +164,7 @@ a standard data frame object (rows and columns).
 The analysis functions and subfunctions are designed to analyze TCGA data through both common and novel methods.
 The main function, called \textit{TCGAanalyze}, comprises two distinct types of analysis: molecular analysis and clinical analysis. Once the data are prepared into data matrices
 (genes/loci in rows and samples in columns) or a SummarizedExperiment, the downstream
-analysis can be divided into (i) supervised analysis: differential expression analysis, enrichment analysis and master regulator analysis or (ii) unsupervised analysis: inference of gene regulatory network, cluster, classification, \sigla{ROC}{Receiver Operator Characteristics} \cite{sonego2008roc}, \sigla{AUC}{Area Under the Curve}, feature selection and survival analysis.
+analysis can be divided into (i) supervised analysis: differential expression analysis, enrichment analysis and master regulator analysis or (ii) unsupervised analysis: inference of gene regulatory network, clustering, classification, \sigla{ROC}{Receiver Operator Characteristics} \cite{sonego2008roc}, \sigla{AUC}{Area Under the Curve}, feature selection and survival analysis.
 \textit{TCGAanalyze\_Normalization} allows users to normalize mRNA transcripts and miRNA using the EDASeq package \cite{risso2011gc}. This function uses within-lane normalization procedures to adjust for GC-content effects (or other gene-level effects) on read counts: LOESS robust local regression and global-scaling, full-quantile and between-lane normalization procedures to adjust for distributional differences between lanes (e.g. sequencing depth).
 \textit{TCGAanalyze\_DEA} allows the user to identify differential expression or regions between two populations or conditions.
 In particular, we used the edgeR package from

@@ -677,7 +677,7 @@ or if you are studying a treatment and it is not over yet.
 
 It is defined  survival function $S(t)$ is defined as the
 probability of surviving at least to time t, while a
- graph of S(t) against t is called the survival curve.
+ graph of $S(t)$ against $t$ is called the survival curve.
 To estimate this curve there exists the Kaplan-Meier method:
 $$ S(t) = \prod_{i: t_i\leq t}\left(1 - \frac{d_i}{n_i}\right),$$
 \simbolo{S(t)}{Kaplan–Meier estimator} where $d_{i}$ are the number of events and  $n_{i}$
@@ -706,7 +706,7 @@ but not in subsequent events \cite{bland2004logrank}.
 
 \begin{table}[h!]
 \centering
-\caption[Kaplan-Meier method  example]{Kaplan-Meier method example for table \ref{survival-example}}
+\caption[Kaplan-Meier method example]{Kaplan-Meier method example for table \ref{survival-example}}
 \label{Kaplan-Meier-example}
 \begin{tabular}{cp{3cm}p{3cm}p{3cm}c}
 \hline
@@ -760,11 +760,9 @@ In genetics and genomics, it has been applied
  for the interpretation of large genomic datasets and annotation of a wide variety of genomic sequence elements.
 For example, for the detection of  transcription start sites (TSSs) locations, which have proven hard to detect in silico due to the complexity and the fairly diffuse structures of Eukaryotic promoters, \citeonline{down2002computational} developed a machine-learning method is able to build useful models of promoters for more than 50\% of the human transcription start sites \cite{down2002computational}.
 
-The machine learning techniques can be classified into two main categories: supervised and unsupervised learning (Mitchell, 1997). The supervised learning, which aims to infer data labels by learning from already labeled data, has three stages: design, model, and test. The first stage refers to the selection of a learning algorithm used to learn from data (e.g. choose between support vector machines or random forest algorithms) and its training data. The second stage is the creation of a model from labeled data using the algorithm selected previously.  The last stage uses this generated model to  predict the labels of unlabeled data.
+The machine learning techniques can be classified into two main categories: supervised and unsupervised learning \cite{mitchell1997machine}. The supervised learning, which aims to infer data labels by learning from already labeled data, has three stages: design, model, and test. The first stage refers to the selection of a learning algorithm used to learn from data (e.g. choose between support vector machines or random forest algorithms) and its training data. The second stage is the creation of a model from labeled data using the algorithm selected previously.  The last stage uses this generated model to  predict the labels of unlabeled data.
 The unsupervised learning methods, on the other hand,
 cluster the data without using labels, which requires an additional step in which semantics must be manually assigned to each cluster. As this discovery is not tied to previously defined classes, these methods have as benefit the ability to identify potentially novel types of genomic elements.
-
-
 
 
 \subsubsection{Supervised learning}
@@ -799,10 +797,9 @@ Among the existing agglomerative techniques are the single linkage, also known a
 squares, which means that  the groups leading to a minimum increase in total within-cluster variance are merged \cite{ward1963hierarchical,everitt2011hierarchical}.
 The results of hierarchical clustering are usually represented in a dendrogram a branching diagram in which the objects are represented in one of the axes while the similarity between clusters are represented in the other axis by the length of the connection which joins them \cite{manning1999foundations}.}
 
-\item[Optimization clustering
-techniques:]{
+\item[Optimization clustering techniques:]{
 These are a set of non-hierarchical clustering techniques that cluster individuals into a specified number of groups, by either minimizing or maximizing some numerical criterion \cite{everitt2011hierarchical}.  One of these techniques is the k-means algorithms, which iteratively updates a partition by simultaneously relocating each object to the group to whose mean it was closest and then recalculating the group means until the groups no longer change.
-More explicitly, let $S = \{S_1,S_2,\ldots,S_k\}$  be the set of k clusters, this algorithm tries to minimize the squared distances of the elements from the cluster center:
+More explicitly, let $S = \{S_1,S_2,\ldots,S_k\}$  be the set of $k$ clusters, this algorithm tries to minimize the squared distances of the elements from the cluster center:
 $$ N(n,k) = min\sum_{g = 1}^{k}\sum_{j \in S_g}\Vert x_j - \mu_g\Vert^2,$$
 where $x_j$ is a data element that belongs to a group g, and $\mu_g$ is the center of points of the $g$ group. A counterpoint of these techniques also requirement to ‘estimate’ the number of clusters in the data, for which a variety of methods
 have been suggested and  most are
