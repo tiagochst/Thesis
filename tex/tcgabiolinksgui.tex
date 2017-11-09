@@ -28,7 +28,7 @@ The user interface has been divided into three main \sigla{GUI}{Graphical User I
 \item \textbf{GDC Data:} Provides a guided approach to search for published molecular subtype information, clinical and molecular data. In addition, it downloads and processes the molecular data into an R object that can be used for further analysis (Figure \ref{fig:geneexp})
 \item \textbf{Clinical analysis:} Performs survival analysis to quantify and test survival differences between two or more groups of patients and draws survival curves with the 'number at risk' table, the cumulative number of events table and the cumulative number of censored subjects table using the R/CRAN package survminer \cite{survminer} (Figure \ref{fig:gui_survival}).
 \item \textbf{Epigenetic analysis:} Performs a Differentially methylated regions (DMR) analysis, visualizes the results through both volcano and heatmap plots, and visualizes the mean DNA methylation level by groups (Figure \ref{fig:gui_heatmap}).
-\item \textbf{Transcriptomic analysis:} Performs a Differential Expression Analysis (DEA), and visualizes the results through both volcano and heatmap plots. For the genes found as upregulated or downregulated an enrichment analysis can be performed and pathway data can be integrated \cite{luo2013pathview}.
+\item \textbf{Transcriptomic analysis:} Performs a Differential Expression Analysis (DEA), and visualizes the results through both volcano and heatmap plots. For the genes found as upregulated or downregulated an enrichment analysis can be performed and pathway data can be integrated \cite{luo2013pathview} (Figure \ref{fig:gui_ea}).
 \item \textbf{Genomic analysis:} Visualize and summarize the mutations from MAF (Mutation Annotation Format) files through summary plots and oncoplots using the R/Bioconductor maftools package \cite{Gu20052016,Maftools}
 (Figures \ref{fig:maftoools_oncoplot} and \ref{fig:maftoools_summary}).
 \item \textbf{Integrative analysis:} Integrate the DMR and DEA results through a starburst plot. Also, using the DNA methylation data and the gene expression data the R/Bioconductor ELMER package can be used to discover functionally relevant genomic regions associated with cancer \cite{yao2015inferring, ELMER2}.
@@ -40,6 +40,16 @@ The user interface has been divided into three main \sigla{GUI}{Graphical User I
 \caption[TCGAbiolinksGUI: Visualizing mutation summary]{TCGAbiolinksGUI: Visualizing mutation summary. This maftools plot available thought TCGAbiolinksGUI shows a summary of the MAF file. Highlighting the most mutated genes, SNV class and variant classification distributions. }
 \label{fig:maftoools_summary}
 \end{figure}
+
+
+\begin{figure}
+\includegraphics[width=1.0\linewidth]{images/gui_ea.png}
+\caption[TCGAbiolinksGUI: Enrichement analysis of genes]{TCGAbiolinksGUI: Enrichement analysis of genes.
+ TCGAbiolinks uses Gene Ontology which defines concepts/classes used to describe gene function, to perform an enrichement analysis. The plots shows  molecular function, biological process, celullar components, and pathway gene Ontology classes.
+ Each barplot represents a class with the numnber of genes in the class. The width of the barplot represents the significance, and the red line represents the percentage genes inputed that is found class, for example of all genes in the biological process regulation of endothelial cell migration our 2 genes inputed represents 20\% of all genes in this process.}
+\label{fig:gui_ea}
+\end{figure}
+
 
 \begin{figure}
 \includegraphics[width=1.0\linewidth]{images/gui_heatmap.png}
