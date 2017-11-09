@@ -1,101 +1,5 @@
 \section{TCGAbiolinks: An R/Bioconductor package to download and analyze data from GDC}
 
-% Cancer is among the leading causes of death worldwide,
-% and treatments for cancer range from clinical procedures
-% such as surgery to complex combinations of drugs,
-% surgery and chemoradiation (1). The Cancer Genome Atlas
-% (TCGA), which began in 2006 with the aim of collecting
-% and analyzing both clinical and molecular data
-% on over 33 different tumor types by sampling across 500
-% cases per tumor type, has to date generated the most
-% comprehensive repository of human cancer molecular and
-% clinical data (Figure 1A) (2). Tumors profiled by TCGA
-% range from solid to hematological types, from mildly to
-% severely aggressive in terms of survival and from benign
-% to metastatic. For each cancer case, DNA, RNA and protein
-% were extracted, and genomic, transcriptomic, epigenomic
-% and (recently) proteomic (Figure 1B) profiling was
-% then performed using a diverse set of ‘omics’ platforms,
-% from custom microarrays to large-scale genomic sequencing.
-% The TCGA consortium is organized into several
-% working groups, each responsible for generating, collecting
-% and coordinating data production (Biospecimen core
-% resource and Data coordinating center) or analyzing the
-% data (Genome data analysis center) (https://wiki.nci.nih.
-% gov/display/TCGA/TCGA+Wiki+Home). \sigla{AWGs}{Analysis working groups} are formed by members of the scientific
-% community to lead the data analysis for each tumor
-% type (e.g. Breast or Kidney) and, more recently, for systemspecific
-% cancers (e.g. central nervous system or reproductive
-% system) or pan-cancer (all tumor types together) (2–6).
-% AWG members download and analyze the currently publicly
-% available data through the TCGA data portal (https://
-% tcga-data.nci.nih.gov/tcga/). Members generally include experts
-% in one or more data type (e.g. DNA methylation, expression,
-% copy number or whole-genome sequencing) and
-% experts in disease (generally oncologists specializing in each
-% particular studied tumor). Using the collective knowledge
-% gained by the experts in each platform and disease, a formal
-% characterization and report is generated and published
-% as a landmark TCGA marker (3,5–9).
-
-% These findings have generated a wealth of advanced
-% knowledge on the tumors reported and have led to the development
-% of clinical prognostic and diagnostic biomarkers
-% as well as redefinitions of prior classifications of tumors,
-% as recently described in a study of lower-grade gliomas (3).
-% The scientific cancer community has used TCGA data to
-% advance their research and to provide even greater insight
-% into these debilitating diseases, as evidenced by the growing
-% number of citations of TCGA landmark papers (Figure
-% 1C). In addition to advancing understanding of cancer,
-% the TCGA data offer opportunities to develop novel statistical
-% methodologies and create resources to integrate with
-% other data consortia, such as the Roadmap (10) and Encode
-% projects (11), as has been illustrated in a recent study
-% by Yao et al. (12).
-
-% Despite the wealth and accessibility of its data, TCGA
-% presents several major challenges for bioinformaticians,
-% clinicians and molecular biologists interested in harnessing
-% TCGA data to further their own research (2,13,14).
-% Among these researchers are data analysts who are interested
-% in reproducing some of the major findings by the
-% TCGA AWGs and incorporating novel methodologies into
-% the preprocessing, processing and filtering steps, such as
-% normalization, feature selection and downstream integrative
-% analyses (13). However, the TCGA data and archives
-% are constantly changing, either because of newly created
-% data or because some data sets have been retracted by the
-% families of the patients or the data were later discovered
-% to be from the wrong tissue source or to be of low quality.
-% To keep up with the dynamic and ever-changing structure
-% of the TCGA data repository, the Data Coordination
-% Center’s Web Service (DCCWS) was made available to access
-% the TCGA database (https://wiki.nci.nih.gov/display/
-% TCGA/TCGA+DCC+Web+Service+User’s+Guide). The
-% DCCWS contains information about the centers, platforms,
-% archives and other information relevant to the project. In
-% addition, methodologies applied to analyze the TCGA data
-% have mostly been presented in Sweave R documents or inhouse
-% R scripts (15–17), thus making it challenging for
-% many to harness the discoveries. Many studies, including
-% TCGA marker papers, deposit supplementary tables with
-% external websites, as PDF files, or Excel tables (https://tcgadata.nci.nih.gov/docs/publications/),
-% thus making the effort
-% to reproduce these findings or integrate them with one’s own
-% data even more challenging.
-
-% \begin{figure*}
-% \centering
-% %\includegraphics[width=.9\linewidth]{figures/case3_improved.pdf}
-% \includegraphics[width=1.0\linewidth]{images/figure1.pdf}
-% \caption[TCGA data overview.]{TCGA data overview. \textbf{(A)} bars represent number of patients by disease; bubbles represent the available data size in TB by disease; \textbf{(B)} number of samples by platform and by level, grouped by type: genomic, transcriptomic and epigenomic. \textbf{(C)} Barplot: number of citations for TCGA papers. Bubble plot: number of TCGA papers, in parenthesis the number of papers published by the TCGA Research Network. Source: Scopus search for ’TCGA’, adding TCGA Research Network papers that were not found during this search. }
-% \label{fig:tcgabiolinks1}
-% \end{figure*}
-
-
-
-
 The aim of TCGAbiolinks is four-fold: (i) to facilitate
 data retrieval via GDC’s API; (ii) to prepare the data
 using the appropriate preprocessing strategies; (iii) to provide
@@ -128,15 +32,12 @@ user with fully comprehensible analysis pipelines applied to
 TCGA data. A schematic overview of the package is presented
 in Figure \ref{fig:tcgabiolinksfunctions}. The next subsections describe each of the three main levels (Data, Analysis and Visualization), highlighting the importance and utility of each associated function and sub-function.
 
-\begin{figure*}
+\begin{figure}
 \centering
-%\includegraphics[width=.9\linewidth]{figures/case3_improved.pdf}
 \includegraphics[width=1.0\linewidth]{images/figure1_new.pdf}
-
-
 \caption[Overview of TCGAbiolinks functions.]{ Overview of TCGAbiolinks functions. TCGAbiolinks is organized in three categories. In the first category (Data), functions to query the GDC database, to download the data and to prepare it are made available. The second category (Analysis) contains functions that allow the user to carry out different types of analyses; these include clustering (\textit{TCGAanalyze\_Clustering}), differential expression analysis (\textit{TCGAanalyze\_DEA}) and enrichment analysis (\textit{TCGAanalyze\_EA}). Finally, the obtained results can be visualized using the functions in the third category (Visualization): these include principal component analysis (\textit{TCGAvisualize\_PCA}), starburst plots (\textit{TCGAvisualize\_starburst}) and survival curves (\textit{TCGAvisualize\_SurvivalCoxNET}). The different dependencies to other R/Bioconductor packages are specified in the last row of the figure.  }
 \label{fig:tcgabiolinksfunctions}
-\end{figure*}
+\end{figure}
 
 \subsubsection*{Data}
 
@@ -247,9 +148,9 @@ Its source code is available at \url{https://github.com/BioinformaticsFMRP/TCGAb
 
 TCGAbiolinks had a good reception the research community being among the top 5\% of the most downloaded tools of the Bioconductor project. In October 2017, the tool already had more than 17 thousand downloads, with an average of visits to the documentation pages of a thousand users per month. The Figure \ref{fig:tcgabiolinksdownload} shows a summary since the beginning of the project.
 
-\begin{figure*}[h!]
+\begin{figure}
 	\centering
-	\includegraphics[width=1.0\linewidth]{images/tcgabiolinks_download.pdf}
+	\includegraphics[width=0.7\linewidth]{images/tcgabiolinks_download.pdf}
 	\caption[TCGAbiolinks download summary]{TCGAbiolinks download summary. A) Number of downloads per month. B) Number of active users. C) Percentage of sessions connect to the documentation by country.}
 	\label{fig:tcgabiolinksdownload}
-\end{figure*}
+\end{figure}
