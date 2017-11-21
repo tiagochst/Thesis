@@ -1058,7 +1058,11 @@ h}%
                 \vskip 20pt
                 }{
                 \addcontentsline{toc}{chapter}{Resumo}
-				%\vspace{-0.5cm}
+                \begin{SingleSpace}
+                    {\MakeUppercase{\ABNTautorreferencia}}. {\textbf{Ferramenta de bioinformática para integrar e compreender as mudanças epigenômicas e genômicas aberrantes associadas com câncer: métodos, desenvolvimento e análise}.}
+                    \@year. \pageref{LastPage} f. Tese Doutorado ~(Doutorado~ -- Especialização em Diferenciação celular normal e neoplásicas) -- Faculdade de medicina de Ribeirão Preto, \imprimirlocal.
+                \end{SingleSpace}
+                \vskip 20pt
                 }
                 %\end{flushleft}
                 \csuse{res-text-\thecount}
