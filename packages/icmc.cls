@@ -985,31 +985,37 @@ h}%
         %\vspace*{\fill}
 	   \end{center}
       \begin{flushleft}
-   	Approved in \imprimirlocal,  January 24, 2018:
+   	Approved in \imprimirlocal, \underline{\hspace{1cm}}/\underline{\hspace{1cm}}/\underline{\hspace{1cm}}:
 
     \vspace*{0.5cm}
     \begin{center}{\ABNTEXchapterfont\large Examining Committee}\end{center}
 
+{\def\arraystretch{2}\tabcolsep=10pt
+
     \vspace*{0.5cm}
-   	\begin{tabular}{@{}p{.7in}p{5in}@{}}
-		Prof.Dr.:      & \hrulefill \\\\
-		Institution:   & \hrulefill \\\\
-		Verdict:       & \hrulefill\\
+   	\begin{tabular}{@{}p{1cm}p{5.5cm}p{1.5cm}p{6cm}@{}}
+		Prof.Dr.:      & \hrulefill & Institution:   & \hrulefill \\
+		Verdict:       & \hrulefill & Signature: & \hrulefill \\
 	\end{tabular}
 
-	\vspace*{1cm}
-   	\begin{tabular}{@{}p{.7in}p{5in}@{}}
-		Prof.Dr.:      & \hrulefill \\\\
-		Institution:   & \hrulefill \\\\
-		Verdict:       & \hrulefill\\
-	\end{tabular}
+  \vspace*{0.5cm}
+  \begin{tabular}{@{}p{1cm}p{5.5cm}p{1.5cm}p{6cm}@{}}
+  Prof.Dr.:      & \hrulefill & Institution:   & \hrulefill \\
+  Verdict:       & \hrulefill & Signature: & \hrulefill \\
+\end{tabular}
 
-	\vspace*{1cm}
-	\begin{tabular}{@{}p{.7in}p{5in}@{}}
-		Prof.Dr.:      & \hrulefill \\\\
-		Institution:   & \hrulefill \\\\
-		Verdict:       & \hrulefill\\
-	\end{tabular}
+\vspace*{0.5cm}
+\begin{tabular}{@{}p{1cm}p{5.5cm}p{1.5cm}p{6cm}@{}}
+Prof.Dr.:      & \hrulefill & Institution:   & \hrulefill \\
+Verdict:       & \hrulefill & Signature: & \hrulefill \\
+\end{tabular}
+
+\vspace*{0.5cm}
+\begin{tabular}{@{}p{1cm}p{5.5cm}p{1.5cm}p{6cm}@{}}
+Prof.Dr.:      & \hrulefill & Institution:   & \hrulefill \\
+Verdict:       & \hrulefill & Signature: & \hrulefill \\
+\end{tabular}
+}
      \end{flushleft}
 	\end{folhadeaprovacao}
 
