@@ -88,7 +88,7 @@ Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Comput
 	twoside,			% para impressão em verso e anverso. Oposto a oneside
 	a4paper,			% tamanho do papel.
 	%chapter=TITLE,		% títulos de capítulos convertidos em letras maiúsculas
-    sumario = tradicional,
+  sumario = tradicional,
 	brazil              % Define o idioma pt-br para as opções da classe
 	]{abntex2}
 
