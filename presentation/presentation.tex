@@ -335,7 +335,7 @@ Evaluate the enrichment of transcription factors in certain genomic regions.
  \end{figure}
 \end{frame}
 
-\begin{frame}{Step 5: TF ranking plot}
+\begin{frame}{Step 5: Identification of master regulator TF}
  \vspace*{-0.5cm}
  \begin{figure}
   \centering
@@ -346,27 +346,24 @@ Evaluate the enrichment of transcription factors in certain genomic regions.
 \begin{frame}{Step 5: TF ranking plot}
  \begin{figure}
   \centering
-  \includegraphics[width=1.0\linewidth]{ELMER/FOS_TF.png}
+  \includegraphics[width=0.45\linewidth]{ELMER/FOS_TF.png}
+  \includegraphics[width=0.45\linewidth]{ELMER/HOX_TF.png}
  \end{figure}
 \end{frame}
 
-\begin{frame}{Step 5: TF ranking plot}
+\begin{frame}{Step 5: TF scatter plot}
  \begin{figure}
   \centering
-  \includegraphics[width=1.0\linewidth]{ELMER/TF_plot_scatter.png}
+  \includegraphics[width=1.0\linewidth]{ELMER/TF_plot_scatter.png}{\tiny{\\HOXB13 motif - Probes hypomethylated in esad vs normal}}
  \end{figure}
 \end{frame}
 
-\begin{frame}{Step 5: Results}
- \begin{table}[h!]
+\begin{frame}{Step 5: TF master regulator table}
+ \begin{figure}
   \centering
-  \tiny
-  \csvautobooktabular[respect underscore]{tables/getTF.hypo.significant.TFs.with.motif.summary.csv}
-  \label{tab:get.tf}
- \end{table}
- %\tiny\csvautotabular[respect all]{getTF.hypo.significant.TFs.with.motif.summary.csv}
+  \includegraphics[width=1.0\linewidth]{ELMER/TF_tbl.png}
+ \end{figure}
 \end{frame}
-
 
 \section{Comparison between versions}
 
@@ -382,7 +379,7 @@ Evaluate the enrichment of transcription factors in certain genomic regions.
     Main data structure                   & mee object (own data structure)              & MAE object (Bioconductor data structure)                   \\
     Auxiliary data                        & Manually created                             & Programmatically created                                   \\
     Number of human TF                    & 1,982                                        & 1,987 (Uniprot database                                    \\
-    Number of TF motifs                   & 91                                           & 640  (HOCOMOCO v10 database)                               \\
+    Number of TF motifs                   & 91                                           & 771  (HOCOMOCO v11 database)                               \\
     TF classification                     & 78 families                                  & 80 families and 308 subfamilies \newline(TFClass database) \\
     Analysis performed                    & Normal tumor samples vs experiment           & Group 1 vs group 2                                         \\
     TCGA samples source                   & The Cancer Genome Atlas (TCGA)               & The NCI's Genomic Data Commons (GDC)                       \\
