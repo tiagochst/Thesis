@@ -378,9 +378,9 @@ Evaluate the enrichment of transcription factors in certain genomic regions.
     \multicolumn{1}{c}{\textbf{Features}} & \multicolumn{1}{c}{\textbf{ELMER Version 1}} & \multicolumn{1}{c}{\textbf{ELMER Version 2}}               \\ \midrule
     Main data structure                   & mee object (own data structure)              & MAE object (Bioconductor data structure)                   \\
     Auxiliary data                        & Manually created                             & Programmatically created                                   \\
-    Number of human TF                    & 1,982                                        & 1,987 (Uniprot database                                    \\
+    Number of human TF                    & 1,982                                        & 2,014 (Uniprot database)                                    \\
     Number of TF motifs                   & 91                                           & 771  (HOCOMOCO v11 database)                               \\
-    TF classification                     & 78 families                                  & 80 families and 308 subfamilies \newline(TFClass database) \\
+    TF classification                     & 78 families                                  & 82 families and 331 subfamilies \newline(TFClass database) \\
     Analysis performed                    & Normal tumor samples vs experiment           & Group 1 vs group 2                                         \\
     TCGA samples source                   & The Cancer Genome Atlas (TCGA)               & The NCI's Genomic Data Commons (GDC)                       \\
     Genome of reference                   & GRCh37 (hg19)                                & GRCh37 (hg19)/GRCh38 (hg38)                                \\
@@ -428,16 +428,10 @@ Evaluate the enrichment of transcription factors in certain genomic regions.
 
 
 \begin{frame}{Step 3: Pairs inferred}
- \vspace*{0.8cm}
- \begin{columns}[T]
-  \begin{column}{0.5\textwidth}
-   \includegraphics[width=1.0\linewidth]{cg04723436_GATA3_bypair.pdf}
-  \end{column}
-  \begin{column}{0.5\textwidth}
-   \vspace{0.2cm}
-   \includegraphics[width=1.0\linewidth]{cg14058239_SLC39A6_bypair.pdf}
-  \end{column}
- \end{columns}
+\begin{figure}
+ \centering
+   \includegraphics[width=1.0\linewidth]{ELMER/BRCA_heatmap.png}
+   \end{figure}
 \end{frame}
 
 
@@ -445,7 +439,7 @@ Evaluate the enrichment of transcription factors in certain genomic regions.
  \vspace*{-0.3cm}
  \begin{figure}
   \centering
-  \includegraphics[width=1.0\linewidth]{ELMER/Motif_top.pdf}
+  \includegraphics[width=1.0\linewidth]{ELMER/BRCA_unsupervise_OR_table.pdf}
  \end{figure}
 \end{frame}
 
