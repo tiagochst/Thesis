@@ -55,7 +55,7 @@
 {
 \leavevmode%
 \hbox{%
-\begin{beamercolorbox}[wd=\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+\begin{beamercolorbox}[wd=\paperwidth,ht=2.00ex,dp=0.0ex,center]{title in head/foot}%
 \usebeamerfont{title in head/foot}Tiago C. Silva | \inserttitle \hspace*{2em}
 \insertframenumber{} / \inserttotalframenumber\hspace*{1ex}
 \end{beamercolorbox}%
@@ -142,6 +142,7 @@ node distance=4cm,minimum height=1em, drop shadow]
 
 \section{Introduction}
 
+\section{TCGAbiolinks}
 
 \section{ELMER}
 
@@ -365,8 +366,6 @@ Evaluate the enrichment of transcription factors in certain genomic regions.
  \end{figure}
 \end{frame}
 
-\section{Comparison between versions}
-
 \begin{frame}{Differences between versions}
  \tiny{
   \begin{table}[h!]
@@ -393,7 +392,7 @@ Evaluate the enrichment of transcription factors in certain genomic regions.
 \end{frame}
 
 
-\section{Case of study - TCGA BRCA}
+\section{Case of study}
 
 
 \begin{frame}{TCGA Breast Invasive Carcinoma (BRCA) Samples}
@@ -490,7 +489,17 @@ Evaluate the enrichment of transcription factors in certain genomic regions.
  \begin{figure}[ht!]
   \centering
   \includegraphics[width=0.6\textwidth]{ELMER/validation.png}
-  \caption{\label{fig:chiapet} The graph shows the comparison of the number of probe-gene pairs identified within MCF7 ChIA-PET data using the putative pairs from BRCA vs. random pairs}
+ \end{figure}
+\end{frame}
+
+
+\begin{frame}{BRCA supervised analysis}
+
+ \begin{figure}[ht!]
+  \centering
+  \includegraphics[width=1.0\textwidth]{ELMER/groups.png}
+  \includegraphics[width=1.0\textwidth]{ELMER/arguments.png}
+
  \end{figure}
 \end{frame}
 
@@ -660,6 +669,28 @@ Evaluate the enrichment of transcription factors in certain genomic regions.
 
  \end{thebibliography}
 \end{frame}
+
+\section{Glioma analysis}
+
+
+\begin{frame}{Glioma volcano plot}
+
+ \begin{figure}[ht!]
+  \centering
+  \includegraphics[width=1.0\textwidth]{glioma/volcano.png}
+  \caption{}
+ \end{figure}
+\end{frame}
+
+\begin{frame}{Paired gene-probes}
+
+ \begin{figure}[ht!]
+  \centering
+  \includegraphics[width=1.0\textwidth]{glioma/heatmap.png}
+  \caption{}
+ \end{figure}
+\end{frame}
+
 
 
 \begin{frame}{Thank you for your attention!}
