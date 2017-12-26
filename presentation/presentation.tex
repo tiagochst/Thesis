@@ -4,6 +4,8 @@
 \documentclass[slidestop,compress,11pt,xcolor=dvipsnames]{beamer}
 \usepackage[bars]{beamerthemetree} % Beamer theme v 2.2
 \usepackage[fontsize=8]{pdfcomment}
+\usepackage{colortbl}
+\usepackage{multirow}
 \newcommand{\pdfnote}[1]{\marginnote{\pdfcomment[icon=note]{#1}}}
 \usepackage{kerkis}
 \mode<presentation> {
@@ -144,11 +146,73 @@ node distance=4cm,minimum height=1em, drop shadow]
 
 \section{TCGAbiolinks}
 
+\begin{frame}{TCGAbiolinks functions}
+ \begin{figure}
+  \centering
+  \includegraphics[width=1.0\linewidth]{TCGAbiolinks/summary.pdf}
+  \caption{Overview of TCGAbiolinks functions}
+ \end{figure}
+\end{frame}
+
+\begin{frame}{Data structure: SummarizedExperiment  }
+ \vspace*{-0.5cm}
+ \begin{figure}
+  \centering
+  \includegraphics[width=0.7\linewidth]{TCGAbiolinks/summarizedExperiment.png}
+  \caption{Example of Sumarized Experiment object. Figure reproduced from SummarizedExperiment manual (MORGAN et al., 2017).}
+ \end{figure}
+\end{frame}
+
+\begin{frame}{Comparing TCGAbiolinks to competing software}
+\begin{table}
+\tiny
+\centering
+\begin{tabular}{p{3cm}p{3cm}|l|l|l|l|c|l|c|}
+\cline{3-9}
+ &  & \multicolumn{7}{c|}{\cellcolor[HTML]{333333}{\color[HTML]{FFFFFF} \textbf{Packages}}} \\ \cline{3-9}
+ &  &  &  &  & & &  &  \\
+ &  &  &  &  & & &  &  \\
+ &  &  &  &  & & &  &  \\
+ &  &  &  &  & & &  &  \\
+ &  &  &  &  & & &  &  \\
+{\cellcolor[HTML]{333333}{\color[HTML]{FFFFFF} \textbf{Features}}} & {\cellcolor[HTML]{333333}{\color[HTML]{FFFFFF} \textbf{Sub-features}}} & \multirow{-6}{*}{\rotatebox[origin=c]{90}{TCGAbiolinks}} &
+\multirow{-6}{*}{\rotatebox[origin=c]{90}{TCGAAssembler}} &
+\multirow{-6}{*}{\rotatebox[origin=c]{90}{canEnvolve}} &
+\multirow{-6}{*}{\rotatebox[origin=c]{90}{TCGA2stat}} &
+\multirow{-6}{*}{\rotatebox[origin=c]{90}{Firehose-FirebrowserR}} & \multirow{-6}{*}{\rotatebox[origin=c]{90}{RTCGAtoolbox}} &
+\multirow{-6}{*}{\rotatebox[origin=c]{90}{cBio Portal CGDS-R}} \\ \hline
+\multicolumn{1}{|l|}{Availability} & Platform & B & R & W & C & CW & B & CW \\ \hline
+\multicolumn{1}{|l|}{} & Access to data aligned against the GRCh38/hg38 & X & X &  &  &  &  &  \\ \cline{2-9}
+\multicolumn{1}{|l|}{\multirow{-2}{*}{Genome of reference}} & Access to data aligned against the GRCh37/hg19 & X & X & X & X & X & X & X \\ \hline
+\multicolumn{1}{|l|}{Query TCGA Cases} & Individual TCGA samples (e.g. TCGA-01-0001) & X & X &  &  & X &  &  \\ \hline
+\multicolumn{1}{|l|}{Download} & All TCGA platforms & X &  &  &  &  &  &  \\ \hline
+\multicolumn{1}{|l|}{} & mRNA & X &  & X & X & X & X & X \\ \cline{2-9}
+\multicolumn{1}{|l|}{} & miRNA & X &  & X & X & X & X & X \\ \cline{2-9}
+\multicolumn{1}{|l|}{} & copy number & X &  & X & X & X & X & X \\ \cline{2-9}
+\multicolumn{1}{|l|}{} & DNA methylation & X &  &  & X & X & X & X \\ \cline{2-9}
+\multicolumn{1}{|l|}{} & Clinical & X &  & X & X & X & X & X \\ \cline{2-9}
+\multicolumn{1}{|l|}{} & Protein &  &  & X &  & X &  & X \\ \cline{2-9}
+\multicolumn{1}{|l|}{\multirow{-7}{*}{Data type analysis}} & Mutatation & X &  & X & X & X & X & X \\ \hline
+\multicolumn{1}{|l|}{Integrative analysis} & DNA methylation and gene expression & X &  &  &  & X &  &  \\ \hline
+\multicolumn{1}{|l|}{Other} & Extensible to other BioC packages & X &  &  &  &  &  &  \\ \hline
+\end{tabular}
+\end{table}
+\end{frame}
+
+
+\begin{frame}{Graphical user interface (GUI)}
+ \vspace*{-0.5cm}
+ \begin{figure}
+  \centering
+  \includegraphics[width=1.0\linewidth]{TCGAbiolinks/GUI.png}
+ \end{figure}
+\end{frame}
+
+
+
+
 \section{ELMER}
-
-
-
-\begin{frame}{ Enhancer-mediated gene regulation}
+\begin{frame}{Enhancer-mediated gene regulation}
  \vspace*{1.0cm}
  \begin{figure}
   \centering
@@ -610,7 +674,7 @@ Evaluate the enrichment of transcription factors in certain genomic regions.
 \section{Glioma analysis}
 
 
-\begin{frame}{Glioma subgroups}
+\begin{frame}{Glioma analysis: glioma subgroups}
 \vspace{-0.5cm}
  \begin{figure}[ht!]
   \centering
@@ -669,10 +733,10 @@ Evaluate the enrichment of transcription factors in certain genomic regions.
 \end{frame}
 
 \begin{frame}{HOXD13}
-%\vspace{-0.5cm}
+\vspace{-0.5cm}
  \begin{figure}[ht!]
   \centering
-  \includegraphics[width=0.8\textwidth]{glioma/paper_HOXD13.png}
+  \includegraphics[width=1.0\textwidth]{glioma/paper_HOXD13b.png}
  \end{figure}
 \end{frame}
 
@@ -704,14 +768,20 @@ Evaluate the enrichment of transcription factors in certain genomic regions.
 
 \section{Conclusion}
 \begin{frame}{Conclusion}
-\begin{block}{Software}
+\begin{block}{Conclusion}
   \begin{itemize}
-    \item  HOXD13
+    \item  Tools were able to provide methods for (epi) genomics integrative analysis
+    using data from several databases.
+    \item  Several genes identified using those tools are consistent with literature.
   \end{itemize}
 \end{block}
 \begin{block}{Future works}
   \begin{itemize}
-    \item  HOXD13
+    \item Extend ELMER algorithm to work with regions (WGBS).
+    \item Provided a processing pipeline for WGBS data.
+    \item Use mutation information instead of DNA methylation
+to identify regulatory regions mutated that might have affected the
+regulation of a upstream/downstream genes.
   \end{itemize}
 \end{block}
 \end{frame}
