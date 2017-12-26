@@ -291,7 +291,7 @@ node distance=4cm,minimum height=1em, drop shadow]
  \vspace*{-0.3cm}
  \begin{figure}
   \centering
-  \includegraphics[width=1.0\linewidth]{ELMER/hocomoco.png}{\tiny{\\HOCOMOCO v11, Accessed: 25-12-2017}}
+  \includegraphics[width=1.0\linewidth]{ELMER/hocomoco.png}{\tiny{\\HOCOMOCO v11 (http://hocomoco11.autosome.ru/human/mono?full=true), Accessed: 25-12-2017}}
  \end{figure}
 \end{frame}
 
@@ -300,7 +300,7 @@ node distance=4cm,minimum height=1em, drop shadow]
 \begin{block}{Objective}
 Evaluate the enrichment of transcription factors in certain genomic regions.
 \begin{enumerate}
-  \item Perform motif matching of transcription factors in probes regions (window $\pm250bp$)
+  \item Perform motif matching of transcription factors in probes regions (window $\pm250bp$). Performed using HOMER (Hypergeometric Optimization of Motif EnRichment) with HOCOMOCO motifs.
   \item Evaluate which transcription factors are more likely to occur in those regions than in background regions
   using Fisher’s exact test with FDR correction.
 \end{enumerate}
@@ -314,14 +314,14 @@ Evaluate the enrichment of transcription factors in certain genomic regions.
 
 \end{frame}
 
-\begin{frame}{Step 4: Motif enrichment}
+\begin{frame}{Step 4: Motif enrichment analysis}
  \begin{figure}
   \centering
   \includegraphics[width=1.0\linewidth]{ELMER/motif_enrichment.pdf}
  \end{figure}
 \end{frame}
 
-\begin{frame}{Step 4: Motif enrichment}
+\begin{frame}{Step 4: Motif enrichment analysis}
  \begin{figure}
   \centering
   \includegraphics[width=1.0\linewidth]{ELMER/or_tbl.png}
@@ -345,18 +345,19 @@ Evaluate the enrichment of transcription factors in certain genomic regions.
  \end{figure}
 \end{frame}
 
-\begin{frame}{Step 5: TF ranking plot}
- \begin{figure}
-  \centering
-  \includegraphics[width=0.45\linewidth]{ELMER/FOS_TF.png}
-  \includegraphics[width=0.45\linewidth]{ELMER/HOX_TF.png}
- \end{figure}
-\end{frame}
-
 \begin{frame}{Step 5: TF scatter plot}
  \begin{figure}
   \centering
   \includegraphics[width=1.0\linewidth]{ELMER/TF_plot_scatter.png}{\tiny{\\HOXB13 motif - Probes hypomethylated in esad vs normal}}
+ \end{figure}
+\end{frame}
+
+\begin{frame}{Step 5: TF ranking plot}
+ \vspace*{-0.5cm}
+ \begin{figure}
+  \centering
+  %\includegraphics[width=0.45\linewidth]{ELMER/FOS_TF.png}
+  \includegraphics[width=0.7\linewidth]{ELMER/HOX_TF.png}
  \end{figure}
 \end{frame}
 
@@ -367,35 +368,39 @@ Evaluate the enrichment of transcription factors in certain genomic regions.
  \end{figure}
 \end{frame}
 
-\begin{frame}{Differences between versions}
- \tiny{
-  \begin{table}[h!]
-   \centering
-   \caption{Main differences between ELMER version 1 and 2)}
-   \label{tab:summary}
-   \begin{tabular}{@{}p{2.5cm}p{3.5cm}p{4cm}@{}}
-    \toprule
-    \multicolumn{1}{c}{\textbf{Features}} & \multicolumn{1}{c}{\textbf{ELMER Version 1}} & \multicolumn{1}{c}{\textbf{ELMER Version 2}}               \\ \midrule
-    Main data structure                   & mee object (own data structure)              & MAE object (Bioconductor data structure)                   \\
-    Auxiliary data                        & Manually created                             & Programmatically created                                   \\
-    Number of human TF                    & 1,982                                        & 2,014 (Uniprot database)                                    \\
-    Number of TF motifs                   & 91                                           & 771  (HOCOMOCO v11 database)                               \\
-    TF classification                     & 78 families                                  & 82 families and 331 subfamilies \newline(TFClass database) \\
-    Analysis performed                    & Normal tumor samples vs experiment           & Group 1 vs group 2                                         \\
-    TCGA samples source                   & The Cancer Genome Atlas (TCGA)               & The NCI's Genomic Data Commons (GDC)                       \\
-    Genome of reference                   & GRCh37 (hg19)                                & GRCh37 (hg19)/GRCh38 (hg38)                                \\
-    DNA methylation platforms             & HumanMethylation450                          & HumanMethylationEPIC / HumanMethylation450                 \\
-    %Graphical User interface (GUI)        & None                                   & In TCGAbiolinksGUI                       \\
-    \bottomrule
-   \end{tabular}
-  \end{table}
+\begin{frame}{Main differences between ELMER v.1 and v.2}
+ \normalsize{
+ \begin{table}[h!]
+ \centering
+ %{\def\arraystretch{2}\tabcolsep=10pt
+ \resizebox{\textwidth}{!}{%
+ \begin{tabular}{@{}m{4cm}m{5cm}m{7cm}@{}}
+ \toprule
+ \toprule
+ \multicolumn{1}{c}{\textbf{Features}} & \multicolumn{1}{c}{\textbf{ELMER Version 1}} & \multicolumn{1}{c}{\textbf{ELMER Version 2}}   \\ \midrule \midrule
+ Primary data structure      & mee object (custom data structure)   & MAE object (Bioconductor data structure) \\ \midrule
+ Auxiliary data      & Manually created   & Programmatically created \\\midrule
+ Number of human TFs       & 1,982 & 2,014 (Uniprot database)    \\\midrule
+ Number of TF motifs      & 91    & 771  (HOCOMOCO v11 database)    \\\midrule
+ TF classification &  78 families         & 82 families and 331 subfamilies \newline(TFClass database) \\\midrule
+ Analysis performed            & Normal vs tumor samples & Group 1 vs group 2   \\ \midrule
+ Statistical grouping            & Unsupervised only & Unsupervised or supervised using labeled groups   \\ \midrule
+ TCGA data source      & The Cancer Genome Atlas (TCGA) (not available)      & The NCI's Genomic Data Commons (GDC)     \\\midrule
+ Genome of reference      & GRCh37 (hg19)      & GRCh37 (hg19)/GRCh38 (hg38)          \\\midrule
+ DNA methylation platforms             & HM450  & EPIC and HM450            \\\midrule
+ Graphical User interface (GUI)        & None  & TCGAbiolinksGUI   \\
+ \bottomrule
+ \end{tabular}
+ }
+ %}
+ \end{table}
  }
 \end{frame}
 
 
 \section{Case of study}
 
-\begin{frame}{TCGA Breast Invasive Carcinoma (BRCA) Samples}
+\begin{frame}{Case study: TCGA Breast Invasive Carcinoma (BRCA)}
  \begin{table}[ht!]
   \centering
   \caption{Summary of the available samples in TCGA for BRCA}
@@ -412,7 +417,7 @@ Evaluate the enrichment of transcription factors in certain genomic regions.
 
  \begin{table}[ht!]
   \centering
-  \caption{Results}
+  \caption{Results supervised mode}
   \scriptsize
 
   \begin{tabular}{p{2.8cm}p{2.4cm}}
@@ -427,10 +432,10 @@ Evaluate the enrichment of transcription factors in certain genomic regions.
 
 
 \begin{frame}{Step 3: Probe-target gene pairs inferred}
-\vspace*{-0.3cm}
+\vspace*{-0.5cm}
 \begin{figure}
  \centering
-   \includegraphics[width=0.6\linewidth]{ELMER/BRCA_heatmap.png}
+   \includegraphics[width=0.75\linewidth]{ELMER/BRCA_heatmap.png}
    \end{figure}
 \end{frame}
 
@@ -488,10 +493,17 @@ Evaluate the enrichment of transcription factors in certain genomic regions.
 
  \begin{figure}[ht!]
   \centering
-  \includegraphics[width=0.6\textwidth]{ELMER/validation.png}
+  \includegraphics[width=0.6\textwidth]{ELMER/validation.png}\tiny{\\MCF7 ChIA-PET (Chromatin Interaction Analysis with Paired-End-Tag sequencing) from Li, Guoliang, et al. "Extensive promoter-centered chromatin interactions provide a topological basis for transcription regulation." Cell 148.1 (2012): 84-98. (https://doi.org/10.1016/j.cell.2011.12.014).}
  \end{figure}
 \end{frame}
 
+\begin{frame}[plain]{BRCA supervised analysis: Molecular subtypes}
+\vspace*{-0.45cm}
+ \begin{figure}[ht!]
+  \centering
+  \includegraphics[width=1.0\textwidth]{ELMER/breastcancer-subtypes.png}\tiny{\\Source: Eric Wong. Available at: http://www.pathophys.org/breast-cancer/. Accessed 25/12/2017.}
+ \end{figure}
+\end{frame}
 
 \begin{frame}{BRCA supervised analysis}
 
@@ -502,23 +514,6 @@ Evaluate the enrichment of transcription factors in certain genomic regions.
  \end{figure}
 \end{frame}
 
-\begin{frame}{TF master regulator: LumA}
-
- \begin{figure}[ht!]
-  \centering
-  \includegraphics[width=1.0\textwidth]{ELMER/FOXA3_motif.png}
-  \caption{\label{fig:chiapet} FOXA1 and top3 TF expression vs avg DNA methylation of paired enriched probes for FOXA3 motif - Probes hypomethylated in LumA vs Normal-like}
- \end{figure}
-\end{frame}
-
-\begin{frame}{TF master regulator: Basal}
-
- \begin{figure}[ht!]
-  \centering
-  \includegraphics[width=1.0\textwidth]{ELMER/SOX10_TF.png}
-  \caption{\label{fig:chiapet} SOX11 and top3 TF expression vs avg DNA methylation of paired enriched probes for SOX10 - Probes hypermethylated in LumA vs Basal}
- \end{figure}
-\end{frame}
 
 \begin{frame}{Supervised analysis: Candidate regulatory TFs }
 \vspace*{-0.7cm}
@@ -578,6 +573,39 @@ Evaluate the enrichment of transcription factors in certain genomic regions.
 \end{table}
 \end{frame}
 
+
+
+
+\begin{frame}{TF master regulator: LumA}
+
+ \begin{figure}[ht!]
+  \centering
+  \includegraphics[width=1.0\textwidth]{ELMER/FOXA3_motif.png}
+  \caption{\label{fig:chiapet} FOXA1 and top3 TF expression vs avg DNA methylation of paired enriched probes for FOXA3 motif - Probes hypomethylated in LumA vs Normal-like}
+ \end{figure}
+\end{frame}
+
+\begin{frame}{TF master regulator: Basal}
+
+ \begin{figure}[ht!]
+  \centering
+  \includegraphics[width=1.0\textwidth]{ELMER/SOX10_TF.png}
+  \caption{\label{fig:chiapet} SOX11 and top3 TF expression vs avg DNA methylation of paired enriched probes for SOX10 - Probes hypermethylated in LumA vs Basal}
+ \end{figure}
+\end{frame}
+
+
+\begin{frame}{TF master regulator: Basal}
+
+ \begin{figure}[ht!]
+  \centering
+  \includegraphics[width=1.0\textwidth]{ELMER/SOX11_basal.png}
+  \includegraphics[width=1.0\textwidth]{ELMER/SOX9_2.png}
+  \includegraphics[width=1.0\textwidth]{ELMER/SOX9_1.png}
+  \includegraphics[width=1.0\textwidth]{ELMER/GATA3.png}
+  \includegraphics[width=1.0\textwidth]{ELMER/cofactors.png}
+     \end{figure}
+\end{frame}
 
 \section{Glioma analysis}
 
