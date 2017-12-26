@@ -144,6 +144,30 @@ node distance=4cm,minimum height=1em, drop shadow]
 
 \section{Introduction}
 
+\section{Objectives}
+
+\begin{frame}
+\begin{block}{Main goals}
+\begin{itemize}
+\item Develop tools for searching, retrieving and analyzing pan-cancer genomic data from several databases (GDC, ENCODE, ROADMAP)
+  \item Investigate the intergenic epigenomic changes associated with distinct biological and clinical subgroups of gliomas first discovered by our laboratory
+
+\end{itemize}
+
+\end{block}
+
+\begin{block}{Secondary goals}
+\begin{itemize}
+  \item Use standard data structure to organize the data and the metadata
+  \item Publish tools the open-source Bioconductor environment.
+  \item Use learning machine algorithms for classifying an independent set of gliomas based on newly identified regulatory networks as related to pan-cancer deregulation;
+\end{itemize}
+
+\end{block}
+
+
+\end{frame}
+
 \section{TCGAbiolinks}
 
 \begin{frame}{TCGAbiolinks functions}
@@ -164,6 +188,7 @@ node distance=4cm,minimum height=1em, drop shadow]
 \end{frame}
 
 \begin{frame}{Comparing TCGAbiolinks to competing software}
+\vspace*{-0.5cm}
 \begin{table}
 \tiny
 \centering
@@ -175,12 +200,15 @@ node distance=4cm,minimum height=1em, drop shadow]
  &  &  &  &  & & &  &  \\
  &  &  &  &  & & &  &  \\
  &  &  &  &  & & &  &  \\
-{\cellcolor[HTML]{333333}{\color[HTML]{FFFFFF} \textbf{Features}}} & {\cellcolor[HTML]{333333}{\color[HTML]{FFFFFF} \textbf{Sub-features}}} & \multirow{-6}{*}{\rotatebox[origin=c]{90}{TCGAbiolinks}} &
-\multirow{-6}{*}{\rotatebox[origin=c]{90}{TCGAAssembler}} &
-\multirow{-6}{*}{\rotatebox[origin=c]{90}{canEnvolve}} &
-\multirow{-6}{*}{\rotatebox[origin=c]{90}{TCGA2stat}} &
-\multirow{-6}{*}{\rotatebox[origin=c]{90}{Firehose-FirebrowserR}} & \multirow{-6}{*}{\rotatebox[origin=c]{90}{RTCGAtoolbox}} &
-\multirow{-6}{*}{\rotatebox[origin=c]{90}{cBio Portal CGDS-R}} \\ \hline
+ &  &  &  &  & & &  &  \\
+ &  &  &  &  & & &  &  \\
+ &  &  &  &  & & &  &  \\
+{\cellcolor[HTML]{333333}{\color[HTML]{FFFFFF} \textbf{Features}}} & {\cellcolor[HTML]{333333}{\color[HTML]{FFFFFF} \textbf{Sub-features}}} & \multirow{-8}{*}{\rotatebox[origin=c]{90}{TCGAbiolinks}} &
+\multirow{-8}{*}{\rotatebox[origin=c]{90}{TCGAAssembler}} &
+\multirow{-8}{*}{\rotatebox[origin=c]{90}{canEnvolve}} &
+\multirow{-8}{*}{\rotatebox[origin=c]{90}{TCGA2stat}} &
+\multirow{-8}{*}{\rotatebox[origin=c]{90}{Firehose-FirebrowserR}} & \multirow{-6}{*}{\rotatebox[origin=c]{90}{RTCGAtoolbox}} &
+\multirow{-8}{*}{\rotatebox[origin=c]{90}{cBio Portal CGDS-R}} \\ \hline
 \multicolumn{1}{|l|}{Availability} & Platform & B & R & W & C & CW & B & CW \\ \hline
 \multicolumn{1}{|l|}{} & Access to data aligned against the GRCh38/hg38 & X & X &  &  &  &  &  \\ \cline{2-9}
 \multicolumn{1}{|l|}{\multirow{-2}{*}{Genome of reference}} & Access to data aligned against the GRCh37/hg19 & X & X & X & X & X & X & X \\ \hline
@@ -782,6 +810,7 @@ Evaluate the enrichment of transcription factors in certain genomic regions.
     \item Use mutation information instead of DNA methylation
 to identify regulatory regions mutated that might have affected the
 regulation of a upstream/downstream genes.
+    \item Improve results mining through automatically created reports.
   \end{itemize}
 \end{block}
 \end{frame}
