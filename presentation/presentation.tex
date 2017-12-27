@@ -144,6 +144,118 @@ node distance=4cm,minimum height=1em, drop shadow]
 
 \section{Introduction}
 
+\begin{frame}
+\begin{columns}
+     \begin{column}{.48\textwidth} % Left column and width
+     \begin{block}{Genetics}
+     The study of heritable changes in gene activity or function due to the direct alteration of the DNA sequence.
+     For example, point mutations, deletions, insertions, and translocation.
+     \end{block}
+     \end{column}%
+     \hfill%
+     \begin{column}{.48 \textwidth} % Right column and width
+     \begin{alertblock}{Epigenetics}
+     The study of changes in gene activity or function not associated with any change of the DNA sequence. For example, DNA methylation and Histone modifications.
+     \end{alertblock}
+     \end{column}
+   \end{columns}
+
+   \begin{exampleblock}{The epigenetic mechanism}
+   Even though all cells in an organism contain the same genetic information, the epigenetic mechanism controls which gene are expressed enabling the existence of a diversified gene expression profiles in a variety of cells and tissues in multicellular organisms.
+   \end{exampleblock}
+\end{frame}
+
+\begin{frame}{The Epigenetic Process}
+\vspace*{-0.5cm}
+ \begin{figure}
+  \centering
+  \includegraphics[width=0.9\linewidth]{intro/epigenetics.jpg}{\tiny{\\Source: http://wondergressive.com/epigenetics-key-overcoming-genetic-predisposition/. Accessed: 26-12-2017}}
+ \end{figure}
+\end{frame}
+
+\begin{frame}{Integrative analysis}
+ \vspace*{-0.5cm}
+\begin{block}{Functional enrichment analysis of cancer signatures}
+     A method to identify classes of genes or proteins that are over-represented in a large set of genes or proteins and may have an association with disease phenotypes. Example: GSEA.
+\end{block}
+\begin{figure}
+ \centering
+ \includegraphics[width=0.7\linewidth]{intro/gsea.jpg}{\tiny{\\Source: Subramanian, Aravind, et al. DOI: 10.1073/pnas.0506580102.}}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}{Integrative analysis}
+ \vspace*{-0.2cm}
+\begin{block}{Protein interaction networks and cancer signatures}
+      Protein-protein interactions (PPIs) are essential to almost every process in a cell and are crucial for understanding cell physiology in normal and disease states.
+\end{block}
+\begin{figure}
+ \centering
+ \includegraphics[width=0.35\linewidth]{intro/PPIN.jpg}{\tiny{\\Source: Mori, Tsutomu, et al. FEBS Letters 2012 https://doi.org/10.1016/j.febslet.2012.04.038}}
+\end{figure}
+% Fig. 3. The NIRF protein–protein interaction network. NIRF interacts with the core cell cycle proteins (cyclin A2, cyclin B1, cyclin D1, cyclin E1, pRB, and p53) and other nuclear proteins. These core cell cycle proteins are hub proteins with many interacting partners, and thereby constitute individual network modules. NIRF is positioned at the center of these modules, thereby connecting the modules to one another. The symbols used are as follows: yellow, cyclins; yellow–green, CDKs; blue, two major tumor suppressors; green, NIRF-interacting proteins retrieved from a database [121]. The thicker black lines indicate interactions demonstrated by more than two methods. (Reproduced with permission from reference [3]).
+\end{frame}
+
+
+\begin{frame}{Integrative analysis}
+ \vspace*{-0.3cm}
+\begin{block}{Protein interaction networks and cancer signatures}
+      Protein-protein interactions (PPIs) are essential to almost every process in a cell and are crucial for understanding cell physiology in normal and disease states.
+\end{block}
+\begin{figure}
+ \centering
+ \includegraphics[width=0.8\linewidth]{intro/PPIN2.pdf}
+\end{figure}
+% Fig. 3. The NIRF protein–protein interaction network. NIRF interacts with the core cell cycle proteins (cyclin A2, cyclin B1, cyclin D1, cyclin E1, pRB, and p53) and other nuclear proteins. These core cell cycle proteins are hub proteins with many interacting partners, and thereby constitute individual network modules. NIRF is positioned at the center of these modules, thereby connecting the modules to one another. The symbols used are as follows: yellow, cyclins; yellow–green, CDKs; blue, two major tumor suppressors; green, NIRF-interacting proteins retrieved from a database [121]. The thicker black lines indicate interactions demonstrated by more than two methods. (Reproduced with permission from reference [3]).
+\end{frame}
+
+\begin{frame}{Integrative analysis}
+ \vspace*{-0.3cm}
+\begin{block}{Epigenome}
+       Regulates gene expression by organizing the nuclear architecture of the chromosomes, restricting or facilitating transcription factor access to DNA, and preserving a memory of past transcriptional activities
+\end{block}
+
+\begin{table}[]
+\centering
+\scriptsize
+\caption[Histone and epigenomic marks]{Core set of histone modification marks and other epigenomic marks}
+\begin{tabular}{ll}
+\toprule
+ \textbf{Epigenomic marks}   & \textbf{Role} \\ \toprule
+ Histone H3 lysine 4 trimethylation (H3K4me3)  & Promoter regions \\
+ Histone H3 lysine 4 monomethylation (H3K4me1) & Enhancer regions  \\
+ Histone H3 lysine 36 trimethylation (H3K36me3) & Transcribed regions  \\
+ Histone H3 lysine 27 trimethylation (H3K27me3) & Polycomb repression  \\
+ Histone H3 lysine 9 trimethylation (H3K9me3) & Heterochromatin regions \\
+ Histone H3 acetylated at lysine 27 (H3K27ac)  &  Increase activation of genomic elements\\
+ Histone H3 lysine 9 acetylation  (H3K9ac)  & Transcriptional activation \\
+ DNase hypersensitivity &  Regions of accessible chromatin \\
+ DNA methylation & Repressed regulatory regions\\  \bottomrule
+\end{tabular}
+\end{table}
+\end{frame}
+
+\begin{frame}[plain]%{Integrative analysis - histone modification}
+ \vspace*{-0.5cm}
+\begin{figure}
+ \centering
+ \includegraphics[width=0.8\linewidth]{intro/marks.pdf}{\tiny{\\Source: Daria Shlyueva, et al. Nature Reviews Genetics 15, 272–286 (2014) doi:10.1038/nrg3682}}
+\end{figure}
+% a | Enhancers are distinct genomic regions (or the DNA sequences thereof) that contain binding site sequences for transcription factors (TFs) and that can upregulate (that is, enhance) the transcription of a target gene from its transcription start site (TSS). Along the linear genomic DNA sequence, enhancers can be located at any distance from their target genes, which makes their identification challenging. b,c | In a given tissue, active enhancers (Enhancer A in part b or Enhancer B in part c) are bound by activating TFs and are brought into proximity of their respective target promoters by looping, which is thought to be mediated by cohesin and other protein complexes. Moreover, active and inactive gene regulatory elements are marked by various biochemical features: active promoters and enhancers are characterized by a depletion of nucleosomes, which is the structural unit of eukaryotic chromatin. Nucleosomes that flank active enhancers show specific histone modifications, for example, histone H3 lysine 4 monomethylation (H3K4me1) and H3K27 acetylation (H3K27ac). Inactive enhancers might be silenced by different mechanisms, such as by the Polycomb protein-associated repressive H3K27me3 mark (part b) or by repressive TF binding (part c). d–f | Complex patterns of gene expression result from the additive action of different enhancers with cell-type- or tissue-specific activities. The schematic mouse and Drosophila melanogaster embryos are drawn after Refs 7,43. Pol II, RNA polymerase II.
+\end{frame}
+%a | Chromatin is shown as a 'gatekeeper' for transcription factor (TF) binding and enhancer activity. Densely positioned nucleosomes can restrict access for transcription factors (both activators and repressors), CCCTC-binding factor (CTCF), RNA polymerase II (Pol II) and other proteins. Accessible (that is, nucleosome-free) regions can be bound by these proteins, which define and mediate the identity of a region (for example, active enhancers, repressors or core promoters). The transition from 'open' to 'closed' chromatin, and vice versa, is determined by regulatory proteins, including pioneer transcription factors. Insulator proteins (for example, CTCF) and other architectural proteins also bind to open regions, and they make up a substantial proportion of sites that are accessible across multiple cell types (for example, 10%73). b | Histones that flank active enhancers are often marked by histone H3 acetylated at lysine 27 (H3K27ac) and H3 monomethylated at lysine 4 (H3K4me1). c | Active promoters (depicted as Pol II bound) are flanked by nucleosomes with H3K27ac and H3K4me3 modifications. d | Some closed or poised enhancer regions can bear the active H3K4me1 and the repressive Polycomb protein-associated H3K27me3 marks. Interestingly, some of these elements can function as active enhancers in episomal assays or when integrated into the genome of a differentiated cell type72. e | Enhancers that are not yet active but that are primed for activation either at a later developmental time point or in response to external stimuli can be pre-marked by H3K4me1. f | Latent enhancers are located in closed chromatin and are not pre-marked by known histone modifications. However, in the presence of external stimuli the DNA becomes accessible, and flanking nucleosomes acquire H3K4me1 and H3K27ac marks.
+
+\begin{frame}[plain]%{Integrative analysis - histone modification}
+ \vspace*{-0.5cm}
+\begin{figure}
+ \centering
+ \includegraphics[width=0.8\linewidth]{intro/enhancer.pdf}{\tiny{\\Source: Daria Shlyueva, et al. Nature Reviews Genetics 15, 272–286 (2014)
+doi:10.1038/nrg3682}}
+\end{figure}
+% a | Enhancers are distinct genomic regions (or the DNA sequences thereof) that contain binding site sequences for transcription factors (TFs) and that can upregulate (that is, enhance) the transcription of a target gene from its transcription start site (TSS). Along the linear genomic DNA sequence, enhancers can be located at any distance from their target genes, which makes their identification challenging. b,c | In a given tissue, active enhancers (Enhancer A in part b or Enhancer B in part c) are bound by activating TFs and are brought into proximity of their respective target promoters by looping, which is thought to be mediated by cohesin and other protein complexes. Moreover, active and inactive gene regulatory elements are marked by various biochemical features: active promoters and enhancers are characterized by a depletion of nucleosomes, which is the structural unit of eukaryotic chromatin. Nucleosomes that flank active enhancers show specific histone modifications, for example, histone H3 lysine 4 monomethylation (H3K4me1) and H3K27 acetylation (H3K27ac). Inactive enhancers might be silenced by different mechanisms, such as by the Polycomb protein-associated repressive H3K27me3 mark (part b) or by repressive TF binding (part c). d–f | Complex patterns of gene expression result from the additive action of different enhancers with cell-type- or tissue-specific activities. The schematic mouse and Drosophila melanogaster embryos are drawn after Refs 7,43. Pol II, RNA polymerase II.
+\end{frame}
+
 \section{Objectives}
 
 \begin{frame}
