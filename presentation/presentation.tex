@@ -358,8 +358,25 @@ If the targets of all transcription factors were known, then one could easily in
 \end{frame}
 
 
-
-%a | Chromatin is shown as a 'gatekeeper' for transcription factor (TF) binding and enhancer activity. Densely positioned nucleosomes can restrict access for transcription factors (both activators and repressors), CCCTC-binding factor (CTCF), RNA polymerase II (Pol II) and other proteins. Accessible (that is, nucleosome-free) regions can be bound by these proteins, which define and mediate the identity of a region (for example, active enhancers, repressors or core promoters). The transition from 'open' to 'closed' chromatin, and vice versa, is determined by regulatory proteins, including pioneer transcription factors. Insulator proteins (for example, CTCF) and other architectural proteins also bind to open regions, and they make up a substantial proportion of sites that are accessible across multiple cell types (for example, 10%73). b | Histones that flank active enhancers are often marked by histone H3 acetylated at lysine 27 (H3K27ac) and H3 monomethylated at lysine 4 (H3K4me1). c | Active promoters (depicted as Pol II bound) are flanked by nucleosomes with H3K27ac and H3K4me3 modifications. d | Some closed or poised enhancer regions can bear the active H3K4me1 and the repressive Polycomb protein-associated H3K27me3 marks. Interestingly, some of these elements can function as active enhancers in episomal assays or when integrated into the genome of a differentiated cell type72. e | Enhancers that are not yet active but that are primed for activation either at a later developmental time point or in response to external stimuli can be pre-marked by H3K4me1. f | Latent enhancers are located in closed chromatin and are not pre-marked by known histone modifications. However, in the presence of external stimuli the DNA becomes accessible, and flanking nucleosomes acquire H3K4me1 and H3K27ac marks.
+\begin{frame}[plain]%{Integrative analysis - histone modification}
+\vspace*{-0.5cm}
+\begin{figure}
+ \centering
+ \includegraphics[width=0.5\linewidth]{intro/states.pdf}{\tiny{\\Source: Coetzee, Simon G., et al. "StateHub-StatePaintR: rapid and reproducible chromatin state evaluation for custom genome."}}
+\end{figure}
+\end{frame}
+%a Figure 1. Mapping datasets to functional significance annotations. Experimental
+% data and external database annotations are combined into abstraction layers
+% (columns), integrated to produce chromatin states (rows) from the decision matrix.
+% StatePaintR produces state assignments by iteratively comparing the marks that are
+% present in each segment with each row of data in the table. The values of color-coded
+% squares signify relationship between data and state: 0 (light red) the feature/data type
+% negates the state but is not required to be present, 1 (light green) feature is consistent
+% with the state but not required, 2 (red) if the feature is required to be available
+% and negates the state, and 3 (green) it is both required and consistent with the state.
+% Information content (sum of row values) of states increases from top to bottom. For
+% the example, red dotted arrows indicate non-matching rows, and green arrows indicate
+% matching rows. The state call corresponds to the last matched row
 
 
 \section{Objectives}
@@ -402,6 +419,14 @@ If the targets of all transcription factors were known, then one could easily in
 \end{block}
 
 
+\end{frame}
+
+\begin{frame}[plain]{Tools}
+\vspace*{-0.4cm}
+\begin{figure}
+ \centering
+ \includegraphics[width=0.75\linewidth]{intro/tools.pdf}
+\end{figure}
 \end{frame}
 
 \section{TCGAbiolinks}
@@ -498,7 +523,7 @@ If the targets of all transcription factors were known, then one could easily in
  \end{itemize}
 \end{frame}
 
-\begin{frame}{ Enhancer-mediated gene regulation}
+\begin{frame}{Enhancer-mediated gene regulation}
  \vspace*{-0.1cm}
  \begin{figure}
   \centering
