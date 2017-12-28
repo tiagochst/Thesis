@@ -71,22 +71,9 @@
 \usepackage{float}
 \usepackage{booktabs}
 \usepackage{tikz}
-\usetikzlibrary{automata}
-\usetikzlibrary{shapes.geometric, arrows}
-\usetikzlibrary{shadows}
-\tikzstyle{start} = [rectangle,minimum size=6mm,rounded corners=3mm,
-very thick,draw=black!50, top color=white,bottom color=white,
-font=\itshape\footnotesize,drop shadow]
-\tikzstyle{fail} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered,font=\footnotesize, draw=black, fill=white, text=red,  drop shadow]
-\tikzstyle{success} = [rectangle, rounded corners, minimum width=3cm, font=\footnotesize,minimum height=1cm,text centered, draw=black, fill=white, text=green!70!black!100,  drop shadow]
-\tikzstyle{process} = [rectangle, rounded corners, minimum width=1cm, minimum height=0.5cm, text centered, text width=5cm, font=\footnotesize,draw=black, fill=white, text=black,drop shadow]
-\tikzstyle{decision} = [diamond, minimum width=0.5cm, minimum height=0.5cm,font=\itshape\footnotesize,
-text centered, draw=black,top color=white,bottom color =white, text=black, drop shadow]
-\tikzstyle{arrow} = [thick,->,>=stealth,-latex',draw,rounded corners]
-\tikzstyle{cloud} = [draw, ellipse,rounded corners=3mm,very thick,draw=black!50, top color=white,bottom color=white,font=\itshape\footnotesize,
-node distance=4cm,minimum height=1em, drop shadow]
-\tikzstyle{analysis} = [rectangle, rounded corners, minimum width=3cm, font=\footnotesize,minimum height=1cm,text centered, draw=black, fill=white, drop shadow]
-\tikzstyle{package} = [rectangle, rounded corners, minimum width=3cm, font=\footnotesize,minimum height=1cm,text centered, draw=black, fill=white, drop shadow]
+
+\usepackage{pdfcomment}
+\newcommand{\pdfnote}[1]{\marginnote{\pdfcomment[icon=note]{#1}}}
 
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 %        LOADING PACKAGES
@@ -109,7 +96,7 @@ node distance=4cm,minimum height=1em, drop shadow]
 \subtitle{Methods, development and analysis}
 %\date{\small{\jobname}}
 \date{\today}
-\author[Tiago Chedraoui Silva]{\textbf {Tiago Chedraoui Silva\\ PhD Dissertation Defense\\Committe\\a\\b\\bb}} % auteur
+\author[Tiago Chedraoui Silva]{\texttt {Tiago Chedraoui Silva}\\ \texttt{PhD Dissertation Defense}} % auteur
 %\author{\texttt{Tiago Chedraoui Silva}}
 \institute{University of São Paulo (USP)}
 
@@ -149,8 +136,9 @@ node distance=4cm,minimum height=1em, drop shadow]
 \vspace*{-0.5cm}
 	\begin{figure}
 		\centering
-	\includegraphics[width=1.0\textwidth]{intro/breast.jpg}{\tiny{\\Kristensen, Vessela N., et al. "Principles and methods of integrative genomic analyses in cancer." Nature Reviews Cancer}}
+	\includegraphics[width=1.0\textwidth]{intro/breast.jpg}{\tiny{\\Kristensen, Vessela N., et al. Principles and methods of integrative genomic analyses in cancer. Nature Reviews Cancer}}
 	\end{figure}
+	\pdfnote{ With the improvement of technology we were ableto acquire enormous quantities of molecular data, which has led to the emergence of 'systems biology' — understanding of the interplay within and between different layers of genomic structures can one attempt to  understand phenotypic traits }
 \end{frame}
 
 
@@ -160,6 +148,7 @@ node distance=4cm,minimum height=1em, drop shadow]
 		\centering
 	\includegraphics[width=0.8\linewidth,height=0.8\textheight]{intro/data_integration.jpg}{\tiny{\\Ritchie, Marylyn D., et al. "Methods of integrating data to uncover genotype-phenotype interactions." Nature Reviews Genetics}}
 	\end{figure}
+	\pdfnote{This layers of genomic structures creates a network of interaction}
 \end{frame}
 
 
@@ -221,15 +210,6 @@ Analysis of at least two different types of omics data
 
 
 
-\begin{frame}[plain]%{Integrative analysis - histone modification}
- \vspace*{-0.5cm}
-\begin{figure}
- \centering
- \includegraphics[width=0.8\linewidth]{intro/enhancer.pdf}{\tiny{\\Source: Daria Shlyueva, et al. Nature Reviews Genetics 15, 272–286 (2014)
-doi:10.1038/nrg3682}}
-\end{figure}
-% a | Enhancers are distinct genomic regions (or the DNA sequences thereof) that contain binding site sequences for transcription factors (TFs) and that can upregulate (that is, enhance) the transcription of a target gene from its transcription start site (TSS). Along the linear genomic DNA sequence, enhancers can be located at any distance from their target genes, which makes their identification challenging. b,c | In a given tissue, active enhancers (Enhancer A in part b or Enhancer B in part c) are bound by activating TFs and are brought into proximity of their respective target promoters by looping, which is thought to be mediated by cohesin and other protein complexes. Moreover, active and inactive gene regulatory elements are marked by various biochemical features: active promoters and enhancers are characterized by a depletion of nucleosomes, which is the structural unit of eukaryotic chromatin. Nucleosomes that flank active enhancers show specific histone modifications, for example, histone H3 lysine 4 monomethylation (H3K4me1) and H3K27 acetylation (H3K27ac). Inactive enhancers might be silenced by different mechanisms, such as by the Polycomb protein-associated repressive H3K27me3 mark (part b) or by repressive TF binding (part c). d–f | Complex patterns of gene expression result from the additive action of different enhancers with cell-type- or tissue-specific activities. The schematic mouse and Drosophila melanogaster embryos are drawn after Refs 7,43. Pol II, RNA polymerase II.
-\end{frame}
 
 \begin{frame}[plain]%{Integrative analysis - histone modification}
 \begin{figure}
@@ -378,6 +358,16 @@ If the targets of all transcription factors were known, then one could easily in
 % Information content (sum of row values) of states increases from top to bottom. For
 % the example, red dotted arrows indicate non-matching rows, and green arrows indicate
 % matching rows. The state call corresponds to the last matched row
+
+\begin{frame}[plain]%{Integrative analysis - histone modification}
+ \vspace*{-0.5cm}
+\begin{figure}
+ \centering
+ \includegraphics[width=0.8\linewidth]{intro/enhancer.pdf}{\tiny{\\Source: Daria Shlyueva, et al. Nature Reviews Genetics 15, 272–286 (2014)
+doi:10.1038/nrg3682}}
+\end{figure}
+% a | Enhancers are distinct genomic regions (or the DNA sequences thereof) that contain binding site sequences for transcription factors (TFs) and that can upregulate (that is, enhance) the transcription of a target gene from its transcription start site (TSS). Along the linear genomic DNA sequence, enhancers can be located at any distance from their target genes, which makes their identification challenging. b,c | In a given tissue, active enhancers (Enhancer A in part b or Enhancer B in part c) are bound by activating TFs and are brought into proximity of their respective target promoters by looping, which is thought to be mediated by cohesin and other protein complexes. Moreover, active and inactive gene regulatory elements are marked by various biochemical features: active promoters and enhancers are characterized by a depletion of nucleosomes, which is the structural unit of eukaryotic chromatin. Nucleosomes that flank active enhancers show specific histone modifications, for example, histone H3 lysine 4 monomethylation (H3K4me1) and H3K27 acetylation (H3K27ac). Inactive enhancers might be silenced by different mechanisms, such as by the Polycomb protein-associated repressive H3K27me3 mark (part b) or by repressive TF binding (part c). d–f | Complex patterns of gene expression result from the additive action of different enhancers with cell-type- or tissue-specific activities. The schematic mouse and Drosophila melanogaster embryos are drawn after Refs 7,43. Pol II, RNA polymerase II.
+\end{frame}
 
 
 \section{Objectives}
