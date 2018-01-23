@@ -942,7 +942,7 @@ h}%
 	& &\\
 	& & {\ttfamily~~~Tese Doutorado ~(Doutorado~ -- Especialização em Diferenciação celular normal e neoplásicas) -- Faculdade de medicina de Ribeirão Preto (FMRP/USP), USP, 2017.}\\
 	& & \\
-	& & \texttt{~~~\expandafter\PROCESS\expandafter{Câncer, metilação do DNA, redes reguladoras de genes,  interações de cromatina, sitios de ligação do fator de transcrição, epi-genética, ferramentas computacionais}I. \ABNTorientadordatabib, Orientador.\ \ \abntex@ifnotempty{\imprimircoorientador}{%
+	& & \texttt{~~~\expandafter\PROCESS\expandafter{Câncer, metilação do DNA, redes reguladoras de genes, melhoradores,  interações de cromatina, sitios de ligação do fator de transcrição, epi-genética, ferramentas computacionais}I. \ABNTorientadordatabib, Orientador.\ \ \abntex@ifnotempty{\imprimircoorientador}{%
 	II. \ABNTcoorientadordatabib, \coorientadorname.}} \\
 	& & \\
 	& & \\ \cline{2-3}
