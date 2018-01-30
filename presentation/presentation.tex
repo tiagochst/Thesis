@@ -502,9 +502,21 @@ If the targets of all transcription factors were known, then one could easily in
 \end{frame}
 
 
-
-
 \section{ELMER}
+
+\begin{frame}{ Enhancer Linking by Methylation/Expression Relationship}
+ \vspace*{-0.5cm}
+ \begin{figure}
+  \centering
+  \includegraphics[width=0.8\linewidth]{ELMER/elmer1.png}
+ \end{figure}
+ \vspace*{-0.5cm}
+ \begin{figure}
+  \centering
+  \includegraphics[width=0.8\linewidth]{ELMER/elmer2.png}
+ \end{figure}
+\end{frame}
+
 \begin{frame}{Enhancer-mediated gene regulation}
  \vspace*{1.0cm}
  \begin{figure}
@@ -535,57 +547,22 @@ If the targets of all transcription factors were known, then one could easily in
  \end{figure}
 \end{frame}
 
-\begin{frame}{ Enhancer Linking by Methylation/Expression Relationship}
- \vspace*{-0.5cm}
- \begin{figure}
-  \centering
-  \includegraphics[width=0.8\linewidth]{ELMER/elmer1.png}
- \end{figure}
- \vspace*{-0.5cm}
- \begin{figure}
-  \centering
-  \includegraphics[width=0.8\linewidth]{ELMER/elmer2.png}
- \end{figure}
+
+
+
+\begin{frame}{Algorithm}
+
+\begin{exampleblock}{Steps}
+\begin{enumerate}
+\item  Identify distal probes on HM450K/EPIC.
+\item  Identify distal probes with significantly different DNA methylation level in  group 1 compared to group 2.
+\item  Identify putative target genes for differentially methylated distal enhancer probes.
+\item  Identify enriched motifs for the distal  probes which are significantly differentially methylated and linked to putative target gene.
+\item  Identify regulatory TFs whose expression associate with DNA methylation at motifs.
+\end{enumerate}
+
+\end{exampleblock}
 \end{frame}
-
-
-
-\begin{frame}[plain]%{Workflow}
- %\vspace*{-0.3cm}
- %\hspace*{-0.3cm}
- \begin{figure}
-  \hspace*{-1cm}
- %\centering
-  \includegraphics[width=1.18\linewidth]{ELMER/workflow_new.pdf}
- \end{figure}
-\end{frame}
-
-
-\begin{frame}{\normalsize{Difference of groups $U$ and $M$ definition in \textit{supervised} and \textit{unsupervised} mode}} 
-
- \vspace*{-0.3cm}
- \begin{figure}
- \centering
-  \includegraphics[width=1.0\linewidth]{ELMER/mode.pdf}
-  \scriptsize{\caption{ A:  \textit{unsupervised} mode; when minSubgroupFrac argument is set to 40\%, the methylated group is defined as the highest quintile and the unmethylated group as the lowest quintile; B:  \textit{supervised} mode; methylated and unmethylated group are defined as one of the known molecular subtypes.}}
- \end{figure}
-\end{frame}
-
-%\begin{frame}{Algorithm}
-
-%\begin{exampleblock}{Steps}
-%\begin{enumerate}
-%\item  Identify distal  probes on HM450K/EPIC.
-%\item  Identify distal  probes with significantly different DNA methylation level in  group 1 compared to group 2.
-%\item  Identify putative target genes for differentially methylated distal enhancer probes.
-%\item  Identify enriched motifs for the distal  probes which are significantly differentially methylated and linked to putative target gene.
-%\item  Identify regulatory TFs whose expression associate with DNA methylation at motifs.
-%\end{enumerate}
-
-%\end{exampleblock}
-
-
-%\end{frame}
 
 
 \begin{frame}{Step 1: Identify distal probes}
@@ -771,6 +748,26 @@ Annotations      & None  & StateHub   \\
  }
 \end{frame}
 
+\begin{frame}[plain]%{Workflow}
+ %\vspace*{-0.3cm}
+ %\hspace*{-0.3cm}
+ \begin{figure}
+  \hspace*{-1cm}
+ %\centering
+  \includegraphics[width=1.18\linewidth]{ELMER/workflow_new.pdf}
+ \end{figure}
+\end{frame}
+
+
+\begin{frame}{\normalsize{Difference of groups $U$ and $M$ definition in \textit{supervised} and \textit{unsupervised} mode}} 
+
+ \vspace*{-0.3cm}
+ \begin{figure}
+ \centering
+  \includegraphics[width=1.0\linewidth]{ELMER/mode.pdf}
+  \scriptsize{\caption{ A:  \textit{unsupervised} mode; when minSubgroupFrac argument is set to 40\%, the methylated group is defined as the highest quintile and the unmethylated group as the lowest quintile; B:  \textit{supervised} mode; methylated and unmethylated group are defined as one of the known molecular subtypes.}}
+ \end{figure}
+\end{frame}
 
 \section{Case of study}
 
