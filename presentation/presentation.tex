@@ -6,7 +6,6 @@
 \usepackage[fontsize=8]{pdfcomment}
 \usepackage{colortbl}
 \usepackage{multirow}
-\newcommand{\pdfnote}[1]{\marginnote{\pdfcomment[icon=note]{#1}}}
 \usepackage{kerkis}
 \mode<presentation> {
 \usefonttheme[onlymath]{serif}
@@ -71,6 +70,9 @@
 \usepackage{float}
 \usepackage{booktabs}
 \usepackage{tikz}
+
+\usepackage{caption}
+\captionsetup{font=scriptsize,labelfont=scriptsize}
 
 \usepackage{pdfcomment}
 \newcommand{\pdfnote}[1]{\marginnote{\pdfcomment[icon=note]{#1}}}
@@ -549,13 +551,25 @@ If the targets of all transcription factors were known, then one could easily in
 
 
 \begin{frame}[plain]%{Workflow}
- \vspace*{-0.3cm}
+ %\vspace*{-0.3cm}
+ %\hspace*{-0.3cm}
  \begin{figure}
-  \centering
-  \includegraphics[width=1.0\linewidth]{ELMER/workflow.pdf}
+  \hspace*{-1cm}
+ %\centering
+  \includegraphics[width=1.18\linewidth]{ELMER/workflow_new.pdf}
  \end{figure}
 \end{frame}
 
+
+\begin{frame}{\normalsize{Difference of groups $U$ and $M$ definition in \textit{supervised} and \textit{unsupervised} mode}} 
+
+ \vspace*{-0.3cm}
+ \begin{figure}
+ \centering
+  \includegraphics[width=1.0\linewidth]{ELMER/mode.pdf}
+  \scriptsize{\caption{ A:  \textit{unsupervised} mode; when minSubgroupFrac argument is set to 40\%, the methylated group is defined as the highest quintile and the unmethylated group as the lowest quintile; B:  \textit{supervised} mode; methylated and unmethylated group are defined as one of the known molecular subtypes.}}
+ \end{figure}
+\end{frame}
 
 %\begin{frame}{Algorithm}
 
@@ -627,7 +641,7 @@ If the targets of all transcription factors were known, then one could easily in
  \vspace*{-0.3cm}
  \begin{figure}
   \centering
-  \includegraphics[width=0.75\linewidth]{ELMER/heatmappair.png}
+  \includegraphics[width=1.0\linewidth]{ELMER/heatmappair.jpg}
  \end{figure}
 \end{frame}
 
@@ -670,9 +684,10 @@ Evaluate the enrichment of transcription factors in certain genomic regions.
 \end{frame}
 
 \begin{frame}{Step 4: Motif enrichment analysis}
- \begin{figure}
-  \centering
-  \includegraphics[width=1.0\linewidth]{ELMER/motif_enrichment.pdf}
+  \vspace{-0.5cm} 
+  \begin{figure}
+  \hspace*{-1cm} 
+  \includegraphics[width=1.1\linewidth]{ELMER/motif_enrichment.pdf}
  \end{figure}
 \end{frame}
 
@@ -723,32 +738,36 @@ Evaluate the enrichment of transcription factors in certain genomic regions.
  \end{figure}
 \end{frame}
 
-\begin{frame}{Main differences between ELMER v.1 and v.2}
+\begin{frame}{ \normalsize{Main differences between ELMER old version (v.1) and the new version (v.2)}}
  \normalsize{
- \begin{table}[h!]
- \centering
- %{\def\arraystretch{2}\tabcolsep=10pt
- \resizebox{\textwidth}{!}{%
- \begin{tabular}{@{}m{4cm}m{5cm}m{7cm}@{}}
- \toprule
- \toprule
- \multicolumn{1}{c}{\textbf{Features}} & \multicolumn{1}{c}{\textbf{ELMER Version 1}} & \multicolumn{1}{c}{\textbf{ELMER Version 2}}   \\ \midrule \midrule
- Primary data structure      & mee object (custom data structure)   & MAE object (Bioconductor data structure) \\ \midrule
- Auxiliary data      & Manually created   & Programmatically created \\\midrule
- Number of human TFs       & 1,982 & 2,014 (Uniprot database)    \\\midrule
- Number of TF motifs      & 91    & 771  (HOCOMOCO v11 database)    \\\midrule
- TF classification &  78 families         & 82 families and 331 subfamilies \newline(TFClass database) \\\midrule
- Analysis performed            & Normal vs tumor samples & Group 1 vs group 2   \\ \midrule
- Statistical grouping            & Unsupervised only & Unsupervised or supervised using labeled groups   \\ \midrule
- TCGA data source      & The Cancer Genome Atlas (TCGA) (not available)      & The NCI's Genomic Data Commons (GDC)     \\\midrule
- Genome of reference      & GRCh37 (hg19)      & GRCh37 (hg19)/GRCh38 (hg38)          \\\midrule
- DNA methylation platforms             & HM450  & EPIC and HM450            \\\midrule
- Graphical User interface (GUI)        & None  & TCGAbiolinksGUI   \\
- \bottomrule
- \end{tabular}
- }
- %}
- \end{table}
+ \vspace{-0.5cm}
+\begin{table}
+\centering
+\label{tab:summary}
+%{\def\arraystretch{2}\tabcolsep=10pt
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}m{4cm}m{6cm}m{7cm}@{}}
+\toprule
+\toprule
+\multicolumn{1}{c}{\textbf{Features}} & \multicolumn{1}{c}{\textbf{ELMER Version 1}} & \multicolumn{1}{c}{\textbf{ELMER Version 2}}   \\ \midrule \midrule
+Primary data structure      & mee object (custom data structure)   & MAE object (Bioconductor data structure) \\ \midrule
+Auxiliary data      & Manually created   & Programmatically created \\\midrule
+Number of human TFs       & 1,982 & 2,014 (UniProt database)    \\\midrule
+Number of TF motifs      & 91    & 771  (HOCOMOCO v11 database)    \\\midrule
+TF classification &  78 families         & 82 families and 331 subfamilies \newline(TFClass database, HOCOMOCO) \\\midrule
+Analysis performed            & Normal vs tumor samples & Group 1 vs group 2   \\ \midrule
+Statistical grouping            & Unsupervised only & Unsupervised or supervised using labeled groups   \\ \midrule
+TCGA data source      & The Cancer Genome Atlas (TCGA)    & The NCI's Genomic Data Commons (GDC)     \\\midrule
+Genome of reference      & GRCh37 (hg19)      & GRCh37 (hg19)/GRCh38 (hg38)          \\\midrule
+DNA methylation platforms             & HM450  & EPIC and HM450            \\\midrule
+Graphical User Interface (GUI)        & None  & TCGAbiolinksGUI     \\\midrule
+Automatic report        & None  & HTML summarizing results    \\\midrule
+Annotations      & None  & StateHub   \\
+\bottomrule
+\end{tabular}
+}
+%}
+\end{table}
  }
 \end{frame}
 
@@ -786,20 +805,20 @@ Evaluate the enrichment of transcription factors in certain genomic regions.
 \end{frame}
 
 
-\begin{frame}{Step 3: Probe-target gene pairs inferred}
-\vspace*{-0.5cm}
-\begin{figure}
- \centering
-   \includegraphics[width=0.75\linewidth]{ELMER/BRCA_heatmap.png}
-   \end{figure}
-\end{frame}
+%\begin{frame}{Step 3: Probe-target gene pairs inferred}
+%\vspace*{-0.5cm}
+%\begin{figure}
+% \centering
+%   \includegraphics[width=0.75\linewidth]{ELMER/BRCA_heatmap.png}
+%   \end{figure}
+%\end{frame}
 
 
 \begin{frame}{Top enriched motifs}
  \vspace*{-0.3cm}
  \begin{figure}
   \centering
-  \includegraphics[width=0.85\linewidth]{ELMER/BRCA_unsupervise_OR_table.pdf}
+  \includegraphics[width=0.9\linewidth]{ELMER/BRCA_unsupervise_OR_table.pdf}
  \end{figure}
 \end{frame}
 
@@ -815,7 +834,7 @@ Evaluate the enrichment of transcription factors in certain genomic regions.
 \begin{frame}{DNA methylation at motifs vs TF expression}
  \begin{figure}
   \centering
-  \includegraphics[width=1.0\linewidth]{ELMER/BRCA_TF_scatter.png}
+  \includegraphics[width=1.0\linewidth]{ELMER/BRCA_TF_scatter.pdf}
  \end{figure}
 \end{frame}
 
@@ -837,7 +856,6 @@ Evaluate the enrichment of transcription factors in certain genomic regions.
   \centering
   \includegraphics[width=0.9\textwidth]{images/1.png}%\tiny{\\Enrichment of paired probes and chromatin states of encode cells. The plot shows enrichment for enhancer active region (EAR), weak enhancer (EWR) and active promoter region (PAR) for MCF-7 cell. }
  \end{figure}
- \pdfnote{remember to say thank you to simon}
  \pdfnote{
   Enrichment of paired probes and chromatin states of encode cells. The plot shows enrichment for enhancer active region (EAR), weak enhancer (EWR) and active promoter region (PAR) for MCF-7 cell.
   Acronyms - AR: Active region, EAR: active enhancer, EWR: Weak Enhancer, EPR: poised enhancer, PAR: active promoter, PWR: Weak Promoter, PPR: poised promoter, PPWR: Weak Poised Promoter, CTCF: architectural complex, TRS: transcribed, HET: heterochromatin, SCR: Polycomb Repressed Silenced
@@ -1073,7 +1091,7 @@ Evaluate the enrichment of transcription factors in certain genomic regions.
     \item Use mutation information instead of DNA methylation
 to identify regulatory regions mutated that might have affected the
 regulation of a upstream/downstream genes.
-    \item Improve results mining through automatically created reports.
+  %  \item Improve results mining through automatically created reports.
   \end{itemize}
 \end{block}
 \end{frame}
