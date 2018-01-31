@@ -161,7 +161,7 @@
 \begin{frame}{Integrative statistical analysis}
 
 \begin{block}{Integrative statistical analysis}
-Analysis of at least two different types of omics data
+Analysis of at least two different types of "omics" data
 % he analysis can be restricted to molecular data (such as in expression quantitative trait loci (eQTL) studies, in which the relation between germ line variation and gene expression is investigated35, 36) or it can involve clinical outcomes (for example, survival, stage and treatment response) or intermediate phenotypes and biomarkers.
 \end{block}
 
@@ -169,10 +169,10 @@ Analysis of at least two different types of omics data
 
 \begin{alertblock}{Objectives}
 \begin{enumerate}
-\item Understand molecular behaviours, mechanisms and relationships between and within the different types of molecular structures
+\item Understand molecular behaviours, mechanisms, and relationships between and within the different types of molecular structures
 % including associations between these and various phenotypes
 \item Understand the taxonomy of diseases, thereby classifying individuals into latent classes of disease subtype
-\item Predict an outcome or phenotype (survival, efficacy of therapy) for patients.
+\item Predict an outcome or phenotype (survival, an efficacy of therapy) for patients.
 \end{enumerate}
 \end{alertblock}
 \end{frame}
@@ -237,7 +237,7 @@ Analysis of at least two different types of omics data
 
 \begin{frame}{Introduction - Databases}
 \begin{block}{Encyclopedia of DNA Elements (ENCODE)}
-Build a comprehensive parts list of functional elements in the human genome, including elements that act at the protein and RNA levels, and regulatory elements.
+Builds a comprehensive parts list of functional elements in the human genome, including elements that act at the protein and RNA levels, and regulatory elements.
 \end{block}
 
 \begin{exampleblock}{Roadmap Epigenomics Project}
@@ -314,17 +314,6 @@ If the targets of all transcription factors were known, then one could easily in
 % Figure 2. Sequence logo representing a TFFM.(A) Graphical representation of a TFFM constructed for the Hnf4A TF. Each column corresponds to a position within a TFBS. Each row captures the probabilities of each nucleotide to appear depending on the nucleotide found at the previous position. The opacity of a case represents the probability of hitting this case depending on the probability of appearance of the corresponding nucleotide at the previous position (the higher the opacity, the higher the probability). (B) The summary logo compacts all the information to summarize the dense logo in (A). (C) Zooming in on the dense TFFM logo for positions 10 to 13 (corresponding to the box in (A)). We observe that a “C” is more likely to appear at position 12 if nucleotide “T” was found at position 11 whereas a “T” is more likely to appear at position 12 if nucleotide “G” was found at position 11.
 \end{frame}
 
-\begin{frame}{Integrative analysis}
- \vspace*{-0.3cm}
-\begin{block}{Protein interaction networks and cancer signatures}
-      Protein-protein interactions (PPIs) are essential to almost every process in a cell and are crucial for understanding cell physiology in normal and disease states.
-\end{block}
-\begin{figure}
- \centering
- \includegraphics[width=0.8\linewidth]{intro/PPIN2.pdf}
-\end{figure}
-% Fig. 3. The NIRF protein–protein interaction network. NIRF interacts with the core cell cycle proteins (cyclin A2, cyclin B1, cyclin D1, cyclin E1, pRB, and p53) and other nuclear proteins. These core cell cycle proteins are hub proteins with many interacting partners, and thereby constitute individual network modules. NIRF is positioned at the center of these modules, thereby connecting the modules to one another. The symbols used are as follows: yellow, cyclins; yellow–green, CDKs; blue, two major tumor suppressors; green, NIRF-interacting proteins retrieved from a database [121]. The thicker black lines indicate interactions demonstrated by more than two methods. (Reproduced with permission from reference [3]).
-\end{frame}
 
 \begin{frame}{Integrative analysis}
  \vspace*{-0.3cm}
@@ -390,7 +379,7 @@ If the targets of all transcription factors were known, then one could easily in
 \begin{frame}
 \begin{alertblock}{Problem}
 \begin{itemize}
-\item Data is spread accross different databases and stored in different formats
+\item Data is spread across different databases and stored in different formats
 \item Lack of computational tools and methods that can integrate and interpret such information
 \end{itemize}
 \end{alertblock}
@@ -417,9 +406,9 @@ If the targets of all transcription factors were known, then one could easily in
 
 \begin{block}{Secondary goals}
 \begin{itemize}
-  \item Use standard data structure to organize the data and the metadata
-  \item Publish tools the open-source Bioconductor environment.
-  \item Use learning machine algorithms for classifying an independent set of gliomas based on newly identified regulatory networks as related to pan-cancer deregulation;
+  \item Use standard data structures to organize data and metadata;
+  \item Publish open source tools in the Bioconductor environment under a GPL3 license;
+  \item Use machine learning algorithms to classify an independent set of gliomas based on newly identified regulatory networks correlated with pan-carcer deregulation;
 \end{itemize}
 
 \end{block}
@@ -491,7 +480,7 @@ If the targets of all transcription factors were known, then one could easily in
  \begin{figure}
   \centering
   \includegraphics[width=0.7\linewidth]{TCGAbiolinks/summarizedExperiment.png}
-  \caption{Example of Sumarized Experiment object. Figure reproduced from SummarizedExperiment manual (MORGAN et al., 2017).}
+  \caption{Example of Summarized Experiment object. Figure reproduced from SummarizedExperiment manual (MORGAN et al., 2017).}
  \end{figure}
 \end{frame}
 
@@ -511,12 +500,7 @@ If the targets of all transcription factors were known, then one could easily in
  \vspace*{-0.5cm}
  \begin{figure}
   \centering
-  \includegraphics[width=0.8\linewidth]{ELMER/elmer1.png}
- \end{figure}
- \vspace*{-0.5cm}
- \begin{figure}
-  \centering
-  \includegraphics[width=0.8\linewidth]{ELMER/elmer2.png}
+  \includegraphics[width=0.8\linewidth]{bioinformatics.png}
  \end{figure}
 \end{frame}
 
@@ -560,7 +544,7 @@ If the targets of all transcription factors were known, then one could easily in
 \item  Identify distal probes on HM450K/EPIC.
 \item  Identify distal probes with significantly different DNA methylation level in  group 1 compared to group 2.
 \item  Identify putative target genes for differentially methylated distal enhancer probes.
-\item  Identify enriched motifs for the distal  probes which are significantly differentially methylated and linked to putative target gene.
+\item  Identify enriched motifs for the distal  probes which are significantly differentially methylated and linked to a putative target gene.
 \item  Identify regulatory TFs whose expression associate with DNA methylation at motifs.
 \end{enumerate}
 
@@ -655,9 +639,9 @@ Evaluate the enrichment of transcription factors in certain genomic regions.
 \end{enumerate}
 \end{block}
  \begin{exampleblock}{Fisher’s exact test}
- a: nb of input regions with match for TF motif.\\
+ a: nb of input regions with a match for TF motif.\\
  b: nb of input regions with no match for TF motif.\\
- c: nb of background regions with match for TF motif.\\
+ c: nb of background regions with a match for TF motif.\\
  d: nb of background regions with no match for TF motif.
  \end{exampleblock}
 
@@ -1082,7 +1066,7 @@ Annotations      & None  & StateHub   \\
   \begin{itemize}
     \item  Tools were able to provide methods for (epi) genomics integrative analysis
     using data from several databases.
-    \item  Several genes identified using those tools are consistent with literature.
+    \item  Several genes identified using those tools are consistent with the literature.
   \end{itemize}
 \end{block}
 \begin{block}{Future works}
@@ -1091,7 +1075,7 @@ Annotations      & None  & StateHub   \\
     \item Provided a processing pipeline for WGBS data.
     \item Use mutation information instead of DNA methylation
 to identify regulatory regions mutated that might have affected the
-regulation of a upstream/downstream genes.
+regulation of upstream/downstream genes.
   %  \item Improve results mining through automatically created reports.
   \end{itemize}
 \end{block}
@@ -1102,26 +1086,26 @@ regulation of a upstream/downstream genes.
 \tiny
 \setbeamertemplate{bibliography item}[article]
 \bibitem{EBU2011}
-Tiago Chedraoui Silva*, Antonio Colaprico*, et al.
+Silva TC, Colaprico A, et al.
 \newblock TCGAbiolinks: An R/Bioconductor package for integrative analysis of TCGA data. Nucleic Acids Res.,
-\newblock Nucleic acids research, p.gkv1507, 2015
+\newblock Nucleic acids research (2015), p.gkv1507, 
 
 %\beamertemplateonlinebibitems
 \beamertemplatearticlebibitems
 \bibitem{F10002016}
 Silva TC, Colaprico A, Olsen C et al.
 \newblock TCGA Workflow: Analyze cancer genomics and epigenomics data using Bioconductor packages
-\newblock  F1000Research 2016, 5:1542
+\newblock  F1000Research (2016), 5:1542
 
 \beamertemplatearticlebibitems
 \bibitem{GUI}
-Silva, Tiago C., et al.
+Silva TC, et al.
 \newblock "TCGAbiolinksGUI: A graphical user interface to analyze GDC cancer molecular and clinical data."
 \newblock bioRxiv (2017): 147496.
 
 \setbeamertemplate{bibliography item}[aticle]
 \bibitem{ELMERv2}
-Silva, Tiago Chedraoui, et al.
+Silva TC, et al.
 \newblock "Enhancer Linking by Methylation/Expression Relationships with the R package ELMER version 2."
 \newblock  bioRxiv (2017): 148726.
 
@@ -1157,27 +1141,27 @@ Workshop:
 
 \beamertemplatearticlebibitems
 \bibitem{GUI}
-M Ceccarelli, et al.
+Ceccarelli M, et al.
 \newblock Molecular profiling reveals biologically discrete subsets and pathways of progression in diffuse glioma
-\newblock Cell, 2016
+\newblock Cell (2016)
 
 \beamertemplatearticlebibitems
 \bibitem{F10002016}
-Malta, Tathiane M., et al.
+Malta TM, et al.
 \newblock Glioma CpG island methylator phenotype (G-CIMP): biological and clinical implications
 \newblock Neuro-oncology (2017).
 
 \setbeamertemplate{bibliography item}[aticle]
 \bibitem{ESCA}
-Lin, De-Chen, et al.
+ Lin DC, et al.
 \newblock Identification of distinct mutational patterns and new driver genes in oesophageal squamous cell carcinomas and adenocarcinomas
-\newblock Gut, pp.gutjnl-2017.
+\newblock Gut (2017), pp.gutjnl-2017.
 
 \setbeamertemplate{bibliography item}[aticle]
 \bibitem{ESCA}
-Cava, Claudia, et al.
+Cava C, et al.
 \newblock SpidermiR: An R/Bioconductor Package for Integrative Analysis with miRNA Data
-\newblock International journal of molecular sciences. 2017 Jan 27;18(2):274.
+\newblock International journal of molecular sciences (2017), Jan 27;18(2):274.
 
 
 \setbeamertemplate{bibliography item}[online]
@@ -1193,7 +1177,7 @@ Cava, Claudia, et al.
   \begin{column}{0.5\textwidth}
    \begin{block}{University of São Paulo}
     \begin{itemize}
-      \item  Houtan Noushmerh
+      \item  Houtan Noushmehr
       \item  Camila Ferreira de Souza
       \item  Tathiane Malta
     \end{itemize}
@@ -1227,54 +1211,6 @@ Cava, Claudia, et al.
 \end{frame}
 
 
-\begin{frame}{References}
- \begin{thebibliography}{10}
-  \tiny
-  \beamertemplatebookbibitems
-  \bibitem{Oppenheim2009}
-  Ginsburg, Geoffrey S., and Huntington F. Willard.
-  \newblock Genomic and personalized medicine.
-  \newblock  Vol. 1. Academic Press, 2008.
-
-  \beamertemplatearticlebibitems
-  \bibitem{F10002016}
-  Silva TC, Colaprico A, Olsen C et al.
-  \newblock TCGA Workflow: Analyze cancer genomics and epigenomics data using Bioconductor packages
-  \newblock  F1000Research 2016, 5:1542
-
-  \beamertemplatearticlebibitems
-  \bibitem{EBU2011}
-  H. Noushmehr, D. J. Weisenberger, et al.
-  \newblock Identification of a CpG island methylator phenotype that defines a distinct subgroup of glioma.
-  \newblock Cancer Cell, 17(5):510–522, May 2010.
-
-  \beamertemplatearticlebibitems
-  \bibitem{EBU2011}
-  S. Sharma, T. K. Kelly, and P. A. Jones.
-  \newblock Epigenetics in cancer.
-  \newblock  Carcinogenesis, 31(1):27–36, Jan 2010.
-
-  \beamertemplatearticlebibitems
-  \bibitem{EBU2011}
-  Tiago Chedraoui Silva*, Antonio Colaprico*, et al.
-  \newblock TCGAbiolinks: An R/Bioconductor package for integrative analysis of TCGA data. Nucleic Acids Res.,
-  \newblock Nucleic acids research, p.gkv1507, 2015
-
-  \beamertemplatearticlebibitems
-  \bibitem{EBU2011}
-  Ceccarelli M, Barthel FP, Malta TM, Sabedot TS, Salama SR, et al. . Cell,
-  \newblock Molecular profiling reveals biologically discrete subsets and pathways of progression in diffuse glioma
-  \newblock Cell, 164(3):550-563, 2016
-
-
-  %	\beamertemplatearticlebibitems
-  %	\bibitem{EBU2011}
-  %S. B. Baylin and P. A. Jones.
-  %	\newblock A decade of exploring the cancer epigenome - biological and translational implications.
-  %	\newblock Nat. Rev. Cancer, 11(10):726–734, Oct 2011.
-
- \end{thebibliography}
-\end{frame}
 
 \begin{frame}{Thank you for your attention!}
  \vspace*{2.5cm}
