@@ -123,8 +123,16 @@
 
 \section*{Overview}
 \begin{frame}{Overview}
+\begin{enumerate}
+\setlength\itemsep{2em}
+\item Introduction
+\item Objectives
+\item Methods: Algorithms and tools
+\item Analysis: Case study, glioma analysis
+\item Conclusion
+\end{enumerate}
  % For longer presentations use hideallsubsections option
- \tableofcontents[hideallsubsections]
+ %\tableofcontents[hideallsubsections]
 \end{frame}
 
 
@@ -158,24 +166,24 @@
 \end{frame}
 
 
-\begin{frame}{Integrative statistical analysis}
+%\begin{frame}{Integrative statistical analysis}
 
-\begin{block}{Integrative statistical analysis}
-Analysis of at least two different types of "omics" data
+%\begin{block}{Integrative statistical analysis}
+%Analysis of at least two different types of "omics" data
 % he analysis can be restricted to molecular data (such as in expression quantitative trait loci (eQTL) studies, in which the relation between germ line variation and gene expression is investigated35, 36) or it can involve clinical outcomes (for example, survival, stage and treatment response) or intermediate phenotypes and biomarkers.
-\end{block}
+%\end{block}
 
 
 
-\begin{alertblock}{Objectives}
-\begin{enumerate}
-\item Understand molecular behaviours, mechanisms, and relationships between and within the different types of molecular structures
+%\begin{alertblock}{Objectives}
+%\begin{enumerate}
+%\item Understand molecular behaviours, mechanisms, and relationships between and within the different types of molecular structures
 % including associations between these and various phenotypes
-\item Understand the taxonomy of diseases, thereby classifying individuals into latent classes of disease subtype
-\item Predict an outcome or phenotype (survival, an efficacy of therapy) for patients.
-\end{enumerate}
-\end{alertblock}
-\end{frame}
+%\item Understand the taxonomy of diseases, thereby classifying individuals into latent classes of disease subtype
+%\item Predict an outcome or phenotype (survival, an efficacy of therapy) for patients.
+%\end{enumerate}
+%\end{alertblock}
+%\end{frame}
 
 \begin{frame}
 \begin{columns}
@@ -215,15 +223,6 @@ Analysis of at least two different types of "omics" data
 %\end{frame}
 
 
-\begin{frame}[plain]%{Integrative analysis - histone modification}
- \vspace*{-0.3cm}
-\begin{figure}
- \centering
- \includegraphics[width=1.05\linewidth]{intro/marks.pdf}{\tiny{\\Source: Daria Shlyueva, et al. Nature Reviews Genetics (2014) doi:10.1038/nrg3682}}
-\end{figure}
-% a | Enhancers are distinct genomic regions (or the DNA sequences thereof) that contain binding site sequences for transcription factors (TFs) and that can upregulate (that is, enhance) the transcription of a target gene from its transcription start site (TSS). Along the linear genomic DNA sequence, enhancers can be located at any distance from their target genes, which makes their identification challenging. b,c | In a given tissue, active enhancers (Enhancer A in part b or Enhancer B in part c) are bound by activating TFs and are brought into proximity of their respective target promoters by looping, which is thought to be mediated by cohesin and other protein complexes. Moreover, active and inactive gene regulatory elements are marked by various biochemical features: active promoters and enhancers are characterized by a depletion of nucleosomes, which is the structural unit of eukaryotic chromatin. Nucleosomes that flank active enhancers show specific histone modifications, for example, histone H3 lysine 4 monomethylation (H3K4me1) and H3K27 acetylation (H3K27ac). Inactive enhancers might be silenced by different mechanisms, such as by the Polycomb protein-associated repressive H3K27me3 mark (part b) or by repressive TF binding (part c). d–f | Complex patterns of gene expression result from the additive action of different enhancers with cell-type- or tissue-specific activities. The schematic mouse and Drosophila melanogaster embryos are drawn after Refs 7,43. Pol II, RNA polymerase II.
-\end{frame}
-
 
 \begin{frame}[plain]%{Integrative analysis - histone modification}
 \begin{figure}
@@ -234,6 +233,17 @@ Analysis of at least two different types of "omics" data
 \pdfnote{In mammals DNA met. is almost exclusively found in CpG dinucleotides}
 % a | Enhancers are distinct genomic regions (or the DNA sequences thereof) that contain binding site sequences for transcription factors (TFs) and that can upregulate (that is, enhance) the transcription of a target gene from its transcription start site (TSS). Along the linear genomic DNA sequence, enhancers can be located at any distance from their target genes, which makes their identification challenging. b,c | In a given tissue, active enhancers (Enhancer A in part b or Enhancer B in part c) are bound by activating TFs and are brought into proximity of their respective target promoters by looping, which is thought to be mediated by cohesin and other protein complexes. Moreover, active and inactive gene regulatory elements are marked by various biochemical features: active promoters and enhancers are characterized by a depletion of nucleosomes, which is the structural unit of eukaryotic chromatin. Nucleosomes that flank active enhancers show specific histone modifications, for example, histone H3 lysine 4 monomethylation (H3K4me1) and H3K27 acetylation (H3K27ac). Inactive enhancers might be silenced by different mechanisms, such as by the Polycomb protein-associated repressive H3K27me3 mark (part b) or by repressive TF binding (part c). d–f | Complex patterns of gene expression result from the additive action of different enhancers with cell-type- or tissue-specific activities. The schematic mouse and Drosophila melanogaster embryos are drawn after Refs 7,43. Pol II, RNA polymerase II.
 \end{frame}
+
+
+\begin{frame}[plain]%{Integrative analysis - histone modification}
+ \vspace*{-0.3cm}
+\begin{figure}
+ \centering
+ \includegraphics[width=1.05\linewidth]{intro/marks.pdf}{\tiny{\\Source: Daria Shlyueva, et al. Nature Reviews Genetics (2014) doi:10.1038/nrg3682}}
+\end{figure}
+% a | Enhancers are distinct genomic regions (or the DNA sequences thereof) that contain binding site sequences for transcription factors (TFs) and that can upregulate (that is, enhance) the transcription of a target gene from its transcription start site (TSS). Along the linear genomic DNA sequence, enhancers can be located at any distance from their target genes, which makes their identification challenging. b,c | In a given tissue, active enhancers (Enhancer A in part b or Enhancer B in part c) are bound by activating TFs and are brought into proximity of their respective target promoters by looping, which is thought to be mediated by cohesin and other protein complexes. Moreover, active and inactive gene regulatory elements are marked by various biochemical features: active promoters and enhancers are characterized by a depletion of nucleosomes, which is the structural unit of eukaryotic chromatin. Nucleosomes that flank active enhancers show specific histone modifications, for example, histone H3 lysine 4 monomethylation (H3K4me1) and H3K27 acetylation (H3K27ac). Inactive enhancers might be silenced by different mechanisms, such as by the Polycomb protein-associated repressive H3K27me3 mark (part b) or by repressive TF binding (part c). d–f | Complex patterns of gene expression result from the additive action of different enhancers with cell-type- or tissue-specific activities. The schematic mouse and Drosophila melanogaster embryos are drawn after Refs 7,43. Pol II, RNA polymerase II.
+\end{frame}
+
 
 \begin{frame}{Introduction - Databases}
 \begin{block}{Encyclopedia of DNA Elements (ENCODE)}
@@ -828,12 +838,12 @@ Annotations      & None  & StateHub   \\
 \end{frame}
 
 
-\begin{frame}{Candidate regulatory TF}
+\begin{frame}{Candidate master regulator TF}
  \vspace*{-0.3cm}
  \begin{figure}
   \centering
   \includegraphics[width=0.8\linewidth]{ELMER/paper4.png}\\
-  \includegraphics[width=0.8\linewidth]{ELMER/paper1.png}\\
+ % \includegraphics[width=0.8\linewidth]{ELMER/paper1.png}\\
   \includegraphics[width=0.8\linewidth]{ELMER/paper2.png}
   %\includegraphics[width=0.8\linewidth]{paper3.png}
  \end{figure}
@@ -957,7 +967,7 @@ Annotations      & None  & StateHub   \\
 \end{frame}
 
 
-\begin{frame}{TF master regulator: Basal}
+\begin{frame}{Master regulator TF: molecular known subtypes}
 
  \begin{figure}[ht!]
   \centering
@@ -1009,13 +1019,13 @@ Annotations      & None  & StateHub   \\
 %\end{frame}
 
 
-\begin{frame}{Enriched motifs}
+%\begin{frame}{Enriched motifs}
 %\vspace{-0.5cm}
- \begin{figure}[ht!]
-  \centering
-  \includegraphics[width=0.8\textwidth]{glioma/or.png}
- \end{figure}
-\end{frame}
+ %\begin{figure}[ht!]
+  %\centering
+  %\includegraphics[width=0.8\textwidth]{glioma/or.png}
+ %\end{figure}
+%\end{frame}
 
 \begin{frame}{Candidate master regulator Transcription Factors (TF) }
 \begin{block}{Top TFs}
