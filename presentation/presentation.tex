@@ -76,9 +76,6 @@
 \usepackage{caption}
 \captionsetup{font=scriptsize,labelfont=scriptsize}
 
-\usepackage{pdfcomment}
-\newcommand{\pdfnote}[1]{\marginnote{\pdfcomment[icon=note]{#1}}}
-
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 %        LOADING PACKAGES
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -128,7 +125,7 @@
 \item Introduction
 \item Objectives
 \item Methods: Algorithms and tools
-\item Analysis: Case study, glioma analysis
+\item Analysis
 \item Conclusion
 \end{enumerate}
  % For longer presentations use hideallsubsections option
@@ -148,11 +145,8 @@
 \vspace*{-0.5cm}
 	\begin{figure}
 		\centering
-	\includegraphics[width=1.0\textwidth]{intro/breast.jpg}{\tiny{\\ Kristensen VN, et al. Principles and methods of integrative genomic analyses in cancer. Nature Reviews Cancer (2014)}}
+	\includegraphics[width=1.0\textwidth]{intro/breast.jpg}{\tiny{\\ Kristensen VN, et al. Nature Reviews Cancer (2014)}}
 	\end{figure}
-	\pdfnote{With the improvement of technology we were able to acquire enormous quantities of molecular data}
-	\pdfnote{emergence of 'systems biology' — understanding of the interplay within and between different}
-	\pdfnote{layers of genomic structures can one attempt to  understand phenotypic traits}
 \end{frame}
 
 
@@ -160,9 +154,8 @@
 \vspace{-0.4cm}
 	\begin{figure}
 		\centering
-	\includegraphics[width=0.8\linewidth,height=0.8\textheight]{intro/data_integration.jpg}{\tiny{\\ Ritchie MD, et al. Methods of integrating data to uncover genotype-phenotype interactions. Nature Reviews Genetics (2015)}}
+	\includegraphics[width=0.8\linewidth,height=0.8\textheight]{intro/data_integration.jpg}{\tiny{\\ Ritchie MD, et al.  Nature Reviews Genetics (2015)}}
 	\end{figure}
-	\pdfnote{This layers of genomic structures creates a network of interaction}
 \end{frame}
 
 
@@ -224,22 +217,18 @@
 
 
 
-\begin{frame}[plain]%{Integrative analysis - histone modification}
+\begin{frame}{Epigenetics alterations - DNA methylation}
 \begin{figure}
  \centering
- \includegraphics[width=1.05\linewidth]{images/DNAmethylation/5side2}{\tiny{\\Source: Jones PA, et al. Nature Reviews Genetics (2002) doi:10.1038/nrg816}}
+ \includegraphics[width=0.5\linewidth]{dnamet}{\tiny{\\Source: Koch MW, et al. Nat Rev Neurol. (2013)}}
 \end{figure}
-\pdfnote{DNA methylation is a process by which methyl groups are added to the DNA molecule.}
-\pdfnote{In mammals DNA met. is almost exclusively found in CpG dinucleotides}
-% a | Enhancers are distinct genomic regions (or the DNA sequences thereof) that contain binding site sequences for transcription factors (TFs) and that can upregulate (that is, enhance) the transcription of a target gene from its transcription start site (TSS). Along the linear genomic DNA sequence, enhancers can be located at any distance from their target genes, which makes their identification challenging. b,c | In a given tissue, active enhancers (Enhancer A in part b or Enhancer B in part c) are bound by activating TFs and are brought into proximity of their respective target promoters by looping, which is thought to be mediated by cohesin and other protein complexes. Moreover, active and inactive gene regulatory elements are marked by various biochemical features: active promoters and enhancers are characterized by a depletion of nucleosomes, which is the structural unit of eukaryotic chromatin. Nucleosomes that flank active enhancers show specific histone modifications, for example, histone H3 lysine 4 monomethylation (H3K4me1) and H3K27 acetylation (H3K27ac). Inactive enhancers might be silenced by different mechanisms, such as by the Polycomb protein-associated repressive H3K27me3 mark (part b) or by repressive TF binding (part c). d–f | Complex patterns of gene expression result from the additive action of different enhancers with cell-type- or tissue-specific activities. The schematic mouse and Drosophila melanogaster embryos are drawn after Refs 7,43. Pol II, RNA polymerase II.
 \end{frame}
-
 
 \begin{frame}[plain]%{Integrative analysis - histone modification}
  \vspace*{-0.3cm}
 \begin{figure}
  \centering
- \includegraphics[width=1.05\linewidth]{intro/marks.pdf}{\tiny{\\Source: Daria Shlyueva, et al. Nature Reviews Genetics (2014) doi:10.1038/nrg3682}}
+ \includegraphics[width=1.05\linewidth]{intro/marks.pdf}{\tiny{\\Source: D Shlyueva, et al. Nature Reviews Genetics (2014)}}
 \end{figure}
 % a | Enhancers are distinct genomic regions (or the DNA sequences thereof) that contain binding site sequences for transcription factors (TFs) and that can upregulate (that is, enhance) the transcription of a target gene from its transcription start site (TSS). Along the linear genomic DNA sequence, enhancers can be located at any distance from their target genes, which makes their identification challenging. b,c | In a given tissue, active enhancers (Enhancer A in part b or Enhancer B in part c) are bound by activating TFs and are brought into proximity of their respective target promoters by looping, which is thought to be mediated by cohesin and other protein complexes. Moreover, active and inactive gene regulatory elements are marked by various biochemical features: active promoters and enhancers are characterized by a depletion of nucleosomes, which is the structural unit of eukaryotic chromatin. Nucleosomes that flank active enhancers show specific histone modifications, for example, histone H3 lysine 4 monomethylation (H3K4me1) and H3K27 acetylation (H3K27ac). Inactive enhancers might be silenced by different mechanisms, such as by the Polycomb protein-associated repressive H3K27me3 mark (part b) or by repressive TF binding (part c). d–f | Complex patterns of gene expression result from the additive action of different enhancers with cell-type- or tissue-specific activities. The schematic mouse and Drosophila melanogaster embryos are drawn after Refs 7,43. Pol II, RNA polymerase II.
 \end{frame}
@@ -292,74 +281,74 @@ Comprehensively map the important genomic changes involved in the major types an
 % Fig. 3. The NIRF protein–protein interaction network. NIRF interacts with the core cell cycle proteins (cyclin A2, cyclin B1, cyclin D1, cyclin E1, pRB, and p53) and other nuclear proteins. These core cell cycle proteins are hub proteins with many interacting partners, and thereby constitute individual network modules. NIRF is positioned at the center of these modules, thereby connecting the modules to one another. The symbols used are as follows: yellow, cyclins; yellow–green, CDKs; blue, two major tumor suppressors; green, NIRF-interacting proteins retrieved from a database [121]. The thicker black lines indicate interactions demonstrated by more than two methods. (Reproduced with permission from reference [3]).
 %\end{frame}
 
-\begin{frame}{Integrative analysis}
- \vspace*{-0.3cm}
-\begin{block}{Global transcriptional networks}
-If the targets of all transcription factors were known, then one could easily infer which transcription factors must be activated in a tumor to yield the observed cancer signature.
-\end{block}
-\begin{exampleblock}{ Identification of transcription factor-binding sites (TFBSs)}
-\begin{itemize}
-     \item Identification using High throughput experimental methods (i.e. ChIP-sequencing)
-     \item Prediction using in-silico sequence-based methods
-\end{itemize}
-\end{exampleblock}
-\vspace*{-0.3cm}
-\begin{figure}
- \centering
- \includegraphics[width=1.0\linewidth]{intro/TF.png}{\tiny{\\Source: Shlyueva D, et al. Nature Reviews Genetics  (2014) doi:10.1038/nrg3682}}
-\end{figure}
+%\begin{frame}{Integrative analysis}
+% \vspace*{-0.3cm}
+%\begin{block}{Global transcriptional networks}
+%If the targets of all transcription factors were known, then one could easily infer which transcription factors must be activated in a tumor to yield the observed cancer signature.
+%\end{block}
+%\begin{exampleblock}{ Identification of transcription factor-binding sites (TFBSs)}
+%\begin{itemize}
+%     \item Identification using High throughput experimental methods (i.e. ChIP-sequencing)
+%     \item Prediction using in-silico sequence-based methods
+%\end{itemize}
+%\end{exampleblock}
+%\vspace*{-0.3cm}
+%\begin{figure}
+% \centering
+% \includegraphics[width=1.0\linewidth]{intro/TF.png}{\tiny{\\Source: Shlyueva D, et al. Nature Reviews Genetics  (2014)}}
+%\end{figure}
 % Fig. 3. The NIRF protein–protein interaction network. NIRF interacts with the core cell cycle proteins (cyclin A2, cyclin B1, cyclin D1, cyclin E1, pRB, and p53) and other nuclear proteins. These core cell cycle proteins are hub proteins with many interacting partners, and thereby constitute individual network modules. NIRF is positioned at the center of these modules, thereby connecting the modules to one another. The symbols used are as follows: yellow, cyclins; yellow–green, CDKs; blue, two major tumor suppressors; green, NIRF-interacting proteins retrieved from a database [121]. The thicker black lines indicate interactions demonstrated by more than two methods. (Reproduced with permission from reference [3]).
-\end{frame}
-
-\begin{frame}[plain]{TFBS prediction}
- \vspace*{-0.3cm}
-\begin{figure}
- \centering
- \includegraphics[width=0.95\linewidth]{intro/TFBS2.jpg}{\tiny{\\Source:  Worsley-Hunt R, et al.  Genome medicine. (2011). %Mathelier A, Wasserman WW. PLoS computational biology. 2013 Sep 5;9(9):e1003214.
- }}
-\end{figure}
+%\end{frame}
+%
+%\begin{frame}[plain]{TFBS prediction}
+% \vspace*{-0.3cm}
+%\begin{figure}
+% \centering
+% \includegraphics[width=0.95\linewidth]{intro/TFBS2.jpg}{\tiny{\\Source:  Worsley-Hunt R, et al.  Genome medicine. (2011). %Mathelier A, Wasserman WW. PLoS computational biology. 2013 Sep 5;9(9):e1003214.
+% }}
+%\end{figure}
 % https://www.nature.com/scitable/blog/bio2.0/your_friend_the_sequence_logo
 % Transcription factor binding site (TFBS) motif model. Sequences known to be bound by a specific transcription factor (for example, SPI1) are aligned. A position frequency matrix (PFM) is generated by counting the number of times each type of nucleotide occurs at each position of the alignment. The PFM is then converted to a log-scale position-specific scoring matrix (PSSM). The score of any DNA sequence window, having the same length as the matrix, is calculated by summing the corresponding nucleotide values from the PSSM. The PFM may also be represented as a binding site logo, depicting the nucleotide properties of the TFBSs.
 % The greater the height of the letter corresponding to a nucleotide, the higher the information content and higher the probability of getting it at this position.
 % Figure 2. Sequence logo representing a TFFM.(A) Graphical representation of a TFFM constructed for the Hnf4A TF. Each column corresponds to a position within a TFBS. Each row captures the probabilities of each nucleotide to appear depending on the nucleotide found at the previous position. The opacity of a case represents the probability of hitting this case depending on the probability of appearance of the corresponding nucleotide at the previous position (the higher the opacity, the higher the probability). (B) The summary logo compacts all the information to summarize the dense logo in (A). (C) Zooming in on the dense TFFM logo for positions 10 to 13 (corresponding to the box in (A)). We observe that a “C” is more likely to appear at position 12 if nucleotide “T” was found at position 11 whereas a “T” is more likely to appear at position 12 if nucleotide “G” was found at position 11.
-\end{frame}
-
-
-\begin{frame}{Integrative analysis}
- \vspace*{-0.3cm}
-\begin{block}{Epigenome}
-       Regulates gene expression by organizing the nuclear architecture of the chromosomes, restricting or facilitating transcription factor access to DNA, and preserving a memory of past transcriptional activities
-\end{block}
-
-\begin{table}[]
-\centering
-\scriptsize
-\caption[Histone and epigenomic marks]{Core set of histone modification marks and other epigenomic marks}
-\begin{tabular}{ll}
-\toprule
- \textbf{Epigenomic marks}   & \textbf{Role} \\ \toprule
- Histone H3 lysine 4 trimethylation (H3K4me3)  & Promoter regions \\
- Histone H3 lysine 4 monomethylation (H3K4me1) & Enhancer regions  \\
- Histone H3 lysine 36 trimethylation (H3K36me3) & Transcribed regions  \\
- Histone H3 lysine 27 trimethylation (H3K27me3) & Polycomb repression  \\
- Histone H3 lysine 9 trimethylation (H3K9me3) & Heterochromatin regions \\
- Histone H3 acetylated at lysine 27 (H3K27ac)  &  Increase activation of genomic elements\\
- Histone H3 lysine 9 acetylation  (H3K9ac)  & Transcriptional activation \\
- DNase hypersensitivity &  Regions of accessible chromatin \\
- DNA methylation & Repressed regulatory regions\\  \bottomrule
-\end{tabular}
-\end{table}
-\end{frame}
-
-
-
-\begin{frame}[plain]%{Integrative analysis - histone modification}
-\vspace*{-0.5cm}
-\begin{figure}
- \centering
- \includegraphics[width=0.5\linewidth]{intro/states.pdf}{\tiny{\\Source: Coetzee, Simon G., et al. "StateHub-StatePaintR: rapid and reproducible chromatin state evaluation for custom genome."}}
-\end{figure}
-\end{frame}
+%\end{frame}
+%
+%
+%\begin{frame}{Integrative analysis}
+% \vspace*{-0.3cm}
+%\begin{block}{Epigenome}
+%       Regulates gene expression by organizing the nuclear architecture of the chromosomes, restricting or facilitating transcription factor access to DNA, and preserving a memory of past transcriptional activities
+%\end{block}
+%
+%\begin{table}[]
+%\centering
+%\scriptsize
+%\caption[Histone and epigenomic marks]{Core set of histone modification marks and other epigenomic marks}
+%\begin{tabular}{ll}
+%\toprule
+% \textbf{Epigenomic marks}   & \textbf{Role} \\ \toprule
+% Histone H3 lysine 4 trimethylation (H3K4me3)  & Promoter regions \\
+% Histone H3 lysine 4 monomethylation (H3K4me1) & Enhancer regions  \\
+% Histone H3 lysine 36 trimethylation (H3K36me3) & Transcribed regions  \\
+% Histone H3 lysine 27 trimethylation (H3K27me3) & Polycomb repression  \\
+% Histone H3 lysine 9 trimethylation (H3K9me3) & Heterochromatin regions \\
+% Histone H3 acetylated at lysine 27 (H3K27ac)  &  Increase activation of genomic elements\\
+% Histone H3 lysine 9 acetylation  (H3K9ac)  & Transcriptional activation \\
+% DNase hypersensitivity &  Regions of accessible chromatin \\
+% DNA methylation & Repressed regulatory regions\\  \bottomrule
+%\end{tabular}
+%\end{table}
+%\end{frame}
+%
+%
+%
+%\begin{frame}[plain]%{Integrative analysis - histone modification}
+%\vspace*{-0.5cm}
+%\begin{figure}
+% \centering
+% \includegraphics[width=0.5\linewidth]{intro/states.pdf}{\tiny{\\Source: Coetzee, Simon G., et al. biorxiv. (2017)}}
+%\end{figure}
+%\end{frame}
 %a Figure 1. Mapping datasets to functional significance annotations. Experimental
 % data and external database annotations are combined into abstraction layers
 % (columns), integrated to produce chromatin states (rows) from the decision matrix.
@@ -377,7 +366,7 @@ If the targets of all transcription factors were known, then one could easily in
 % \vspace*{-0.5cm}
 %\begin{figure}
 % \centering
-% \includegraphics[width=0.8\linewidth]{intro/enhancer.pdf}{\tiny{\\Source: Daria Shlyueva, et al. Nature Reviews Genetics 15, 272–286 (2014)
+% \includegraphics[width=0.8\linewidth]{intro/enhancer.pdf}{\tiny{\\Source: Daria Shlyueva, et al. Nature Reviews Genetics  (2014)
 %doi:10.1038/nrg3682}}
 %\end{figure}
 % a | Enhancers are distinct genomic regions (or the DNA sequences thereof) that contain binding site sequences for transcription factors (TFs) and that can upregulate (that is, enhance) the transcription of a target gene from its transcription start site (TSS). Along the linear genomic DNA sequence, enhancers can be located at any distance from their target genes, which makes their identification challenging. b,c | In a given tissue, active enhancers (Enhancer A in part b or Enhancer B in part c) are bound by activating TFs and are brought into proximity of their respective target promoters by looping, which is thought to be mediated by cohesin and other protein complexes. Moreover, active and inactive gene regulatory elements are marked by various biochemical features: active promoters and enhancers are characterized by a depletion of nucleosomes, which is the structural unit of eukaryotic chromatin. Nucleosomes that flank active enhancers show specific histone modifications, for example, histone H3 lysine 4 monomethylation (H3K4me1) and H3K27 acetylation (H3K27ac). Inactive enhancers might be silenced by different mechanisms, such as by the Polycomb protein-associated repressive H3K27me3 mark (part b) or by repressive TF binding (part c). d–f | Complex patterns of gene expression result from the additive action of different enhancers with cell-type- or tissue-specific activities. The schematic mouse and Drosophila melanogaster embryos are drawn after Refs 7,43. Pol II, RNA polymerase II.
@@ -405,23 +394,23 @@ If the targets of all transcription factors were known, then one could easily in
 
 
 \begin{frame}
+\vspace{1.5cm}
 \begin{block}{Main goals}
 \begin{itemize}
-\item Develop tools for searching, retrieving and analyzing pan-cancer genomic data from several databases (GDC, ENCODE, ROADMAP)
+\item Develop open source tools for searching, retrieving and analyzing pan-cancer genomic data from several databases (GDC, ENCODE, ROADMAP)
   \item Investigate the intergenic epigenomic changes associated with distinct biological and clinical subgroups of gliomas first discovered by our laboratory
 
 \end{itemize}
 
 \end{block}
 
-\begin{block}{Secondary goals}
-\begin{itemize}
-  \item Use standard data structures to organize data and metadata;
-  \item Publish open source tools in the Bioconductor environment under a GPL3 license;
-  \item Use machine learning algorithms to classify an independent set of gliomas based on newly identified regulatory networks correlated with pan-carcer deregulation;
-\end{itemize}
-
-\end{block}
+%\begin{block}{Secondary goals}
+%\begin{itemize}
+ % \item Use standard data structures to organize data and metadata;
+  %\item Publish open source tools in the Bioconductor environment under a GPL3 license;
+  %\item Use machine learning algorithms to classify an independent set of gliomas based on newly identified regulatory networks correlated with pan-cancer deregulation;
+%\end{itemize}
+%\end{block}
 
 
 \end{frame}
@@ -449,45 +438,45 @@ If the targets of all transcription factors were known, then one could easily in
 \end{frame}
 
 
-\begin{frame}{Comparing TCGAbiolinks to competing software}
-\vspace*{-0.5cm}
-\begin{table}
-\tiny
-\centering
-\begin{tabular}{p{3cm}p{3cm}|l|l|l|l|c|l|c|}
-\cline{3-9}
- &  & \multicolumn{7}{c|}{\cellcolor[HTML]{333333}{\color[HTML]{FFFFFF} \textbf{Packages}}} \\ \cline{3-9}
- &  &  &  &  & & &  &  \\
- &  &  &  &  & & &  &  \\
- &  &  &  &  & & &  &  \\
- &  &  &  &  & & &  &  \\
- &  &  &  &  & & &  &  \\
- &  &  &  &  & & &  &  \\
- &  &  &  &  & & &  &  \\
- &  &  &  &  & & &  &  \\
-{\cellcolor[HTML]{333333}{\color[HTML]{FFFFFF} \textbf{Features}}} & {\cellcolor[HTML]{333333}{\color[HTML]{FFFFFF} \textbf{Sub-features}}} & \multirow{-8}{*}{\rotatebox[origin=c]{90}{TCGAbiolinks}} &
-\multirow{-8}{*}{\rotatebox[origin=c]{90}{TCGAAssembler}} &
-\multirow{-8}{*}{\rotatebox[origin=c]{90}{canEnvolve}} &
-\multirow{-8}{*}{\rotatebox[origin=c]{90}{TCGA2stat}} &
-\multirow{-8}{*}{\rotatebox[origin=c]{90}{Firehose-FirebrowserR}} & \multirow{-6}{*}{\rotatebox[origin=c]{90}{RTCGAtoolbox}} &
-\multirow{-8}{*}{\rotatebox[origin=c]{90}{cBio Portal CGDS-R}} \\ \hline
-\multicolumn{1}{|l|}{Availability} & Platform & B & R & W & C & CW & B & CW \\ \hline
-\multicolumn{1}{|l|}{} & Access to data aligned against the GRCh38/hg38 & X & X &  &  &  &  &  \\ \cline{2-9}
-\multicolumn{1}{|l|}{\multirow{-2}{*}{Genome of reference}} & Access to data aligned against the GRCh37/hg19 & X & X & X & X & X & X & X \\ \hline
-\multicolumn{1}{|l|}{Query TCGA Cases} & Individual TCGA samples (e.g. TCGA-01-0001) & X & X &  &  & X &  &  \\ \hline
-\multicolumn{1}{|l|}{Download} & All TCGA platforms & X &  &  &  &  &  &  \\ \hline
-\multicolumn{1}{|l|}{} & mRNA & X &  & X & X & X & X & X \\ \cline{2-9}
-\multicolumn{1}{|l|}{} & miRNA & X &  & X & X & X & X & X \\ \cline{2-9}
-\multicolumn{1}{|l|}{} & copy number & X &  & X & X & X & X & X \\ \cline{2-9}
-\multicolumn{1}{|l|}{} & DNA methylation & X &  &  & X & X & X & X \\ \cline{2-9}
-\multicolumn{1}{|l|}{} & Clinical & X &  & X & X & X & X & X \\ \cline{2-9}
-\multicolumn{1}{|l|}{} & Protein &  &  & X &  & X &  & X \\ \cline{2-9}
-\multicolumn{1}{|l|}{\multirow{-7}{*}{Data type analysis}} & Mutatation & X &  & X & X & X & X & X \\ \hline
-\multicolumn{1}{|l|}{Integrative analysis} & DNA methylation and gene expression & X &  &  &  & X &  &  \\ \hline
-\multicolumn{1}{|l|}{Other} & Extensible to other BioC packages & X &  &  &  &  &  &  \\ \hline
-\end{tabular}
-\end{table}
-\end{frame}
+%\begin{frame}{Comparing TCGAbiolinks to competing software}
+%\vspace*{-0.5cm}
+%\begin{table}
+%\tiny
+%\centering
+%\begin{tabular}{p{3cm}p{3cm}|l|l|l|l|c|l|c|}
+%\cline{3-9}
+% &  & \multicolumn{7}{c|}{\cellcolor[HTML]{333333}{\color[HTML]{FFFFFF} \textbf{Packages}}} \\ \cline{3-9}
+% &  &  &  &  & & &  &  \\
+% &  &  &  &  & & &  &  \\
+ %&  &  &  &  & & &  &  \\
+ %&  &  &  &  & & &  &  \\
+ %&  &  &  &  & & &  &  \\
+ %&  &  &  &  & & &  &  \\
+% &  &  &  &  & & &  &  \\
+% &  &  &  &  & & &  &  \\
+%{\cellcolor[HTML]{333333}{\color[HTML]{FFFFFF} \textbf{Features}}} & {\cellcolor[HTML]{333333}{\color[HTML]{FFFFFF} \textbf{Sub-features}}} & \multirow{-8}{*}{\rotatebox[origin=c]{90}{TCGAbiolinks}} &
+%\multirow{-8}{*}{\rotatebox[origin=c]{90}{TCGAAssembler}} &
+%\multirow{-8}{*}{\rotatebox[origin=c]{90}{canEnvolve}} &
+%\multirow{-8}{*}{\rotatebox[origin=c]{90}{TCGA2stat}} &
+%\multirow{-8}{*}{\rotatebox[origin=c]{90}{Firehose-FirebrowserR}} & \multirow{-6}{*}{\rotatebox[origin=c]{90}{RTCGAtoolbox}} &
+%\multirow{-8}{*}{\rotatebox[origin=c]{90}{cBio Portal CGDS-R}} \\ \hline
+%\multicolumn{1}{|l|}{Availability} & Platform & B & R & W & C & CW & B & CW \\ \hline
+%\multicolumn{1}{|l|}{} & Access to data aligned against the GRCh38/hg38 & X & X &  &  &  &  &  \\ \cline{2-9}
+%\multicolumn{1}{|l|}{\multirow{-2}{*}{Genome of reference}} & Access to data aligned against the GRCh37/hg19 & X & X & X & X & X & X & X \\ \hline
+%\multicolumn{1}{|l|}{Query TCGA Cases} & Individual TCGA samples (e.g. TCGA-01-0001) & X & X &  &  & X &  &  \\ \hline
+%\multicolumn{1}{|l|}{Download} & All TCGA platforms & X &  &  &  &  &  &  \\ \hline
+%\multicolumn{1}{|l|}{} & mRNA & X &  & X & X & X & X & X \\ \cline{2-9}
+%\multicolumn{1}{|l|}{} & miRNA & X &  & X & X & X & X & X \\ \cline{2-9}
+%\multicolumn{1}{|l|}{} & copy number & X &  & X & X & X & X & X \\ \cline{2-9}
+%\multicolumn{1}{|l|}{} & DNA methylation & X &  &  & X & X & X & X \\ \cline{2-9}
+%\multicolumn{1}{|l|}{} & Clinical & X &  & X & X & X & X & X \\ \cline{2-9}
+%\multicolumn{1}{|l|}{} & Protein &  &  & X &  & X &  & X \\ \cline{2-9}
+%\multicolumn{1}{|l|}{\multirow{-7}{*}{Data type analysis}} & Mutatation & X &  & X & X & X & X & X \\ \hline
+%\multicolumn{1}{|l|}{Integrative analysis} & DNA methylation and gene expression & X &  &  &  & X &  &  \\ \hline
+%\multicolumn{1}{|l|}{Other} & Extensible to other BioC packages & X &  &  &  &  &  &  \\ \hline
+%\end{tabular}
+%\end{table}
+%\end{frame}
 
 \begin{frame}{Data structure: SummarizedExperiment}
  \vspace*{-0.5cm}
@@ -524,9 +513,6 @@ If the targets of all transcription factors were known, then one could easily in
   \centering
   \includegraphics[width=1.0\linewidth]{ELMER/elmer.png}{\tiny{\\\href{https://genomebiology.biomedcentral.com/articles/10.1186/s13059-015-0668-3}{Source: Yao et al. Genome Biology (2015)}}}
  \end{figure}
- \pdfnote{\tiny{ scanning or tracking model: TF  binds at an enhancer and moves along the genome, searching for a target promoter }}
- \pdfnote{\tiny{  looping model:  enhancer directly interacts with a target promoter by forming a DNA loop }}
-
 \end{frame}
 
 
@@ -544,10 +530,9 @@ If the targets of all transcription factors were known, then one could easily in
  \vspace*{-0.1cm}
  \begin{figure}
   \centering
-  \includegraphics[width=1.0\linewidth]{ELMER/dna_met.png}{\tiny{\\Source: Front. Aging Neurosci., 05 March 2015 http://dx.doi.org/10.3389/fnagi.2015.00019.}}
+  \includegraphics[width=1.0\linewidth]{ELMER/dna_met.png}{\tiny{\\Source: Carrio et al. Frontiers in aging neuroscience (2015)}}
  \end{figure}
 \end{frame}
-
 
 
 
@@ -635,10 +620,10 @@ If the targets of all transcription factors were known, then one could easily in
 
 
 \begin{frame}{Step 4:  TF motifs source}
- \vspace*{-0.3cm}
+ \vspace*{-0.5cm}
  \begin{figure}
-  \centering
-  \includegraphics[width=1.0\linewidth]{ELMER/hocomoco.png}{\tiny{\\HOCOMOCO v11 (http://hocomoco11.autosome.ru/human/mono?full=true), Accessed: 25-12-2017}}
+ \hspace*{-0.4cm}
+  \includegraphics[width=1.1\linewidth]{ELMER/hocomoco.png}{\tiny{\\\vspace{-0.3cm}HOCOMOCO v11 (http://hocomoco11.autosome.ru/human/mono?full=true), Accessed: 25-12-2017}}
  \end{figure}
 \end{frame}
 
@@ -750,6 +735,8 @@ Annotations      & None  & StateHub   \\
  }
 \end{frame}
 
+
+
 \begin{frame}[plain]%{Workflow}
  %\vspace*{-0.3cm}
  %\hspace*{-0.3cm}
@@ -759,7 +746,6 @@ Annotations      & None  & StateHub   \\
   \includegraphics[width=1.18\linewidth]{ELMER/workflow_new.pdf}
  \end{figure}
 \end{frame}
-
 
 \begin{frame}{\normalsize{Difference of groups $U$ and $M$ definition in \textit{supervised} and \textit{unsupervised} mode}} 
 
@@ -855,10 +841,6 @@ Annotations      & None  & StateHub   \\
   \centering
   \includegraphics[width=0.9\textwidth]{images/1.png}%\tiny{\\Enrichment of paired probes and chromatin states of encode cells. The plot shows enrichment for enhancer active region (EAR), weak enhancer (EWR) and active promoter region (PAR) for MCF-7 cell. }
  \end{figure}
- \pdfnote{
-  Enrichment of paired probes and chromatin states of encode cells. The plot shows enrichment for enhancer active region (EAR), weak enhancer (EWR) and active promoter region (PAR) for MCF-7 cell.
-  Acronyms - AR: Active region, EAR: active enhancer, EWR: Weak Enhancer, EPR: poised enhancer, PAR: active promoter, PWR: Weak Promoter, PPR: poised promoter, PPWR: Weak Poised Promoter, CTCF: architectural complex, TRS: transcribed, HET: heterochromatin, SCR: Polycomb Repressed Silenced
- }
 \end{frame}
 
 %\begin{frame}{Comparing inferred results with MCF-7 chIA-PET}
@@ -877,14 +859,23 @@ Annotations      & None  & StateHub   \\
  \end{figure}
 \end{frame}
 
-\begin{frame}{BRCA supervised analysis}
+%\begin{frame}{BRCA supervised analysis}
+  %\begin{tabular}{p{2.3cm}p{2.4cm}p{2.4cm}p{1cm}}
+   %\toprule
+   %Group               & Samples w/ DNA methylation (450K) & Samples w/ gene expression (FPKM-UQ) & Samples w/ both \\ \midrule
+   %Primary solid Tumor & 791                               & 1102                                 & 778             \\
+   %Solid Tissue Normal & 96                                & 113                                  & 83              \\
+   %\bottomrule
+  %\end{tabular}
+ %\end{table}
 
- \begin{figure}[ht!]
-  \centering
-  \includegraphics[width=1.0\textwidth]{ELMER/groups.png}
-  \includegraphics[width=1.0\textwidth]{ELMER/arguments.png}
- \end{figure}
-\end{frame}
+
+ %\begin{figure}[ht!]
+  %\centering
+%\includegraphics[width=1.0\textwidth]{ELMER/groups.png}
+ %\includegraphics[width=1.0\textwidth]{ELMER/arguments.png}
+ %\end{figure}
+%\end{frame}
 
 
 \begin{frame}{Supervised analysis: Candidate regulatory TFs }
@@ -986,18 +977,27 @@ Annotations      & None  & StateHub   \\
 \vspace{-0.5cm}
  \begin{figure}[ht!]
   \centering
-  \includegraphics[width=0.9\textwidth]{glioma/figure1.pdf}{\tiny{\\Source: Ceccarelli M, et al. Cell (2016)  http://dx.doi.org/10.1016/j.cell.2015.12.028}}
+  \includegraphics[width=0.9\textwidth]{glioma/figure1.pdf}{\tiny{\\Source: Ceccarelli M, et al. Cell (2016) }}
  \end{figure}
 \end{frame}
 
-\begin{frame}{G-CIMP supervised analysis}
+%\begin{frame}{G-CIMP supervised analysis}
+%\begin{table}
+%\centering
+%\begin{tabular}{ll}
+%\toprule
+% \textbf{Molecular known subtype}   & \textbf{nb samples} \\ \toprule
+% G-CIMP-high & 233 \\
+% G-CIMP-low & 11 \\ \bottomrule
+%\end{tabular}
+% \end{table}
 
- \begin{figure}[ht!]
-  \centering
-  \includegraphics[width=1.0\textwidth]{glioma/groups.png}
-  \includegraphics[width=1.0\textwidth]{glioma/arguments.png}
- \end{figure}
-\end{frame}
+% \begin{figure}[ht!]
+%  \centering
+ % \includegraphics[width=1.0\textwidth]{glioma/groups.png}
+  %\includegraphics[width=1.0\textwidth]{glioma/arguments.png}
+ %\end{figure}
+%\end{frame}
 
 
 %\begin{frame}{Differentially methylated distal probes}
