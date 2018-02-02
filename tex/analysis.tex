@@ -403,22 +403,83 @@ methylation levels and the $M$ (methylated) group as the highest quintile, the $
  were defined as all samples of one known molecular subtype.
  For example, if the first step identified probes hypomethylated in Luminal A group when compared to Basal-like group,
  the next steps will use the Luminal A samples as $U$ group  and the Basal-like samples as the $M$ group.
-A venn diagram with the candidate TF actives in each molecular subtype are shown in Figure \ref{fig:venn}.
 
-From the  analysis Luminal A group vs Basal-like, it can be highlighted that the pairs of
-high expressed genes and hypomethylated probes in the Basal groups are enriched for the SOX10 TF signature.
-For this signature, the regulatory TF candidate identified was the SOX11 (Sry-related HMG box-11) TF; this
-correlation between basal-like and SOX11 was recently described by \citeonline{shepherd2016sox11}.
-Also, the TF analysis reported the forkhead box C1 (FOXC1) transcription factor as the TF with the
-highest anti-correlation between TF expression and DNA methylation levels. Even though,
-this TF is not in the family of any enriched motifs this correlation between the FOXC1 TF and Basal-like
-breast cancers (BLBCs) was reported by \citeonline{zuo2016role} and \citeonline{chung2017identification}.
+The unsupervised analysis identified several Luminal type Master Regulators (MRs) such as FOXA1, GATA3, and ESR1. In order to identify MRs for the other subtypes, we created a table (Table \ref{tbl:TF_molecular}) of candidate MRs identified by each pairwise ELMER run.
 
-On the other hand, when analyzing in the other direction in terms of methylation level, for  those pairs of high expressed genes and hypomethylated probes in the Luminal A group, the TF analysis identified GATA3, FOXA1, RARA, MYB as candidate regulatory TF. GATA3 and FOXA1 are known characterize this  molecular subtype  as described by \citeonline{yersal2014biological} while RARA was associated with the Luminal phenotype by \citeonline{centritto2015cellular}, MYB
-is shown to be required for the proliferation of ER-positive breast cancer cells \cite{mitra2016cdk9}.
+Interestingly, several new MRs are identified for the Basal-like group, and these were mostly consistent in comparisons against Luminal and HER2+ subtypes. One group of MRs identified are the \textit{SOX10} and \textit{SOX9} TF signatures. For these signatures, the regulatory TF candidate identified are the \textit{SOX9} (Sry-related HMG box-9) TF and \textit{SOX11} (Sry-related HMG box-11) TF; this correlation between basal-like and SOX11 was recently described by \cite{shepherd2016sox11} and \textit{SOX9} was described by \cite{gong2015foxa1}. Most interestingly, we found KLF5 to be a consistently predicted MR for the Basal-like breast subtype. KLF5 is a master pluripotency factor of embryonic stem cells, and has been associated with a number of different cancers. In breast cancer, it's overexpression has been linked to aggressive, ER-negative and basal-like breast cancers \cite{ben2008embryonic}.
 
-\begin{figure}[ht!]
+\begin{table}
 \centering
-\includegraphics[width=1.0\textwidth]{images/BRCA_ven.pdf}
-\caption{\label{fig:venn} Venn diagram of candidate regulatory TFs for each molecular subtype found in at least one of the pairwise comparisons.}
-\end{figure}
+\scriptsize
+\caption{Candidate regulatory TFs for each molecular subtype found in a pairwise comparison.}
+\label{tbl:TF_molecular}
+\begin{tabular}{@{}|c|c|c|c|c|c|c|c|c|@{}}
+\midrule
+\midrule
+\textit{\textbf{TF}} & \textbf{\begin{tabular}[c]{@{}c@{}}LUMA \\ (vs basal)\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}LUMB \\ (vs basal)\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}LUMA \\ (vs normal)\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}LumB \\ (vs normal)\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Basal \\ (vs LumA)\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Basal \\ (vs LumB)\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Basal \\ (vs HER2)\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}HER2 \\ (vs Basal)\end{tabular}} \\ \midrule \midrule
+\textit{\textbf{AR}} & x & x & x &  &  &  &  &  \\
+\textit{\textbf{BATF3}} &  &  &  &  &  & x &  &  \\
+\textit{\textbf{BCL11A}} &  &  &  &  & x & x & x &  \\
+\textit{\textbf{CBFB}} &  &  &  &  & x &  &  &  \\
+\textit{\textbf{CEBPB}} &  &  &  &  & x & x & x &  \\
+\textit{\textbf{CEBPG}} &  &  &  &  & x &  &  &  \\
+\textit{\textbf{E2F3}} &  &  &  &  &  & x & x &  \\
+\textit{\textbf{ELF5}} &  &  &  &  & x &  &  &  \\
+\textit{\textbf{EMX1}} & x & x & x &  &  &  &  &  \\
+\textit{\textbf{ESR1}} & x & x & x & x &  &  &  &  \\
+\textit{\textbf{ELF5}} &  &  &  &  &  & x &  &  \\
+\textit{\textbf{ETS2}} &  &  &  &  &  & x &  &  \\
+\textit{\textbf{ETV6}} &  &  &  &  & x & x & x &  \\
+\textit{\textbf{FOSL1}} &  &  &  &  &  & x &  &  \\
+\textit{\textbf{FOXA1}} & x & x & x & x &  &  &  & x \\
+\textit{\textbf{FOXM1}} &  &  &  & x &  &  &  &  \\
+\textit{\textbf{FOXD2}} &  & x &  &  &  &  &  &  \\
+\textit{\textbf{FOXP1}} & x & x &  &  &  &  &  & x \\
+\textit{\textbf{GATA2}} & x &  &  &  &  &  &  & x \\
+\textit{\textbf{GATA3}} & x & x & x & x &  &  &  & x \\
+\textit{\textbf{GLI1}} & x & x &  &  &  &  &  &  \\
+\textit{\textbf{HOMEZ}} &  & x &  &  &  &  &  &  \\
+\textit{\textbf{HOXB1}} & x & x &  &  &  &  &  &  \\
+\textit{\textbf{HOXB2}} & x & x &  &  &  &  &  & x \\
+\textit{\textbf{HOXB3}} &  &  &  &  &  &  &  & x \\
+\textit{\textbf{HOXB6}} &  &  &  &  &  &  &  & x \\
+\textit{\textbf{HOXC10}} &  &  &  &  &  &  &  & x \\
+\textit{\textbf{HOXC11}} &  &  &  &  &  &  &  & x \\
+\textit{\textbf{KLF5}} &  &  &  &  &  & x & x &  \\
+\textit{\textbf{LMX1B}} & x & x & x &  &  &  &  &  \\
+\textit{\textbf{MAZ}} &  &  & x &  &  &  &  &  \\
+\textit{\textbf{MNX1}} &  &  &  &  &  &  &  & x \\
+\textit{\textbf{MSX2}} & x & x &  &  &  &  &  &  \\
+\textit{\textbf{MYB}} & x &  &  & x &  &  &  &  \\
+\textit{\textbf{MYBL1}} &  &  &  & x &  &  &  &  \\
+\textit{\textbf{MYBL2}} &  &  &  & x & x &  &  &  \\
+\textit{\textbf{NFATC4}} & x &  &  &  &  &  &  &  \\
+\textit{\textbf{NFIB}} &  &  &  &  & x &  &  &  \\
+\textit{\textbf{NFIL3}} &  &  &  &  & x & x &  &  \\
+\textit{\textbf{NR2E3}} & x & x &  &  &  &  &  &  \\
+\textit{\textbf{OVOL2}} &  &  & x &  &  &  &  &  \\
+\textit{\textbf{PATZ1}} &  & x & x &  &  &  &  &  \\
+\textit{\textbf{PBX1}} &  & x &  & x &  &  &  &  \\
+\textit{\textbf{POU2F1}} &  &  & x & x &  &  &  &  \\
+\textit{\textbf{PGR}} & x & x &  &  &  &  &  &  \\
+\textit{\textbf{RARA}} & x & x & x &  &  &  &  &  \\
+\textit{\textbf{RELB}} &  &  &  &  &  & x &  &  \\
+\textit{\textbf{RORC}} & x &  &  &  &  &  &  &  \\
+\textit{\textbf{RUNX3}} &  &  &  &  & x & x &  &  \\
+\textit{\textbf{SOX8}} &  &  &  &  &  & x & x &  \\
+\textit{\textbf{SOX9}} &  &  &  &  &  & x & x &  \\
+\textit{\textbf{SOX11}} &  &  &  &  & x & x &  &  \\
+\textit{\textbf{SPIB}} &  &  &  &  &  & x &  &  \\
+\textit{\textbf{VEZF1}} &  & x &  &  &  &  &  &  \\
+\textit{\textbf{ZBTB4}} & x &  &  &  &  &  &  &  \\
+\textit{\textbf{ZNF281}} &  &  & x & x &  &  &  &  \\
+\textit{\textbf{ZNF423}} & x &  &  &  &  &  &  &  \\
+\textit{\textbf{ZNF467}} & x & x & x &  &  &  &  &  \\
+\textit{\textbf{ZIC1}} &  &  &  &  & x & x & x &  \\ \bottomrule
+\end{tabular}
+\end{table}
+%\begin{figure}[ht!]
+%\centering
+%\includegraphics[width=1.0\textwidth]{images/BRCA_ven.pdf}
+%\caption{\label{fig:venn} Venn diagram of candidate regulatory TFs for each molecular subtype found in at least one of the pairwise comparisons.}
+%\end{figure}

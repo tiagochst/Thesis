@@ -7,29 +7,29 @@ This tool combined DNA methylation and gene expression data from human tissues t
 
 Based on user feedback and a full review of the source code, we identified and implemented a number of software improvements, which are summarized in table \ref{tab:summary}: (i) The original package contained no standard data structure to handle multiple assays (DNA methylation, gene expression, and clinical data), which would be required for an integrative genomic data analysis. Recently, the Bioconductor team provided such a data structure through the \href{http://bioconductor.org/packages/MultiAssayExperiment/}{MultiAssayExperiment} package. (ii) All auxiliary databases (human TF list, classification of TF in families, gene annotation, DNA methylation annotation and motif occurrences within probe sites) used in the package were created and maintained manually, thereby making the upgrade process laborious; thus, we automated this process. (iii) The package was developed to analyze primary tumor tissue samples compared to normal tissues samples, thus not allowing arbitrary subgroups to be compared (for instance mutants vs. non-mutants, treated vs. untreated, etc.) (iv) Our original approach used known epigenomic markers for enhancers to constrain the genomic regions searched for differential methylation. However, this selection could limit our algorithm to identifying regulatory networks for tissue types that exist in the epigenomic databases; we found this constraint problematic, and thus now search \textit{all} distal regulatory regions without any such filter. (v) The function used to download data from The Cancer Genome Atlas (TCGA) data portal \cite{tomczak2015cancer} broke when the TCGA site was shutdown and its data transferred to The NCI's Genomic Data Commons (GDC) \cite{grossman2016toward}; we now have a more general data provider interface that supports GDC as the default provider. (vi) The package only supported data aligned to Genome Reference Consortium GRCh37 (hg19), and we now provide support for Genome Reference Consortium GRCh38 (hg38). (vii) There was no support to the recent HumanMethylationEPIC (EPIC) array. In addition to the specific improvements listed above, we substantially re-wrote most of the code to be more efficient and maintainable,  also most of the output plots generated were improved.
 
-
-\begin{table}[h!]
+\begin{table}
 \centering
-\small
 \caption{Main differences between ELMER old version (v.1) and the new version (v.2)}
 \label{tab:summary}
 %{\def\arraystretch{2}\tabcolsep=10pt
 \resizebox{\textwidth}{!}{%
-\begin{tabular}{@{}m{4.6cm}m{5cm}m{6cm}@{}}
+\begin{tabular}{@{}m{4cm}m{6cm}m{6cm}@{}}
 \toprule
 \toprule
 \multicolumn{1}{c}{\textbf{Features}} & \multicolumn{1}{c}{\textbf{ELMER Version 1}} & \multicolumn{1}{c}{\textbf{ELMER Version 2}}   \\ \midrule \midrule
-Primary data structure                   &  \makecell[l]{mee object \\ (custom data structure)}                       & \makecell[l]{MAE object\\ (Bioconductor data structure)}\\ \midrule
-Auxiliary data                   & Manually created                       & Programmatically created \\\midrule
-Number of human TFs                    & 1,982                                  & 1,987 (Uniprot database)               \\\midrule
-Number of TF motifs                   & 91                                     & 771 (HOCOMOCO v11 database)               \\\midrule
-TF classification                     &  78 families                             & 82 families and 331 subfamilies \newline(TFClass database) \\\midrule
-Analysis performed            & Normal vs tumor samples & Group 1 vs group 2                       \\ \midrule
-Statistical grouping            & Unsupervised only & Unsupervised or supervised using labeled groups                       \\ \midrule
-TCGA data source                   & The Cancer Genome Atlas (TCGA) (not available)                   & The NCI's Genomic Data Commons (GDC)                                      \\\midrule
-Genome of reference                   & GRCh37 (hg19)                          & GRCh37 (hg19)/GRCh38 (hg38)          \\\midrule
-DNA methylation platforms             & HM450                                   & EPIC and HM450                                \\\midrule
-Graphical User interface (GUI)        & None                                   & TCGAbiolinksGUI                       \\
+Primary data structure      & mee object (custom data structure)   & MAE object (Bioconductor data structure) \\ \midrule
+Auxiliary data      & Manually created   & Programmatically created \\\midrule
+Number of human TFs       & 1,982 & 2,014 (UniProt database)    \\\midrule
+Number of TF motifs      & 91    & 771  (HOCOMOCO v11 database)    \\\midrule
+TF classification &  78 families         & 82 families and 331 subfamilies \newline(TFClass database, HOCOMOCO) \\\midrule
+Analysis performed            & Normal vs tumor samples & Group 1 vs group 2   \\ \midrule
+Statistical grouping            & Unsupervised only & Unsupervised or supervised using labeled groups   \\ \midrule
+TCGA data source      & The Cancer Genome Atlas (TCGA) (not available)      & The NCI's Genomic Data Commons (GDC)     \\\midrule
+Genome of reference      & GRCh37 (hg19)      & GRCh37 (hg19)/GRCh38 (hg38)          \\\midrule
+DNA methylation platforms             & HM450  & EPIC and HM450            \\\midrule
+Graphical User Interface (GUI)        & None  & TCGAbiolinksGUI     \\\midrule
+Automatic report        & None  & HTML summarizing results    \\\midrule
+Annotations      & None  & StateHub   \\
 \bottomrule
 \end{tabular}
 }
@@ -163,10 +163,19 @@ An empirical p-value $P_e$ value was calculated using the following formula
 \end{equation}
 
 Notice that in the \textit{Supervised} mode, no additional filtering is
-necessary to ensure that the M and U group segregate by sample group labels.
+necessary to ensure that the $M$ and $U$ group segregate by sample group labels.
 The two sample groups are segregated by definition, since these probes were
 selected for their differential methylation, with the same directionality,
-between the two groups.
+between the two groups (Figure \ref{fig:mode}).
+
+\begin{figure}[h!]
+\begin{minipage}{.5\textwidth}
+\centering
+\includegraphics[width=1.0\textwidth]{images/mode_new.pdf}
+\caption{\label{fig:mode} Supervised mode maximizes statistical power.	Difference of groups $U$ and $M$ definition in \textit{supervised} and \textit{unsupervised} mode. A:  \textit{unsupervised} mode; when minSubgroupFrac argument is set to 40\%, the methylated group is defined as the highest quintile and the unmethylated group as the lowest quintile; B:  \textit{supervised} mode; methylated and unmethylated group are defined as one of the known molecular subtypes. For example, the unmethylated group is represented by all the LumA samples while the methylated group is represented by all the Basal samples. The t-test p-value achieved for the Unsupervised mode is $8.3E-25$, while the Supervised mode is : $1.43E-43$.}
+\end{minipage}
+\end{figure}
+
 
 
 
@@ -193,25 +202,15 @@ motif enrichment analysis. \sigla{HOMER}{Hypergeometric Optimization of Motif En
  available at \burl{http://hocomoco.autosome.ru/downloads} (using the HOMER specific
  format with threshold score levels corresponding to p-value $ \leq 10^{-4}$).
 
-For each probe set tested (i.e. the set of all probes occurring in significant probe-gene pairs),
-a motif enrichment Odds Ratio and a 95\% confidence interval are calculated using following formulas:
-\begin{subequations}
-\begin{align}
-p = \frac{a}{a + b} \\
-P = \frac{c}{c + d} \\
-Odds Ratio = \frac{\frac{p}{(1-p)}}{\frac{P}{1-P}}= \frac{p(1-P)}{P(1-p)}=\frac{ad}{bc} \\
-SD = \sqrt{\frac{1}{a} + \frac{1}{b} + \frac{1}{c} + \frac{1}{d}}
-\end{align}
-\end{subequations}
+ For each probe set tested (i.e. the set of all probes occurring in significant probe-gene pairs), we quantify enrichments using Fisher's exact test (where $a$ is the number of probes within the selected probe set that contains one or more motif occurrences; $b$ is the number of probes within the selected probe set that do not contain a motif occurrence; $c$ and $d$ are the same counts within
+ the entire array probe set drawn from the same set of distal-only probes using the same definition as the primary analysis) and multiple testing correction with the Benjamini-Hochberg procedure \cite{fisher}.
 
-where $a$ is the number of probes within the selected probe set that contains one
-or more motif occurrences; $b$ is the number of probes within the selected probe
-set that do not contain a motif occurrence; $c$ and $d$ are the same counts within
-the entire array probe set (drawn from the same set of distal-only probes using the same definition as the primary analysis). A probe set was considered significantly enriched
-for a particular motif if the 95\% confidence interval of the Odds Ratio was
-greater than $1.1$ (specified by option \textit{lower.OR}, $1.1$ is default), and the motif
-occurred at least 10 times (specified by option \textit{min.incidence}, $10$ is default) in
-the probe set.
+ A probe set was considered significantly enriched
+ for a particular motif if the 95\% confidence interval of the Odds Ratio was greater than $1.1$ (specified by option \textit{lower.OR}, $1.1$ is default),  the motif
+ occurred at least 10 times (specified by option \textit{min.incidence}, $10$ is default) in
+ the probe set and $FDR < 0.05$.
+
+
 
 \subsubsection{Identification of master regulator TFs}
 
