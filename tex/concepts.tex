@@ -253,13 +253,13 @@ In data science, raw data refers to data that have not been changed since acquis
  from next-generation sequencing machines is stored in a FASTQ,
  a common file format data that combines both the sequence and an associated per base quality score \cite{cock2009sanger}.
  Those stored reads are then aligned to a reference genome sequence with software like Bowtie 2 \cite{langmead2012fast},
-generating SAM files, the accepted standard for storing short read alignment data, which are subsequently compressed to binary  format (\sigla{BAM}{Binary Alignment/Map }) via SAMtools \cite{li2009sequence}. It in common to consider this set of SAM, BAM, and FASTQ files as raw data. Some databases classify this raw data as level 1, protected level or raw level.
+generating SAM files, the accepted standard for storing short read alignment data, which are subsequently compressed to binary  format (\sigla{BAM}{Binary Alignment/Map }) via SAMtools \cite{li2009sequence}. It is common to consider this set of SAM, BAM, and FASTQ files as raw data. Some databases classify this raw data as level 1, protected level or raw level.
 It is important to highlight that due to privacy concerns, the access to this raw data is controlled
 because it could be used in identity tracing attacks \cite{erlich2014routes,ayday2014privacy} as
 generally includes individually identifiable data such as low-level genomic sequencing data, germline variants, SNP6 genotype data, and certain clinical data elements \cite{GDC_data}.
 This raw data are processed through bioinformatics pipelines generating
 processed data files or matrices (usually in the form of tab-delimited text files).
-Some databases classify this processed data as level 2 or high or as open.
+Some databases classify this processed data as level 2 or higher or as open.
 For example, the previously stored data in CGHub, TCGA Data Portal and Broad Institute’s GDAC Firehose, were provided as different levels or tiers that were defined in terms of a specific combination of both processing level (raw, normalized, integrated) and access level (controlled or open access). Level 1 indicated raw and controlled data, level 2 indicated processed and controlled data, level 3 indicated Segmented or Interpreted Data and open access and level 4 indicated region of interest and open access data.
 
 In the next subsections, we will focus on the processed data and their data
