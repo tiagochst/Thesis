@@ -994,19 +994,19 @@ h}%
 {\def\arraystretch{2}\tabcolsep=10pt
 
     \vspace*{0.5cm}
-   	\begin{tabular}{@{}p{1cm}p{5.5cm}p{1.5cm}p{6cm}@{}}
+   	\begin{tabular}{@{}p{1.2cm}p{5.3cm}p{1.5cm}p{6cm}@{}}
 		Prof. Dr.:      & \hrulefill & Institution:   & \hrulefill \\
 		Verdict:       & \hrulefill & Signature: & \hrulefill \\
 	\end{tabular}
 
   \vspace*{0.5cm}
-  \begin{tabular}{@{}p{1cm}p{5.5cm}p{1.5cm}p{6cm}@{}}
+  \begin{tabular}{@{}p{1.2cm}p{5.3cm}p{1.5cm}p{6cm}@{}}
   Prof. Dr.:      & \hrulefill & Institution:   & \hrulefill \\
   Verdict:       & \hrulefill & Signature: & \hrulefill \\
 \end{tabular}
 
 \vspace*{0.5cm}
-\begin{tabular}{@{}p{1cm}p{5.5cm}p{1.5cm}p{6cm}@{}}
+\begin{tabular}{@{}p{1.2cm}p{5.3cm}p{1.5cm}p{6cm}@{}}
 Prof. Dr.:      & \hrulefill & Institution:   & \hrulefill \\
 Verdict:       & \hrulefill & Signature: & \hrulefill \\
 \end{tabular}
