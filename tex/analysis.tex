@@ -67,7 +67,7 @@ comparing groups CIMP.L and CIMP.H. \textbf{(A)} Expression volcano plot: fold c
 
 \section{Use cases using ELMER}\label{sec:analysis_elmer}
 
-To exemplify the use of this new version we performed \textit{ELMER} analysis on TCGA BRCA (Breast Invasive Carcinoma) data retrieved directly from the GDC server by TCGAbiolinks. Use Case 1 compares tumor samples to normal samples using the \textit{Unsupervised} analysis mode, while Use Case 2 compares known BRCA molecular subtypes using the \textit{Supervised} mode. The HTML output report containing the code and results of both analysis are available as supplemental material and at \url{https://github.com/tiagochst/ELMER_supplemental/raw/master/supplemental_files.zip}.
+To exemplify the use of the new version we performed \textit{ELMER} analysis on TCGA BRCA (Breast Invasive Carcinoma) data retrieved directly from the GDC server by TCGAbiolinks. Use Case 1 compares tumor samples to normal samples using the \textit{Unsupervised} analysis mode, while Use Case 2 compares known BRCA molecular subtypes using the \textit{Supervised} mode. The HTML output report containing the code and results of both analysis are available as supplemental material and at \url{https://github.com/tiagochst/ELMER_supplemental/raw/master/supplemental_files.zip}.
 
 %\newpage
 \subsection{Use Case 1: Breast Invasive Carcinoma (Unsupervised mode)}
@@ -101,7 +101,9 @@ This analysis showed that the set of differentially methylated CpG probes (DMCs)
 \subsubsection*{Functional annotation of cis-regulatory modules using \texttt{StateHub}}
 While ELMER version 1 was limited to searching within annotated enhancer elements, we have since found that this constraint was not necessary to achieve statistical power. Thus ELMER 2.0 by default searches \textit{all} distal elements in the genome (distal elements are those greater than $\pm1 kb$ from a TSS; By changing ELMER default settings, it is possible to analyze TSS-proximal probes, either together with distal probes or separately.
 
-Because ELMER can now search essentially all probes on the array, it is important to understand the context of the probes that result from an ELMER analysis. Typically these are enhancer probes, but some regulatory changes may involve promoters, insulators, etc. We used the \textit{StateHub} \cite{statepaintr} and \textit{FunciVar} Bioconductor packages, as described above, to characterize enrichment of the various cell-type-specific chromatin states in the significant BRCA-hypomethylated probes (Figure \ref{fig:funcivar}). Importantly, the MCF-7 cell line, and ER-positive breast cancer cell line, is much more strongly enriched for all enhancer and promoter classes than other cell types. As more reference cell types become available, this analysis will be useful in characterizing tumor GRN changes that reflect particular cell types or co-opted developmental programs.
+Because ELMER can now search essentially all probes on the array, it is important to understand the context of the probes that result from an ELMER analysis. Typically these are enhancer probes, but some regulatory changes may involve promoters, insulators, etc. We used the \textit{StateHub} \cite{statepaintr} and \textit{FunciVar} Bioconductor packages, to characterize enrichment of the various cell-type-specific chromatin states in the significant BRCA-hypomethylated probes (Figure \ref{fig:funcivar}).
+
+ Importantly, the MCF-7 cell line, and ER-positive breast cancer cell line, is much more strongly enriched for all enhancer and promoter classes than other cell types. As more reference cell types become available, this analysis will be useful in characterizing tumor GRN changes that reflect particular cell types or co-opted developmental programs.
 
 %\afterpage{
 \begin{figure}
