@@ -44,14 +44,14 @@ The user interface has been divided into three main \sigla{GUI}{Graphical User I
   \begin{figure}[h!]
   \centering
   \includegraphics[width=1.0\textwidth]{images/idat.pdf}
-  \caption{TCGAbiolinksGUI: IDAT normalization. Table shows files identified that will be processed. Data retrieved from GEO (accession GSE61160). }
+  \caption[TCGAbiolinksGUI: IDAT normalization]{TCGAbiolinksGUI: IDAT normalization. Table shows files identified that will be processed. Data retrieved from GEO (accession GSE61160). }
   \label{fig:idat}
    \end{figure}
-   
+
   \begin{figure}[h!]
   \centering
   \includegraphics[width=1.0\textwidth]{images/glioma_classifier.pdf}
-  \caption{TCGAbiolinksGUI: glioma classifier. Predicting molecular subtypes based on DNA methylation using data from GEO (accession GSE61160).}
+  \caption[TCGAbiolinksGUI: glioma classifier]{TCGAbiolinksGUI: glioma classifier. Predicting molecular subtypes based on DNA methylation using data from GEO (accession GSE61160).}
   \label{fig:glioma}
    \end{figure}
 
@@ -73,7 +73,7 @@ The user interface has been divided into three main \sigla{GUI}{Graphical User I
   \begin{figure}[h!]
   \centering
   \includegraphics[width=1.0\textwidth]{images/clinical_mutation.png}
-  \caption{TCGAbiolinksGUI: Integrating clinical data and mutation data. Performing Kaplan-Meier survival analysis for groups of samples with a mutation in gene USH2A vs the WT ones using the R/Bioconductor maftools package.}
+  \caption[TCGAbiolinksGUI: Integrating clinical data and mutation data]{TCGAbiolinksGUI: Integrating clinical data and mutation data. Performing Kaplan-Meier survival analysis for groups of samples with a mutation in gene USH2A vs the WT ones using the R/Bioconductor maftools package.}
   \label{fig:mutation_clinical}
    \end{figure}
 
@@ -112,12 +112,11 @@ We recognize that one of the possible drawbacks of using our tool is the arduous
 \subsection{Comparison of alternative software}
 
 
-Web tools used for cancer data analysis might be classified into two broad groups. 
+Web tools used for cancer data analysis might be classified into two broad groups.
 The first group only provides an interface to existing software analysis tools.
 The Galaxy project (\burl{https://galaxyproject.org/}), which is an open, web-based platform for accessible, reproducible, and transparent computational biomedical research, is an example of such a tool that belongs to this group.
 The other group is composed of exploratory tools mainly focused on the visualization of processed data and pre-computed results. The cBioPortal project \cite{gao2013integrative,cerami2012cbio}, by providing several visualizations for mining the TCGA data, is an example of a tool that falls within this classification.
 
-If one were to correctly classify TCGAbiolinksGUI, it would belong to the first group. Compared to the Galaxy project, TCGAbiolinksGUI offers an open platform which improves the accessibility of R/Bioconductor packages, allowing users an advantage to integrate their features with existing Bioconductor packages without the need to go beyond the R/Shiny frameworks as a common feature from the Galaxy project, which requires the interface elements to be structured through XML files \cite{10.12688/f1000research.9821.1}. 
+If one were to correctly classify TCGAbiolinksGUI, it would belong to the first group. Compared to the Galaxy project, TCGAbiolinksGUI offers an open platform which improves the accessibility of R/Bioconductor packages, allowing users an advantage to integrate their features with existing Bioconductor packages without the need to go beyond the R/Shiny frameworks as a common feature from the Galaxy project, which requires the interface elements to be structured through XML files \cite{10.12688/f1000research.9821.1}.
 In addition, outside of the R/Bioconductor environment requires more software dependencies which make the process to install Galaxy + R/Bioconductor packages laborious and cumbersome, something most non-bioinformaticians are eager to contend with.
-Compared to cBioPortal, TCGAbiolinksGUI not only provides users with access to raw and processed data, but TCGAbiolinksGUI allows users to perform a deep integrative analysis which is not currently available in cBioPortal.  For example, if a user is interested in defining differentially expressed genes or DNA methylation events between two populations of tumors (i.e. FOXA1 mutants and wildtypes), cBioPortal would only allow users access to the samples data and expect the users to download and analyze within their own favorite tool thus limiting many users from implementing this type of analysis. TCGAbiolinksGUI takes the groups of samples and can define a list of differentially expressed genes, pathway analysis, and even survival analysis all within one tool without the need to perform any further bioinformatics integration. 
-
+Compared to cBioPortal, TCGAbiolinksGUI not only provides users with access to raw and processed data, but TCGAbiolinksGUI allows users to perform a deep integrative analysis which is not currently available in cBioPortal.  For example, if a user is interested in defining differentially expressed genes or DNA methylation events between two populations of tumors (i.e. FOXA1 mutants and wildtypes), cBioPortal would only allow users access to the samples data and expect the users to download and analyze within their own favorite tool thus limiting many users from implementing this type of analysis. TCGAbiolinksGUI takes the groups of samples and can define a list of differentially expressed genes, pathway analysis, and even survival analysis all within one tool without the need to perform any further bioinformatics integration.
