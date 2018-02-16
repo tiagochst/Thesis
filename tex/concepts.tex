@@ -1,10 +1,10 @@
 This chapter explains some of the fundamental concepts used in the development in this thesis.
-In section \ref{sec:concept-cancer} cancer introduced. Its characteristics when compared to normal cells,
-the molecular mechanisms responsible for its onset and those that facilitate its maintenance and proliferation.
+In section \ref{sec:concept-cancer} the concept of cancer is introduced. The characteristics of cancerous cells compared to normal cells, the molecular mechanisms responsible for their onset and those that facilitate their maintenance and proliferation.
 In section \ref{sec:concept-alteration} the genetic and epigenetic changes in cancer cells are detailed.
-In section \ref{sec:concept-data} the clinical, genetic and epigenetic data publicly available used for cancer data analysis is described. Their computational representation and data structures available to manipulate large collections of data are detailed.
+In section \ref{sec:concept-data} the clinical, genetic and epigenetic data publicly available used for cancer data analysis are described. Their computational representation and data structures available to manipulate large collections of data are detailed.
 Finally, in section \ref{sec:concept-analysis} several techniques of data analysis
-used to extract biological knowledge from this data is presented.
+used to extract biological knowledge from this data are presented.
+
 
 \section{Cancer} \label{sec:concept-cancer}
 
@@ -33,16 +33,16 @@ If compared to normal cells, cancer cells acquired capabilities which includes s
     Moreover, disruption of such self-attenuating
     signaling may contribute to the development of
     adaptive resistance toward drugs targeting mitogenic signaling.
-    To evade those growth suppressors proteins tumor cells developed mechanisms of contact inhibition and its evasion
+    To evade those growth suppressors proteins tumor cells developed mechanisms of contact inhibition and its evasion.
 
     \item[Resisting Cell Death]
-    The loss of TP53 tumor suppressor function, which eliminates this critical damage sensor from the apoptosis-inducing circuitry, is a tumor cell strategies to limit or circumvent apoptosis \cite{hanahan2011hallmarks}.
+    The loss of TP53 tumor suppressor function, which eliminates this critical damage sensor from the apoptosis-inducing circuitry, is a strategy of tumor cells to limit or circumvent apoptosis \cite{hanahan2011hallmarks}.
 \end{description}
 
 Those capabilities, which enable tumor growth and metastatic dissemination, were acquired mainly due to a genetic diversity
  generated  by genome instability \cite{hanahan2011hallmarks}.
  A multistep tumor progression can be portrayed as
-a succession of clonal expansions, which can be triggered by non mutational changes (epigenetic mechanisms such as DNA methylation and histone modifications \cite{berdasco2010aberrant})
+a succession of clonal expansions, which can be triggered by non mutational changes (epigenetic mechanisms such as DNA methylation and histone modifications \cite{berdasco2010aberrant}
 or mutational changes affecting the regulation of gene expression.
 
 To increase  the rates of mutation, cancer cells often breakdown components of the genomic maintenance machinery
@@ -77,7 +77,7 @@ are involved in establishing a new methylation pattern to unmodified DNA, and Dn
 to the methylation of a daughter strand during the DNA replication process.
 
 The majority of DNA methylation occurs on cytosines that precede a guanine nucleotide (CpG sites), however
-\citeonline{xie2012base} it has already been reported a significant percentage of methylated non-CpG sites \cite{xie2012base}.
+it has already been reported a significant percentage of methylated non-CpG sites \cite{xie2012base}.
 
 The role of DNA methylation varies in different genomic regions.
 Within intergenic regions, the DNA methylation represses the expression of potentially harmful genetic elements,
@@ -134,7 +134,7 @@ normal variation (does not directly cause disease) \cite{clancy2008genetic}.
 
 An example of a point mutations that is able to alter proteins is the insertion or the deletion of a single base, called frameshift mutations. This change of nucleotides alters the codons (a group of three nucleotides) read by the ribosomes, which
  affects the protein resulted during the translation process. Table \ref{mutation-effect}
- show a classification of translational effect of variant allele \cite{GTAK_maf,maf}.
+ shows a classification of translational effect of variant allele \cite{GTAK_maf,maf}.
 
 \begin{landscape}
 
@@ -172,10 +172,10 @@ lincRNA & The variant lies on one of the lincRNAs. \\\bottomrule
 \end{table}
 
 \end{landscape}
-Not only changes in DNA can occur on a single nucleotide called point mutations but they can
+Not only changes in DNA can occur on a single nucleotide but they can
 also occur at the level of the chromosome, in which large segments of chromosomes are altered
 (deleted, duplicated, inverted, translocated to different chromosomes, rearranged)
-resulting in levels of gene expression, the complete absence of genes, or the alteration of gene sequence.
+resulting in changes in the level of gene expression, the complete absence of genes, or the alteration of gene sequence.
 \citeonline{feuk2006structural} define structural variants as genomic alterations that involve segments
 of DNA that are larger than $1 kb$ which can be microscopic ($> 3Mb$) or submicroscopic ($1 kb$ to $3 Mb$) variants,
 and also define smaller ($<1 kb$) variations or polymorphisms that involve the copy-number change
@@ -207,19 +207,19 @@ Table \ref{mutation} summarizes the types of mutations.
  \hline \hline
  \multicolumn{1}{c}{\textbf{Class of Mutation}} & \multicolumn{1}{c}{\textbf{Type of Mutation}} & \multicolumn{1}{c}{\textbf{Description}}  \\ \hline \hline
 \multicolumn{1}{c|}{\multirow{3}{*}{\parbox{3cm}{\vspace{1.2cm} Point mutation}}}
-& Substitution  & One base is incorrectly added during replication and replaces the pair in the corresponding position on the complementary strand \\  \cline{2-3}
-\multicolumn{1}{c|}{}                                       & Insertion                                     & One or more extra nucleotides are inserted into replicating DNA, often resulting in a frameshift                                 \\  \cline{2-3}
-\multicolumn{1}{c|}{}                                       & Deletion                                      & One or more nucleotides is "skipped" during replication or otherwise excised, often resulting in a frameshift                  \\ \hline
+& Substitution  & One base is incorrectly added during replication and replaces the pair in the corresponding position on the complementary strand. \\  \cline{2-3}
+\multicolumn{1}{c|}{}                                       & Insertion                                     & One or more extra nucleotides are inserted into replicating DNA, often resulting in a frameshift.                                 \\  \cline{2-3}
+\multicolumn{1}{c|}{}                                       & Deletion                                      & One or more nucleotides is "skipped" during replication or otherwise excised, often resulting in a frameshift.                  \\ \hline
 \multicolumn{1}{c|}{\multirow{4}{*}{\parbox{4cm}{\vspace{1.2cm} Chromosomal mutation}}}  &
 Inversion  & A segment of DNA that is reversed in orientation with respect to the rest of the chromosome. \\  \cline{2-3}
 \multicolumn{1}{l|}{}    & Deletion & A region of a chromosome is lost,
-resulting in the absence of all the genes in that area      \\  \cline{2-3}
+resulting in the absence of all the genes in that area.      \\  \cline{2-3}
 \multicolumn{1}{l|}{}    & Duplication   or low-copy repeat   & A segment of DNA $<1 kb$ in size that occurs in two or more copies per haploid genome, with the different copies sharing $>90\%$ sequence identity.  \\  \cline{2-3}
 \multicolumn{1}{l|}{}    & Translocation   &  A change in position of a chromosomal segment within a genome that involves no change to the total DNA content. Translocations can be intra- or inter- chromosomal.   \\ \hline
 \multicolumn{1}{l|}{\multirow{2}{*}{Copy number variation}} & Gain/Amplification
- & A single-copy gain or a multi-copy amplification of the entire gene  \\  \cline{2-3}
+ & A single-copy gain or a multi-copy amplification of the entire gene.  \\  \cline{2-3}
 \multicolumn{1}{l|}{}  & Loss/Deletion  &
-A loss  for part or all of a coding region within the gene footprint in a single allele/copy (hemizygous deletion) or deletion  for part or all of a coding region within the gene footprint in both alleles/copies (homozygous deletion). \cite{comis_cnv} \\\hline
+A loss  for part or all of a coding region within the gene footprint in a single allele/copy (hemizygous deletion) or deletion  for part or all of a coding region within the gene footprint in both alleles/copies (homozygous deletion)\cite{comis_cnv} . \\\hline
 \end{tabular}
  \end{table}
  \egroup
@@ -233,12 +233,12 @@ A loss  for part or all of a coding region within the gene footprint in a single
 
 \subsection{Databases} \label{susec:db}
 \begin{description}
-  \item [The Cancer Genome Atlas (TCGA):] The TCGA consortium, which was a \sigla{NIH}{National Institute of Health} initiative, made publicly available molecular and clinical information for more than 30 types of human cancers including exome (variant analysis), single nucleotide polymorphism (SNP), DNA methylation, transcriptome (mRNA), microRNA (miRNA) and proteome. Sample types available at TCGA are primary solid tumors, recurrent solid tumors, blood-derived normal and tumor, metastatic, and solid tissue normal \cite{weinstein2013cancer}. This project was ended in mid-2016 and its data was moved to  the NCI Genomic Data Commons (GDC).
+  \item [The Cancer Genome Atlas (TCGA):] The TCGA consortium, a \sigla{NIH}{National Institute of Health} initiative, made publicly available molecular and clinical information for more than 30 types of human cancers including exome (variant analysis), single nucleotide polymorphism (SNP), DNA methylation, transcriptome (mRNA), microRNA (miRNA) and proteome. Sample types available at TCGA are primary solid tumors, recurrent solid tumors, blood-derived normal and tumor, metastatic, and solid tissue normal \cite{weinstein2013cancer}. This project ended in mid-2016 and its data was transferred to  the NCI's Genomic Data Commons (GDC).
   \item [The Genomic Data Commons (GDC):]  The NCI's Genomic Data Commons (GDC) provides the cancer research community with a unified data repository that enables data sharing across cancer genomic studies in support of precision medicine.
   It supports numerous cancer genome programs at the NCI \sigla{CCG}{Center for Cancer Genomics}, including The Cancer Genome Atlas (TCGA) and Therapeutically Applicable Research to Generate Effective Treatments (TARGET) \cite{GDC_web}.
-  Those data is harmonized against GRCh38 (hg38) using GDC Bioinformatics Pipelines which provides methods to the standardization of biospecimen and clinical data, the re-alignment of DNA and RNA sequence data against a common reference genome build GRCh38, and the generation of derived data. Also, this repository has a Legacy Archive to provide access to a unmodified copy of data that was previously stored in CGHub \cite{wilks2014cancer} and in the TCGA Data Portal hosted by the TCGA Data Coordinating Center (DCC), in which uses as references GRCh37 (hg19) and GRCh36 (hg18).
-  \item [The Encyclopedia of DNA Elements (ENCODE):] Found in 2003 by the \sigla{NHGRI}{National Human Genome Research Institute}, the project aims to build a comprehensive list of functional elements that have an active role in the genome, including regulatory elements that govern gene expression. Biosamples include immortalized cell lines, tissues, primary cells and stem cells \cite{encode2011user}.
-  \item [The NIH Roadmap Epigenomics Mapping Consortium:] This was launched with the goal of producing a public resource of human epigenomic data in order to analyze biology and disease-oriented research. Roadmap maps DNA methylation, histone modifications, chromatin accessibility, and small RNA transcripts in stem cells and primary ex vivo tissues
+  Those data is harmonized against GRCh38 (hg38) using GDC Bioinformatics Pipelines which provides methods to the standardization of biospecimen and clinical data, the re-alignment of DNA and RNA sequence data against a common reference genome build GRCh38, and the generation of derived data. Also, this repository has a Legacy Archive to provide access to a unmodified copy of data that was previously stored in CGHub \cite{wilks2014cancer} and in the TCGA Data Portal hosted by the TCGA Data Coordinating Center (DCC), whose data were aligned to the reference genomes GRCh37 (hg19) and GRCh36 (hg18).
+  \item [The Encyclopedia of DNA Elements (ENCODE):] Founded in 2003 by the \sigla{NHGRI}{National Human Genome Research Institute}, the project aims to build a comprehensive list of functional elements that have an active role in the genome, including regulatory elements that govern gene expression. Biosamples include immortalized cell lines, tissues, primary cells and stem cells \cite{encode2011user}.
+  \item [The NIH Roadmap Epigenomics Mapping Consortium:] Roadmap was launched with the goal of producing a public resource of human epigenomic data to catalyze basic biology and disease-oriented research \cite{Bernstein}. Roadmap maps DNA methylation, histone modifications, chromatin accessibility, and small RNA transcripts in stem cells and primary ex vivo tissues
   \cite{Fingerman,Bernstein}.
 \end{description}
 
@@ -253,13 +253,13 @@ In data science, raw data refers to data that have not been changed since acquis
  from next-generation sequencing machines is stored in a FASTQ,
  a common file format data that combines both the sequence and an associated per base quality score \cite{cock2009sanger}.
  Those stored reads are then aligned to a reference genome sequence with software like Bowtie 2 \cite{langmead2012fast},
-generating SAM files, the accepted standard for storing short read alignment data, which are subsequently compressed to binary  format (\sigla{BAM}{Binary Alignment/Map }) via SAMtools \cite{li2009sequence}. It in common to consider this set of SAM, BAM, and FASTQ files as raw data. Some databases classify this raw data as level 1, protected level or raw level.
+generating SAM files, the accepted standard for storing short read alignment data, which are subsequently compressed to binary  format (\sigla{BAM}{Binary Alignment/Map }) via SAMtools \cite{li2009sequence}. It is common to consider this set of SAM, BAM, and FASTQ files as raw data. Some databases classify this raw data as level 1, protected level or raw level.
 It is important to highlight that due to privacy concerns, the access to this raw data is controlled
 because it could be used in identity tracing attacks \cite{erlich2014routes,ayday2014privacy} as
 generally includes individually identifiable data such as low-level genomic sequencing data, germline variants, SNP6 genotype data, and certain clinical data elements \cite{GDC_data}.
 This raw data are processed through bioinformatics pipelines generating
 processed data files or matrices (usually in the form of tab-delimited text files).
-Some databases classify this processed data as level 2 or high or as open.
+Some databases classify this processed data as level 2 or higher or as open.
 For example, the previously stored data in CGHub, TCGA Data Portal and Broad Institute’s GDAC Firehose, were provided as different levels or tiers that were defined in terms of a specific combination of both processing level (raw, normalized, integrated) and access level (controlled or open access). Level 1 indicated raw and controlled data, level 2 indicated processed and controlled data, level 3 indicated Segmented or Interpreted Data and open access and level 4 indicated region of interest and open access data.
 
 In the next subsections, we will focus on the processed data and their data
@@ -272,7 +272,7 @@ structures used in this project.
   DNA methylation data files contain information on raw and normalized signal intensities, detection confidence and calculated beta values for methylated and unmethylated probes.
   The processed data from DNA methylation array-based platforms such as GoldenGate, Infinium Human Methylation27, and the Infinium HD 450K methylation array, are presented in the form of beta-values that uses a scale ranging from 0.0 (probes completely unmethylated ) up to 1.0 (probes completely methylated). In each sample file, each row represents a 1 bp region (probe) and its correspondent beta-value. Also, probes overlapping with SNPs are normally masked as they are based largely on ad hoc assumptions and subjective criteria \cite{zhou2016comprehensive}.
   \item [Somatic Variant data:]  The DNA-Seq Somatic Variant Analysis algorithms, such as MuSE \cite{fan2016muse}, Mutect2 \cite{cibulskis2013sensitive}, SomaticSniper \cite{larson2011somaticsniper} and Varscan2 \cite{koboldt2012varscan},   identify and characterizes somatic mutations by comparing reference alignments from tumor and normal samples from the same case.  The   results of the variant calls are stored in a Mutation Annotation Format (MAF), which are filtered to remove any potentially erroneous or germline variant calls. Each row of these  represents a mutation in the genome of a sample \cite{GDC_maf}.
-  \item [RNA-Seq Gene Expression data]: The processed data contains read counts measured on a gene level, which might be normalized using some methods such as the \sigla{FPKM}{Fragments Per Kilobase of transcript per Million mapped reads} \cite{GDC_fpmk} and FPKM Upper Quartile (FPKM-UQ) \cite{GDC_fpmkuq}.
+  \item [RNA-Seq Gene Expression data:] The processed data contains read counts measured on a gene level, which might be normalized using some methods such as the \sigla{FPKM}{Fragments Per Kilobase of transcript per Million mapped reads} \cite{GDC_fpmk} and FPKM Upper Quartile (FPKM-UQ) \cite{GDC_fpmkuq}.
   \item [miRNA-Seq data:] The processed data contains expression levels measured and normalized post-alignment. Normalization is performed using the \sigla{RPM}{Reads per Millions} method. Expression levels of known miRNAs and observed miRNA isoforms are generated for each sample.
   \item [Copy Number Variation data:] The processed data is a table that associates contiguous chromosomal segments with genomic coordinates, mean array intensity (log2 ratio segment means), and the number of probes that binds to each segment. This information might be masked to remove segments with probes known to contain germline mutations.
   From the \sigla{CBS}{Circular Binary Segmentation} methods output described previously, algorithms such as GISTIC2 \cite{mermel2011gistic2} are used to identify significantly altered regions of amplification or deletion across sets of patients.
@@ -323,7 +323,7 @@ Some of the main data structures from the R/Bioconductor used in this project ar
   \begin{figure}[ht!]
   \centering
   \includegraphics[width=1.0\textwidth]{images/Granges.png}
-  \caption[Granges object]{\label{fig:granges} Example of Granges object.}
+  \caption[Granges object]{\label{fig:granges} Example of a Granges object.}
   \end{figure}
   \item [\sigla{SE}{SummarizedExperiment}:]  This data structure, exemplified in Figure \ref{fig:SE}, is a  matrix-like container where rows represent ranges of interest (as a GRanges object) and columns represent samples (with sample data summarized as a DataFrame). It can contains one or more assays, each represented by a matrix-like object of numeric or other mode.
   \begin{figure}[ht!]
@@ -331,7 +331,7 @@ Some of the main data structures from the R/Bioconductor used in this project ar
   \includegraphics[width=1.0\textwidth]{images/summarizedExperiment.png}
   \caption[Sumarized Experiment object]{\label{fig:SE} Example of Sumarized Experiment object. Figure reproduced from SummarizedExperiment manual \cite{SummarizedExperiment}.}
   \end{figure}
-  \item [\sigla{MAE}{MultiAssayExperiment}:] This data structure is an integrative environment where multiple assays are managed and preprocessed for genomic data analysis.  It is composed of at least two metadata matrices, one with the phenotype metadata (i.e. clinical data) and one table mapping each data column from different assays to a entry in the phenotype metadata. The data handle by this data structure can be several SummarizedExperiment objects (i.e DNA methylation, gene expression, copy number, histone modification signals).
+  \item [\sigla{MAE}{MultiAssayExperiment}:] This data structure is an integrative environment where multiple assays are managed and preprocessed for genomic data analysis.  It is composed of at least two metadata matrices, one with the phenotype metadata (i.e. clinical data) and one table mapping each data column from different assays to an entry in the phenotype metadata. The data stored by this data structure can be several SummarizedExperiment objects (i.e DNA methylation, gene expression, copy number, histone modification signals).
 
 \end{description}
 
@@ -350,7 +350,7 @@ that can impact gene function are, gene copy number
 (CN), DNA methylation, single nucleotide variations (SNV), and indels (small insertions and
 deletions).
 These variations can have a direct effect by modifying
- the function of the gene product, for example, a
+ the function of the gene product, for example, an
 indel in a coding region, or an indirect effect such as
 the modification of  regulatory regions which can interfere
  with gene expression by inhibiting transcription \cite{thingholm2016strategies}.
@@ -808,12 +808,12 @@ usually taken as suggestive of a particular number of groups.
 Some formal methods were also proposed such as the Silhouette index by \citeonline{rousseeuw1987silhouettes}.
 And the second counterpoint of this technique is the choice of initial starting values which might lead to a local optimal solution, some solution to this problem such as a  bootstrap-like approach to ‘refine’ initial seeds are suggested \cite{steinley2003local}.
 }
-\item[Principal component analysis (PCA):]{
-This method transforms the variables in a multivariate data set into new variables  which are uncorrelated with each other and a linear combination of the original variables. This technique provides a means of
-projecting the data into a lower dimensional space, which is very useful  mainly due to the problems of high dimensional data which is called ``curse of dimensionality''.
-Generally, \citeonline{verleysen2005curse} defines the curse of dimensionality as the expression of all phenomena that appear with high-dimensional data, and that have most often unfortunate consequences on the behavior and performances of learning algorithms. In summary, the number of learning data should grow exponentially with
-the dimension, that means if 10 data  is reasonable to learn a 1-dimensional model, for a 2-dimensional model it will need 100 data). For example, in genetics, microarray experiments have information for thousands of genes, if each one is considered a variable we would have a thousand dimensions,
-and we would need an enormous amount of observations to obtain a reliable result. If a dimensionality reduction is not performed, with a increase of data features (dimensions), it is very likely that, by chance, one feature perfectly separates the training examples into positive and negative classes, which would lead
-to good performance on the training data but poor generalization to data that were not used in training \cite{libbrecht2015machine}.
-}
+%\item[Principal component analysis (PCA):]{
+%This method transforms the variables in a multivariate data set into new variables  which are uncorrelated with each other and a linear combination of the original variables. This technique provides a means of
+%projecting the data into a lower dimensional space, which is very useful  mainly due to the problems of high dimensional data which is called ``curse of dimensionality''.
+%Generally, \citeonline{verleysen2005curse} defines the curse of dimensionality as the expression of all phenomena that appear with high-dimensional data, and that have most often unfortunate consequences on the behavior and performances of learning algorithms. In summary, the number of learning data should grow exponentially with
+%the dimension, that means if 10 data  is reasonable to learn a 1-dimensional model, for a 2-dimensional model it will need 100 data). For example, in genetics, microarray experiments have information for thousands of genes, if each one is considered a variable we would have a thousand dimensions,
+%and we would need an enormous amount of observations to obtain a reliable result. If a dimensionality reduction is not performed, with a increase of data features (dimensions), it is very likely that, by chance, one feature perfectly separates the training examples into positive and negative classes, which would lead
+%to good performance on the training data but poor generalization to data that were not used in training \cite{libbrecht2015machine}.
+%}
 \end{description}

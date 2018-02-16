@@ -25,22 +25,35 @@ The user interface has been divided into three main \sigla{GUI}{Graphical User I
 \end{figure}
 
 \begin{itemize}
-\item \textbf{GDC Data:} Provides a guided approach to search for published molecular subtype information, clinical and molecular data. In addition, it downloads and processes the molecular data into an R object that can be used for further analysis (Figure \ref{fig:geneexp})
-\item \textbf{Clinical analysis:} Performs survival analysis to quantify and test survival differences between two or more groups of patients and draws survival curves with the 'number at risk' table, the cumulative number of events table and the cumulative number of censored subjects table using the R/CRAN package survminer \cite{survminer} (Figure \ref{fig:gui_survival}).
-\item \textbf{Epigenetic analysis:} Performs a Differentially methylated regions (DMR) analysis, visualizes the results through both volcano and heatmap plots, and visualizes the mean DNA methylation level by groups (Figure \ref{fig:gui_heatmap}).
-\item \textbf{Transcriptomic analysis:} Performs a Differential Expression Analysis (DEA), and visualizes the results through both volcano and heatmap plots. For the genes found as upregulated or downregulated an enrichment analysis can be performed and pathway data can be integrated \cite{luo2013pathview} (Figure \ref{fig:gui_ea}).
-\item \textbf{Genomic analysis:} Visualize and summarize the mutations from MAF (Mutation Annotation Format) files through summary plots and oncoplots using the R/Bioconductor maftools package \cite{Gu20052016,Maftools}
-(Figures \ref{fig:maftoools_oncoplot} and \ref{fig:maftoools_summary}).
-\item \textbf{Integrative analysis:} Integrate the DMR and DEA results through a starburst plot. Also, using the DNA methylation data and the gene expression data the R/Bioconductor ELMER package can be used to discover functionally relevant genomic regions associated with cancer \cite{yao2015inferring, ELMER2}.
+	\item \textbf{Data:} Provides a guided approach to search for published molecular subtype information, clinical and molecular data available in GDC. In addition, it downloads and processes the molecular data into an R object that can be used for further analysis. For raw DNA methylation data obtained in the form of Intensity Data (IDAT) files, we provide a pipeline using the R/Bioconductor minfi package (\burl{http://bioconductor.org/packages/minfi/}) to process the data for downstream analysis \cite{aryee2014minfi} performing a background and dye-bias correction with the \href{https://www.bioconductor.org/help/course-materials/2015/BioC2015/methylation450k.html\#preprocessnoob}{preprocessnoob} function followed by a detection P-value quality masking (sample-specific) \cite{morris2015analysis} and probes overlapping repeats or single nucleotide polymorphisms masking (non-sample specific) \cite{zhou2016comprehensive} (Figure \ref{fig:idat}).
+	\item \textbf{Clinical analysis:} Performs survival analysis to quantify and test survival differences between two or more groups of patients and draws survival curves with the 'number at risk' table, the cumulative number of events table and the cumulative number of censored subjects table using the R/CRAN package survminer \cite{survminer}.
+	\item \textbf{Epigenetic analysis:} Performs a Differentially methylated regions (DMR) analysis, visualizes the results through both volcano and heatmap plots, and visualizes the mean DNA methylation level by groups or subtypes. For certain tumor types like Glioma, we have added a function to classify non TCGA derived DNA methylation data into one of the 7 published epigenomic subtypes \cite{ceccarelli2016molecular} using a RandomForest trained model derived from DNA methylation signatures available at \burl{https://tcga-data.nci.nih.gov/docs/publications/lgggbm_2015/} (Figure \ref{fig:glioma}). Details of how these RandomForest were created are available in the \href{https://bioconductor.org/packages/devel/data/experiment/vignettes/TCGAbiolinksGUI.data/inst/doc/vignettes.html}{TCGAbiolinksGUI.data vignette} (\burl{http://bioconductor.org/packages/TCGAbiolinksGUI.data/}).
+	\item \textbf{Transcriptomic analysis:} Performs a Differential Expression Analysis (DEA), and visualizes the results through both volcano and heatmap plots. Pathway analysis can be performed on a list of differentially expressed genes \cite{luo2013pathview}.
+ 	\item \textbf{Genomic analysis:} Visualize and summarize the mutations from MAF (Mutation Annotation Format) files through summary plots and oncoplots using the R/Bioconductor maftools package \cite{Gu20052016,Maftools} (Figures \ref{fig:maftools_summary} and \ref{fig:maftools_oncoplot}). % Cite complex heatmap
+	\item \textbf{Integrative analysis:} Integrate the DMR and DEA results through a starburst plot. Integrate clinical and mutation data and perform Kaplan-Meier survival analysis for groups of mutated samples vs non-mutated for a given gene (Figure \ref{fig:mutation_clinical}). DNA methylation and gene expression data can be further analyzed using the R/Bioconductor ELMER package to discover functionally relevant genomic regions associated with cancer \cite{yao2015inferring, ELMER2}.
 \end{itemize}
 
 
 \begin{figure}
 \includegraphics[width=1.0\linewidth]{images/maftools_summary.png}
 \caption[TCGAbiolinksGUI: Visualizing mutation summary]{TCGAbiolinksGUI: Visualizing mutation summary. This maftools plot available thought TCGAbiolinksGUI shows a summary of the MAF file. Highlighting the most mutated genes, SNV class and variant classification distributions. }
-\label{fig:maftoools_summary}
+\label{fig:maftools_summary}
 \end{figure}
 
+
+  \begin{figure}[h!]
+  \centering
+  \includegraphics[width=1.0\textwidth]{images/idat.pdf}
+  \caption{TCGAbiolinksGUI: IDAT normalization. Table shows files identified that will be processed. Data retrieved from GEO (accession GSE61160). }
+  \label{fig:idat}
+   \end{figure}
+   
+  \begin{figure}[h!]
+  \centering
+  \includegraphics[width=1.0\textwidth]{images/glioma_classifier.pdf}
+  \caption{TCGAbiolinksGUI: glioma classifier. Predicting molecular subtypes based on DNA methylation using data from GEO (accession GSE61160).}
+  \label{fig:glioma}
+   \end{figure}
 
 \begin{figure}
 \includegraphics[width=1.0\linewidth]{images/gui_ea.png}
@@ -57,13 +70,19 @@ The user interface has been divided into three main \sigla{GUI}{Graphical User I
 \label{fig:gui_heatmap}
 \end{figure}
 
+  \begin{figure}[h!]
+  \centering
+  \includegraphics[width=1.0\textwidth]{images/clinical_mutation.png}
+  \caption{TCGAbiolinksGUI: Integrating clinical data and mutation data. Performing Kaplan-Meier survival analysis for groups of samples with a mutation in gene USH2A vs the WT ones using the R/Bioconductor maftools package.}
+  \label{fig:mutation_clinical}
+   \end{figure}
 
 \begin{figure}
 \includegraphics[width=1.0\linewidth]{images/maftools_oncoplot.png}
 \caption[TCGAbiolinksGUI: Visualizing mutation as an oncoplot]{TCGAbiolinksGUI:Visualizing mutation as an oncoplot. Each column
 represents a sample and each row a different gene. The top barplot has the frequency of mutations for each patient, while
 the right barplot has the frequency of mutations for each gene. The plot by default is ordered by the most mutated genes.}
-\label{fig:maftoools_oncoplot}
+\label{fig:maftools_oncoplot}
 \end{figure}
 
 
@@ -77,20 +96,28 @@ As expected, hihger levels which are more agressive have a lower survival.}
 
 \subsection{Documentation}
 
-We provide a guided tutorial for users via a vignette document which details each step and menu function available at \href{http://bit.do/TCGAbiolinksDocs}{http://bit.do/TCGAbiolinksDocs}, via online documents available at
-\href{http://bit.ly/TCGAbiolinks\_PDFTutorials}{http://bit.ly/TCGAbiolinks\_PDFTutorials}, and via YouTube video instructions showing step by step how each menu works available at \href{http://bit.ly/TCGAbiolinksGUI\_videoTutorials}{http://bit.ly/TCGAbiolinksGUI\_videoTutorials}, which assist end-users in taking full advantage of TCGAbiolinksGUI. A demonstration version of the tool is available at \href{http://tcgabiolinks.fmrp.usp.br:3838/}{http://tcgabiolinks.fmrp.usp.br:3838/}. Users are encouraged to report and file bug reports or feature requests via our GitHub repository \href{https://github.com/BioinformaticsFMRP/TCGAbiolinksGUI/issues}{BioinformaticsFMRP/TCGAbiolinksGUI/issues}.
+
+We provide a guided tutorial for users via an online vignette document (\burl{http://bit.do/TCGAbiolinksDocs}) which details each step and menu function. Printable PDF (\burl{http://bit.ly/TCGAbiolinks\_PDFTutorials}) and YouTube video instructions (\burl{http://bit.ly/TCGAbiolinksGUI\_videoTutorials}) are also provided to help users utilize TCGAbiolinksGUI. A demonstration version of the tool is available at \burl{http://tcgabiolinks.fmrp.usp.br:3838/}. To help improve and expand our tool over time, users are encouraged to report and file bug reports or feature requests via our GitHub repository (\burl{https://github.com/BioinformaticsFMRP/TCGAbiolinksGUI/issues}).
+
+
 
 \subsection{Docker container}
-To further simplify the usability and accessibility of our tool, we provide a docker image compatible with most popular operating system available at \\
-\href{https://hub.docker.com/r/tiagochst/tcgabiolinksgui/}{https://hub.docker.com/r/tiagochst/tcgabiolinksgui/}. This file allows users to run TCGAbiolinksGUI without the need to install associated dependencies or configure system files, common steps required to run R installations and load R/Bioconductor packages.
+
+
+We recognize that one of the possible drawbacks of using our tool is the arduous process of installing R/Bioconductor environment and all of the required dependencies. To resolve this, a web version of our tool would suffice however the demand on data storage, computational processing, and multiple user access would not be justifiable and instead, we encourage users to use their own computers. However, to further simplify the usability and accessibility of our tool, we provide a Docker image file. This file is compatible with most popular operating systems and it is available online at \burl{https://hub.docker.com/r/tiagochst/tcgabiolinksgui/}. It contains the complete R/Bioconductor environment configured to use TCGAbiolinksGUI. By providing a Docker image, we anticipate users with very little knowledge of R/Bioconductor to run TCGAbiolinksGUI without the need to install associated dependencies or configure system files, common steps required to run R installations and load R/Bioconductor packages.  This image can be easily downloaded and deployed through the Kitematic tool (\burl{https://kitematic.com/}), a simple application for managing Docker containers for Mac, Linux, and Windows. A detailed documentation on how to get and use the docker image via the Kitematic application is available at
+\burl{http://bit.ly/TCGAbiolinksGUI_docker}. The Docker image will be updated as regularly as TCGAbiolinksGUI thus providing several types of access for end-users interested in analyzing TCGA data from GDC.
+
+
 
 \subsection{Comparison of alternative software}
 
-Web tools used for cancer data analysis might be classified into two broad groups.
+
+Web tools used for cancer data analysis might be classified into two broad groups. 
 The first group only provides an interface to existing software analysis tools.
-The Galaxy project (\href{https://galaxyproject.org/}{https://galaxyproject.org/}), which is an open, web-based platform for accessible, reproducible, and transparent computational biomedical research, is an example of such a tool that belongs to this group.
+The Galaxy project (\burl{https://galaxyproject.org/}), which is an open, web-based platform for accessible, reproducible, and transparent computational biomedical research, is an example of such a tool that belongs to this group.
 The other group is composed of exploratory tools mainly focused on the visualization of processed data and pre-computed results. The cBioPortal project \cite{gao2013integrative,cerami2012cbio}, by providing several visualizations for mining the TCGA data, is an example of a tool that falls within this classification.
 
-If one were to classify TCGAbiolinksGUI, it would belong to the first group. Compared to the Galaxy project, TCGAbiolinksGUI offers an open platform which improves the accessibility of R/Bioconductor packages, allowing users an advantage to integrate their features with existing Bioconductor packages without the need to go beyond the R/Shiny frameworks as a common feature from the Galaxy project, which requires the interface elements to be structured through XML files \cite{10.12688/f1000research.9821.1}.
-In addition, going beyond the R/Bioconductor environment requires more software dependencies which make the process to install Galaxy to use R/Bioconductor packages laborious.
-On the other hand, compared to cBioPortal, TCGAbiolinksGUI allows users to perform deep integrative analysis by comparing different subtypes of data (i.e. performing an integrative analysis to compare breast cancer samples with a mutation on FOXA1 gene compared to wild-type samples using DNA methylation, gene expression, and motif enrichment analysis on genomic regions of interest). Although cBioPortal offers these features, it would require users to process each step independently and download outside of cBioPortal in order to perform such integrative analysis.
+If one were to correctly classify TCGAbiolinksGUI, it would belong to the first group. Compared to the Galaxy project, TCGAbiolinksGUI offers an open platform which improves the accessibility of R/Bioconductor packages, allowing users an advantage to integrate their features with existing Bioconductor packages without the need to go beyond the R/Shiny frameworks as a common feature from the Galaxy project, which requires the interface elements to be structured through XML files \cite{10.12688/f1000research.9821.1}. 
+In addition, outside of the R/Bioconductor environment requires more software dependencies which make the process to install Galaxy + R/Bioconductor packages laborious and cumbersome, something most non-bioinformaticians are eager to contend with.
+Compared to cBioPortal, TCGAbiolinksGUI not only provides users with access to raw and processed data, but TCGAbiolinksGUI allows users to perform a deep integrative analysis which is not currently available in cBioPortal.  For example, if a user is interested in defining differentially expressed genes or DNA methylation events between two populations of tumors (i.e. FOXA1 mutants and wildtypes), cBioPortal would only allow users access to the samples data and expect the users to download and analyze within their own favorite tool thus limiting many users from implementing this type of analysis. TCGAbiolinksGUI takes the groups of samples and can define a list of differentially expressed genes, pathway analysis, and even survival analysis all within one tool without the need to perform any further bioinformatics integration. 
+

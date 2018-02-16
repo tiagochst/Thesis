@@ -125,7 +125,7 @@ except we use the \textit{upper} quintile, and the opposite tail in the t-test i
 
 For each differentially methylated distal probe (DMC), the closest 10 upstream
 genes and the closest 10 downstream genes are tested for inverse correlation between
-methylation of the probe and expression of the gene (the number 10 can be changed using the \textit{numFlankingGenes} parameter). To select these genes,
+methylation of the probe and expression of the gene. To select these genes,
 the probe-gene distance is defined as the distance from the probe to the transcription
 start site specified by the ENSEMBL gene level annotations \cite{yates2015ensembl} accessed via
 the R/Bioconductor package \href{http://bioconductor.org/packages/biomaRt/}{biomaRt} \cite{durinck2009mapping,durinck2005biomart}. By choosing a constant number of genes to test for each probe, our goal is to avoid systematic false positives for probes in gene rich regions. This is especially important given the highly non-uniform gene density of mammalian genomes.
@@ -169,83 +169,44 @@ selected for their differential methylation, with the same directionality,
 between the two groups (Figure \ref{fig:mode}).
 
 \begin{figure}[h!]
-\begin{minipage}{.5\textwidth}
 \centering
 \includegraphics[width=1.0\textwidth]{images/mode_new.pdf}
 \caption[Supervised vs unsupervised mode]{\label{fig:mode} Supervised mode maximizes statistical power.	Difference of groups $U$ and $M$ definition in \textit{supervised} and \textit{unsupervised} mode. A:  \textit{unsupervised} mode; when minSubgroupFrac argument is set to 40\%, the methylated group is defined as the highest quintile and the unmethylated group as the lowest quintile; B:  \textit{supervised} mode; methylated and unmethylated group are defined as one of the known molecular subtypes. For example, the unmethylated group is represented by all the LumA samples while the methylated group is represented by all the Basal samples. The t-test p-value achieved for the Unsupervised mode is $8.3E-25$, while the Supervised mode is : $1.43E-43$.}
-\end{minipage}
 \end{figure}
 
 
 
 
-\subsubsection{Characterization of chromatin state context of enriched probes using FunciVar}
+\subsubsection{Characterization of chromatin state context of enriched probes using StateHub}
 
-Unlike version 1 of \textit{ELMER}, we now consider \textit{all} distal probes
-in the identification of regulatory elements. DNA methylation is known to affect
-several different classes of distal chromatin state element, including active
-enhancers, poised enhancers, and insulators. In order to provide a functional
-interpretation of the regulatory elements identified by \textit{ELMER},
-we perform a chromatin state enrichment analysis of the probes within significant
-probe-gene pairs, using the \textit{statePaintR} tools from the \burl{www.statehub.org} \cite{statepaintr},
-along with our new FunciVar package \cite{funcivar}. Enrichment of the putative pairs
- within chromatin states is calculated against a background model that uses the distal
- probe set that the putative pairs are drawn from.
+Unlike version 1 of \textit{ELMER}, we now consider \textit{all} distal probes in the identification of regulatory elements. DNA methylation is known to affect several different classes of distal chromatin state element, including active enhancers, poised enhancers, super enhancers, and insulators. In order to provide a functional interpretation of the regulatory elements identified by \textit{ELMER}, we perform a chromatin state enrichment analysis of the probes within significant probe-gene pairs, using the \textit{statePaintR} tools from the \url{statehub.org} \cite{statepaintr}, along with the new \textit{FunciVar} package (in preparation on \burl{https://github.com/Simon-Coetzee/funcivar}). Enrichment of the putative pairs within chromatin states is calculated against a background model that uses the distal probe set that the putative pairs are drawn from. 
 
 \subsubsection{Motif enrichment analysis}
-In order to identify enriched motifs and potential upstream regulatory TFs,
-all probes with occurring in significant probe-gene pairs are combined for
-motif enrichment analysis. \sigla{HOMER}{Hypergeometric Optimization of Motif EnRichment}
- \cite{heinz2010simple} is used to find motif occurrences in a $\pm 250bp$ region
- around each probe, using HOCOMOCO (HOmo sapiens COmprehensive MOdel COllection)
- v11 \cite{kulakovskiy2016hocomoco}. Transcription factor (TF) binding models are
- available at \burl{http://hocomoco.autosome.ru/downloads} (using the HOMER specific
- format with threshold score levels corresponding to p-value $ \leq 10^{-4}$).
 
- For each probe set tested (i.e. the set of all probes occurring in significant probe-gene pairs), we quantify enrichments using Fisher's exact test (where $a$ is the number of probes within the selected probe set that contains one or more motif occurrences; $b$ is the number of probes within the selected probe set that do not contain a motif occurrence; $c$ and $d$ are the same counts within
- the entire array probe set drawn from the same set of distal-only probes using the same definition as the primary analysis) and multiple testing correction with the Benjamini-Hochberg procedure \cite{fisher}.
+In order to identify enriched motifs and potential upstream regulatory TFs, all probes with occurring in significant probe-gene pairs are combined for motif enrichment analysis. HOMER (Hypergeometric Optimization of Motif EnRichment) \cite{heinz2010simple} is used to find motif occurrences in a $\pm 250bp$ region around each probe, using HOCOMOCO (HOmo sapiens COmprehensive MOdel COllection) v11 \cite{kulakovskiy2016hocomoco} . Transcription factor (TF) binding models are available at \url{http://hocomoco.autosome.ru/downloads}. HOCOMOCO is the most comprehensive TFBS database and is consistently updated, marking an improvement over ELMER version 1. We have also improved the statistical analysis performed to use Fisher's exact test and Benjamini-Hochberg multiple hypothesis testing correction (see Supplemental Methods and Note). Importantly, we now characterize the Confidence Interval for the enrichment of each motif, and only select motifs that have an $FDR < 0.05$ \textit{and} where the lower bound of the Odds Ratio 95\% CI is greater than $1.1$ (specified by option \textit{lower.OR}). 
 
- A probe set was considered significantly enriched
- for a particular motif if the 95\% confidence interval of the Odds Ratio was greater than $1.1$ (specified by option \textit{lower.OR}, $1.1$ is default),  the motif
- occurred at least 10 times (specified by option \textit{min.incidence}, $10$ is default) in
- the probe set and $FDR < 0.05$.
+\subsubsection*{Identification of master regulator TFs}
+
+When a group of enhancers is coordinately altered in a specific sample subset, this is often the result of an altered upstream \textit{master regulator} transcription factor in the gene regulatory network. \textit{ELMER}  identifies master regulator TFs corresponding to each of the TF binding motifs enriched from the previous analysis step.
+For each enriched motif, \textit{ELMER} takes the mean DNA methylation of all distal probes (in significant probe-gene pairs) that contain that motif occurrence (within a $\pm 250bp$ region) and compares this mean DNA methylation to the expression of each gene annotated as a human TF. 
+This step has been updated to work differently for the new \textit{Supervised} and \textit{Unsupervised} modes, using the same approach as described for the identification of putative target gene(s) step. This also can result in greater statistical power when using the \textit{Supervised} mode (see Supplemental Methods and Note for full details).
+
+% I didn't understand this sentence. I thought the lower quintile was only for Unsupervised. Expect that for the \textit{supervised} mode we use the average methylation at all motif-adjacent probes to define the lower quintile.
+
+% TO_SUPPLEMENTAL
+%A statistical test is performed for each motif-TF pair, as follows. All samples 
+%are divided into two groups: the M group, which consists 
+%of the 20\% of samples with the highest average methylation at all motif-adjacent
+%probes, and the U group, which consisted of the 20\%  of samples with the lowest 
+%methylation. This step is performed by the \textit{get.TFs} function, which takes \textit{minSubgroupFrac} as an input parameter, again with a default of 20\%.
+%For each candidate motif-TF pair, the Mann-Whitney U test is used to test 
+%the null hypothesis that overall gene expression in group M is greater or equal 
+%than that in group U. This non-parametric test was used in order to minimize the 
+%effects of expression outliers, which can occur across a very wide dynamic range. 
+%For each motif tested, this results in a raw p-value ($P_r$) for each of the human TFs.
+As in ELMER version 1, all human TFs are ranked by their $-log_{10}(Pr)$ values, and those falling within the top 5\% of this ranking were considered candidate Master Regulators (see Figure \ref{fig:tfplot}, below). In addition to the top 5\% of all TFs, we also highlight all TFs from the same DNA binding domain family. In ELMER version 1, these families were defined by a hard-coded association file that was hand-curated. A major improvement of ELMER 2.0 is that we now use the classifications from the TFClass database \cite{wingender2013tfclass}, based on UniProt domains. Each TF is assigned to a family, as well as a more specific sub-family, of DNA binding domain proteins. For each significant motif, our output reports the most significant master regulator at both the family and sub-family level.
 
 
-
-\subsubsection{Identification of master regulator TFs}
-
-When a group of enhancers is coordinately altered in a specific sample subset,
-this is often the result of an altered upstream \textit{master regulator}
-transcription factor in the gene regulatory network. \textit{ELMER} tries to identify such
-transcription factors corresponding to each of the TF binding motifs enriched from the previous
-analysis step.
-For each enriched motif, \textit{ELMER} takes the average DNA methylation of all
-distal probes (in significant probe-gene pairs) that contain that motif occurrence
-(within a $\pm 250bp$ region) and compares this average DNA methylation to the
-expression of each gene annotated as a human TF.
-
-A statistical test is performed for each motif-TF pair, as follows. All samples
-are divided into two groups: the $M$ group, which consists
-of the 20\% of samples with the highest average methylation at all motif-adjacent
-probes, and the $U$ group, which consisted of the 20\%  of samples with the lowest
-methylation. This step is performed by the \textit{get.TFs} function,
-which takes \textit{minSubgroupFrac} as an input parameter, again with a default of 20\%.
-For each candidate motif-TF pair, the Mann-Whitney U test is used to test
-the null hypothesis that overall gene expression in group $M$ is greater or equal
-than that in group $U$. This non-parametric test was used in order to minimize the
-effects of expression outliers, which can occur across a very wide dynamic range.
-For each motif tested, this results in a raw p-value ($P_r$) for each of the human TFs.
-All TFs are ranked by their $-log_{10}(Pr)$ values, and those falling within the top 5\% of
-this ranking were considered candidate upstream regulators. The best upstream
-TFs which are known to recognize to specific binding motif are automatically extracted as putative
-regulatory TFs, and rank ordered plots are created to visually inspect these
-relationships, as shown in the example below. Because the same motif can be
-recognized by many transcription factors of the same binding domain family,
-we define these relationships at both the family and subfamily classification level using the
-classifications from TFClass database \cite{wingender2013tfclass}.
- Use of this database is a major change from version 1 of ELMER, which used
- custom curations for DNA binding domain families. Use of the TFClass database
- is preferable because it is well curated and regularly updated to reflect new findings.
 
 
 \subsection*{Data availability} % Optional - only if novel data or analyses are included

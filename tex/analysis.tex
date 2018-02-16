@@ -68,7 +68,7 @@ comparing groups CIMP.L and CIMP.H. \textbf{(A)} Expression volcano plot: fold c
 \section{Use cases using ELMER}\label{sec:analysis_elmer}
 
 %\newpage
-\subsection{Breast Invasive Carcinoma (unsupervised approach)} % Optional - only if NO new datasets are included
+\subsection{Use Case 1: Breast Invasive Carcinoma (Unsupervised mode)} 
 
 In this subsection, we describe how to perform \textit{ELMER} analysis on TCGA BRCA
 (Breast Invasive Carcinoma) data retrieved from the GDC server.
@@ -264,10 +264,8 @@ To visualize the relationship between the probe-gene pairs inferred, there are t
 
 \begin{figure}
 \centering
-\includegraphics[width=1.0\textwidth]{images/heatmap.png}
-\caption[Heatmap of anticorrelated pairs of DNA methylation probes and gene]{\label{fig:heatmap} Heatmap of paired probes and distal genes. The first heatmap (left one) shows DNA methylation $\beta$ levels ranging from 0 (non-methylated) up to 1 (methylated probes).
-The second heatmap (middle one) shows z-scores for gene expression levels (standard deviations from each gene means). The last heatmap (right heatmap) shows the distance between the probe
-and gene anti-correlated.}
+\includegraphics[width=1.0\textwidth]{images/heatmap.jpg}
+\caption{\label{fig:heatmap} The comprehensive heatmap view shows all probe / gene pairs identified by ELMER, clustered according to similarity. This plot is based on the Supervised analysis of LumA vs Basal-like Breast Cancer cases. The inverse correlation between methylation and expression can be observed.}
 \end{figure}
 
 \clearpage
@@ -327,11 +325,10 @@ The main arguments are described below:
 \lstinputlisting[language=R,basicstyle=\tiny, frame = none,label = "motif",caption = "Motif enrichment analysis on the selected probes"]{codes/motif.R}
 %\end{minipage}
 
-%\clearpage
 \begin{figure}
 \centering
-\includegraphics[width=1.0\textwidth]{images/OR_nosummary.pdf}
-\caption[Motif enrichment plot]{\label{fig:boxplot2} Motif enrichment plot shows the enrichment levels ($OR\geq2.0$) for the selected motifs. This plot represents a subset of the enriched motifs for $\textit{lower.or}= 1.1$, only selected for representational purposes.}
+\includegraphics[width=1.0\textwidth]{images/motif_new.pdf}
+\caption{\label{fig:motifplot} Motif enrichment plot shows the enrichment levels ($OR\geq2.0$) for the most significant motifs based on the TCGA Breast Cancer Unsupervised analysis. A number of less significant motifs meet our default OR threshold of 1.1 ($\textit{lower.or}=1.1$), which can be browsed in our full Supplemental output report.}
 \end{figure}
 
 %\cleardoublepage
@@ -360,10 +357,14 @@ The result of this function is shown in table \ref{tab:get.tf} and in figure \re
 
 \begin{figure}
 \centering
-\includegraphics[width=1.0\textwidth]{images/ANDR_HUMAN_H11MO_0_A_TFrankPlot.pdf}
-\caption[TF ranking plot: ANDR motif]{\label{fig:tfplot} TF ranking plot shows statistic $-log_{10}(P-value)$ assessing the anti-correlation level
-of TFs expression level with average DNA methylation level at sites with a given motif. By default, the top 3 associated TFs and the TF family members (dots in red) that are associated with that specific motif  are labeled in the plot.
-But there is also an option to highlight only TF sub-family members (TCClass database classification)}
+\includegraphics[width=0.9\textwidth]{images/TFranking.pdf}
+\caption{\label{fig:tfplot} TF ranking plot shows the statistical $-log_{10}(P-value)$ assessing the anti-correlation level of candidate Master Regulator TF expression with average DNA methylation level for sites with the given motif (FOXA3). By default, the top 3 associated TFs (blue dots), and all of the TF family members (red dots) and subfamily members (orange dots) are labeled. The anti-correlation data for the top three candidates (FOXA1, GATA3, and ESR1) are derived from the data shown in Figure \ref{fig:scatter}}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=1.0\textwidth]{images/scatter_font.pdf}
+\caption{\label{fig:scatter} FOXA1, GATA3 and ESR1 were identified as the most significant Master Regulator candidates for the top motif (FOXA3). All FOX factors belonging to the same TFClass binding family are highlighted.}
 \end{figure}
 
 %\clearpage
@@ -377,109 +378,70 @@ The result is shown in Figure \ref{fig:chiapet}. Of the 2124 putative pairs iden
 
 \begin{figure}
 \centering
-\includegraphics[width=0.5\textwidth]{images/validation.png}
+\includegraphics[width=0.5\textwidth]{images/mcf7.pdf}
 \caption[MCF7 ChIA-PET validation]{\label{fig:chiapet} The graph shows the comparison of the number of probe-gene pairs identified within MCF7 ChIA-PET data using the putative pairs from BRCA vs. random pairs}
 \end{figure}
 
 %\clearpage
-\subsection{BRCA molecular subtypes analysis (supervised approach)}
-
-Several studies identified distinct molecular Breast cancer classes and
-divided them as the following subclasses: luminal-like (Luminal A and Luminal B),
-which are Estrogen receptor-positive (ER-positive), and the basal-like,
-ErbB2-positive and normal-like subclasses, which are the ER-negative
-groups \cite{perou2000molecular,yersal2014biological,sorlie2001gene}.
-To perform \textit{ELMER} analysis comparing known molecular subtypes
-(Her2, Luminal A, Luminal B and Basal-like) a TCGA BRCA dataset classification
-was retrieved from \citeonline{ciriello2015comprehensive}.
+\subsection{Use Case 2: BRCA molecular subtypes analysis (Supervised mode)} 
 
 
-The main arguments changed were the percentage of samples used to identify the
-differentially methylated probes in function \textit{get.diff.meth}, which was
-set to 100\% (use all samples from each group), and the mode in function \textit{get.pair}
-and in function \textit{get.TFs} which was set to "supervised". In this mode instead
-of defining the $U$ (unmethylated) group as the samples with lowest quintile of DNA
-methylation levels and the $M$ (methylated) group as the highest quintile, the $U$ and $M$ group
- were defined as all samples of one known molecular subtype.
- For example, if the first step identified probes hypomethylated in Luminal A group when compared to Basal-like group,
- the next steps will use the Luminal A samples as $U$ group  and the Basal-like samples as the $M$ group.
+Several studies identified distinct molecular Breast Cancer molecular subtypes including luminal-like (Luminal A and Luminal B) subclasses, which are Estrogen receptor-positive (ER-positive), and the basal-like, ErbB2-positive and normal-like subclasses (ER-negative) \cite{perou2000molecular,yersal2014biological,sorlie2001gene}. We performed \textit{ELMER} analysis comparing known molecular subtypes (Her2, Luminal A, Luminal B and Basal-like) using the TCGA BRCA dataset and classifications retrieved from \cite{ciriello2015comprehensive} using TCGABiolinks.
+% TIAGO IS THIS CORRECT?  DID YOU USE BIOLINKS? 
+% Yes, the data was downloaded using TCGAbiolionks 
+% The annotation was added manually
 
-The unsupervised analysis identified several Luminal type Master Regulators (MRs) such as FOXA1, GATA3, and ESR1. In order to identify MRs for the other subtypes, we created a table (Table \ref{tbl:TF_molecular}) of candidate MRs identified by each pairwise ELMER run.
+We performed pairwise analyses between different molecular subtypes. It is important to note that we expect these analyses to have increased statistical power over Unsupervised analyses, as illustrated above in Figure \ref{fig:mode}. One useful output plot is the comprehensive heatmap, 
+which illustrates the identification of inverse correlated probe-gene pairs \ref{fig:heatmap} for the LumA vs Basal-like analysis.  
 
-Interestingly, several new MRs are identified for the Basal-like group, and these were mostly consistent in comparisons against Luminal and HER2+ subtypes. One group of MRs identified are the \textit{SOX10} and \textit{SOX9} TF signatures. For these signatures, the regulatory TF candidate identified are the \textit{SOX9} (Sry-related HMG box-9) TF and \textit{SOX11} (Sry-related HMG box-11) TF; this correlation between basal-like and SOX11 was recently described by \cite{shepherd2016sox11} and \textit{SOX9} was described by \cite{gong2015foxa1}. Most interestingly, we found KLF5 to be a consistently predicted MR for the Basal-like breast subtype. KLF5 is a master pluripotency factor of embryonic stem cells, and has been associated with a number of different cancers. In breast cancer, it's overexpression has been linked to aggressive, ER-negative and basal-like breast cancers \cite{ben2008embryonic}.
-
-\begin{table}
+\begin{figure}[ht!]
 \centering
-\scriptsize
-\caption{Candidate regulatory TFs for each molecular subtype found in a pairwise comparison.}
+\includegraphics[width=1.0\textwidth]{images/heatmap.jpg}
+\caption{\label{fig:heatmap} The comprehensive heatmap view shows all probe / gene pairs identified by ELMER, clustered according to similarity. This plot is based on the Supervised analysis of LumA vs Basal-like Breast Cancer cases. The inverse correlation between methylation and expression can be observed.}
+\end{figure}
+
+The unsupervised analysis of the same sample identified several Luminal type Master Regulators (MRs) such as FOXA1, GATA3, and ESR1. In order to identify MRs for the other subtypes, we created a table  (Table \ref{tbl:TF_molecular}) of candidate MRs identified by each pairwise ELMER run (complete results can be found in the supplemental HTML file described in the Supplementary Methods section). 
+
+Interestingly, several new MRs are identified for the Basal-like group, and these were mostly consistent in comparisons against Luminal and HER2+ subtypes. One group of MRs identified are the \textit{SOX10} and \textit{SOX9} TF signatures. For these signatures, the regulatory TF candidate identified are the \textit{SOX9} (Sry-related HMG box-9) TF and \textit{SOX11} (Sry-related HMG box-11) TF; this correlation between basal-like and SOX11 was recently described by \cite{shepherd2016sox11} and \textit{SOX9} was described by \cite{gong2015foxa1}. Most interestingly, we found KLF5 to be a consistently predicted MR for the Basal-like breast subtype. KLF5 is a master pluripotency factor of embryonic stem cells, and has been associated with a number of different cancers. In breast cancer, it's overexpression has been linked to aggressive, ER-negative and basal-like breast cancers \cite{ben2008embryonic}. % PUBMED ID 18443585
+
+\begin{table}[]
+\centering
+{\small
+\caption{Use case 2 - BRCA supervised analysis: Candidate master regulator TFs (MRs) for each molecular subtype found in a pairwise comparison. This table only includes MRs occurring in multiple pairwise comparisons. For the complete table, please see Supplemental Table \ref{suptbl:TF_molecular} in the supplemental material.}
 \label{tbl:TF_molecular}
 \begin{tabular}{@{}|c|c|c|c|c|c|c|c|c|@{}}
 \midrule
-\midrule
-\textit{\textbf{TF}} & \textbf{\begin{tabular}[c]{@{}c@{}}LUMA \\ (vs basal)\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}LUMB \\ (vs basal)\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}LUMA \\ (vs normal)\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}LumB \\ (vs normal)\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Basal \\ (vs LumA)\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Basal \\ (vs LumB)\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Basal \\ (vs HER2)\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}HER2 \\ (vs Basal)\end{tabular}} \\ \midrule \midrule
-\textit{\textbf{AR}} & x & x & x &  &  &  &  &  \\
-\textit{\textbf{BATF3}} &  &  &  &  &  & x &  &  \\
-\textit{\textbf{BCL11A}} &  &  &  &  & x & x & x &  \\
-\textit{\textbf{CBFB}} &  &  &  &  & x &  &  &  \\
-\textit{\textbf{CEBPB}} &  &  &  &  & x & x & x &  \\
-\textit{\textbf{CEBPG}} &  &  &  &  & x &  &  &  \\
-\textit{\textbf{E2F3}} &  &  &  &  &  & x & x &  \\
-\textit{\textbf{ELF5}} &  &  &  &  & x &  &  &  \\
-\textit{\textbf{EMX1}} & x & x & x &  &  &  &  &  \\
-\textit{\textbf{ESR1}} & x & x & x & x &  &  &  &  \\
-\textit{\textbf{ELF5}} &  &  &  &  &  & x &  &  \\
-\textit{\textbf{ETS2}} &  &  &  &  &  & x &  &  \\
-\textit{\textbf{ETV6}} &  &  &  &  & x & x & x &  \\
-\textit{\textbf{FOSL1}} &  &  &  &  &  & x &  &  \\
-\textit{\textbf{FOXA1}} & x & x & x & x &  &  &  & x \\
-\textit{\textbf{FOXM1}} &  &  &  & x &  &  &  &  \\
-\textit{\textbf{FOXD2}} &  & x &  &  &  &  &  &  \\
-\textit{\textbf{FOXP1}} & x & x &  &  &  &  &  & x \\
-\textit{\textbf{GATA2}} & x &  &  &  &  &  &  & x \\
-\textit{\textbf{GATA3}} & x & x & x & x &  &  &  & x \\
-\textit{\textbf{GLI1}} & x & x &  &  &  &  &  &  \\
-\textit{\textbf{HOMEZ}} &  & x &  &  &  &  &  &  \\
-\textit{\textbf{HOXB1}} & x & x &  &  &  &  &  &  \\
-\textit{\textbf{HOXB2}} & x & x &  &  &  &  &  & x \\
-\textit{\textbf{HOXB3}} &  &  &  &  &  &  &  & x \\
-\textit{\textbf{HOXB6}} &  &  &  &  &  &  &  & x \\
-\textit{\textbf{HOXC10}} &  &  &  &  &  &  &  & x \\
-\textit{\textbf{HOXC11}} &  &  &  &  &  &  &  & x \\
-\textit{\textbf{KLF5}} &  &  &  &  &  & x & x &  \\
-\textit{\textbf{LMX1B}} & x & x & x &  &  &  &  &  \\
-\textit{\textbf{MAZ}} &  &  & x &  &  &  &  &  \\
-\textit{\textbf{MNX1}} &  &  &  &  &  &  &  & x \\
-\textit{\textbf{MSX2}} & x & x &  &  &  &  &  &  \\
-\textit{\textbf{MYB}} & x &  &  & x &  &  &  &  \\
-\textit{\textbf{MYBL1}} &  &  &  & x &  &  &  &  \\
-\textit{\textbf{MYBL2}} &  &  &  & x & x &  &  &  \\
-\textit{\textbf{NFATC4}} & x &  &  &  &  &  &  &  \\
-\textit{\textbf{NFIB}} &  &  &  &  & x &  &  &  \\
-\textit{\textbf{NFIL3}} &  &  &  &  & x & x &  &  \\
-\textit{\textbf{NR2E3}} & x & x &  &  &  &  &  &  \\
-\textit{\textbf{OVOL2}} &  &  & x &  &  &  &  &  \\
-\textit{\textbf{PATZ1}} &  & x & x &  &  &  &  &  \\
-\textit{\textbf{PBX1}} &  & x &  & x &  &  &  &  \\
-\textit{\textbf{POU2F1}} &  &  & x & x &  &  &  &  \\
-\textit{\textbf{PGR}} & x & x &  &  &  &  &  &  \\
-\textit{\textbf{RARA}} & x & x & x &  &  &  &  &  \\
-\textit{\textbf{RELB}} &  &  &  &  &  & x &  &  \\
-\textit{\textbf{RORC}} & x &  &  &  &  &  &  &  \\
-\textit{\textbf{RUNX3}} &  &  &  &  & x & x &  &  \\
-\textit{\textbf{SOX8}} &  &  &  &  &  & x & x &  \\
-\textit{\textbf{SOX9}} &  &  &  &  &  & x & x &  \\
-\textit{\textbf{SOX11}} &  &  &  &  & x & x &  &  \\
-\textit{\textbf{SPIB}} &  &  &  &  &  & x &  &  \\
-\textit{\textbf{VEZF1}} &  & x &  &  &  &  &  &  \\
-\textit{\textbf{ZBTB4}} & x &  &  &  &  &  &  &  \\
-\textit{\textbf{ZNF281}} &  &  & x & x &  &  &  &  \\
-\textit{\textbf{ZNF423}} & x &  &  &  &  &  &  &  \\
-\textit{\textbf{ZNF467}} & x & x & x &  &  &  &  &  \\
-\textit{\textbf{ZIC1}} &  &  &  &  & x & x & x &  \\ \bottomrule
+\textit{\textbf{TF}} & \textbf{\begin{tabular}[c]{@{}c@{}}LUMA \\ (vs basal)\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}LUMB \\ (vs basal)\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Basal \\ (vs LumB)\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Basal \\ (vs HER2)\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}HER2 \\ (vs Basal)\end{tabular}} \\ \midrule 
+\textit{\textbf{AR}} & x & x &  &  &  \\
+\textit{\textbf{BCL11A}} &  &  & x & x &  \\
+\textit{\textbf{CEBPB}} &  &  & x & x &  \\
+\textit{\textbf{E2F3}} &  &  & x & x &  \\
+\textit{\textbf{EMX1}} & x & x &  &  &  \\
+\textit{\textbf{ESR1}} & x & x &  &  &  \\
+\textit{\textbf{ETV6}} &  &  & x & x &  \\
+\textit{\textbf{FOXA1}} & x & x &  &  & x \\
+\textit{\textbf{FOXP1}} & x & x &  &  & x \\
+\textit{\textbf{GATA3}} & x & x &  &  & x \\
+\textit{\textbf{GLI1}} & x & x &  &  &  \\
+\textit{\textbf{HOXB1}} & x & x &  &  &  \\
+%\textit{\textbf{HOXB2}} & x & x &  &  & x \\
+\textit{\textbf{HOXB3}} &  &  &  &  & x \\
+%\textit{\textbf{HOXB6}} &  &  &  &  & x \\
+\textit{\textbf{HOXC10}} &  &  &  &  & x \\
+%\textit{\textbf{HOXC11}} &  &  &  &  & x \\
+\textit{\textbf{KLF5}} &  &  & x & x &  \\
+\textit{\textbf{LMX1B}} & x & x &  &  &  \\
+\textit{\textbf{NR2E3}} & x & x &  &  &  \\
+%\textit{\textbf{PATZ1}} &  & x &  &  &  \\
+\textit{\textbf{PBX1}} &  & x &  &  &  \\
+\textit{\textbf{RARA}} & x & x &  &  &  \\
+%\textit{\textbf{RUNX3}} &  &  & x &  &  \\
+\textit{\textbf{SOX8}} &  &  & x & x &  \\
+\textit{\textbf{SOX9}} &  &  & x & x &  \\
+\textit{\textbf{SOX11}} &  &  & x &  &  \\
+\textit{\textbf{ZNF467}} & x & x &  &  &  \\
+\textit{\textbf{ZIC1}} &  &  & x & x &  \\  \hline 
 \end{tabular}
+}
 \end{table}
-%\begin{figure}[ht!]
-%\centering
-%\includegraphics[width=1.0\textwidth]{images/BRCA_ven.pdf}
-%\caption{\label{fig:venn} Venn diagram of candidate regulatory TFs for each molecular subtype found in at least one of the pairwise comparisons.}
-%\end{figure}
+

@@ -3,12 +3,11 @@
 
 \section{Glioma analysis} \label{sec:glioma_analysis}
 
-The \sigla{ELMER}{Enhancer Linking by Methylation/Expression Relationship}
-tool was used to analyze the molecular differences between the newly
-identified G-CIMP-low subtype of glioma that has some regions of the genome with a lower
-DNA methylation level and was associated with significantly
-worse survival compared to the G-CIMP-high, recently described by Dr. Noushmehr
-and his lab \cite{ceccarelli2016molecular}.
+\sigla{ELMER}{Enhancer Linking by Methylation/Expression Relationship}
+analysis was performed to identify the molecular differences between the newly
+identified G-CIMP-low and G-CIMP-high subtypes of glioma recently described by Dr. Noushmehr
+and his lab \cite{ceccarelli2016molecular}. 
+There is a particular interest in these molecular subtypes of glioma, since they have a great difference in both DNA methylation level and survival rate, with the G-CIMP-high subtype having a higher level of DNA methylation in some regions and a better survival rate. Thus, we seek to understand the molecular biology behind these changes leading to a worsening of survival.
 
 For this analysis, TCGA data from the NCI's Genomic Data Commons (GDC) was
 downloaded using our R/Bioconductor TCGAbiolinks package described in the previous chapter.
@@ -16,7 +15,7 @@ Table \ref{gcimp.samples} summarizes the number of samples in each group that ha
 methylation data for the Illumina HumanMethylation450 platform (HM450) and gene expression data
 (RNA-Seq) and Table \ref{gcip.elmer.arg} summarizes the main values for the ELMER arguments.
 This analysis was performed with data aligned against the genome of reference hg38 and
-using ELMER "supervised" mode, which ensures that in all the steps the
+in the "supervised" mode, which ensures that in all the steps the
 comparisons are made between each group using all their samples.
 
 % Please add the following required packages to your document preamble:
@@ -61,7 +60,7 @@ The DMCs (differentially methylated CpGs) analysis, which uses a one-tailed t-te
 probes with higher mean level in G-CIMP-high group compared to the G-CIMP-low one.
 The result of this analysis is summarized in Figure \ref{fig:gcimpvolcano}.
 The volcano plot shows the difference of DNA methylation ($\Delta\overline{\beta}$)
-versus significance $-log_{10}(\textrm{FDR corrected P-values})$. Using as default cuttoffs
+versus significance $-log_{10}(\textrm{FDR corrected P-values})$. Using as default cutoffs
  $\Delta\overline{\beta}\geq0.3$ and $-log_{10}(\textrm{FDR corrected P-values})\leq 0.01$,
 $7540$ probes were identified to be differentially methylated.
 
@@ -73,17 +72,16 @@ $7540$ probes were identified to be differentially methylated.
 
 \end{center}
 
-Those differentially methylated were then paired with their 10 upstream and 10 downstream genes
-and an anti-correlation test which searches for genes highly expressed when the DNA methylation levels
-decreases was performed.
-Using as cutt-offs
+Those differentially methylated probes were then paired with their 10 upstream and 10 downstream genes
+and those significantly anti-correlated were selected (genes have higher expression levels  when the DNA methylation levels
+decreases). Using as cutoffs
 $-log_{10}(\textrm{raw P-values})\leq 0.001$ and $-log_{10}(\textrm{Permuted corrected P-values})\leq 0.001$
 for a  $10000$ permutation correction approach,
-886 pairs of gene and probes were identified to be anti-correlated.
+886 pairs of gene and probes were identified to be significantly anti-correlated.
 The result of this analysis is summarized in Figure \ref{fig:gcimpheatmap}.
 The heatmap is composed of other three heatmaps, one heatmap for the DNA methylation levels,
-one heatmap for the gene expression levels and one with the distance between
-the gene and the probe.
+one heatmap for the gene expression levels and one with the distance between the gene and the probe.
+
 
 \begin{center}
 \begin{figure}[h!]
@@ -113,7 +111,7 @@ Enriched motifs & 84
 \end{tabular}
 \end{table}
 
-The enriched motifs analysis results are summarized in Figure \ref{tab:or},
+The  motif enrichment analysis results are summarized in Figure \ref{tab:or},
 which shows the \sigla{OR}{Odds Ratio} (x axis) for the enriched motifs, and in Table  \ref{tab:tf},
 which shows the candidate regulatory TFs whose expression anti-correlated
 with the DNA methylation level on the probes of each enriched motifs.
@@ -133,14 +131,14 @@ For example, in Table \ref{tab:tf} the motif HXD3 has as potential TF candidate 
 
 
 
-Overall, the results suggests that those regions that lost DNA methylation are bound by the regulatory TF Hmx3,
-which  has been related to activation and maintenance of Gsh1 expression and subsequent downstream generation of \sigla{GHRH}{growth hormone-releasing hormone} expressing neurons \cite{morales2014regionalized} and \citeonline{pozsgai2010effect} conducted test with GHRH antagonists in glioblastoma cells showing efficacy of those drugs for experimental treatment of glioblastoma, HOXD13, which have been reported to be substantially up regulated in \sigla{GBMs}{Glioblastomas} and may contribute to malignancy \cite{lee2015identification}, PAX3, which is essential for gliomagenesis \cite{xia2013pax3} also FOXM1  was shown by \citeonline{wang2015glioblastoma} to  promote the development and progression of GBM  and to be a novel therapeutic target against GBM.
+Overall, the results suggest that those regions that lost DNA methylation are bound by the regulatory TF HMX3,
+which  has been related to activation and maintenance of GSH1 expression and subsequent downstream generation of \sigla{GHRH}{growth hormone-releasing hormone} expressing neurons \cite{morales2014regionalized} and \citeonline{pozsgai2010effect} conducted test with GHRH antagonists in glioblastoma cells showing efficacy of those drugs for experimental treatment of glioblastoma, HOXD13, which have been reported to be substantially up regulated in \sigla{GBMs}{Glioblastomas} and may contribute to malignancy \cite{lee2015identification}, PAX3, which is essential for gliomagenesis \cite{xia2013pax3} also FOXM1  was shown by \citeonline{wang2015glioblastoma} to  promote the development and progression of GBM  and to be a novel therapeutic target against GBM.
 To validate these findings, biological experiments are needed which by either knocking down these TFs or by regulating the DNA methylation levels of those binding regions will be able to verify if the downstream genes are being regulated.
 
 \begin{center}
 \begin{figure}
 \includegraphics[width=16cm]{images/gcimp_motif_enrichment.pdf}
-\caption[G-CIMP analysis: Odds Ratio plot]{\label{tab:or}Motif enrichment analysis: Odds Ratio (x axis) for the selected motifs with lower OR above 1.3. The range shows the 95\% confidence interval for each Odds Ratio.}
+\caption[G-CIMP analysis: Odds Ratio plot]{\label{tab:or}Motif enrichment analysis: Odds Ratio (x-axis) for the selected motifs with lower OR above 1.3. The range shows the 95\% confidence interval for each Odds Ratio.}
 \end{figure}
 \end{center}
 
