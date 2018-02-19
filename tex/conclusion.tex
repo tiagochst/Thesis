@@ -9,50 +9,30 @@ In this section, we list the conclusions and future studies for the results repo
 
 \subsection{Conclusions and future works of TCGAbiolinks}
 
-This work has presented an effort towards the search, download and
-prepare of data from the NCI's Genomic Data Commons (GDC) data portal for
+This work was an effort towards the search, download, and
+processing of data from the NCI's Genomic Data Commons (GDC) data portal for
 downstream analysis. It offered several single-dataset
-exploratory analysis such as PCA, clustering methods, box plots,
+exploratory analysis such as clustering methods, box plots,
  differential gene expression analysis, differential methylated CpGs (DMCs) analysis,
  survival analysis, and some integrative analysis
- such as the integration of differentially methylated CpGs results with  differential gene expression analysis
- to identify regions different methylated with the nearest gene level expression changed, and
- gene set enrichment analysis.
-As future works, the improvement of the integrative analysis of the starburst plot is suggested. This method
-integrates the results from two different analysis DEA (differential expression analysis) and DMR
-(differential methylated regions), however, the expression and methylation data of a sample should be compared to each other. For the moment, this method infer if a data set has a differentiated average of methylation and a mean of
-expression of the nearest differentiated gene, and may even be different populations.
+  such as the correlation of the regions differently methylated with levels of expression of the nearest gene to identify those affected by the DNA methylation, and gene set enrichment analysis.
+As future works, the improvement of the integrative analysis performed by the starburst plot is suggested. This method which integrates the results from two different analysis DEA (differential expression analysis) and DMR (differential methylated regions), should compare the gene expression and DNA methylation of the same sample instead of using the average levels of all samples in a group.
 
 \subsection{Conclusions and future works of TCGAbiolinksGUI}
 
-This work created a Graphical User Interface (GUI) to our command-line tools,
-with the purpose to help users without programming knowledge to perform a
-deeper downstream analysis. Among possible improvements in future works are
-the export of figures in vector formats (PDF, SVG) that do not lose quality
-if altered (enlarged or reduced), the facilitation of the incorporation of external
-user data, which although can be incorporated if formatted in the currently defined standard,
-this can still be improved, the creation of a modularization of the tool,
-which would load only the packages chosen by the user in order to decrease the
- number of libraries needed to run the interface, which
-would be a challenge and may not be possible due to the limitations of the development tools used R/Shiny.
+This work created a Graphical User Interface (GUI) to our command-line tools to help users without programming knowledge to perform deeper downstream analysis.Possible improvements in future work include improving the import of external user data and improving the tool modularization, so that the addition of new menus and packages are facilitated.
 
 \subsection{Conclusions and future works of ELMER}
 
-This work has presented an effort towards the integrative analysis performed
+This work was an effort towards an integrative analysis
 using RNA-seq, DNA methylation, and histone marks to identify a candidate regulatory network.
-It mainly identifies distal regions with a difference in DNA methylation and correlates them
+ELMER identifies distal regions with a difference in DNA methylation and correlates them
 with the gene expression levels of upstream and downstream genes.
-A motif enrichment analysis is performed in the regulatory regions from the anti-correlated
-pairs (loss of DNA methylation and gain o gene expression) to identify potential
-regulatory TF candidates. As future works, we suggest expanding the algorithm to
-the promoter regions, to expand the DNA methylation analysis to accept
-\sigla{WGBS}{whole-genome bisulfite sequencing} data
- and to use mutation information instead of DNA methylation
-to identify regulatory regions mutated that might have affected the
-regulation of the upstream/downstream genes.
+A motif enrichment analysis is performed on the regulatory regions that affect the expression of distant genes to identify potential
+regulatory TF candidates. As future work, we suggest expanding the algorithm to consider promoter regions,  accepting \sigla{WGBS}{whole-genome bisulfite sequencing} data in  DNA methylation analysis, and using mutation information instead of DNA methylation
+to identify regulatory regions mutated that might have affected the regulation of the upstream/downstream genes.
 
-
-\section{Publications, presentations and softwares of the Doctorate Period}
+\section{Publications, presentations, and software of the Doctorate Period}
 
 The work produced during the Doctorate period in form of scientific articles,
 software and conference presentations are shown in the next subsections.
