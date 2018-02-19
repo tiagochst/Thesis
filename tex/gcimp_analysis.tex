@@ -6,7 +6,7 @@
 \sigla{ELMER}{Enhancer Linking by Methylation/Expression Relationship}
 analysis was performed to identify the molecular differences between the newly
 identified G-CIMP-low and G-CIMP-high subtypes of glioma recently described by Dr. Noushmehr
-and his lab \cite{ceccarelli2016molecular}. 
+and his lab \cite{ceccarelli2016molecular}.
 There is a particular interest in these molecular subtypes of glioma, since they have a great difference in both DNA methylation level and survival rate, with the G-CIMP-high subtype having a higher level of DNA methylation in some regions and a better survival rate. Thus, we seek to understand the molecular biology behind these changes leading to a worsening of survival.
 
 For this analysis, TCGA data from the NCI's Genomic Data Commons (GDC) was
@@ -130,10 +130,17 @@ For example, in Table \ref{tab:tf} the motif HXD3 has as potential TF candidate 
 
 
 
+The analysis identified several candidate master regulator TF including PAX3, HMX3, FOXM1, HOXD13, HOXD11, HOXC10 and SOX11. Some of them have already been reported in previous research presented below.
 
-Overall, the results suggest that those regions that lost DNA methylation are bound by the regulatory TF HMX3,
-which  has been related to activation and maintenance of GSH1 expression and subsequent downstream generation of \sigla{GHRH}{growth hormone-releasing hormone} expressing neurons \cite{morales2014regionalized} and \citeonline{pozsgai2010effect} conducted test with GHRH antagonists in glioblastoma cells showing efficacy of those drugs for experimental treatment of glioblastoma, HOXD13, which have been reported to be substantially up regulated in \sigla{GBMs}{Glioblastomas} and may contribute to malignancy \cite{lee2015identification}, PAX3, which is essential for gliomagenesis \cite{xia2013pax3} also FOXM1  was shown by \citeonline{wang2015glioblastoma} to  promote the development and progression of GBM  and to be a novel therapeutic target against GBM.
-To validate these findings, biological experiments are needed which by either knocking down these TFs or by regulating the DNA methylation levels of those binding regions will be able to verify if the downstream genes are being regulated.
+%what a long sentence!  Fix it.
+\citeauthor{morales2014regionalized} showed that HMX3 is a key player in the activation and maintenance of Gsh1 expression which resulted in subsequent downstream generation of GHRH (growth hormone-releasing hormone) expression in neurons \cite{morales2014regionalized}. Furthermore, GHRH antagonists in glioblastoma cells showed efficacy of those drugs for experimental treatment of glioblastoma  \cite{pozsgai2010effect}.
+
+\citeauthor{lee2015identification} reported that HOXD13 is substantially up regulated in GBMs (Glioblastomas) and may contribute to malignancy.
+Also, PAX3 and FOXM1 were shown to be essential for gliomagenesis by \citeauthor{xia2013pax3} and  \citeauthor{wang2015glioblastoma}, respectively.
+
+However, contrary to what was expected, \citeauthor{hide2009sox11} showed that SOX11 prevents gliomagenesis, which may indicate a false positive in our analyzes.
+
+To validate these findings, biological experiments are needed. By either knocking down these TFs or by regulating the DNA methylation levels of those binding regions will be able to verify if the downstream genes are being regulated.
 
 \begin{center}
 \begin{figure}
