@@ -1,3 +1,5 @@
 theme: jekyll-theme-cayman
 title: Ph.D. Defense - Tiago Chedraoui Silva
 repo: ""
+github:
+  is_project_page: false
