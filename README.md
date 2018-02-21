@@ -1,6 +1,6 @@
 # Files
 - Link to my [Ph.D. Defense Presentation](presentation/final.pdf)
-- Link to my [Ph.D. Thesis](thesis.pdf)
+- Link to my [Ph.D. Thesis](thesis_compact_printer.pdf)
 
 # Defense
 
