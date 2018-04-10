@@ -177,8 +177,6 @@
 
 \section{Introduction}
 
-\section{ELMER}
-
 \begin{frame}{Enhancer-mediated gene regulation}
  \vspace*{1.0cm}
  \begin{figure}
@@ -187,6 +185,8 @@
  \end{figure}
 \end{frame}
 
+% Shown are two models for gene regulation by enhancers. The left panel illustrates the ?scanning or tracking? model in which a transcription factor (TF)-containing protein complex binds at an enhancer and moves along the genome, searching for a target promoter (the nearest promoters are labeled in brown and distal promoters are labeled in red). 
+% The right panel illustrates the ?looping? model in which an enhancer directly interacts with a target promoter by forming a DNA loop mediated by protein?protein contacts
 
 
 \begin{frame}{Enhancer-mediated gene regulation}
@@ -206,6 +206,13 @@
  \end{figure}
 \end{frame}
 
+
+\section{ELMER}
+\begin{frame}{\normalsize{ELMER v.2:  Enhancer Linking by Methylation/Expression Relationship}}
+ \begin{figure}
+  \centering
+  \includegraphics[width=1.0\linewidth]{ELMER/painel_A.pdf} \end{figure}
+\end{frame}
 
 
 \begin{frame}{Algorithm}
@@ -241,12 +248,6 @@
 \end{frame}
 
 
-\begin{frame}{ELMER v.2 interactions}
-
- \begin{figure}
-  \centering
-  \includegraphics[width=1.0\linewidth]{ELMER/painel_A.pdf} \end{figure}
-\end{frame}
 
 %\begin{frame}{Step 2: Differentially methylated distal probes}
 % \begin{figure}
@@ -255,12 +256,23 @@
 % \end{figure}
 %\end{frame}
 
-\begin{frame}{Step 2: Differentially methylated distal probes}
+%\begin{frame}{Step 2: Differentially methylated distal probes}
+% \begin{figure}
+%  \centering
+%  \includegraphics[width=1.0\linewidth]{ELMER/volcano_plot.pdf}
+% \end{figure}
+%\end{frame}
+
+\begin{frame}{\normalsize{Groups $U$ and $M$ definition in \textit{(un)supervised} mode}} 
+
+ \vspace*{-0.3cm}
  \begin{figure}
-  \centering
-  \includegraphics[width=1.0\linewidth]{ELMER/volcano_plot.pdf}
+ \centering
+  \includegraphics[width=1.0\linewidth]{ELMER/painel_mode.pdf}
+  \scriptsize{\caption{ A:  \textit{unsupervised} mode; when minSubgroupFrac argument is set to 40\%, the methylated group is defined as the highest quintile and the unmethylated group as the lowest quintile; B:  \textit{supervised} mode; methylated and unmethylated group are defined as one of the known molecular subtypes.}}
  \end{figure}
 \end{frame}
+
 
 \begin{frame}{Step 3: Identification of putative target gene(s)}
  \vspace*{-0.4cm}
@@ -320,7 +332,7 @@ Evaluate the enrichment of transcription factors in certain genomic regions.
 \begin{enumerate}
   \item Perform motif matching of transcription factors in probes regions (window $\pm250bp$). Performed using HOMER (Hypergeometric Optimization of Motif EnRichment) with HOCOMOCO motifs.
   \item Evaluate which transcription factors are more likely to occur in those regions than in background regions
-  using Fisherâ€™s exact test with FDR correction.
+  using Fisher'€™s exact test with FDR correction.
 \end{enumerate}
 \end{block}
  \begin{exampleblock}{Fisherâ€™s exact test}
@@ -333,10 +345,10 @@ Evaluate the enrichment of transcription factors in certain genomic regions.
 \end{frame}
 
 \begin{frame}{Step 4: Motif enrichment analysis}
-  \vspace{-0.5cm} 
+  \vspace{-0.2cm} 
   \begin{figure}
   \hspace*{-1cm} 
-  \includegraphics[width=1.1\linewidth]{ELMER/motif_enrichment.pdf}
+  \includegraphics[width=0.9\linewidth]{ELMER/motif.png}
  \end{figure}
 \end{frame}
 
@@ -441,26 +453,6 @@ Annotations      & None  & StateHub   \\
 
 
 
-\begin{frame}[plain]%{Workflow}
- %\vspace*{-0.3cm}
- %\hspace*{-0.3cm}
- \begin{figure}
-  \hspace*{-1cm}
- %\centering
-  \includegraphics[width=1.18\linewidth]{ELMER/workflow_new.pdf}
- \end{figure}
-\end{frame}
-
-\begin{frame}{\normalsize{Groups $U$ and $M$ definition in \textit{(un)supervised} mode}} 
-
- \vspace*{-0.3cm}
- \begin{figure}
- \centering
-  \includegraphics[width=1.0\linewidth]{ELMER/painel_mode.pdf}
-  \scriptsize{\caption{ A:  \textit{unsupervised} mode; when minSubgroupFrac argument is set to 40\%, the methylated group is defined as the highest quintile and the unmethylated group as the lowest quintile; B:  \textit{supervised} mode; methylated and unmethylated group are defined as one of the known molecular subtypes.}}
- \end{figure}
-\end{frame}
-
 \section{Case of study}
 
 \begin{frame}{Case study: TCGA Breast Invasive Carcinoma (BRCA)}
@@ -503,22 +495,22 @@ Annotations      & None  & StateHub   \\
 %\end{frame}
 
 
-\begin{frame}{Top enriched motifs}
- \vspace*{-0.3cm}
- \begin{figure}
-  \centering
-  \includegraphics[width=0.9\linewidth]{ELMER/motif_new.pdf}
- \end{figure}
-\end{frame}
+%\begin{frame}{Top enriched motifs}
+% \vspace*{-0.3cm}
+% \begin{figure}
+%  \centering
+%  \includegraphics[width=0.9\linewidth]{ELMER/motif_new.pdf}
+% \end{figure}
+%\end{frame}
 
 
-\begin{frame}{TF ranking plot - FOXA3 motif}
- \vspace*{-0.3cm}
- \begin{figure}
-  \centering
-  \includegraphics[width=0.9\linewidth]{ELMER/TF_raking.pdf}
- \end{figure}
-\end{frame}
+%\begin{frame}{TF ranking plot - FOXA3 motif}
+% \vspace*{-0.3cm}
+% \begin{figure}
+%  \centering
+%  \includegraphics[width=0.9\linewidth]{ELMER/TF_raking.pdf}
+% \end{figure}
+%\end{frame}
 
 \begin{frame}{DNA methylation at motifs vs TF expression}
  \begin{figure}
@@ -681,5 +673,17 @@ Annotations      & None  & StateHub   \\
   \caption{Candidate master regulator Transcription Factors (TF) knockdown in the SKGT4 human esophageal adenocarcinoma cell line. Figure produced by Dr. Dechen Lin.}
  \end{figure}
 \end{frame}
+
+
+\begin{frame}[plain]%{Workflow}
+ %\vspace*{-0.3cm}
+ %\hspace*{-0.3cm}
+ \begin{figure}
+  \hspace*{-1cm}
+ %\centering
+  \includegraphics[width=1.18\linewidth]{ELMER/workflow_new.pdf}
+ \end{figure}
+\end{frame}
+
 
 \end{document}
