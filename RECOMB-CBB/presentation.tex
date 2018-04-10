@@ -53,18 +53,54 @@
 \makeatother
 \setcounter{subsection}{1}
 
+
+\usepackage{tikz}
+\usetikzlibrary{shadings}
+
+\colorlet{titleleft}{black}
+\colorlet{titlemiddle}{blue!20!black}
+\colorlet{titleright}{blue!40!black}
+
+\pgfdeclarehorizontalshading[titleleft,titlemiddle,titleright]      {beamer@frametitleshade}{\paperheight}{%
+    color(0\paperwidth)=(titleleft);
+    color(0.15\paperwidth)=(titleleft);
+  color(0.5\paperwidth)=(titlemiddle);
+  color(0.85\paperwidth)=(titleright);
+  color(\paperwidth)=(titleright)
+}
+
 \makeatletter
+
 \setbeamertemplate{footline}
 {
-\leavevmode%
-\hbox{%
-\begin{beamercolorbox}[wd=\paperwidth,ht=2.00ex,dp=0.0ex,center]{title in head/foot}%
-\usebeamerfont{title in head/foot}Tiago C. Silva | \inserttitle \hspace*{2em}
-\insertframenumber{} / \inserttotalframenumber\hspace*{1ex}
-\end{beamercolorbox}%
+    \leavevmode%
+    \setbox\beamer@tempbox=\hbox{%
+        \begin{beamercolorbox}[wd=.233333\paperwidth,ht=3.0ex,sep=1ex,center]{parent=palette tertiary,bg=,fg=white}%
+            \color{white}{RECOMB-CBB | Tiago C. Silva} \expandafter\beamer@ifempty\expandafter{\beamer@shortinstitute}{}{~~(\insertshortinstitute)}
+        \end{beamercolorbox}%
+        \begin{beamercolorbox}[wd=.533333\paperwidth,ht=3.0ex,sep=1ex,center]{parent=palette secondary,bg=,fg=white}%
+             \color{white}{\usebeamerfont{title in head/foot}
+            \textit{ELMER} v.2: Enhancer Linking by Methylation/Expression Relationship 
+             }
+        \end{beamercolorbox}%
+        \begin{beamercolorbox}[wd=.233333\paperwidth,ht=3.0ex,sep=1ex,right]{parent=palette primary,bg=,fg=white}%
+         \color{white}{
+            \usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{2em}
+            \insertframenumber{} / \inserttotalframenumber\hspace*{2ex} 
+            }
+        \end{beamercolorbox}%
+        }%
+        \vskip-\beamer@tempdim%
+        \beamer@tempdim=\ht\beamer@tempbox%
+        \advance\beamer@tempdim by 4pt%
+        \begin{pgfpicture}{0pt}{0pt}{\paperwidth}{20pt}
+            \pgfpathrectangle{\pgfpointorigin}{\pgfpoint{\paperwidth}{\beamer@tempdim}}
+            \pgfusepath{clip}
+            \pgftext[left,base]{\pgfuseshading{beamer@frametitleshade}}
+        \end{pgfpicture}
+        \vskip-\beamer@tempdim%
+        \box\beamer@tempbox%    
 }%
-\vskip0pt%
-}
 \makeatother
 
 \usepackage{csvsimple}
@@ -93,7 +129,7 @@
 %
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-\title{ELMER 2.0}
+\title{ELMER v2}
 \subtitle{An R/Bioconductor package to reconstruct gene regulatory networks from DNA methylation and transcriptome profiles}
 %\date{\small{\jobname}}
 \date{\today}
@@ -142,14 +178,6 @@
 \section{Introduction}
 
 \section{ELMER}
-
-\begin{frame}{ Enhancer Linking by Methylation/Expression Relationship}
- \vspace*{-0.5cm}
- \begin{figure}
-  \centering
-  \includegraphics[width=1.0\linewidth]{bioinformatics.png}
- \end{figure}
-\end{frame}
 
 \begin{frame}{Enhancer-mediated gene regulation}
  \vspace*{1.0cm}
@@ -208,10 +236,17 @@
  \vspace*{-0.4cm}
  \begin{figure}
   \centering
-  \includegraphics[width=0.6\linewidth]{ELMER/diffmeth.png}{\tiny{\\\vspace*{-0.2cm}Source: Yao et al. Genome Biology (2015)}}
+  \includegraphics[width=0.57\linewidth]{ELMER/diffmeth.png}{\tiny{\\\vspace*{-0.2cm}Source: Yao et al. Genome Biology (2015)}}
  \end{figure}
 \end{frame}
 
+
+\begin{frame}{ELMER v.2 interactions}
+
+ \begin{figure}
+  \centering
+  \includegraphics[width=1.0\linewidth]{ELMER/painel_A.pdf} \end{figure}
+\end{frame}
 
 %\begin{frame}{Step 2: Differentially methylated distal probes}
 % \begin{figure}
@@ -250,6 +285,13 @@
   \centering
   \includegraphics[width=1.0\linewidth]{ELMER/heatmappair.jpg}
  \end{figure}
+\end{frame}
+
+\begin{frame}{Chromatin state enrichment analysis}
+ \vspace*{-0.4cm}
+ \begin{figure}
+  \centering
+  \includegraphics[width=1.0\linewidth]{ELMER/painel_C.pdf} \end{figure}
 \end{frame}
 
 
@@ -322,6 +364,24 @@ Evaluate the enrichment of transcription factors in certain genomic regions.
  \end{figure}
 \end{frame}
 
+
+\begin{frame}{TFs ranking for the \textit{FOXA3} motif}
+ \vspace*{-0.4cm}
+ \begin{figure}
+  \centering
+  \includegraphics[width=0.9\linewidth]{ELMER/painel_D.pdf}
+   \end{figure}
+\end{frame}
+
+\begin{frame}{BRCA supervised analysis: Candidate MRs}
+ \vspace*{-0.4cm}
+ \begin{figure}
+  \centering
+  \includegraphics[width=0.48\linewidth]{ELMER/painel_E.pdf} \end{figure}
+\end{frame}
+
+
+
 %\begin{frame}{Step 5: TF scatter plot}
 % \begin{figure}
 %  \centering
@@ -391,7 +451,7 @@ Annotations      & None  & StateHub   \\
  \end{figure}
 \end{frame}
 
-\begin{frame}{\normalsize{Difference of groups $U$ and $M$ definition in \textit{supervised} and \textit{unsupervised} mode}} 
+\begin{frame}{\normalsize{Groups $U$ and $M$ definition in \textit{(un)supervised} mode}} 
 
  \vspace*{-0.3cm}
  \begin{figure}
@@ -479,13 +539,13 @@ Annotations      & None  & StateHub   \\
  \end{figure}
 \end{frame}
 
-\begin{frame}{Characterization of chromatin state context of enriched probes using FunciVar}
- \vspace*{-0.3cm}
- \begin{figure}[ht!]
-  \centering
-  \includegraphics[width=0.9\textwidth]{images/1.png}%\tiny{\\Enrichment of paired probes and chromatin states of encode cells. The plot shows enrichment for enhancer active region (EAR), weak enhancer (EWR) and active promoter region (PAR) for MCF-7 cell. }
- \end{figure}
-\end{frame}
+%\begin{frame}{Characterization of chromatin state context of enriched probes using FunciVar}
+% \vspace*{-0.3cm}
+% \begin{figure}[ht!]
+%  \centering
+%  \includegraphics[width=0.9\textwidth]{images/1.png}%\tiny{\\Enrichment of paired probes and chromatin states of encode cells. The plot shows enrichment for enhancer active region (EAR), weak enhancer (EWR) and active promoter region (PAR) for MCF-7 cell. }
+ %\end{figure}
+%\end{frame}
 
 %\begin{frame}{Comparing inferred results with MCF-7 chIA-PET}
 
@@ -495,13 +555,13 @@ Annotations      & None  & StateHub   \\
 % \end{figure}
 %\end{frame}
 
-\begin{frame}[plain]{Supervised analysis: BRCA molecular subtypes}
-\vspace*{-0.45cm}
- \begin{figure}[ht!]
-  \centering
-  \includegraphics[width=1.0\textwidth]{ELMER/breastcancer-subtypes.png}\tiny{\\Source: Wong ET. Available at: http://www.pathophys.org/breast-cancer/. Accessed 25/12/2017.}
- \end{figure}
-\end{frame}
+%\begin{frame}[plain]{Supervised analysis: BRCA molecular subtypes}
+%\vspace*{-0.45cm}
+% \begin{figure}[ht!]
+%  \centering
+%  \includegraphics[width=1.0\textwidth]{ELMER/breastcancer-subtypes.png}\tiny{\\Source: Wong ET. Available at: http://www.pathophys.org/breast-cancer/. Accessed 25/12/2017.}
+% \end{figure}
+% \end{frame}
 
 %\begin{frame}{BRCA supervised analysis}
   %\begin{tabular}{p{2.3cm}p{2.4cm}p{2.4cm}p{1cm}}
@@ -521,64 +581,64 @@ Annotations      & None  & StateHub   \\
  %\end{figure}
 %\end{frame}
 
-
-\begin{frame}{Supervised analysis: Candidate regulatory TFs }
-\vspace*{-0.7cm}
-\begin{table}[]
-\tiny
-\centering
-\begin{tabular}{@{}|c|c|c|c|c|c|c|c|c|@{}}
-\midrule
-\textit{\textbf{TF}} & \textbf{\begin{tabular}[c]{@{}c@{}}LumA \\ (vs basal)\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}LumB \\ (vs basal)\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}LumA \\ (vs normal)\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}LumB \\ (vs normal)\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Basal \\ (vs LumA)\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Basal \\ (vs LumB)\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Basal \\ (vs HER2)\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}HER2 \\ (vs Basal)\end{tabular}} \\ \midrule
-\textit{\textbf{AR}} & x & x & x &  &  &  &  &  \\
-\textit{\textbf{BCL11A}} &  &  &  &  & x & x & x &  \\
-\textit{\textbf{CEBPB}} &  &  &  &  & x & x & x &  \\
-\textit{\textbf{E2F3}} &  &  &  &  &  & x & x &  \\
-%\textit{\textbf{ELF5}} &  &  &  &  & x &  &  &  \\
-\textit{\textbf{EMX1}} & x & x & x &  &  &  &  &  \\
-\textit{\textbf{ESR1}} & x & x & x & x &  &  &  &  \\
-\textit{\textbf{ETV6}} &  &  &  &  & x & x & x &  \\
-\textit{\textbf{FOXA1}} & x & x & x & x &  &  &  & x \\
-%\textit{\textbf{FOXD2}} &  & x &  &  &  &  &  &  \\
-\textit{\textbf{FOXP1}} & x & x &  &  &  &  &  & x \\
-%\textit{\textbf{GATA2}} & x &  &  &  &  &  &  & x \\
-\textit{\textbf{GATA3}} & x & x & x & x &  &  &  & x \\
-%\textit{\textbf{GLI1}} & x & x &  &  &  &  &  &  \\
-\textit{\textbf{HOXB1}} & x & x &  &  &  &  &  &  \\
-\textit{\textbf{HOXB2}} & x & x &  &  &  &  &  & x \\
-\textit{\textbf{HOXB3}} &  &  &  &  &  &  &  & x \\
-%\textit{\textbf{HOXB6}} &  &  &  &  &  &  &  & x \\
-\textit{\textbf{HOXC10}} &  &  &  &  &  &  &  & x \\
-%\textit{\textbf{HOXC11}} &  &  &  &  &  &  &  & x \\
-\textit{\textbf{KLF5}} &  &  &  &  &  & x & x &  \\
-\textit{\textbf{LMX1B}} & x & x & x &  &  &  &  &  \\
-%\textit{\textbf{MAZ}} &  &  & x &  &  &  &  &  \\
-\textit{\textbf{MNX1}} &  &  &  &  &  &  &  & x \\
-%\textit{\textbf{MSX2}} & x & x &  &  &  &  &  &  \\
-\textit{\textbf{MYB}} & x &  &  & x &  &  &  &  \\
-%\textit{\textbf{MYBL1}} &  &  &  & x &  &  &  &  \\
-%\textit{\textbf{MYBL2}} &  &  &  & x & x &  &  &  \\
-%\textit{\textbf{NFATC4}} & x &  &  &  &  &  &  &  \\
-%\textit{\textbf{NFIB}} &  &  &  &  & x &  &  &  \\
-\textit{\textbf{NFIL3}} &  &  &  &  & x & x &  &  \\
-%\textit{\textbf{NR2E3}} & x & x &  &  &  &  &  &  \\
-%\textit{\textbf{OVOL2}} &  &  & x &  &  &  &  &  \\
-%\textit{\textbf{PATZ1}} &  & x & x &  &  &  &  &  \\
-\textit{\textbf{PBX1}} &  & x &  & x &  &  &  &  \\
-%\textit{\textbf{POU2F1}} &  &  & x & x &  &  &  &  \\
-%\textit{\textbf{PGR}} & x & x &  &  &  &  &  &  \\
-\textit{\textbf{RARA}} & x & x & x &  &  &  &  &  \\
-\textit{\textbf{RUNX3}} &  &  &  &  & x & x &  &  \\
-\textit{\textbf{SOX8}} &  &  &  &  &  & x & x &  \\
-\textit{\textbf{SOX9}} &  &  &  &  &  & x & x &  \\
-\textit{\textbf{SOX11}} &  &  &  &  & x & x &  &  \\
-%\textit{\textbf{ZNF281}} &  &  & x & x &  &  &  &  \\
-%\textit{\textbf{ZNF423}} & x &  &  &  &  &  &  &  \\
-\textit{\textbf{ZNF467}} & x & x & x &  &  &  &  &  \\
-\textit{\textbf{ZIC1}} &  &  &  &  & x & x & x &  \\ \bottomrule
-\end{tabular}
-\end{table}
-\end{frame}
+%
+%\begin{frame}{Supervised analysis: Candidate regulatory TFs }
+%\vspace*{-0.7cm}
+%\begin{table}[]
+%\tiny
+%\centering
+%\begin{tabular}{@{}|c|c|c|c|c|c|c|c|c|@{}}
+%\midrule
+%\textit{\textbf{TF}} & \textbf{\begin{tabular}[c]{@{}c@{}}LumA \\ (vs basal)\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}LumB \\ (vs basal)\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}LumA \\ (vs normal)\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}LumB \\ (vs normal)\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Basal \\ (vs LumA)\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Basal \\ (vs LumB)\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Basal \\ (vs HER2)\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}HER2 \\ (vs Basal)\end{tabular}} \\ \midrule
+%\textit{\textbf{AR}} & x & x & x &  &  &  &  &  \\
+%\textit{\textbf{BCL11A}} &  &  &  &  & x & x & x &  \\
+%\textit{\textbf{CEBPB}} &  &  &  &  & x & x & x &  \\
+%\textit{\textbf{E2F3}} &  &  &  &  &  & x & x &  \\
+%%\textit{\textbf{ELF5}} &  &  &  &  & x &  &  &  \\
+%\textit{\textbf{EMX1}} & x & x & x &  &  &  &  &  \\
+%\textit{\textbf{ESR1}} & x & x & x & x &  &  &  &  \\
+%\textit{\textbf{ETV6}} &  &  &  &  & x & x & x &  \\
+%\textit{\textbf{FOXA1}} & x & x & x & x &  &  &  & x \\
+%%\textit{\textbf{FOXD2}} &  & x &  &  &  &  &  &  \\
+%\textit{\textbf{FOXP1}} & x & x &  &  &  &  &  & x \\
+%%\textit{\textbf{GATA2}} & x &  &  &  &  &  &  & x \\
+%\textit{\textbf{GATA3}} & x & x & x & x &  &  &  & x \\
+%%\textit{\textbf{GLI1}} & x & x &  &  &  &  &  &  \\
+%\textit{\textbf{HOXB1}} & x & x &  &  &  &  &  &  \\
+%\textit{\textbf{HOXB2}} & x & x &  &  &  &  &  & x \\
+%\textit{\textbf{HOXB3}} &  &  &  &  &  &  &  & x \\
+%%\textit{\textbf{HOXB6}} &  &  &  &  &  &  &  & x \\
+%\textit{\textbf{HOXC10}} &  &  &  &  &  &  &  & x \\
+%%\textit{\textbf{HOXC11}} &  &  &  &  &  &  &  & x \\
+%\textit{\textbf{KLF5}} &  &  &  &  &  & x & x &  \\
+%\textit{\textbf{LMX1B}} & x & x & x &  &  &  &  &  \\
+%%\textit{\textbf{MAZ}} &  &  & x &  &  &  &  &  \\
+%\textit{\textbf{MNX1}} &  &  &  &  &  &  &  & x \\
+%%\textit{\textbf{MSX2}} & x & x &  &  &  &  &  &  \\
+%\textit{\textbf{MYB}} & x &  &  & x &  &  &  &  \\
+%%\textit{\textbf{MYBL1}} &  &  &  & x &  &  &  &  \\
+%%\textit{\textbf{MYBL2}} &  &  &  & x & x &  &  &  \\
+%%\textit{\textbf{NFATC4}} & x &  &  &  &  &  &  &  \\
+%%\textit{\textbf{NFIB}} &  &  &  &  & x &  &  &  \\
+%\textit{\textbf{NFIL3}} &  &  &  &  & x & x &  &  \\
+%%\textit{\textbf{NR2E3}} & x & x &  &  &  &  &  &  \\
+%%\textit{\textbf{OVOL2}} &  &  & x &  &  &  &  &  \\
+%%\textit{\textbf{PATZ1}} &  & x & x &  &  &  &  &  \\
+%\textit{\textbf{PBX1}} &  & x &  & x &  &  &  &  \\
+%%\textit{\textbf{POU2F1}} &  &  & x & x &  &  &  &  \\
+%%\textit{\textbf{PGR}} & x & x &  &  &  &  &  &  \\
+%\textit{\textbf{RARA}} & x & x & x &  &  &  &  &  \\
+%\textit{\textbf{RUNX3}} &  &  &  &  & x & x &  &  \\
+%\textit{\textbf{SOX8}} &  &  &  &  &  & x & x &  \\
+%\textit{\textbf{SOX9}} &  &  &  &  &  & x & x &  \\
+%\textit{\textbf{SOX11}} &  &  &  &  & x & x &  &  \\
+%%\textit{\textbf{ZNF281}} &  &  & x & x &  &  &  &  \\
+%%\textit{\textbf{ZNF423}} & x &  &  &  &  &  &  &  \\
+%\textit{\textbf{ZNF467}} & x & x & x &  &  &  &  &  \\
+%\textit{\textbf{ZIC1}} &  &  &  &  & x & x & x &  \\ \bottomrule
+%\end{tabular}
+%\end{table}
+%\end{frame}
 
 
 
