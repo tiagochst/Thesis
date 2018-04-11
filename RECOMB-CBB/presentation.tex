@@ -38,7 +38,7 @@
 
 %\titlegraphic{\includegraphics[height=.15\textheight]{logo/fapesp_s}}
 \titlegraphic{
-\includegraphics[height=.10\textheight]{logo/fapesp_s}
+\includegraphics[height=.10\textheight]{cedars}
 \hspace{1cm}
 \includegraphics[height=.08\textheight]{logo/usp}
 %\hspace{2cm}
@@ -135,7 +135,7 @@
 \date{\today}
 \author[Tiago Chedraoui Silva]{\texttt {Tiago Chedraoui Silva}\\ \texttt{RECOMB-CBB}} % auteur
 %\author{\texttt{Tiago Chedraoui Silva}}
-\institute{University of SÃ£o Paulo / Cedar-Sinai }
+%\institute{University of SÃ£o Paulo / Cedar-Sinai }
 
 \begin{document}
 
@@ -159,9 +159,8 @@
 \begin{enumerate}
 \setlength\itemsep{2em}
 \item Introduction
-\item Objectives
-\item Methods: Algorithms and tools
-\item Analysis
+\item Methods: ELMER algorithm
+\item Case of study: TCGA-BRCA
 \item Conclusion
 \end{enumerate}
  % For longer presentations use hideallsubsections option
@@ -335,13 +334,12 @@ Evaluate the enrichment of transcription factors in certain genomic regions.
   using Fisher'€™s exact test with FDR correction.
 \end{enumerate}
 \end{block}
- \begin{exampleblock}{Fisherâ€™s exact test}
+ \begin{exampleblock}{Fisher's exact test}
  a: nb of input regions with a match for TF motif.\\
  b: nb of input regions with no match for TF motif.\\
  c: nb of background regions with a match for TF motif.\\
  d: nb of background regions with no match for TF motif.
  \end{exampleblock}
-
 \end{frame}
 
 \begin{frame}{Step 4: Motif enrichment analysis}
@@ -417,40 +415,6 @@ Evaluate the enrichment of transcription factors in certain genomic regions.
   \includegraphics[width=1.1\linewidth]{ELMER/TF_tbl.png}
  \end{figure}
 \end{frame}
-
-\begin{frame}{ \normalsize{Main differences between ELMER old version (v.1) and the new version (v.2)}}
- \normalsize{
- \vspace{-0.5cm}
-\begin{table}
-\centering
-\label{tab:summary}
-%{\def\arraystretch{2}\tabcolsep=10pt
-\resizebox{\textwidth}{!}{%
-\begin{tabular}{@{}m{4cm}m{6cm}m{7cm}@{}}
-\toprule
-\toprule
-\multicolumn{1}{c}{\textbf{Features}} & \multicolumn{1}{c}{\textbf{ELMER Version 1}} & \multicolumn{1}{c}{\textbf{ELMER Version 2}}   \\ \midrule \midrule
-Primary data structure      & mee object (custom data structure)   & MAE object (Bioconductor data structure) \\ \midrule
-Auxiliary data      & Manually created   & Programmatically created \\\midrule
-Number of human TFs       & 1,982 & 2,014 (UniProt database)    \\\midrule
-Number of TF motifs      & 91    & 771  (HOCOMOCO v11 database)    \\\midrule
-TF classification &  78 families         & 82 families and 331 subfamilies \newline(TFClass database, HOCOMOCO) \\\midrule
-Analysis performed            & Normal vs tumor samples & Group 1 vs group 2   \\ \midrule
-Statistical grouping            & Unsupervised only & Unsupervised or supervised using labeled groups   \\ \midrule
-TCGA data source      & The Cancer Genome Atlas (TCGA)    & The NCI's Genomic Data Commons (GDC)     \\\midrule
-Genome of reference      & GRCh37 (hg19)      & GRCh37 (hg19)/GRCh38 (hg38)          \\\midrule
-DNA methylation platforms             & HM450  & EPIC and HM450            \\\midrule
-Graphical User Interface (GUI)        & None  & TCGAbiolinksGUI     \\\midrule
-Automatic report        & None  & HTML summarizing results    \\\midrule
-Annotations      & None  & StateHub   \\
-\bottomrule
-\end{tabular}
-}
-%}
-\end{table}
- }
-\end{frame}
-
 
 
 \section{Case of study}
@@ -679,6 +643,42 @@ Normal-like & 22 \\ \hline
   \caption{Candidate master regulator Transcription Factors (TF) knockdown in the SKGT4 human esophageal adenocarcinoma cell line. Figure produced by Dr. Dechen Lin.}
  \end{figure}
 \end{frame}
+
+
+
+\begin{frame}{ \normalsize{Main differences between ELMER old version (v.1) and the new version (v.2)}}
+ \normalsize{
+ \vspace{-0.5cm}
+\begin{table}
+\centering
+\label{tab:summary}
+%{\def\arraystretch{2}\tabcolsep=10pt
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}m{4cm}m{6cm}m{7cm}@{}}
+\toprule
+\toprule
+\multicolumn{1}{c}{\textbf{Features}} & \multicolumn{1}{c}{\textbf{ELMER Version 1}} & \multicolumn{1}{c}{\textbf{ELMER Version 2}}   \\ \midrule \midrule
+Primary data structure      & mee object (custom data structure)   & MAE object (Bioconductor data structure) \\ \midrule
+Auxiliary data      & Manually created   & Programmatically created \\\midrule
+Number of human TFs       & 1,982 & 2,014 (UniProt database)    \\\midrule
+Number of TF motifs      & 91    & 771  (HOCOMOCO v11 database)    \\\midrule
+TF classification &  78 families         & 82 families and 331 subfamilies \newline(TFClass database, HOCOMOCO) \\\midrule
+Analysis performed            & Normal vs tumor samples & Group 1 vs group 2   \\ \midrule
+Statistical grouping            & Unsupervised only & Unsupervised or supervised using labeled groups   \\ \midrule
+TCGA data source      & The Cancer Genome Atlas (TCGA)    & The NCI's Genomic Data Commons (GDC)     \\\midrule
+Genome of reference      & GRCh37 (hg19)      & GRCh37 (hg19)/GRCh38 (hg38)          \\\midrule
+DNA methylation platforms             & HM450  & EPIC and HM450            \\\midrule
+Graphical User Interface (GUI)        & None  & TCGAbiolinksGUI     \\\midrule
+Automatic report        & None  & HTML summarizing results    \\\midrule
+Annotations      & None  & StateHub   \\
+\bottomrule
+\end{tabular}
+}
+%}
+\end{table}
+ }
+\end{frame}
+
 
 
 %\begin{frame}[plain]%{Workflow}
